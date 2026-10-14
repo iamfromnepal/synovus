@@ -56,4 +56,4 @@ synovus/
    ```
 
 4. **View locally**:
-   Open `index.html` in your browser or run through WAMP at `http://localhost/synovus`.
+   Open `index.html` directly in your browser, or serve through any local web server or static hosting provider.

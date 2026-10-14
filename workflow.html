@@ -723,7 +723,7 @@
       <path id="wire-extractor-purge" class="wire" />
       <path id="wire-safelist-purge" class="wire" />
       <path id="wire-purge-stylecss" class="wire" />
-      <path id="wire-stylecss-wamp" class="wire" />
+      <path id="wire-stylecss-browser" class="wire" />
       <path id="wire-stylecss-git" class="wire" />
     </svg>
 
@@ -963,22 +963,22 @@
           <span class="node-tag glow-tag">77.5 KB Output</span>
         </div>
 
-        <!-- Node: WAMP Local Server -->
-        <div class="d-node" id="node-wamp" onclick="inspectNode('wamp')">
-          <div class="port port-left" id="p-wamp-in"></div>
+        <!-- Node: Browser & Web Host -->
+        <div class="d-node" id="node-browser" onclick="inspectNode('browser')">
+          <div class="port port-left" id="p-browser-in"></div>
           <div class="node-header">
             <div class="node-icon-box ib-blue">
-              <i class="bi bi-hdd-network"></i>
+              <i class="bi bi-browser-chrome"></i>
             </div>
             <div class="node-title-group">
-              <h4>WAMP Local Server</h4>
-              <span class="file-badge">http://localhost/synovus</span>
+              <h4>Browser & Web Host</h4>
+              <span class="file-badge">Direct / Web Preview</span>
             </div>
           </div>
           <div class="node-desc">
-            Delivered immediately to Apache server for live local browser viewing.
+            Direct standalone browser viewing (<code>index.html</code>) or deployment to any static/web host.
           </div>
-          <span class="node-tag">Localhost Preview</span>
+          <span class="node-tag">Direct Preview / Hosting</span>
         </div>
 
         <!-- Node: GitHub Remote Repository -->
@@ -1220,7 +1220,7 @@ $body-bg: #f8fafc;
         ['p-extractor-out', 'p-purge-in', 'wire-extractor-purge'],
         ['p-safelist-out', 'p-purge-in', 'wire-safelist-purge'],
         ['p-purge-out', 'p-stylecss-in', 'wire-purge-stylecss'],
-        ['p-stylecss-out', 'p-wamp-in', 'wire-stylecss-wamp'],
+        ['p-stylecss-out', 'p-browser-in', 'wire-stylecss-browser'],
         ['p-stylecss-out', 'p-git-in', 'wire-stylecss-git'],
       ];
 
@@ -1259,19 +1259,19 @@ $body-bg: #f8fafc;
 
       if (type === 'scss') {
         document.getElementById('btn-scss').classList.add('active');
-        ['node-custom-overrides', 'node-style-entry', 'node-chokidar', 'node-compiler', 'node-purge', 'node-stylecss', 'node-wamp'].forEach(id => {
+        ['node-custom-overrides', 'node-style-entry', 'node-chokidar', 'node-compiler', 'node-purge', 'node-stylecss', 'node-browser'].forEach(id => {
           document.getElementById(id)?.classList.add('highlighted');
         });
-        ['wire-overrides-style', 'wire-style-compiler', 'wire-compiler-purge', 'wire-purge-stylecss', 'wire-stylecss-wamp'].forEach(id => {
+        ['wire-overrides-style', 'wire-style-compiler', 'wire-compiler-purge', 'wire-purge-stylecss', 'wire-stylecss-browser'].forEach(id => {
           document.getElementById(id)?.classList.add('flow-active');
         });
         statusText.innerHTML = "<strong>Scenario 1 (SCSS Theme Edit):</strong> Saving <code>custom-overrides.scss</code> &rarr; Chokidar triggers &rarr; Dart Sass compiles in-memory &rarr; PurgeCSS re-verifies &rarr; <code>style.css</code> updates in root.";
       } else if (type === 'php') {
         document.getElementById('btn-php').classList.add('active-emerald');
-        ['node-templates', 'node-chokidar', 'node-extractor', 'node-purge', 'node-safelist', 'node-stylecss', 'node-wamp'].forEach(id => {
+        ['node-templates', 'node-chokidar', 'node-extractor', 'node-purge', 'node-safelist', 'node-stylecss', 'node-browser'].forEach(id => {
           document.getElementById(id)?.classList.add('highlighted-emerald');
         });
-        ['wire-templates-extractor', 'wire-extractor-purge', 'wire-safelist-purge', 'wire-purge-stylecss', 'wire-stylecss-wamp'].forEach(id => {
+        ['wire-templates-extractor', 'wire-extractor-purge', 'wire-safelist-purge', 'wire-purge-stylecss', 'wire-stylecss-browser'].forEach(id => {
           document.getElementById(id)?.classList.add('flow-active-emerald');
         });
         statusText.innerHTML = "<strong>Scenario 2 (Template Edit):</strong> Adding markup to a <code>.php</code> or <code>.html</code> file &rarr; Chokidar fires &rarr; Token extractor detects class &rarr; PurgeCSS preserves matching Bootstrap selectors &rarr; <code>style.css</code> reflects changes.";
@@ -1338,13 +1338,13 @@ $body-bg: #f8fafc;
       },
       'stylecss': {
         title: 'Root style.css',
-        body: 'The final optimized production stylesheet in the project root. Ready for WAMP server or production deployment.',
+        body: 'The final optimized production stylesheet in the project root. Ready for direct browser preview or production deployment.',
         code: '\x3Clink rel="stylesheet" href="style.css">'
       },
-      'wamp': {
-        title: 'WAMP Local Apache Server',
-        body: 'Serves the project locally at http://localhost/synovus. Fast, native, and completely offline.',
-        code: 'Apache 2.4 + PHP 8.x + MySQL'
+      'browser': {
+        title: 'Browser & Web Host',
+        body: 'Runs standalone in any modern browser directly via file://, local static server, or deployed to any web hosting platform (Vercel, Netlify, GitHub Pages, Apache, Nginx).',
+        code: 'index.html -> Chrome / Edge / Safari / Web Host'
       },
       'git': {
         title: 'Git Version Control',
@@ -1427,7 +1427,7 @@ $body-bg: #f8fafc;
         iconColor: '#fbbf24',
         badge: 'Local Vendor Script',
         badgeClass: 'badge-sys',
-        desc: 'Local copy of the complete Bootstrap 5 JavaScript bundle including Popper.js. Runs completely offline on WAMP server without CDN dependencies.',
+        desc: 'Local copy of the complete Bootstrap 5 JavaScript bundle including Popper.js. Runs completely offline in any browser without CDN or external server dependencies.',
         role: 'Runtime Component Interactivity (Modals, Dropdowns, Offcanvas)',
         trigger: 'Loaded on client-side',
         target: 'Enables interactive Bootstrap UI widgets',
@@ -1466,7 +1466,7 @@ $body-bg: #f8fafc;
         desc: 'The main web page showcasing our customized Bootstrap 5 components, Realist typography, and glassmorphic navbar. Links directly to root style.css.',
         role: 'Main Frontend View & Content Source',
         trigger: 'Scanned by PurgeCSS to keep matching CSS selectors in style.css',
-        target: 'Rendered in browser or at http://localhost/synovus',
+        target: 'Rendered directly in your browser or deployed to any web host',
         code: '\x3C!DOCTYPE html>\n\x3Chtml lang="en">\n\x3Chead>\n  \x3Clink rel="stylesheet" href="https://use.typekit.net/zie0aus.css">\n  \x3Clink rel="stylesheet" href="style.css">\n\x3C/head>'
       },
       'workflow-html': {
@@ -1478,7 +1478,7 @@ $body-bg: #f8fafc;
         desc: 'This self-contained interactive architecture diagram and file structure explorer. Provides a live node-graph simulator, architectural explanations, and file tree breakdown.',
         role: 'Architecture Blueprint & Team Documentation',
         trigger: 'Scanned by PurgeCSS to retain diagram utility classes',
-        target: 'Accessible at http://localhost/synovus/workflow.html',
+        target: 'Accessible directly via your browser or web host',
         code: '\x3Ca href="workflow.html">Workflow Diagram\x3C/a>'
       },
       'package-json': {
@@ -1523,10 +1523,10 @@ $body-bg: #f8fafc;
         iconColor: '#60a5fa',
         badge: 'Workspace Root',
         badgeClass: 'badge-sys',
-        desc: 'The root directory of the project, served under WAMP at `d:\\wamp64\\www\\synovus` and tracked by Git.',
+        desc: 'The root directory of the project, accessible directly in your browser or any static web host, and tracked by Git.',
         role: 'Project Container',
-        trigger: 'WAMP Document Root',
-        target: 'http://localhost/synovus',
+        trigger: 'Workspace / Web Root',
+        target: 'index.html or any static web host',
         code: 'd:\\wamp64\\www\\synovus'
       },
       'scss-dir': {
