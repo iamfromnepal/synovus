@@ -1,87 +1,141 @@
 // ===================================================
-// Synovus - Custom Overrides for Bootstrap 5
+// Synovus - Custom Overrides & Figma Design Tokens
+// Master Design System extracted from 10-7-26 Figma
 // ===================================================
 
 // ---------------------------------------------------
-// 1. THEME & VARIABLE OVERRIDES
-// (These override Bootstrap's default values)
+// 1. SYNOVUS DESIGN TOKENS (Variables)
 // ---------------------------------------------------
 
-// Typography - Realist Typekit
-$font-family-sans-serif: "realist", sans-serif;
-$font-family-base: $font-family-sans-serif;
-$font-family-narrow: "realistnarrow", sans-serif;
-$headings-font-family: $font-family-sans-serif;
+// Brand Core Colors
+$synovus-blue:            #0074C4; // Primary Brand Blue (3,192 uses in Figma)
+$synovus-blue-hover:      #005FA3;
+$synovus-blue-active:     #004D84;
+$synovus-navy:            #283862; // Deep Navy (696 uses)
+$synovus-navy-dark:       #1B2745;
+$synovus-light-blue:      #CCE3F3; // Light Blue Tint (456 uses)
+$synovus-light-blue-28:   rgba(204, 227, 243, 0.28);
+$synovus-light-blue-40:   rgba(204, 227, 243, 0.40);
+$synovus-black:           #151515; // Primary Text / Matt Black (1,096 uses)
+$synovus-white:           #FFFFFF; // Pure White (1,990 uses)
 
-// Font Weights for Realist
-$font-weight-light: 300;     // SemiLight
-$font-weight-normal: 400;    // Regular
-$font-weight-medium: 600;    // Medium
-$font-weight-semibold: 600;  // Medium
-$font-weight-bold: 700;      // Bold
-$headings-font-weight: 700;
-$font-size-base: 1rem;
-$line-height-base: 1.6;
+// Supporting & Accent Colors
+$synovus-cyan:            #00B4C4;
+$synovus-sky:             #84C2ED;
+$synovus-ice:             #7FF6FF;
+$synovus-gold:            #EBC52C; // Alert Bar (Module F) / Accent
+$synovus-danger:          #D30529;
+$synovus-burgundy:        #851F41;
+$synovus-success:         #059669;
+$synovus-mint:            #5FEE9F;
+$synovus-orange:          #D17326;
 
-// Custom Brand Colors
-$primary: #1e40af;       // Deep Royal Blue
-$secondary: #475569;     // Slate Gray
-$success: #059669;       // Emerald
-$info: #0284c7;          // Sky Blue
-$warning: #d97706;       // Amber
-$danger: #dc2626;        // Rose Red
-$light: #f8fafc;         // Ultra Light Slate
-$dark: #0f172a;          // Deep Navy Slate
+// Neutral Grays
+$synovus-gray-dark:       #525252; // Secondary text & metadata
+$synovus-gray-placeholder:#989898; // Form input placeholders
+$synovus-gray-border:     #D1D1D1; // Form & subtle card borders
+$synovus-gray-light:      #E6E6E6; // Dividers
+$synovus-bg-light:        #F5F5F5;
+$synovus-bg-offwhite:     #F8FAFC;
 
-// Body Defaults
-$body-bg: #f8fafc;
-$body-color: #1e293b;
+// Typography - Adobe Typekit Realist
+$font-family-sans-serif:  "realist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-base:        $font-family-sans-serif;
+$font-family-narrow:      "realistnarrow", sans-serif;
+$headings-font-family:    $font-family-sans-serif;
 
-// Border Radius
-$border-radius: 0.65rem;
-$border-radius-sm: 0.45rem;
-$border-radius-lg: 1rem;
-$border-radius-xl: 1.5rem;
-$border-radius-2xl: 2rem;
+// Font Weights
+$font-weight-light:       300; // SemiLight (Display metrics)
+$font-weight-normal:      400; // Regular (Body & subheadings)
+$font-weight-medium:      600; // Medium (Section subheads, card titles)
+$font-weight-semibold:    600;
+$font-weight-bold:        700; // Bold (Headlines, CTAs)
+$headings-font-weight:    700;
 
-// Buttons & Forms
-$btn-padding-y: 0.65rem;
-$btn-padding-x: 1.35rem;
-$btn-font-weight: 600;
-$btn-border-radius: $border-radius;
+// Bootstrap Theme Overrides
+$primary:                 $synovus-blue;
+$secondary:               $synovus-navy;
+$success:                 $synovus-success;
+$info:                    $synovus-cyan;
+$warning:                 $synovus-gold;
+$danger:                  $synovus-danger;
+$light:                   $synovus-light-blue;
+$dark:                    $synovus-navy;
 
-$input-padding-y: 0.65rem;
-$input-padding-x: 1rem;
-$input-border-radius: $border-radius;
-$input-focus-border-color: rgba($primary, 0.45);
-$input-focus-box-shadow: 0 0 0 0.25rem rgba($primary, 0.15);
+$body-bg:                 #FFFFFF;
+$body-color:              $synovus-black;
+$font-size-base:          1rem;
+$line-height-base:        1.6;
 
-// Card styling
-$card-border-width: 1px;
-$card-border-color: rgba(#0f172a, 0.07);
-$card-border-radius: $border-radius-lg;
-$card-cap-bg: transparent;
+// Border Radii (12px is dominant card radius in Figma)
+$border-radius-sm:        4px;
+$border-radius:           8px;
+$border-radius-card:      12px;
+$border-radius-lg:        16px;
+$border-radius-xl:        20px;
+$border-radius-pill:      9999px;
 
-// Navbars
-$navbar-padding-y: 1rem;
-$navbar-light-color: #334155;
-$navbar-light-hover-color: $primary;
-$navbar-light-active-color: $primary;
+// Shadows & Elevations
+$shadow-sm:               0 1px 3px rgba(16, 24, 40, 0.06);
+$shadow-card:             0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-elevated:         0 8px 28px rgba(0, 0, 0, 0.12);
+$shadow-glow:             0 8px 28px rgba(0, 116, 196, 0.18);
+
+// Buttons
+$btn-font-weight:         700;
+$btn-border-radius:       8px;
+$btn-padding-y:           0.85rem;
+$btn-padding-x:           1.5rem;
+
+// Forms
+$input-border-color:      $synovus-gray-border;
+$input-border-radius:     8px;
+$input-placeholder-color: $synovus-gray-placeholder;
+$input-focus-border-color:$synovus-blue;
+$input-focus-box-shadow:  0 0 0 0.25rem rgba($synovus-blue, 0.16);
 
 // ---------------------------------------------------
-// 2. CUSTOM COMPONENT & UTILITY OVERRIDES
+// 2. ROOT CSS CUSTOM PROPERTIES
 // ---------------------------------------------------
+:root {
+  --syn-blue: #{$synovus-blue};
+  --syn-blue-hover: #{$synovus-blue-hover};
+  --syn-navy: #{$synovus-navy};
+  --syn-navy-dark: #{$synovus-navy-dark};
+  --syn-light-blue: #{$synovus-light-blue};
+  --syn-black: #{$synovus-black};
+  --syn-white: #{$synovus-white};
+  --syn-cyan: #{$synovus-cyan};
+  --syn-sky: #{$synovus-sky};
+  --syn-ice: #{$synovus-ice};
+  --syn-gold: #{$synovus-gold};
+  --syn-danger: #{$synovus-danger};
+  --syn-success: #{$synovus-success};
+  --syn-gray-dark: #{$synovus-gray-dark};
+  --syn-gray-placeholder: #{$synovus-gray-placeholder};
+  --syn-gray-border: #{$synovus-gray-border};
+  --syn-gray-light: #{$synovus-gray-light};
+  --syn-bg-light: #{$synovus-bg-light};
 
-// Realist Font Utilities
+  --syn-shadow-card: #{$shadow-card};
+  --syn-shadow-elevated: #{$shadow-elevated};
+  --syn-shadow-glow: #{$shadow-glow};
+
+  --syn-radius-card: #{$border-radius-card};
+}
+
+// ---------------------------------------------------
+// 3. TYPOGRAPHY UTILITIES
+// ---------------------------------------------------
 .font-realist {
-  font-family: "realist", sans-serif !important;
+  font-family: $font-family-sans-serif !important;
 }
 
-.font-narrow,
 .font-realist-narrow {
-  font-family: "realistnarrow", sans-serif !important;
+  font-family: $font-family-narrow !important;
 }
 
+.fw-light,
 .fw-semilight {
   font-weight: 300 !important;
 }
@@ -94,87 +148,390 @@ $navbar-light-active-color: $primary;
   font-weight: 600 !important;
 }
 
-// Gradient Text Utility
-.text-gradient {
-  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.fw-bold {
+  font-weight: 700 !important;
 }
 
-// Glassmorphism Navbar
-.navbar-glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-  transition: all 0.3s ease;
+// Display & Heading Scale
+.display-hero {
+  font-size: clamp(2.5rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  font-weight: 400;
+  color: $synovus-navy;
 }
 
-// Interactive Feature Cards
-.feature-card {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
-  }
-
-  .icon-wrapper {
-    width: 3.25rem;
-    height: 3.25rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.85rem;
-    font-size: 1.4rem;
-    transition: transform 0.25s ease;
-  }
-
-  &:hover .icon-wrapper {
-    transform: scale(1.08);
-  }
+.display-large {
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1.1;
+  font-weight: 300;
+  letter-spacing: -0.02em;
 }
 
-// Hero Glow Backdrop
-.hero-glow {
-  position: relative;
-  overflow: hidden;
+.text-synovus-blue { color: $synovus-blue !important; }
+.text-synovus-navy { color: $synovus-navy !important; }
+.text-synovus-black { color: $synovus-black !important; }
+.text-synovus-muted { color: $synovus-gray-dark !important; }
+.text-synovus-placeholder { color: $synovus-gray-placeholder !important; }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
-    z-index: 0;
-    pointer-events: none;
-  }
-}
+.bg-synovus-blue { background-color: $synovus-blue !important; }
+.bg-synovus-navy { background-color: $synovus-navy !important; }
+.bg-synovus-light-blue { background-color: $synovus-light-blue !important; }
+.bg-synovus-gold { background-color: $synovus-gold !important; }
+.bg-synovus-offwhite { background-color: $synovus-bg-offwhite !important; }
 
-// Custom Button Micro-interactions
-.btn-primary {
-  box-shadow: 0 4px 14px 0 rgba(30, 64, 175, 0.3);
-  transition: all 0.2s ease;
+// ---------------------------------------------------
+// 4. BUTTONS & CTAS
+// ---------------------------------------------------
+.btn-synovus-primary {
+  background-color: $synovus-blue;
+  color: $synovus-white;
+  border: 1px solid $synovus-blue;
+  font-family: $font-family-sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  padding: 14px 28px;
+  border-radius: 0px; // Standard Figma sharp Hero CTA default
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
-  &:hover {
-    box-shadow: 0 6px 20px 0 rgba(30, 64, 175, 0.4);
+  &:hover, &:focus {
+    background-color: $synovus-blue-hover;
+    border-color: $synovus-blue-hover;
+    color: $synovus-white;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($synovus-blue, 0.25);
   }
 
   &:active {
+    background-color: $synovus-blue-active;
     transform: translateY(1px);
+  }
+
+  &.btn-rounded {
+    border-radius: 8px;
+  }
+
+  &.btn-pill {
+    border-radius: 9999px;
   }
 }
 
-// Soft Pill Badges
-.badge-soft {
-  background-color: rgba(30, 64, 175, 0.1);
-  color: #1e40af;
+.btn-synovus-navy {
+  background-color: $synovus-navy;
+  color: $synovus-white;
+  border: 1px solid $synovus-navy;
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: 14px 28px;
+  border-radius: 0px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover, &:focus {
+    background-color: $synovus-navy-dark;
+    border-color: $synovus-navy-dark;
+    color: $synovus-white;
+    transform: translateY(-1px);
+  }
+}
+
+.btn-synovus-outline {
+  background-color: transparent;
+  color: $synovus-blue;
+  border: 2px solid $synovus-blue;
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: 12px 26px;
+  border-radius: 0px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover, &:focus {
+    background-color: $synovus-blue;
+    color: $synovus-white;
+  }
+}
+
+.btn-synovus-link {
+  color: $synovus-blue;
+  background: transparent;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  i {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    color: $synovus-blue-hover;
+    text-decoration: underline;
+
+    i {
+      transform: translateX(4px);
+    }
+  }
+}
+
+// ---------------------------------------------------
+// 5. CARDS & SURFACES
+// ---------------------------------------------------
+.card-synovus {
+  background-color: $synovus-white;
+  border: 1px solid $synovus-gray-light;
+  border-radius: $border-radius-card; // 12px dominant
+  box-shadow: $shadow-card;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+
+  &.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-elevated;
+  }
+}
+
+.card-synovus-tint {
+  background-color: $synovus-light-blue;
+  border: 1px solid rgba($synovus-blue, 0.15);
+  border-radius: $border-radius-card;
+}
+
+.card-synovus-navy {
+  background-color: $synovus-navy;
+  color: $synovus-white;
+  border: none;
+  border-radius: $border-radius-card;
+}
+
+// Dual Accent Decorative Header
+.card-header-dual-accent {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  background-color: $synovus-blue;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 72%;
+    background-color: $synovus-navy;
+  }
+}
+
+.accent-bar-dual {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  background-color: $synovus-blue;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 72%;
+    background-color: $synovus-navy;
+  }
+}
+
+// ---------------------------------------------------
+// 6. FORMS & INPUT CONTROLS
+// ---------------------------------------------------
+.form-label-synovus {
+  font-family: $font-family-sans-serif;
+  font-size: 0.875rem; // 14px
   font-weight: 600;
-  padding: 0.45rem 0.85rem;
+  color: $synovus-navy;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-control-synovus,
+.form-select-synovus {
+  height: 52px;
+  font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  color: $synovus-black;
+  background-color: $synovus-white;
+  border: 1px solid $synovus-gray-border;
+  border-radius: 4px;
+  padding: 12px 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: $synovus-gray-placeholder;
+    font-weight: 400;
+  }
+
+  &:focus {
+    border-color: $synovus-blue;
+    box-shadow: 0 0 0 3px rgba($synovus-blue, 0.16);
+    outline: none;
+  }
+
+  &.is-invalid {
+    border-color: $synovus-danger;
+    box-shadow: 0 0 0 3px rgba($synovus-danger, 0.12);
+  }
+}
+
+// Password Field with Show/Hide Toggle
+.password-field-group {
+  position: relative;
+
+  .form-control-synovus {
+    padding-right: 64px;
+  }
+
+  .btn-password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $synovus-blue;
+    padding: 4px 8px;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      color: $synovus-blue-hover;
+      text-decoration: underline;
+    }
+  }
+}
+
+// ---------------------------------------------------
+// 7. BADGES & ALERT BANNERS
+// ---------------------------------------------------
+.badge-synovus-blue {
+  background-color: $synovus-blue;
+  color: $synovus-white;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+}
+
+.badge-synovus-navy {
+  background-color: $synovus-navy;
+  color: $synovus-white;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+}
+
+.badge-synovus-soft {
+  background-color: rgba($synovus-blue, 0.1);
+  color: $synovus-blue;
+  font-weight: 600;
+  padding: 6px 14px;
   border-radius: 9999px;
+  font-size: 0.8125rem;
+}
+
+.badge-synovus-gold {
+  background-color: $synovus-gold;
+  color: $synovus-navy;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+}
+
+// Module F Alert Bar
+.alert-banner-synovus {
+  background-color: $synovus-gold;
+  color: $synovus-navy;
+  padding: 14px 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 6px solid $synovus-navy;
+
+  a {
+    color: $synovus-navy;
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+// ---------------------------------------------------
+// 8. SHADOWS & RADII UTILITIES
+// ---------------------------------------------------
+.shadow-syn-sm { box-shadow: $shadow-sm !important; }
+.shadow-syn-card { box-shadow: $shadow-card !important; }
+.shadow-syn-elevated { box-shadow: $shadow-elevated !important; }
+.shadow-syn-glow { box-shadow: $shadow-glow !important; }
+
+.rounded-syn-sm { border-radius: $border-radius-sm !important; } // 4px
+.rounded-syn-md { border-radius: $border-radius !important; }    // 8px
+.rounded-syn-card { border-radius: $border-radius-card !important; } // 12px
+.rounded-syn-lg { border-radius: $border-radius-xl !important; } // 20px
+.rounded-syn-pill { border-radius: $border-radius-pill !important; } // 9999px
+.rounded-syn-none { border-radius: 0px !important; }
+
+// ---------------------------------------------------
+// 9. LAYOUT CONTAINERS (FIGMA BREAKPOINTS)
+// ---------------------------------------------------
+// 1920px container (296px margins)
+.container-synovus-1920 {
+  width: 100%;
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 8vw, 296px);
+  padding-right: clamp(20px, 8vw, 296px);
+}
+
+// 1440px container (160px margins)
+.container-synovus-1440 {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 6vw, 160px);
+  padding-right: clamp(20px, 6vw, 160px);
+}
+
+// Mobile 430px container (20px gutters)
+.container-synovus-mobile {
+  width: 100%;
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }

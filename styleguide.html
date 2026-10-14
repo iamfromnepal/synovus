@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synovus Design System &amp; Style Guide</title>
+  
+  <!-- Adobe Typekit Realist Fonts -->
+  <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Synovus Master Purged Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* In-page showcase layout enhancements */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #F8FAFC;
+      color: #151515;
+    }
+    .styleguide-sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+    .nav-guide-link {
+      color: #525252;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-guide-link:hover, .nav-guide-link.active {
+      color: #0074C4;
+      background-color: #CCE3F3;
+    }
+    .swatch-card {
+      background: #FFFFFF;
+      border: 1px solid #E6E6E6;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    .swatch-color-box {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding: 10px 14px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .code-pill {
+      background-color: #F1F5F9;
+      color: #0F172A;
+      font-family: monospace;
+      font-size: 0.8125rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #E2E8F0;
+    }
+    .code-box {
+      background-color: #1E293B;
+      color: #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.875rem;
+      position: relative;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #FFF;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .copy-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    .section-header-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: #0074C4;
+      background: #CCE3F3;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 8px;
+    }
+    /* Floating copy toast */
+    #copyToast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #283862;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    #copyToast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="font-realist">
+
+  <!-- =================================================== -->
+  <!-- TOP NAVBAR                                          -->
+  <!-- =================================================== -->
+  <header class="navbar navbar-expand-lg bg-white border-bottom sticky-top py-3 shadow-syn-sm">
+    <div class="container-fluid px-lg-5">
+      <div class="d-flex align-items-center gap-3">
+        <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="bg-synovus-blue text-white fw-bold px-2 py-1 rounded-1" style="font-size: 1.1rem; letter-spacing: -0.02em;">S</div>
+          <span class="fs-4 fw-bold text-synovus-navy">SYNOVUS</span>
+        </a>
+        <div class="vr mx-2 text-muted d-none d-sm-block" style="height: 24px;"></div>
+        <span class="badge bg-synovus-light-blue text-synovus-blue fw-semibold px-2 py-1">Design System &amp; Style Guide</span>
+      </div>
+      
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-light text-secondary border d-none d-md-inline-block">Figma 10-7-26 Spec</span>
+        <a href="workflow.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+          <i class="bi bi-diagram-3"></i> Architecture
+        </a>
+        <a href="index.html" class="btn btn-sm btn-synovus-primary d-flex align-items-center gap-1">
+          <i class="bi bi-house"></i> Homepage
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =================================================== -->
+  <!-- MAIN CONTAINER (1440px / 1920px RESPONSIVE)         -->
+  <!-- =================================================== -->
+  <div class="container-fluid px-lg-5 py-5">
+    <div class="row g-5">
+
+      <!-- STICKY SIDEBAR NAVIGATION -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="styleguide-sidebar pe-3">
+          <h6 class="text-uppercase text-muted fw-bold mb-3" style="font-size: 0.75rem; letter-spacing: 0.08em;">Design Tokens</h6>
+          <nav class="d-flex flex-column gap-1 mb-4">
+            <a href="#colors" class="nav-guide-link"><i class="bi bi-palette text-synovus-blue"></i> Color System</a>
+            <a href="#typography" class="nav-guide-link"><i class="bi bi-type text-synovus-blue"></i> Typography &amp; Scale</a>
+            <a href="#buttons" class="nav-guide-link"><i class="bi bi-hand-index text-synovus-blue"></i> Buttons &amp; CTAs</a>
+            <a href="#forms" class="nav-guide-link"><i class="bi bi-input-cursor text-synovus-blue"></i> Forms &amp; Inputs</a>
+            <a href="#cards" class="nav-guide-link"><i class="bi bi-card-heading text-synovus-blue"></i> Cards &amp; Surfaces</a>
+            <a href="#accents" class="nav-guide-link"><i class="bi bi-stars text-synovus-blue"></i> Accents &amp; Alert Bars</a>
+            <a href="#elevation" class="nav-guide-link"><i class="bi bi-layers text-synovus-blue"></i> Elevation &amp; Radii</a>
+            <a href="#breakpoints" class="nav-guide-link"><i class="bi bi-aspect-ratio text-synovus-blue"></i> Grid &amp; Breakpoints</a>
+          </nav>
+
+          <div class="p-3 bg-white border rounded-syn-card shadow-syn-sm">
+            <div class="fw-bold text-synovus-navy mb-1" style="font-size: 0.875rem;">Figma Audit Summary</div>
+            <p class="text-muted small mb-2">Audited 22 modules across 7 pages in the 10-7-26 Figma file.</p>
+            <div class="d-flex justify-content-between small py-1 border-bottom">
+              <span class="text-muted">Primary Blue (#0074C4)</span>
+              <span class="fw-bold text-synovus-blue">3,192 uses</span>
+            </div>
+            <div class="d-flex justify-content-between small py-1 border-bottom">
+              <span class="text-muted">Pure White (#FFFFFF)</span>
+              <span class="fw-bold text-dark">1,990 uses</span>
+            </div>
+            <div class="d-flex justify-content-between small py-1 border-bottom">
+              <span class="text-muted">Body Text (#151515)</span>
+              <span class="fw-bold text-dark">1,096 uses</span>
+            </div>
+            <div class="d-flex justify-content-between small py-1 border-bottom">
+              <span class="text-muted">Deep Navy (#283862)</span>
+              <span class="fw-bold text-synovus-navy">696 uses</span>
+            </div>
+            <div class="d-flex justify-content-between small py-1">
+              <span class="text-muted">Dominant Card Radius</span>
+              <span class="fw-bold text-synovus-blue">12px (229 uses)</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT AREA -->
+      <main class="col-lg-9">
+
+        <!-- INTRO HERO -->
+        <section class="mb-5 pb-4 border-bottom">
+          <span class="section-header-badge">Design System Core</span>
+          <h1 class="display-hero fw-bold text-synovus-navy mb-3">Synovus Brand Style Guide</h1>
+          <p class="fs-5 text-muted mb-4" style="max-width: 820px;">
+            The canonical design specification extracted from the official Synovus 10-7-26 Figma design file. Use these tokens, typography rules, interactive components, and responsive grid layouts to build consistent modules across the web property.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <div class="d-flex align-items-center gap-2 bg-white px-3 py-2 border rounded-syn-md shadow-syn-sm">
+              <i class="bi bi-fonts fs-5 text-synovus-blue"></i>
+              <div>
+                <div class="small text-muted">Primary Font</div>
+                <div class="fw-bold">Realist (Adobe Typekit)</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2 bg-white px-3 py-2 border rounded-syn-md shadow-syn-sm">
+              <i class="bi bi-circle-fill fs-5 text-synovus-blue"></i>
+              <div>
+                <div class="small text-muted">Brand Anchor</div>
+                <div class="fw-bold">#0074C4 Synovus Blue</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2 bg-white px-3 py-2 border rounded-syn-md shadow-syn-sm">
+              <i class="bi bi-grid-3x3 fs-5 text-synovus-navy"></i>
+              <div>
+                <div class="small text-muted">Base Grid</div>
+                <div class="fw-bold">1920px / 1440px / 430px</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 1. COLOR SYSTEM                                     -->
+        <!-- =================================================== -->
+        <section id="colors" class="mb-5 pb-5 border-bottom">
+          <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+              <span class="section-header-badge">Section 1</span>
+              <h2 class="h2 fw-bold text-synovus-navy mb-1">Color Palette System</h2>
+              <p class="text-muted mb-0">Click any color card to instantly copy its HEX or SCSS token variable.</p>
+            </div>
+          </div>
+
+          <!-- CORE BRAND COLORS -->
+          <h5 class="fw-bold text-synovus-navy mb-3">Core Brand Colors</h5>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-5">
+            <!-- Synovus Blue -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#0074C4', '$synovus-blue')">
+                <div class="swatch-color-box bg-synovus-blue text-white">#0074C4</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Synovus Blue</div>
+                  <div class="small text-muted mb-2">Primary Brand Action</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-blue</span>
+                    <span class="badge bg-light text-dark">3,192 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deep Navy -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#283862', '$synovus-navy')">
+                <div class="swatch-color-box bg-synovus-navy text-white">#283862</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Deep Navy</div>
+                  <div class="small text-muted mb-2">Headings &amp; Contrast</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-navy</span>
+                    <span class="badge bg-light text-dark">696 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Matt Black -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#151515', '$synovus-black')">
+                <div class="swatch-color-box text-white" style="background-color: #151515;">#151515</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Matt Black</div>
+                  <div class="small text-muted mb-2">Body Copy &amp; Subheads</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-black</span>
+                    <span class="badge bg-light text-dark">1,096 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Light Blue -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#CCE3F3', '$synovus-light-blue')">
+                <div class="swatch-color-box bg-synovus-light-blue text-synovus-navy">#CCE3F3</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Light Blue Tint</div>
+                  <div class="small text-muted mb-2">Hero Tint &amp; Soft Fill</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-light-blue</span>
+                    <span class="badge bg-light text-dark">456 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pure White -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#FFFFFF', '$synovus-white')">
+                <div class="swatch-color-box bg-white text-dark border-bottom">#FFFFFF</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Pure White</div>
+                  <div class="small text-muted mb-2">Card &amp; Canvas Base</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-white</span>
+                    <span class="badge bg-light text-dark">1,990 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACCENT & ALERT COLORS -->
+          <h5 class="fw-bold text-synovus-navy mb-3">Accents, Alerts &amp; Status Colors</h5>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-5">
+            <!-- Alert Gold / Yellow -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#EBC52C', '$synovus-gold')">
+                <div class="swatch-color-box bg-synovus-gold text-synovus-navy">#EBC52C</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Alert Gold</div>
+                  <div class="small text-muted mb-2">Module F Alert Bar</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-gold</span>
+                    <span class="badge bg-light text-dark">105 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bright Cyan -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#00B4C4', '$synovus-cyan')">
+                <div class="swatch-color-box text-white" style="background-color: #00B4C4;">#00B4C4</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Bright Cyan</div>
+                  <div class="small text-muted mb-2">Secondary Accents</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-cyan</span>
+                    <span class="badge bg-light text-dark">119 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sky Blue -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#84C2ED', '$synovus-sky')">
+                <div class="swatch-color-box text-dark" style="background-color: #84C2ED;">#84C2ED</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Sky Blue</div>
+                  <div class="small text-muted mb-2">Tile Highlights</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-sky</span>
+                    <span class="badge bg-light text-dark">179 uses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Danger Red -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#D30529', '$synovus-danger')">
+                <div class="swatch-color-box text-white" style="background-color: #D30529;">#D30529</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Danger Red</div>
+                  <div class="small text-muted mb-2">Error &amp; Warnings</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-danger</span>
+                    <span class="badge bg-light text-dark">Error State</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Success Green -->
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#059669', '$synovus-success')">
+                <div class="swatch-color-box text-white" style="background-color: #059669;">#059669</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Emerald Green</div>
+                  <div class="small text-muted mb-2">Confirmations &amp; Badges</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="code-pill">$synovus-success</span>
+                    <span class="badge bg-light text-dark">Success</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEUTRAL GRAYS -->
+          <h5 class="fw-bold text-synovus-navy mb-3">Neutral Grays &amp; Borders</h5>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#525252', '$synovus-gray-dark')">
+                <div class="swatch-color-box text-white" style="background-color: #525252;">#525252</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Slate Gray</div>
+                  <div class="small text-muted mb-2">Secondary links &amp; helpers</div>
+                  <span class="code-pill">$synovus-gray-dark</span>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#989898', '$synovus-gray-placeholder')">
+                <div class="swatch-color-box text-white" style="background-color: #989898;">#989898</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Placeholder Gray</div>
+                  <div class="small text-muted mb-2">Input placeholder text</div>
+                  <span class="code-pill">$synovus-gray-placeholder</span>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#D1D1D1', '$synovus-gray-border')">
+                <div class="swatch-color-box text-dark" style="background-color: #D1D1D1;">#D1D1D1</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Border Gray</div>
+                  <div class="small text-muted mb-2">Inputs &amp; subtle borders</div>
+                  <span class="code-pill">$synovus-gray-border</span>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="swatch-card" onclick="copyToken('#E6E6E6', '$synovus-gray-light')">
+                <div class="swatch-color-box text-dark" style="background-color: #E6E6E6;">#E6E6E6</div>
+                <div class="p-3">
+                  <div class="fw-bold text-dark">Divider Light</div>
+                  <div class="small text-muted mb-2">Dividers &amp; card strokes</div>
+                  <span class="code-pill">$synovus-gray-light</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 2. TYPOGRAPHY SCALE                                 -->
+        <!-- =================================================== -->
+        <section id="typography" class="mb-5 pb-5 border-bottom">
+          <span class="section-header-badge">Section 2</span>
+          <h2 class="h2 fw-bold text-synovus-navy mb-1">Typography &amp; Hierarchy</h2>
+          <p class="text-muted mb-4">Powered by Adobe Typekit <code>realist</code> (Regular 400, Medium 600, Bold 700, SemiLight 300) and <code>realistnarrow</code>.</p>
+
+          <!-- LIVE FONT SPECIMEN TESTER -->
+          <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="fw-bold text-synovus-navy"><i class="bi bi-pencil-square me-2"></i>Interactive Type Tester</span>
+              <span class="text-muted small">Edit text below to test font rendering live</span>
+            </div>
+            <input type="text" id="liveTypeInput" class="form-control form-control-synovus mb-4" value="Financial confidence starts with a personal relationship." placeholder="Type any sample text...">
+            
+            <div class="border rounded p-3 bg-light">
+              <div class="mb-3">
+                <div class="text-muted small fw-bold mb-1">Realist Bold 700 (52px / Hero Headline):</div>
+                <div id="sampleHero" class="text-synovus-navy fw-bold" style="font-size: clamp(1.8rem, 4vw, 3.25rem); line-height: 1.15;">
+                  Financial confidence starts with a personal relationship.
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="text-muted small fw-bold mb-1">Realist Medium 600 (32px / Section Subhead):</div>
+                <div id="sampleH2" class="text-synovus-navy fw-medium" style="font-size: 2rem; line-height: 1.25;">
+                  Financial confidence starts with a personal relationship.
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="text-muted small fw-bold mb-1">Realist Regular 400 (20px / Subtitle &amp; Lead):</div>
+                <div id="sampleLead" class="text-synovus-black fw-regular" style="font-size: 1.25rem; line-height: 1.5;">
+                  Financial confidence starts with a personal relationship.
+                </div>
+              </div>
+              <div>
+                <div class="text-muted small fw-bold mb-1">Realist Narrow (Tabular &amp; Data Metrics):</div>
+                <div id="sampleNarrow" class="font-realist-narrow text-synovus-navy fw-bold" style="font-size: 1.5rem; letter-spacing: -0.01em;">
+                  5.15% APY · 14-Month Certificate of Deposit · $10,000 Minimum
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TYPE SCALE TABLE -->
+          <div class="table-responsive bg-white border rounded-syn-card shadow-syn-sm">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 25%;">Scale Name</th>
+                  <th style="width: 20%;">Size &amp; Line Height</th>
+                  <th style="width: 15%;">Weight</th>
+                  <th style="width: 40%;">Preview Specimen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.display-hero</code></td>
+                  <td>52px / 1.15</td>
+                  <td>Bold 700</td>
+                  <td><span class="fw-bold text-synovus-navy" style="font-size: 1.85rem;">Checking &amp; Savings</span></td>
+                </tr>
+                <tr>
+                  <td><code>h1, .h1</code></td>
+                  <td>40px / 56px</td>
+                  <td>Medium 600</td>
+                  <td><span class="fw-medium text-synovus-navy" style="font-size: 1.6rem;">Commercial Lending</span></td>
+                </tr>
+                <tr>
+                  <td><code>h2, .h2</code></td>
+                  <td>32px / 45px</td>
+                  <td>Medium 600</td>
+                  <td><span class="fw-medium text-synovus-navy" style="font-size: 1.35rem;">Manage Your Account</span></td>
+                </tr>
+                <tr>
+                  <td><code>h3, .h3</code></td>
+                  <td>24px / 34px</td>
+                  <td>Medium 600</td>
+                  <td><span class="fw-medium text-synovus-navy" style="font-size: 1.15rem;">Wealth Management Services</span></td>
+                </tr>
+                <tr>
+                  <td><code>.fs-5, .lead</code></td>
+                  <td>20px / 28px</td>
+                  <td>Regular 400</td>
+                  <td><span class="fw-regular text-synovus-black" style="font-size: 1.1rem;">Personal banking options built around your life goals.</span></td>
+                </tr>
+                <tr>
+                  <td><code>body, p</code></td>
+                  <td>16px / 24px</td>
+                  <td>Regular 400</td>
+                  <td><span class="fw-regular text-synovus-black">Standard body copy used for product descriptions and disclosure notes.</span></td>
+                </tr>
+                <tr>
+                  <td><code>.small, small</code></td>
+                  <td>14px / 20px</td>
+                  <td>Regular 400</td>
+                  <td><span class="small text-muted">Member FDIC. Equal Housing Lender. © 2026 Synovus Bank.</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 3. BUTTONS & CTAS                                   -->
+        <!-- =================================================== -->
+        <section id="buttons" class="mb-5 pb-5 border-bottom">
+          <span class="section-header-badge">Section 3</span>
+          <h2 class="h2 fw-bold text-synovus-navy mb-1">Buttons &amp; Call-to-Actions</h2>
+          <p class="text-muted mb-4">Standard Figma CTA styles used across Hero modules, product cards, and interactive flows.</p>
+
+          <div class="row g-4 mb-4">
+            <!-- Primary Action -->
+            <div class="col-md-6 col-xl-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <div class="fw-bold text-synovus-navy mb-1">Primary Button (Solid Blue)</div>
+                <div class="small text-muted mb-3">Figma Hero CTA default (sharp 0px radius)</div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                  <a href="javascript:void(0)" class="btn-synovus-primary">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </a>
+                  <a href="javascript:void(0)" class="btn-synovus-primary btn-rounded">
+                    Rounded (8px) <i class="bi bi-check-lg"></i>
+                  </a>
+                </div>
+                <div class="code-pill w-100 text-center">.btn-synovus-primary</div>
+              </div>
+            </div>
+
+            <!-- Navy Action -->
+            <div class="col-md-6 col-xl-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <div class="fw-bold text-synovus-navy mb-1">Secondary Button (Navy)</div>
+                <div class="small text-muted mb-3">Alternative dark contrast CTA</div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                  <a href="javascript:void(0)" class="btn-synovus-navy">
+                    Explore Services <i class="bi bi-arrow-right"></i>
+                  </a>
+                  <a href="javascript:void(0)" class="btn-synovus-navy" style="border-radius: 8px;">
+                    Login To Account
+                  </a>
+                </div>
+                <div class="code-pill w-100 text-center">.btn-synovus-navy</div>
+              </div>
+            </div>
+
+            <!-- Outline Action -->
+            <div class="col-md-6 col-xl-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <div class="fw-bold text-synovus-navy mb-1">Outline Button</div>
+                <div class="small text-muted mb-3">Secondary on-page actions</div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                  <a href="javascript:void(0)" class="btn-synovus-outline">
+                    View Rates
+                  </a>
+                  <a href="javascript:void(0)" class="btn-synovus-outline" style="border-radius: 8px;">
+                    Find a Branch <i class="bi bi-geo-alt"></i>
+                  </a>
+                </div>
+                <div class="code-pill w-100 text-center">.btn-synovus-outline</div>
+              </div>
+            </div>
+
+            <!-- Tertiary Link Action -->
+            <div class="col-md-6 col-xl-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <div class="fw-bold text-synovus-navy mb-1">Tertiary Text Link</div>
+                <div class="small text-muted mb-3">Inline action with animated arrow</div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                  <a href="javascript:void(0)" class="btn-synovus-link fs-5">
+                    Compare Checking Accounts <i class="bi bi-arrow-right"></i>
+                  </a>
+                  <a href="javascript:void(0)" class="btn-synovus-link">
+                    Enroll in Online Banking <i class="bi bi-arrow-right"></i>
+                  </a>
+                </div>
+                <div class="code-pill w-100 text-center">.btn-synovus-link</div>
+              </div>
+            </div>
+
+            <!-- Pill Button -->
+            <div class="col-md-6 col-xl-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <div class="fw-bold text-synovus-navy mb-1">Pill Shape Variant</div>
+                <div class="small text-muted mb-3">Filtered tabs and quick links</div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <a href="javascript:void(0)" class="btn-synovus-primary btn-pill">
+                    Personal
+                  </a>
+                  <a href="javascript:void(0)" class="btn-synovus-outline" style="border-radius: 9999px;">
+                    Business
+                  </a>
+                </div>
+                <div class="code-pill w-100 text-center">.btn-pill</div>
+              </div>
+            </div>
+
+            <!-- Disabled State -->
+            <div class="col-md-6 col-xl-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <div class="fw-bold text-synovus-navy mb-1">Disabled CTA State</div>
+                <div class="small text-muted mb-3">Incomplete form state</div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                  <button class="btn btn-secondary py-3 fw-bold" disabled style="border-radius: 0;">
+                    Login (Disabled)
+                  </button>
+                </div>
+                <div class="code-pill w-100 text-center">:disabled</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 4. FORMS & INPUTS                                   -->
+        <!-- =================================================== -->
+        <section id="forms" class="mb-5 pb-5 border-bottom">
+          <span class="section-header-badge">Section 4</span>
+          <h2 class="h2 fw-bold text-synovus-navy mb-1">Form Controls &amp; Inputs</h2>
+          <p class="text-muted mb-4">Replicating the exact Login Card controls from Module A (52px input height, border #D1D1D1, focus ring, and password visibility toggle).</p>
+
+          <div class="row g-4">
+            <!-- Sample Form Card -->
+            <div class="col-lg-6">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-card">
+                <div class="d-flex align-items-center gap-2 mb-4 text-synovus-navy">
+                  <i class="bi bi-lock-fill fs-5"></i>
+                  <h4 class="h5 fw-bold mb-0">Manage Your Account</h4>
+                </div>
+
+                <form onsubmit="event.preventDefault();">
+                  <!-- Select Dropdown -->
+                  <div class="mb-3">
+                    <label class="form-label-synovus">Account Type</label>
+                    <select class="form-select form-select-synovus">
+                      <option selected>My Pinnacle</option>
+                      <option>Personal Online Banking</option>
+                      <option>Commercial Advantage</option>
+                    </select>
+                  </div>
+
+                  <!-- Text Input -->
+                  <div class="mb-3">
+                    <label class="form-label-synovus">Username</label>
+                    <input type="text" class="form-control form-control-synovus" placeholder="Enter username">
+                  </div>
+
+                  <!-- Password with Toggle -->
+                  <div class="mb-3">
+                    <label class="form-label-synovus">Password</label>
+                    <div class="password-field-group">
+                      <input type="password" id="demoPasswordInput" class="form-control form-control-synovus" placeholder="Enter password">
+                      <button type="button" class="btn-password-toggle" id="demoToggleBtn" onclick="togglePasswordVisibility()">Show</button>
+                    </div>
+                  </div>
+
+                  <!-- Helper Links -->
+                  <div class="d-flex justify-content-between mb-4 small">
+                    <a href="javascript:void(0)" class="text-muted text-decoration-none">Forgot Username?</a>
+                    <span class="text-muted">|</span>
+                    <a href="javascript:void(0)" class="text-muted text-decoration-none">Forgot Password?</a>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <button type="submit" class="btn-synovus-primary w-100 mb-2 py-3">Login</button>
+                  <div class="text-center">
+                    <a href="javascript:void(0)" class="text-synovus-blue fw-bold text-decoration-none small">Don't have an account? Enroll Now</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Form States & Selectors -->
+            <div class="col-lg-6">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <h5 class="fw-bold text-synovus-navy mb-3">Validation &amp; Check Controls</h5>
+
+                <!-- Validated / Error state -->
+                <div class="mb-4">
+                  <label class="form-label-synovus text-danger">Username (Invalid Example)</label>
+                  <input type="text" class="form-control form-control-synovus is-invalid" value="invalid_user!">
+                  <div class="text-danger small mt-1">Please enter a valid alphanumeric username.</div>
+                </div>
+
+                <!-- Checkboxes & Radios -->
+                <div class="mb-4">
+                  <label class="form-label-synovus">Checkboxes</label>
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="check1" checked>
+                    <label class="form-check-label" for="check1">Remember my username on this device</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check2">
+                    <label class="form-check-label" for="check2">Enable biometric dual-factor verification</label>
+                  </div>
+                </div>
+
+                <!-- Switches -->
+                <div>
+                  <label class="form-label-synovus">Feature Toggles</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch1" checked>
+                    <label class="form-check-label" for="switch1">Receive real-time transaction SMS notifications</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 5. CARDS & SURFACES                                 -->
+        <!-- =================================================== -->
+        <section id="cards" class="mb-5 pb-5 border-bottom">
+          <span class="section-header-badge">Section 5</span>
+          <h2 class="h2 fw-bold text-synovus-navy mb-1">Cards &amp; Container Surfaces</h2>
+          <p class="text-muted mb-4">Figma modules rely on 3 main surface treatments with a dominant 12px corner radius.</p>
+
+          <div class="row g-4">
+            <!-- White Surface Card -->
+            <div class="col-md-4">
+              <div class="card-synovus card-hover h-100 p-4">
+                <div class="card-header-dual-accent mb-3 rounded-top"></div>
+                <span class="badge bg-synovus-light-blue text-synovus-blue fw-semibold mb-2">White Base Surface</span>
+                <h4 class="h5 fw-bold text-synovus-navy mb-2">Personal Checking</h4>
+                <p class="text-muted small mb-4">No monthly service fees when you maintain direct deposit. Free online bill pay and mobile deposit.</p>
+                <a href="javascript:void(0)" class="btn-synovus-link">Open Account <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+
+            <!-- Light Tint Card -->
+            <div class="col-md-4">
+              <div class="card-synovus-tint p-4 h-100">
+                <span class="badge bg-synovus-blue text-white fw-semibold mb-2">Tint #CCE3F3</span>
+                <h4 class="h5 fw-bold text-synovus-navy mb-2">High-Yield Savings</h4>
+                <p class="text-synovus-black small mb-4">Earn up to 4.50% APY on balances over $5,000. FDIC insured with 24/7 digital access.</p>
+                <a href="javascript:void(0)" class="btn-synovus-primary btn-rounded btn-sm text-decoration-none">View Rates</a>
+              </div>
+            </div>
+
+            <!-- Deep Navy Card -->
+            <div class="col-md-4">
+              <div class="card-synovus-navy p-4 h-100">
+                <span class="badge bg-synovus-gold text-synovus-navy fw-bold mb-2">Deep Navy #283862</span>
+                <h4 class="h5 fw-bold text-white mb-2">Synovus Private Wealth</h4>
+                <p class="text-white-50 small mb-4">Dedicated private wealth advisors tailored to ultra-high-net-worth families and institutions.</p>
+                <a href="javascript:void(0)" class="btn btn-outline-light btn-sm fw-bold">Contact Advisor</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 6. ACCENTS & ALERT BARS                             -->
+        <!-- =================================================== -->
+        <section id="accents" class="mb-5 pb-5 border-bottom">
+          <span class="section-header-badge">Section 6</span>
+          <h2 class="h2 fw-bold text-synovus-navy mb-1">Brand Accents &amp; Alert Banners</h2>
+          <p class="text-muted mb-4">Signature brand accents including the dual-tier bar and Module F alert banner.</p>
+
+          <!-- MODULE F ALERT BANNER -->
+          <div class="mb-4">
+            <div class="fw-bold text-synovus-navy mb-2">Module F Alert Bar</div>
+            <div class="alert-banner-synovus rounded-syn-sm">
+              <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+                <div>
+                  <strong>Important Notice:</strong> Scheduled system maintenance will occur Sunday, Oct 18 from 1:00 AM – 4:00 AM EST. <a href="javascript:void(0)">Learn more</a>
+                </div>
+              </div>
+              <button class="btn btn-sm text-dark p-0" onclick="this.closest('.alert-banner-synovus').remove()"><i class="bi bi-x-lg fs-5"></i></button>
+            </div>
+          </div>
+
+          <!-- DUAL ACCENT STRIPE -->
+          <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm mb-4">
+            <div class="fw-bold text-synovus-navy mb-2">Dual-Tier Accent Bar (.accent-bar-dual)</div>
+            <p class="text-muted small mb-3">Signature decorative bar: 100% width primary blue base with 72% width deep navy overlay.</p>
+            <div class="accent-bar-dual mb-4"></div>
+
+            <div class="row g-2">
+              <div class="col-md-6">
+                <span class="badge bg-synovus-blue w-100 py-2">Base Bar: #0074C4 (100% width)</span>
+              </div>
+              <div class="col-md-6">
+                <span class="badge bg-synovus-navy w-100 py-2">Overlay Bar: #283862 (72% width)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BADGES & CHIPS -->
+          <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm">
+            <h5 class="fw-bold text-synovus-navy mb-3">Badges &amp; Status Chips</h5>
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <span class="badge-synovus-blue">Primary Blue</span>
+              <span class="badge-synovus-navy">Navy Accent</span>
+              <span class="badge-synovus-soft">Soft Blue Pill</span>
+              <span class="badge-synovus-gold">Gold Alert Pill</span>
+              <span class="badge bg-success">Active Account</span>
+              <span class="badge bg-danger">Attention Required</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 7. ELEVATION & CORNER RADII                         -->
+        <!-- =================================================== -->
+        <section id="elevation" class="mb-5 pb-5 border-bottom">
+          <span class="section-header-badge">Section 7</span>
+          <h2 class="h2 fw-bold text-synovus-navy mb-1">Elevation &amp; Corner Radii Matrix</h2>
+          <p class="text-muted mb-4">Drop shadows and border radius extracted directly from the Figma modules.</p>
+
+          <!-- CORNER RADII SAMPLES -->
+          <h5 class="fw-bold text-synovus-navy mb-3">Corner Radius Scale</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="p-3 bg-white border text-center rounded-syn-none shadow-syn-sm">
+                <div class="fw-bold">0px</div>
+                <div class="small text-muted">Sharp Hero CTA</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="p-3 bg-white border text-center rounded-syn-sm shadow-syn-sm">
+                <div class="fw-bold">4px</div>
+                <div class="small text-muted">Inputs &amp; Badges</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="p-3 bg-white border text-center rounded-syn-md shadow-syn-sm">
+                <div class="fw-bold">8px</div>
+                <div class="small text-muted">Buttons &amp; Dropdowns</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="p-3 bg-white border border-primary text-center rounded-syn-card shadow-syn-sm">
+                <div class="fw-bold text-synovus-blue">12px (Dominant)</div>
+                <div class="small text-muted">229 Uses in Figma</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="p-3 bg-white border text-center rounded-syn-lg shadow-syn-sm">
+                <div class="fw-bold">20px</div>
+                <div class="small text-muted">Containers</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="p-3 bg-white border text-center rounded-syn-pill shadow-syn-sm">
+                <div class="fw-bold">9999px</div>
+                <div class="small text-muted">Full Pill</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SHADOWS -->
+          <h5 class="fw-bold text-synovus-navy mb-3">Box Shadows &amp; Elevations</h5>
+          <div class="row g-4">
+            <div class="col-md-3">
+              <div class="p-4 bg-white rounded-syn-card shadow-syn-sm text-center">
+                <div class="fw-bold text-dark">.shadow-syn-sm</div>
+                <div class="small text-muted">Subtle borders (0 1px 3px)</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-4 bg-white rounded-syn-card shadow-syn-card text-center">
+                <div class="fw-bold text-dark">.shadow-syn-card</div>
+                <div class="small text-muted">Standard Card (0 4px 12px)</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-4 bg-white rounded-syn-card shadow-syn-elevated text-center">
+                <div class="fw-bold text-dark">.shadow-syn-elevated</div>
+                <div class="small text-muted">Floating Login (0 8px 28px)</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-4 bg-white rounded-syn-card shadow-syn-glow text-center">
+                <div class="fw-bold text-synovus-blue">.shadow-syn-glow</div>
+                <div class="small text-muted">Brand Glow (0 8px 28px)</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 8. GRID & BREAKPOINTS                               -->
+        <!-- =================================================== -->
+        <section id="breakpoints" class="mb-5 pb-5">
+          <span class="section-header-badge">Section 8</span>
+          <h2 class="h2 fw-bold text-synovus-navy mb-1">Grid &amp; Responsive Layout Specs</h2>
+          <p class="text-muted mb-4">Official layout containers extracted from designer annotations in Figma.</p>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <span class="badge bg-synovus-blue text-white mb-2">Desktop Large</span>
+                <h4 class="h5 fw-bold text-synovus-navy">1920px Canvas</h4>
+                <ul class="list-unstyled small text-muted mb-3">
+                  <li class="py-1"><strong>Outer Margins:</strong> 296px (left &amp; right)</li>
+                  <li class="py-1"><strong>Active Content Box:</strong> 1328px</li>
+                  <li class="py-1"><strong>Class:</strong> <code>.container-synovus-1920</code></li>
+                </ul>
+                <div class="bg-light p-2 text-center rounded small">Figma Frame 588:4841</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <span class="badge bg-synovus-navy text-white mb-2">Desktop Standard</span>
+                <h4 class="h5 fw-bold text-synovus-navy">1440px Canvas</h4>
+                <ul class="list-unstyled small text-muted mb-3">
+                  <li class="py-1"><strong>Outer Margins:</strong> 160px (left &amp; right)</li>
+                  <li class="py-1"><strong>Active Content Box:</strong> 1120px</li>
+                  <li class="py-1"><strong>Class:</strong> <code>.container-synovus-1440</code></li>
+                </ul>
+                <div class="bg-light p-2 text-center rounded small">Figma Frame 588:4891</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="p-4 bg-white border rounded-syn-card shadow-syn-sm h-100">
+                <span class="badge bg-secondary text-white mb-2">Mobile Standard</span>
+                <h4 class="h5 fw-bold text-synovus-navy">430px Canvas</h4>
+                <ul class="list-unstyled small text-muted mb-3">
+                  <li class="py-1"><strong>Outer Gutters:</strong> 20px (left &amp; right)</li>
+                  <li class="py-1"><strong>Card Stacking:</strong> Full width vertical</li>
+                  <li class="py-1"><strong>Class:</strong> <code>.container-synovus-mobile</code></li>
+                </ul>
+                <div class="bg-light p-2 text-center rounded small">Figma Frame 3915:30291</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- FLOATING COPY TOAST -->
+  <div id="copyToast">
+    <i class="bi bi-clipboard-check-fill text-info fs-5"></i>
+    <span id="copyToastText">Copied to clipboard!</span>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- JAVASCRIPT LOGIC                                    -->
+  <!-- =================================================== -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Copy token utility with visual toast
+    function copyToken(hex, scss) {
+      const text = `${scss} (${hex})`;
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${hex} (${scss}) to clipboard!`);
+      }).catch(() => {
+        // Fallback
+        showToast(`Selected: ${hex}`);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('copyToast');
+      const text = document.getElementById('copyToastText');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Password visibility toggle handler
+    function togglePasswordVisibility() {
+      const input = document.getElementById('demoPasswordInput');
+      const btn = document.getElementById('demoToggleBtn');
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        input.type = 'password';
+        btn.textContent = 'Show';
+      }
+    }
+
+    // Live Font Tester Listener
+    const typeInput = document.getElementById('liveTypeInput');
+    if (typeInput) {
+      typeInput.addEventListener('input', (e) => {
+        const val = e.target.value || 'Financial confidence starts with a personal relationship.';
+        document.getElementById('sampleHero').textContent = val;
+        document.getElementById('sampleH2').textContent = val;
+        document.getElementById('sampleLead').textContent = val;
+      });
+    }
+  </script>
+</body>
+</html>
