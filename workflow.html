@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Synovus Development & Code Workflow Architecture - Interactive Pipeline Diagram">
-  <title>Synovus | Technical Workflow & Architecture Diagram</title>
+  <meta name="description" content="Synovus Architecture - Interactive Node-Graph Visual Workflow Diagram">
+  <title>Synovus | Technical Architecture Diagram</title>
 
   <!-- Adobe Typekit: Realist & Realist Narrow -->
   <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
@@ -14,24 +14,25 @@
 
   <style>
     :root {
-      --primary: #1e40af;
-      --primary-light: #3b82f6;
-      --primary-subtle: #dbeafe;
-      --secondary: #475569;
-      --success: #059669;
-      --success-subtle: #d1fae5;
-      --info: #0284c7;
-      --info-subtle: #e0f2fe;
-      --warning: #d97706;
-      --warning-subtle: #fef3c7;
-      --danger: #dc2626;
-      --dark: #0f172a;
-      --dark-card: #1e293b;
-      --light-bg: #f8fafc;
-      --border-color: #e2e8f0;
+      --bg-canvas: #090d16;
+      --card-bg: #111827;
+      --card-border: #1f293d;
+      --card-hover-border: #3b82f6;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.4);
+      --cyan: #06b6d4;
+      --cyan-glow: rgba(6, 182, 212, 0.4);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.4);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.4);
+      --purple: #8b5cf6;
+      --purple-glow: rgba(139, 92, 246, 0.4);
+      --rose: #f43f5e;
       --font-realist: "realist", system-ui, -apple-system, sans-serif;
-      --font-narrow: "realistnarrow", system-ui, -apple-system, sans-serif;
-      --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
     * {
@@ -42,1012 +43,1028 @@
 
     body {
       font-family: var(--font-realist);
-      font-size: 15px;
-      line-height: 1.6;
-      color: #334155;
-      background-color: var(--light-bg);
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.04) 0%, transparent 40%);
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      /* Engineering Blueprint Dotted Grid */
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 28px 28px, 140px 140px, 140px 140px;
     }
 
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Top Bar & Header */
+    /* Top Command Header */
     header {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 1rem 0;
-      margin-bottom: 2.5rem;
-    }
-
-    .header-content {
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0.85rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
-    .brand-title {
+    .brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       text-decoration: none;
-      color: var(--dark);
-      font-size: 1.35rem;
+      color: #fff;
       font-weight: 700;
+      font-size: 1.25rem;
       letter-spacing: -0.02em;
     }
 
-    .brand-icon {
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: #fff;
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 0.6rem;
+    .brand-badge {
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.1rem;
-      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
     }
 
-    .badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .badge-success {
-      background-color: var(--success-subtle);
-      color: var(--success);
-      border: 1px solid rgba(5, 150, 105, 0.2);
-    }
-
-    .badge-primary {
-      background-color: var(--primary-subtle);
-      color: var(--primary);
-      border: 1px solid rgba(30, 64, 175, 0.2);
-    }
-
-    /* Hero / Intro Banner */
-    .hero-banner {
-      background: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: 1.25rem;
-      padding: 2rem 2.5rem;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .hero-text h1 {
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-text p {
-      color: var(--secondary);
-      font-size: 1rem;
-      max-width: 650px;
-    }
-
-    /* Scenario Simulation Controls */
-    .sim-bar {
-      background: var(--dark);
-      border-radius: 1rem;
-      padding: 1.25rem 1.75rem;
-      color: #fff;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.25);
-    }
-
-    .sim-header {
+    .sim-controls {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .sim-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #94a3b8;
-    }
-
-    .sim-btn-group {
-      display: flex;
-      flex-wrap: wrap;
       gap: 0.6rem;
+      flex-wrap: wrap;
     }
 
-    .sim-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+    .sim-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: #e2e8f0;
-      padding: 0.5rem 1rem;
-      border-radius: 0.6rem;
-      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       transition: all 0.2s ease;
     }
 
-    .sim-btn:hover {
-      background: rgba(255, 255, 255, 0.18);
+    .btn-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
       color: #fff;
-      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
-    .sim-btn.active {
-      background: var(--primary-light);
-      border-color: var(--primary-light);
+    .btn-pill.active {
+      background: var(--primary);
+      border-color: #60a5fa;
       color: #fff;
-      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 14px var(--primary-glow);
     }
 
-    .sim-banner-status {
-      font-size: 0.85rem;
-      padding: 0.6rem 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.5rem;
-      border-left: 3px solid var(--primary-light);
-      font-family: var(--font-mono);
-      color: #cbd5e1;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    .btn-pill.active-emerald {
+      background: var(--emerald);
+      border-color: #34d399;
+      color: #fff;
+      box-shadow: 0 0 14px var(--emerald-glow);
     }
 
-    /* Pipeline Grid Layout */
-    .pipeline-wrapper {
+    /* Diagram Canvas Container */
+    .diagram-board {
+      flex: 1;
+      padding: 2.5rem 2rem;
       position: relative;
-      margin-bottom: 3.5rem;
+      max-width: 1560px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    .pipeline-grid {
+    /* SVG Connecting Wire Layer */
+    #connector-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .wire {
+      fill: none;
+      stroke: #1e293b;
+      stroke-width: 2.5px;
+      stroke-linecap: round;
+      transition: stroke 0.3s ease, stroke-width 0.3s ease, filter 0.3s ease;
+    }
+
+    .wire.flow-active {
+      stroke: #38bdf8;
+      stroke-width: 3px;
+      stroke-dasharray: 8 6;
+      animation: wireFlow 1s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.8));
+    }
+
+    .wire.flow-active-emerald {
+      stroke: #10b981;
+      stroke-width: 3px;
+      stroke-dasharray: 8 6;
+      animation: wireFlow 1s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.8));
+    }
+
+    .wire.flow-active-amber {
+      stroke: #f59e0b;
+      stroke-width: 3px;
+      stroke-dasharray: 8 6;
+      animation: wireFlow 1s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.8));
+    }
+
+    @keyframes wireFlow {
+      from { stroke-dashoffset: 28; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Diagram Grid Layout */
+    .nodes-layout {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 280px 70px 290px 70px 320px 70px 240px;
+      align-items: center;
       position: relative;
       z-index: 2;
+      gap: 0;
     }
 
-    @media (max-width: 1200px) {
-      .pipeline-grid {
-        grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 1350px) {
+      .nodes-layout {
+        display: flex;
+        flex-direction: column;
         gap: 2rem;
       }
-    }
-
-    @media (max-width: 768px) {
-      .pipeline-grid {
-        grid-template-columns: 1fr;
+      #connector-canvas {
+        display: none; /* Auto-switch to stacked flow on tablet/mobile */
       }
     }
 
-    /* Column Cards */
-    .stage-column {
+    /* Column of Nodes */
+    .node-stack {
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
     }
 
-    .stage-header {
+    .column-header {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Diagram Nodes / Boxes */
+    .d-node {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.85rem;
+      padding: 1rem 1.15rem;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .d-node:hover {
+      transform: translateY(-2px) scale(1.01);
+      border-color: #3b82f6;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+    }
+
+    .d-node.highlighted {
+      border-color: #60a5fa !important;
+      background: #172338 !important;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4) !important;
+    }
+
+    .d-node.highlighted-emerald {
+      border-color: #34d399 !important;
+      background: #112822 !important;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4) !important;
+    }
+
+    /* Connection Ports (visual circle pins) */
+    .port {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg-canvas);
+      border: 2px solid #475569;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.25s ease;
+      z-index: 3;
+    }
+
+    .port-left { left: -6px; }
+    .port-right { right: -6px; }
+
+    .d-node:hover .port {
+      border-color: #38bdf8;
+      background: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8;
+    }
+
+    /* Node Internals */
+    .node-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .node-icon-box {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.45rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ib-blue { background: rgba(37, 99, 235, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+    .ib-cyan { background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.3); }
+    .ib-emerald { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+    .ib-amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+    .ib-purple { background: rgba(139, 92, 246, 0.2); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+
+    .node-title-group h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .node-title-group .file-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+
+    .node-desc {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      line-height: 1.45;
+      margin-bottom: 0.5rem;
+    }
+
+    .node-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.25rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .node-tag.glow-tag {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    /* Spacer Channels Between Nodes (used on desktop for SVG routing) */
+    .connector-channel {
+      height: 100%;
+      min-width: 50px;
+    }
+
+    /* Live Status Readout Banner */
+    .status-panel {
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 0.75rem;
-      border-bottom: 2px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
     }
 
-    .stage-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--dark);
+    .status-indicator {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .stage-num {
-      width: 1.5rem;
-      height: 1.5rem;
-      background: var(--primary);
-      color: #fff;
+    .pulsing-dot {
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 2s infinite;
     }
 
-    /* Process Card */
-    .card-node {
-      background: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: 1rem;
-      padding: 1.25rem;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
-    .card-node:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
-      border-color: #cbd5e1;
-    }
-
-    /* Active Highlight in Simulation */
-    .card-node.highlight {
-      border-color: var(--primary-light);
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3), 0 12px 28px -4px rgba(30, 64, 175, 0.15);
-      background: #fdfefe;
-    }
-
-    .card-node.highlight-green {
-      border-color: var(--success);
-      box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.3), 0 12px 28px -4px rgba(5, 150, 105, 0.15);
-      background: #fdfefe;
-    }
-
-    .card-node-head {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .node-icon {
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 0.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .icon-blue { background: #eff6ff; color: #2563eb; }
-    .icon-cyan { background: #ecfeff; color: #0891b2; }
-    .icon-emerald { background: #ecfdf5; color: #059669; }
-    .icon-amber { background: #fffbeb; color: #d97706; }
-    .icon-purple { background: #faf5ff; color: #7c3aed; }
-    .icon-slate { background: #f1f5f9; color: #475569; }
-
-    .node-title-group h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 0.15rem;
-    }
-
-    .node-title-group .file-path {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: #64748b;
-      background: #f1f5f9;
-      padding: 0.15rem 0.4rem;
-      border-radius: 0.25rem;
-      display: inline-block;
-    }
-
-    .card-node p {
-      font-size: 0.85rem;
-      color: #64748b;
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
-
-    .tag {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.35rem;
-      background: #f1f5f9;
-      color: #475569;
-    }
-
-    .tag-accent {
-      background: #eff6ff;
-      color: #1e40af;
-    }
-
-    /* Key Architecture Deep-Dive Grid */
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .deep-dive-grid {
+    /* Flow Explanation Cards at Bottom */
+    .info-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin-bottom: 3.5rem;
+      margin-top: 2rem;
     }
 
-    @media (max-width: 992px) {
-      .deep-dive-grid {
+    @media (max-width: 900px) {
+      .info-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    .deep-card {
-      background: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: 1.25rem;
-      padding: 1.75rem;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.85rem;
+      padding: 1.25rem;
     }
 
-    .deep-card h3 {
-      font-size: 1.1rem;
+    .info-card h5 {
+      font-size: 0.95rem;
       font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 0.75rem;
+      color: #fff;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
-    .deep-card p {
-      font-size: 0.88rem;
-      color: #64748b;
-      margin-bottom: 1rem;
-      line-height: 1.55;
-    }
-
-    /* Code block inside card */
-    .code-box {
-      background: var(--dark);
-      color: #f8fafc;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      padding: 1rem;
-      border-radius: 0.65rem;
-      overflow-x: auto;
+    .info-card p {
+      font-size: 0.82rem;
+      color: #94a3b8;
       line-height: 1.5;
     }
 
-    .code-box .keyword { color: #f43f5e; }
-    .code-box .string { color: #38bdf8; }
-    .code-box .comment { color: #94a3b8; font-style: italic; }
-    .code-box .val { color: #a7f3d0; }
-
-    /* Performance Meter */
-    .metric-bar-wrapper {
-      margin-top: 1rem;
-      background: #f1f5f9;
-      border-radius: 999px;
-      height: 1.5rem;
-      overflow: hidden;
-      display: flex;
-      position: relative;
+    /* Node Click Modal / Inspector Drawer */
+    #node-inspector {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 360px;
+      background: #0f172a;
+      border: 1px solid #3b82f6;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(59, 130, 246, 0.3);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      z-index: 200;
+      display: none;
+      animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .metric-fill-purged {
-      background: linear-gradient(90deg, #10b981, #059669);
-      width: 33%;
-      height: 100%;
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .inspector-head {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      font-family: var(--font-mono);
-    }
-
-    .metric-fill-saved {
-      background: #e2e8f0;
-      width: 67%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #64748b;
-      font-size: 0.75rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-    }
-
-    /* CLI Commands Box */
-    .command-strip {
-      background: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: 1.25rem;
-      padding: 1.5rem 2rem;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+      margin-bottom: 0.75rem;
     }
 
-    .cmd-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .cmd-badge {
-      background: #eff6ff;
-      color: var(--primary);
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: 1px solid rgba(30, 64, 175, 0.2);
-    }
-
-    .cmd-desc {
-      font-size: 0.85rem;
-      color: #64748b;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 3.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.85rem;
+    .inspector-close {
+      background: none;
+      border: none;
       color: #94a3b8;
+      cursor: pointer;
+      font-size: 1.25rem;
     }
 
-    footer a {
-      color: var(--secondary);
-      text-decoration: none;
+    .inspector-close:hover { color: #fff; }
+
+    .inspector-body {
+      font-size: 0.83rem;
+      color: #cbd5e1;
+      line-height: 1.5;
     }
 
-    footer a:hover {
-      color: var(--primary);
+    .inspector-code {
+      background: #020617;
+      padding: 0.6rem;
+      border-radius: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      color: #38bdf8;
+      overflow-x: auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Bar -->
+  <!-- Top Command Header -->
   <header>
-    <div class="container header-content">
-      <a href="index.html" class="brand-title">
-        <div class="brand-icon">
-          <i class="bi bi-diagram-3-fill"></i>
-        </div>
-        <span>Synovus Architecture</span>
-      </a>
-
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <span class="badge-pill badge-primary">
-          <i class="bi bi-cpu-fill"></i>
-          <span>Dart Sass + PurgeCSS Engine</span>
-        </span>
-        <span class="badge-pill badge-success">
-          <i class="bi bi-check-circle-fill"></i>
-          <span>Multi-Template Ready</span>
-        </span>
+    <a href="index.html" class="brand">
+      <div class="brand-badge">
+        <i class="bi bi-diagram-3-fill"></i>
       </div>
+      <span>Synovus Architecture Graph</span>
+    </a>
+
+    <div class="sim-controls">
+      <span class="sim-label"><i class="bi bi-play-circle-fill"></i> Path Simulation:</span>
+      <button class="btn-pill active" id="btn-all" onclick="triggerFlow('all')">
+        <i class="bi bi-grid-fill"></i> Full Network
+      </button>
+      <button class="btn-pill" id="btn-scss" onclick="triggerFlow('scss')">
+        <i class="bi bi-palette-fill"></i> Trace SCSS Flow
+      </button>
+      <button class="btn-pill" id="btn-php" onclick="triggerFlow('php')">
+        <i class="bi bi-filetype-php"></i> Trace Template / PHP Flow
+      </button>
+      <button class="btn-pill" id="btn-build" onclick="triggerFlow('build')">
+        <i class="bi bi-cpu-fill"></i> Trace npm run build
+      </button>
     </div>
   </header>
 
-  <main class="container">
+  <div class="diagram-board">
 
-    <!-- Hero / Scope Banner -->
-    <div class="hero-banner">
-      <div class="hero-text">
-        <h1>Technical Pipeline & Workflow Diagram</h1>
+    <!-- Status Readout Panel -->
+    <div class="status-panel">
+      <div class="status-indicator">
+        <div class="pulsing-dot"></div>
+        <span id="flow-description">
+          <strong>Interactive Node Graph:</strong> Viewing entire pipeline from source branches through in-memory compilation to delivery.
+        </span>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #94a3b8;">
+        <span>Compiler: <strong>Dart Sass JS API</strong></span> &bull; 
+        <span>Tree-Shaker: <strong>PurgeCSS In-Memory</strong></span>
+      </div>
+    </div>
+
+    <!-- SVG Vector Connecting Cable Overlay -->
+    <svg id="connector-canvas">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3b82f6" />
+        </marker>
+        <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981" />
+        </marker>
+        <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b" />
+        </marker>
+      </defs>
+
+      <!-- Connection Lines with ID coordinates mapped dynamically -->
+      <path id="wire-overrides-style" class="wire" />
+      <path id="wire-bootstrap-style" class="wire" />
+      <path id="wire-style-compiler" class="wire" />
+      <path id="wire-templates-extractor" class="wire" />
+      <path id="wire-chokidar-compiler" class="wire" />
+      <path id="wire-chokidar-purge" class="wire" />
+      <path id="wire-compiler-purge" class="wire" />
+      <path id="wire-extractor-purge" class="wire" />
+      <path id="wire-safelist-purge" class="wire" />
+      <path id="wire-purge-stylecss" class="wire" />
+      <path id="wire-stylecss-wamp" class="wire" />
+      <path id="wire-stylecss-git" class="wire" />
+    </svg>
+
+    <!-- Node Matrix Layout (4 Columns + 3 Interstitial Channels) -->
+    <div class="nodes-layout">
+
+      <!-- ============================================== -->
+      <!-- COLUMN 1: PARALLEL INPUT BRANCHES              -->
+      <!-- ============================================== -->
+      <div class="node-stack">
+        <div class="column-header">
+          <i class="bi bi-input-cursor-text"></i> Branch 1: SCSS Styling
+        </div>
+
+        <!-- Node: custom-overrides.scss -->
+        <div class="d-node" id="node-custom-overrides" onclick="inspectNode('custom-overrides')">
+          <div class="port port-right" id="p-overrides-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-blue">
+              <i class="bi bi-brush"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Custom Overrides</h4>
+              <span class="file-badge">scss/custom-overrides.scss</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Primary theme overrides, Realist Typekit font scale (300 to 700), and custom components.
+          </div>
+          <span class="node-tag glow-tag">!default Overrides</span>
+        </div>
+
+        <!-- Node: scss/bootstrap/ -->
+        <div class="d-node" id="node-bootstrap" onclick="inspectNode('bootstrap')">
+          <div class="port port-right" id="p-bootstrap-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-purple">
+              <i class="bi bi-bootstrap"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Bootstrap 5 Source</h4>
+              <span class="file-badge">scss/bootstrap/</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Complete local SCSS source modules (grid, reboot, buttons, modals, accordions, forms).
+          </div>
+          <span class="node-tag">47 Modular Files</span>
+        </div>
+
+        <div class="column-header" style="margin-top: 1rem;">
+          <i class="bi bi-code-slash"></i> Branch 2: Markup Templates
+        </div>
+
+        <!-- Node: Multi-Template Files -->
+        <div class="d-node" id="node-templates" onclick="inspectNode('templates')">
+          <div class="port port-right" id="p-templates-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-emerald">
+              <i class="bi bi-file-earmark-code"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Template Files</h4>
+              <span class="file-badge">**/*.{php,html,cshtml}</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Any markup file across the project (.php, .html, .cshtml, .xhtml, .js).
+          </div>
+          <span class="node-tag glow-tag">Multi-Extension</span>
+        </div>
+      </div>
+
+      <!-- Channel 1: Routing -->
+      <div class="connector-channel"></div>
+
+      <!-- ============================================== -->
+      <!-- COLUMN 2: MASTER ENTRY & DISCOVERY             -->
+      <!-- ============================================== -->
+      <div class="node-stack">
+        <div class="column-header">
+          <i class="bi bi-bezier2"></i> Entry Aggregation
+        </div>
+
+        <!-- Node: scss/style.scss -->
+        <div class="d-node" id="node-style-entry" onclick="inspectNode('style-entry')">
+          <div class="port port-left" id="p-style-in"></div>
+          <div class="port port-right" id="p-style-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-blue">
+              <i class="bi bi-filetype-scss"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Master SCSS Entry</h4>
+              <span class="file-badge">scss/style.scss</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Sequential importer: 1. Functions &rarr; 2. custom-overrides &rarr; 3. Bootstrap core & components.
+          </div>
+          <span class="node-tag">Master Orchestrator</span>
+        </div>
+
+        <!-- Node: Chokidar Watcher Loop -->
+        <div class="d-node" id="node-chokidar" onclick="inspectNode('chokidar')" style="border-style: dashed; border-color: #38bdf8;">
+          <div class="port port-right" id="p-chokidar-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-cyan">
+              <i class="bi bi-radar"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Chokidar Watcher</h4>
+              <span class="file-badge">build.js (--watch)</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Listens for file saves across scss/ and templates with a 60ms debounce window.
+          </div>
+          <span class="node-tag glow-tag">60ms Debounce</span>
+        </div>
+
+        <!-- Node: Universal Token Extractor -->
+        <div class="d-node" id="node-extractor" onclick="inspectNode('extractor')">
+          <div class="port port-left" id="p-extractor-in"></div>
+          <div class="port port-right" id="p-extractor-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-emerald">
+              <i class="bi bi-regex"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Token Extractor</h4>
+              <span class="file-badge">defaultExtractor</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Parses raw class names from PHP echo tags, Razor syntax, or static HTML attributes.
+          </div>
+          <span class="node-tag glow-tag">Regex Word Boundary</span>
+        </div>
+      </div>
+
+      <!-- Channel 2: Routing -->
+      <div class="connector-channel"></div>
+
+      <!-- ============================================== -->
+      <!-- COLUMN 3: IN-MEMORY BUILD ENGINE (build.js)   -->
+      <!-- ============================================== -->
+      <div class="node-stack">
+        <div class="column-header">
+          <i class="bi bi-cpu"></i> In-Memory Processing
+        </div>
+
+        <!-- Node: Dart Sass Compiler -->
+        <div class="d-node" id="node-compiler" onclick="inspectNode('compiler')">
+          <div class="port port-left" id="p-compiler-in"></div>
+          <div class="port port-right" id="p-compiler-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-amber">
+              <i class="bi bi-gear-wide-connected"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Dart Sass JS</h4>
+              <span class="file-badge">sass.compile()</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Compiles SCSS directly in RAM. Zero disk writes, compressed output, and silenced deprecations.
+          </div>
+          <span class="node-tag glow-tag">~80ms Execution</span>
+        </div>
+
+        <!-- Node: PurgeCSS Engine -->
+        <div class="d-node" id="node-purge" onclick="inspectNode('purge')">
+          <div class="port port-left" id="p-purge-in"></div>
+          <div class="port port-right" id="p-purge-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-emerald">
+              <i class="bi bi-scissors"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>PurgeCSS Engine</h4>
+              <span class="file-badge">PurgeCSS.purge()</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Compares compiled CSS against extracted template tokens. Strips unused selectors.
+          </div>
+          <span class="node-tag glow-tag">-67% Unused Cut</span>
+        </div>
+
+        <!-- Node: Safelist Defense Layer -->
+        <div class="d-node" id="node-safelist" onclick="inspectNode('safelist')">
+          <div class="port port-right" id="p-safelist-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-purple">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Dynamic Safelist</h4>
+              <span class="file-badge">SAFELIST Guard</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Preserves runtime animation states (.show, .collapsing, .fade, .active, modals).
+          </div>
+          <span class="node-tag">State Defense</span>
+        </div>
+      </div>
+
+      <!-- Channel 3: Routing -->
+      <div class="connector-channel"></div>
+
+      <!-- ============================================== -->
+      <!-- COLUMN 4: PRODUCTION OUTPUT & DELIVERY         -->
+      <!-- ============================================== -->
+      <div class="node-stack">
+        <div class="column-header">
+          <i class="bi bi-check-circle"></i> Artifact & Delivery
+        </div>
+
+        <!-- Node: style.css -->
+        <div class="d-node" id="node-stylecss" onclick="inspectNode('stylecss')" style="border-color: #10b981;">
+          <div class="port port-left" id="p-stylecss-in"></div>
+          <div class="port port-right" id="p-stylecss-out"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-emerald">
+              <i class="bi bi-filetype-css"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>Root style.css</h4>
+              <span class="file-badge">./style.css</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            The lean, optimized production stylesheet located directly in the root path.
+          </div>
+          <span class="node-tag glow-tag">77.5 KB Output</span>
+        </div>
+
+        <!-- Node: WAMP Local Server -->
+        <div class="d-node" id="node-wamp" onclick="inspectNode('wamp')">
+          <div class="port port-left" id="p-wamp-in"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-blue">
+              <i class="bi bi-hdd-network"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>WAMP Local Server</h4>
+              <span class="file-badge">http://localhost/synovus</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Delivered immediately to Apache server for live local browser viewing.
+          </div>
+          <span class="node-tag">Localhost Preview</span>
+        </div>
+
+        <!-- Node: GitHub Remote Repository -->
+        <div class="d-node" id="node-git" onclick="inspectNode('git')">
+          <div class="port port-left" id="p-git-in"></div>
+          <div class="node-header">
+            <div class="node-icon-box ib-purple">
+              <i class="bi bi-git"></i>
+            </div>
+            <div class="node-title-group">
+              <h4>GitHub Remote</h4>
+              <span class="file-badge">iamfromnepal/synovus</span>
+            </div>
+          </div>
+          <div class="node-desc">
+            Production commits pushed to GitHub main branch.
+          </div>
+          <span class="node-tag">Origin Tracked</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Architectural Deep-Dive Footer Cards -->
+    <div class="info-grid">
+      <div class="info-card">
+        <h5><i class="bi bi-layers-half text-primary" style="color: #60a5fa;"></i> Branch Separation</h5>
         <p>
-          This responsive interactive blueprint illustrates how source SCSS and multi-extension templates (.php, .html, .cshtml) are compiled and tree-shaken in-memory to generate our production-ready, ultra-lightweight stylesheet.
+          Styles are modularly separated into custom token overrides (<code>custom-overrides.scss</code>) and local Bootstrap modules (<code>scss/bootstrap/</code>). Bootstrap's <code>!default</code> flags guarantee that your variables take precedence.
         </p>
       </div>
 
-      <div style="display: flex; gap: 0.75rem; align-items: center;">
-        <a href="index.html" class="sim-btn" style="background: var(--primary); color: #fff; border: none; padding: 0.65rem 1.25rem;">
-          <i class="bi bi-eye-fill"></i>
-          <span>View Live Site</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Interactive Simulation Controls -->
-    <div class="sim-bar">
-      <div class="sim-header">
-        <div class="sim-title">
-          <i class="bi bi-sliders"></i>
-          <span>INTERACTIVE PIPELINE SIMULATOR (Click a workflow scenario to trace active paths):</span>
-        </div>
-        <div class="sim-btn-group">
-          <button class="sim-btn active" id="btn-all" onclick="setScenario('all')">
-            <i class="bi bi-grid-fill"></i> All Systems
-          </button>
-          <button class="sim-btn" id="btn-scss" onclick="setScenario('scss')">
-            <i class="bi bi-palette-fill"></i> 1. SCSS Theme Edit
-          </button>
-          <button class="sim-btn" id="btn-template" onclick="setScenario('template')">
-            <i class="bi bi-filetype-php"></i> 2. PHP / HTML Template Edit
-          </button>
-          <button class="sim-btn" id="btn-build" onclick="setScenario('build')">
-            <i class="bi bi-lightning-charge-fill"></i> 3. One-Shot Build
-          </button>
-        </div>
-      </div>
-
-      <div class="sim-banner-status" id="sim-status">
-        <i class="bi bi-info-circle-fill" style="color: var(--primary-light);"></i>
-        <span id="sim-status-text">Displaying complete system overview. All 4 stages active and connected.</span>
-      </div>
-    </div>
-
-    <!-- Connected 4-Stage Pipeline Grid -->
-    <div class="pipeline-wrapper">
-      <div class="pipeline-grid">
-
-        <!-- STAGE 1: SOURCE FILES -->
-        <div class="stage-column" id="col-sources">
-          <div class="stage-header">
-            <div class="stage-title">
-              <span class="stage-num">1</span>
-              <span>Source Inputs</span>
-            </div>
-            <span class="tag">Editable</span>
-          </div>
-
-          <!-- Card 1.1 -->
-          <div class="card-node" id="node-custom-overrides">
-            <div class="card-node-head">
-              <div class="node-icon icon-blue">
-                <i class="bi bi-brush"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Custom Overrides</h4>
-                <span class="file-path">scss/custom-overrides.scss</span>
-              </div>
-            </div>
-            <p>
-              Your design tokens, Adobe Realist font mappings (SemiLight to Bold), custom buttons, card hover effects, and theme palette ($primary, $secondary).
-            </p>
-            <div class="tag-list">
-              <span class="tag tag-accent">Variables</span>
-              <span class="tag">Realist Typekit</span>
-              <span class="tag">!default Overrides</span>
-            </div>
-          </div>
-
-          <!-- Card 1.2 -->
-          <div class="card-node" id="node-bootstrap-src">
-            <div class="card-node-head">
-              <div class="node-icon icon-purple">
-                <i class="bi bi-bootstrap"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Bootstrap 5 Source</h4>
-                <span class="file-path">scss/bootstrap/</span>
-              </div>
-            </div>
-            <p>
-              Local source modules (grid, buttons, cards, accordions, modals, tables, navbars) allowing granular control without external node_modules coupling.
-            </p>
-            <div class="tag-list">
-              <span class="tag">47 SCSS Modules</span>
-              <span class="tag">Reboot</span>
-              <span class="tag">Mixins</span>
-            </div>
-          </div>
-
-          <!-- Card 1.3 -->
-          <div class="card-node" id="node-templates">
-            <div class="card-node-head">
-              <div class="node-icon icon-emerald">
-                <i class="bi bi-code-square"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Multi-Extension Templates</h4>
-                <span class="file-path">**/*.{html,php,cshtml,js}</span>
-              </div>
-            </div>
-            <p>
-              Any file containing class names. Whether a PHP view, HTML page, or CSHTML template, classes are matched automatically by token extractors.
-            </p>
-            <div class="tag-list">
-              <span class="tag tag-accent">.php</span>
-              <span class="tag tag-accent">.html</span>
-              <span class="tag">.xhtml</span>
-              <span class="tag">.cshtml</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STAGE 2: REACTIVE ENGINE -->
-        <div class="stage-column" id="col-engine">
-          <div class="stage-header">
-            <div class="stage-title">
-              <span class="stage-num">2</span>
-              <span>Reactive Engine</span>
-            </div>
-            <span class="tag">build.js</span>
-          </div>
-
-          <!-- Card 2.1 -->
-          <div class="card-node" id="node-chokidar">
-            <div class="card-node-head">
-              <div class="node-icon icon-cyan">
-                <i class="bi bi-eye"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Chokidar Watcher</h4>
-                <span class="file-path">npm run dev</span>
-              </div>
-            </div>
-            <p>
-              Real-time multi-path file watcher with a 60ms debounce. Triggers in-memory builds whenever SCSS or template markup is saved.
-            </p>
-            <div class="tag-list">
-              <span class="tag">60ms Debounce</span>
-              <span class="tag">Two-Way Reactive</span>
-            </div>
-          </div>
-
-          <!-- Card 2.2 -->
-          <div class="card-node" id="node-sass-compiler">
-            <div class="card-node-head">
-              <div class="node-icon icon-amber">
-                <i class="bi bi-filetype-sass"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>In-Memory Dart Sass</h4>
-                <span class="file-path">sass.compile()</span>
-              </div>
-            </div>
-            <p>
-              Compiles SCSS directly into a memory buffer (no intermediate disk writes). Silences third-party deprecations and applies instant compression.
-            </p>
-            <div class="tag-list">
-              <span class="tag">~80ms Compile</span>
-              <span class="tag">Zero Disk I/O</span>
-            </div>
-          </div>
-
-          <!-- Card 2.3 -->
-          <div class="card-node" id="node-purge-engine">
-            <div class="card-node-head">
-              <div class="node-icon icon-emerald">
-                <i class="bi bi-scissors"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>PurgeCSS Tree-Shaker</h4>
-                <span class="file-path">PurgeCSS.purge()</span>
-              </div>
-            </div>
-            <p>
-              Scans all project template files with a universal regex token extractor. Retains only the CSS selectors you actually wrote, stripping the rest.
-            </p>
-            <div class="tag-list">
-              <span class="tag tag-accent">-67% Reduction</span>
-              <span class="tag">Regex Extractor</span>
-            </div>
-          </div>
-
-          <!-- Card 2.4 -->
-          <div class="card-node" id="node-safelist">
-            <div class="card-node-head">
-              <div class="node-icon icon-slate">
-                <i class="bi bi-shield-check"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Dynamic Safelist</h4>
-                <span class="file-path">SAFELIST Config</span>
-              </div>
-            </div>
-            <p>
-              Protects Bootstrap runtime JavaScript animation states (.show, .collapsing, .fade, .active, modals, tooltips) from being accidentally purged.
-            </p>
-            <div class="tag-list">
-              <span class="tag">Modal Defense</span>
-              <span class="tag">Accordion Defense</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STAGE 3: DELIVERABLE ARTIFACTS -->
-        <div class="stage-column" id="col-artifacts">
-          <div class="stage-header">
-            <div class="stage-title">
-              <span class="stage-num">3</span>
-              <span>Compiled Output</span>
-            </div>
-            <span class="tag">Root Path</span>
-          </div>
-
-          <!-- Card 3.1 -->
-          <div class="card-node" id="node-style-css">
-            <div class="card-node-head">
-              <div class="node-icon icon-emerald">
-                <i class="bi bi-filetype-css"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Lightweight CSS</h4>
-                <span class="file-path">./style.css</span>
-              </div>
-            </div>
-            <p>
-              Single production stylesheet in the project root. Drops from 235.7 KB unpurged to ~77.5 KB compressed (~11 KB gzipped over network).
-            </p>
-            <div class="tag-list">
-              <span class="tag tag-accent">77.5 KB Output</span>
-              <span class="tag">Root Location</span>
-              <span class="tag">Clean Cache</span>
-            </div>
-          </div>
-
-          <!-- Card 3.2 -->
-          <div class="card-node" id="node-js-bundle">
-            <div class="card-node-head">
-              <div class="node-icon icon-amber">
-                <i class="bi bi-filetype-js"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Self-Contained JS</h4>
-                <span class="file-path">assets/js/</span>
-              </div>
-            </div>
-            <p>
-              Local Bootstrap 5 bundle (bootstrap.bundle.min.js) and custom interactive tooltip / scroll dynamics (main.js).
-            </p>
-            <div class="tag-list">
-              <span class="tag">Zero CDN Lock-in</span>
-              <span class="tag">Tooltip Initializer</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STAGE 4: RUNTIME & SYNC -->
-        <div class="stage-column" id="col-runtime">
-          <div class="stage-header">
-            <div class="stage-title">
-              <span class="stage-num">4</span>
-              <span>Runtime & Deployment</span>
-            </div>
-            <span class="tag">WAMP / Git</span>
-          </div>
-
-          <!-- Card 4.1 -->
-          <div class="card-node" id="node-wamp">
-            <div class="card-node-head">
-              <div class="node-icon icon-blue">
-                <i class="bi bi-hdd-network"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>WAMP Apache Server</h4>
-                <span class="file-path">http://localhost/synovus</span>
-              </div>
-            </div>
-            <p>
-              Instant browser rendering through local Apache and PHP interpreter. Works offline and independent of Node build processes.
-            </p>
-            <div class="tag-list">
-              <span class="tag tag-accent">Localhost</span>
-              <span class="tag">Apache</span>
-              <span class="tag">Fast Refresh</span>
-            </div>
-          </div>
-
-          <!-- Card 4.2 -->
-          <div class="card-node" id="node-git">
-            <div class="card-node-head">
-              <div class="node-icon icon-purple">
-                <i class="bi bi-github"></i>
-              </div>
-              <div class="node-title-group">
-                <h4>Git Remote Sync</h4>
-                <span class="file-path">origin/main</span>
-              </div>
-            </div>
-            <p>
-              Clean version control tracked on GitHub. Ignores node_modules while tracking root style.css so deployment targets run immediately.
-            </p>
-            <div class="tag-list">
-              <span class="tag">iamfromnepal/synovus</span>
-              <span class="tag">CI/CD Ready</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Section 2: Deep Dive Cards -->
-    <h2 class="section-title">
-      <i class="bi bi-boxes" style="color: var(--primary);"></i>
-      <span>Architectural Mechanisms Explained</span>
-    </h2>
-
-    <div class="deep-dive-grid">
-
-      <!-- Deep Card 1: Multi-Template Extractor -->
-      <div class="deep-card">
-        <h3>
-          <i class="bi bi-file-earmark-code" style="color: var(--primary);"></i>
-          <span>Multi-Template Scanning</span>
-        </h3>
+      <div class="info-card">
+        <h5><i class="bi bi-lightning-charge" style="color: #34d399;"></i> In-Memory Pipeline</h5>
         <p>
-          PurgeCSS uses a universal word-boundary regex extractor: <code>/[\w-/:]+(?<!:)/g</code>. It extracts every CSS class token regardless of embedded PHP tags, Blade syntax, or ASP.NET Razor directives:
+          Instead of compiling SCSS to disk and then invoking a separate CLI tool to purge it, <code>build.js</code> buffers CSS in Node RAM. Dart Sass + PurgeCSS execute end-to-end in <strong>~150ms</strong> without any disk bottle-necks.
         </p>
-        <div class="code-box">
-<span class="comment">// Scans all templates automatically</span>
-content: [
-  <span class="string">'./**/*.{html,php,xhtml,shtml,cshtml,js}'</span>,
-  <span class="string">'!./node_modules/**'</span>,
-  <span class="string">'!./vendor/**'</span>
-]
-        </div>
       </div>
 
-      <!-- Deep Card 2: Safelist Protection -->
-      <div class="deep-card">
-        <h3>
-          <i class="bi bi-shield-shaded" style="color: var(--success);"></i>
-          <span>Bootstrap Safelist Matrix</span>
-        </h3>
+      <div class="info-card">
+        <h5><i class="bi bi-file-code" style="color: #fbbf24;"></i> Any Template Extension</h5>
         <p>
-          Dynamic classes added at runtime by JavaScript are preserved via regex safelisting so interactive components never lose animations:
+          Whether your application serves static HTML, dynamic PHP with embedded server logic, or Razor CSHTML, the regex token extractor scans the code as raw tokens and protects every class you use.
         </p>
-        <div class="code-box">
-<span class="keyword">safelist</span>: {
-  standard: [
-    <span class="string">/show$/</span>, <span class="string">/collapsing$/</span>,
-    <span class="string">/fade$/</span>, <span class="string">/active$/</span>,
-    <span class="string">/^modal-/</span>, <span class="string">/^offcanvas-/</span>
-  ],
-  deep: [<span class="string">/^tooltip/</span>, <span class="string">/^popover/</span>]
-}
-        </div>
-      </div>
-
-      <!-- Deep Card 3: Performance Payload -->
-      <div class="deep-card">
-        <h3>
-          <i class="bi bi-speedometer2" style="color: var(--info);"></i>
-          <span>Payload Optimization</span>
-        </h3>
-        <p>
-          By dropping unneeded components and compressing selectors in-memory, network transfer size is drastically minimized:
-        </p>
-        <div style="font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
-          <span>Purged: 77.5 KB</span>
-          <span style="color: #94a3b8;">Original: 235.7 KB (-67%)</span>
-        </div>
-        <div class="metric-bar-wrapper">
-          <div class="metric-fill-purged">77.5 KB</div>
-          <div class="metric-fill-saved">158 KB Cut</div>
-        </div>
-        <p style="margin-top: 0.75rem; font-size: 0.8rem; color: #64748b;">
-          *Gzipped over HTTP connection: transfers at approx. <strong>~11 KB</strong>.
-        </p>
-      </div>
-
-    </div>
-
-    <!-- Section 3: Commands Quick Reference -->
-    <div class="command-strip">
-      <div class="cmd-item">
-        <span class="cmd-badge">npm run dev</span>
-        <div>
-          <strong style="color: var(--dark); display: block;">Live Watcher Mode</strong>
-          <span class="cmd-desc">Watches SCSS & all .php/.html templates, recompiles & purges in ~150ms on save</span>
-        </div>
-      </div>
-
-      <div class="cmd-item">
-        <span class="cmd-badge">npm run build</span>
-        <div>
-          <strong style="color: var(--dark); display: block;">One-Shot Production Build</strong>
-          <span class="cmd-desc">Compiles Dart Sass, purges unused rules, outputs minified root style.css</span>
-        </div>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      <div>
-        <strong>Synovus Web Architecture</strong> &bull; Bootstrap 5.3 + Modular SCSS + In-Memory PurgeCSS
-      </div>
-      <div>
-        <a href="index.html">Live Demo</a> &bull;
-        <a href="https://github.com/iamfromnepal/synovus" target="_blank">GitHub Repository</a>
-      </div>
-    </footer>
+  </div>
 
-  </main>
+  <!-- Interactive Inspector Drawer / Card Popup -->
+  <div id="node-inspector">
+    <div class="inspector-head">
+      <h4 id="insp-title" style="color: #fff; font-size: 0.95rem;">Node Details</h4>
+      <button class="inspector-close" onclick="closeInspector()">&times;</button>
+    </div>
+    <div class="inspector-body" id="insp-body"></div>
+  </div>
 
   <script>
-    function clearHighlights() {
-      document.querySelectorAll('.card-node').forEach(node => {
-        node.classList.remove('highlight', 'highlight-green');
-      });
-      document.querySelectorAll('.sim-btn').forEach(btn => btn.classList.remove('active'));
+    // ==========================================
+    // Dynamic SVG Bezier Connector System
+    // ==========================================
+
+    function getPortCenter(elemId) {
+      const port = document.getElementById(elemId);
+      if (!port) return { x: 0, y: 0 };
+      const boardRect = document.querySelector('.diagram-board').getBoundingClientRect();
+      const rect = port.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2 - boardRect.left,
+        y: rect.top + rect.height / 2 - boardRect.top
+      };
     }
 
-    function setScenario(type) {
-      clearHighlights();
-      const statusText = document.getElementById('sim-status-text');
+    function createCurvedPath(p1, p2) {
+      const dx = Math.abs(p2.x - p1.x) * 0.5;
+      return `M ${p1.x} ${p1.y} C ${p1.x + dx} ${p1.y}, ${p2.x - dx} ${p2.y}, ${p2.x} ${p2.y}`;
+    }
+
+    function drawConnectors() {
+      if (window.innerWidth <= 1350) return; // Hidden in stacked mobile view
+
+      const svg = document.getElementById('connector-canvas');
+      const board = document.querySelector('.diagram-board');
+      svg.setAttribute('width', board.scrollWidth);
+      svg.setAttribute('height', board.scrollHeight);
+
+      // Define Wire Connections: [startPortId, endPortId, wireElementId]
+      const routes = [
+        ['p-overrides-out', 'p-style-in', 'wire-overrides-style'],
+        ['p-bootstrap-out', 'p-style-in', 'wire-bootstrap-style'],
+        ['p-style-out', 'p-compiler-in', 'wire-style-compiler'],
+        ['p-templates-out', 'p-extractor-in', 'wire-templates-extractor'],
+        ['p-chokidar-out', 'p-compiler-in', 'wire-chokidar-compiler'],
+        ['p-chokidar-out', 'p-purge-in', 'wire-chokidar-purge'],
+        ['p-compiler-out', 'p-purge-in', 'wire-compiler-purge'],
+        ['p-extractor-out', 'p-purge-in', 'wire-extractor-purge'],
+        ['p-safelist-out', 'p-purge-in', 'wire-safelist-purge'],
+        ['p-purge-out', 'p-stylecss-in', 'wire-purge-stylecss'],
+        ['p-stylecss-out', 'p-wamp-in', 'wire-stylecss-wamp'],
+        ['p-stylecss-out', 'p-git-in', 'wire-stylecss-git'],
+      ];
+
+      routes.forEach(([fromId, toId, wireId]) => {
+        const p1 = getPortCenter(fromId);
+        const p2 = getPortCenter(toId);
+        const pathElem = document.getElementById(wireId);
+        if (pathElem && p1.x && p2.x) {
+          pathElem.setAttribute('d', createCurvedPath(p1, p2));
+        }
+      });
+    }
+
+    window.addEventListener('load', drawConnectors);
+    window.addEventListener('resize', drawConnectors);
+
+    // ==========================================
+    // Interactive Scenario Flow Engine
+    // ==========================================
+
+    function clearSimulation() {
+      document.querySelectorAll('.wire').forEach(w => {
+        w.classList.remove('flow-active', 'flow-active-emerald', 'flow-active-amber');
+      });
+      document.querySelectorAll('.d-node').forEach(n => {
+        n.classList.remove('highlighted', 'highlighted-emerald');
+      });
+      document.querySelectorAll('.btn-pill').forEach(b => {
+        b.classList.remove('active', 'active-emerald');
+      });
+    }
+
+    function triggerFlow(type) {
+      clearSimulation();
+      const statusText = document.getElementById('flow-description');
 
       if (type === 'scss') {
         document.getElementById('btn-scss').classList.add('active');
-        document.getElementById('node-custom-overrides').classList.add('highlight');
-        document.getElementById('node-chokidar').classList.add('highlight');
-        document.getElementById('node-sass-compiler').classList.add('highlight');
-        document.getElementById('node-style-css').classList.add('highlight');
-        document.getElementById('node-wamp').classList.add('highlight');
-        statusText.innerHTML = "<strong>Scenario 1 (SCSS Theme Edit):</strong> You edit <code>scss/custom-overrides.scss</code>. Chokidar detects save &rarr; In-Memory Dart Sass compiles &rarr; style.css updates in root.";
-      } else if (type === 'template') {
-        document.getElementById('btn-template').classList.add('active');
-        document.getElementById('node-templates').classList.add('highlight-green');
-        document.getElementById('node-chokidar').classList.add('highlight-green');
-        document.getElementById('node-purge-engine').classList.add('highlight-green');
-        document.getElementById('node-safelist').classList.add('highlight-green');
-        document.getElementById('node-style-css').classList.add('highlight-green');
-        document.getElementById('node-wamp').classList.add('highlight-green');
-        statusText.innerHTML = "<strong>Scenario 2 (PHP/HTML Edit):</strong> You add a component (e.g. Accordion) to a <code>.php</code> or <code>.html</code> file. Chokidar triggers &rarr; PurgeCSS token extractor detects class &rarr; Accordion styles included in style.css.";
+        ['node-custom-overrides', 'node-style-entry', 'node-chokidar', 'node-compiler', 'node-purge', 'node-stylecss', 'node-wamp'].forEach(id => {
+          document.getElementById(id)?.classList.add('highlighted');
+        });
+        ['wire-overrides-style', 'wire-style-compiler', 'wire-compiler-purge', 'wire-purge-stylecss', 'wire-stylecss-wamp'].forEach(id => {
+          document.getElementById(id)?.classList.add('flow-active');
+        });
+        statusText.innerHTML = "<strong>Scenario 1 (SCSS Theme Edit):</strong> Saving <code>custom-overrides.scss</code> &rarr; Chokidar triggers &rarr; Dart Sass compiles in-memory &rarr; PurgeCSS re-verifies &rarr; <code>style.css</code> updates in root.";
+      } else if (type === 'php') {
+        document.getElementById('btn-php').classList.add('active-emerald');
+        ['node-templates', 'node-chokidar', 'node-extractor', 'node-purge', 'node-safelist', 'node-stylecss', 'node-wamp'].forEach(id => {
+          document.getElementById(id)?.classList.add('highlighted-emerald');
+        });
+        ['wire-templates-extractor', 'wire-extractor-purge', 'wire-safelist-purge', 'wire-purge-stylecss', 'wire-stylecss-wamp'].forEach(id => {
+          document.getElementById(id)?.classList.add('flow-active-emerald');
+        });
+        statusText.innerHTML = "<strong>Scenario 2 (Template Edit):</strong> Adding markup to a <code>.php</code> or <code>.html</code> file &rarr; Chokidar fires &rarr; Token extractor detects class &rarr; PurgeCSS preserves matching Bootstrap selectors &rarr; <code>style.css</code> reflects changes.";
       } else if (type === 'build') {
         document.getElementById('btn-build').classList.add('active');
-        document.querySelectorAll('.card-node').forEach(n => n.classList.add('highlight'));
-        statusText.innerHTML = "<strong>Scenario 3 (One-Shot Production Build):</strong> Executing <code>npm run build</code>. Compiles Dart Sass in-memory &rarr; scans all project templates &rarr; writes production <code>style.css</code>.";
+        document.querySelectorAll('.d-node').forEach(n => n.classList.add('highlighted'));
+        document.querySelectorAll('.wire').forEach(w => w.classList.add('flow-active'));
+        statusText.innerHTML = "<strong>Scenario 3 (Production Build):</strong> Executing <code>npm run build</code>. Compiles Dart Sass in-memory &rarr; scans all templates &rarr; applies safelist guard &rarr; outputs minified <code>style.css</code> in ~1.1s.";
       } else {
         document.getElementById('btn-all').classList.add('active');
-        statusText.innerHTML = "Displaying complete system overview. All 4 stages active and connected.";
+        statusText.innerHTML = "<strong>Interactive Node Graph:</strong> Viewing entire pipeline from source branches through in-memory compilation to delivery.";
       }
+    }
+
+    // ==========================================
+    // Node Detail Inspector
+    // ==========================================
+
+    const nodeDetails = {
+      'custom-overrides': {
+        title: 'scss/custom-overrides.scss',
+        body: 'Contains all design tokens, Realist font configuration, and Bootstrap variable overrides. Because Bootstrap variables use !default, declaring variables here overrides defaults without touching original Bootstrap files.',
+        code: '$font-family-sans-serif: "realist", sans-serif;\n$primary: #1e40af;\n$font-weight-light: 300;\n$font-weight-bold: 700;'
+      },
+      'bootstrap': {
+        title: 'scss/bootstrap/',
+        body: 'Contains all 47 uncompiled Bootstrap 5 SCSS modules (grid, buttons, cards, modals, navbars, forms). Kept locally inside scss/bootstrap/ for granular control.',
+        code: '@import "functions";\n@import "variables";\n@import "buttons";\n@import "card";\n@import "modal";'
+      },
+      'templates': {
+        title: 'Template Files Pattern',
+        body: 'Scanned automatically by build.js. Supports .php, .html, .cshtml, .xhtml, .shtml, .js, etc. Allows server-side logic (PHP tags, ASP.NET Razor) without breaking PurgeCSS.',
+        code: '<div class="card <?php echo $active; ?>">\n  <button class="btn btn-primary">\n    Submit\n  </button>\n</div>'
+      },
+      'style-entry': {
+        title: 'scss/style.scss',
+        body: 'The single master SCSS file. Aggregates functions, your custom overrides, and core Bootstrap stylesheets.',
+        code: '@import "bootstrap/functions";\n@import "custom-overrides";\n@import "bootstrap/bootstrap";'
+      },
+      'chokidar': {
+        title: 'Chokidar Reactive Watcher',
+        body: 'Active during `npm run dev`. Watches all scss files and template files. Uses a 60ms debounce to prevent duplicate builds when editors write atomic swap files.',
+        code: 'chokidar.watch([\n  "scss/**/*.scss",\n  "**/*.{html,php,cshtml,js}"\n]);'
+      },
+      'extractor': {
+        title: 'Universal Token Extractor',
+        body: 'Uses regex word-boundary pattern to capture classes from any language, string, or attribute.',
+        code: 'defaultExtractor: content =>\n  content.match(/[\\w-/:]+(?<!:)/g) || []'
+      },
+      'compiler': {
+        title: 'Dart Sass In-Memory API',
+        body: 'Uses sass.compile() directly in Node.js memory. Avoids creating temporary disk files, making it 5x faster than CLI commands.',
+        code: 'const result = sass.compile("scss/style.scss", {\n  style: "compressed"\n});'
+      },
+      'purge': {
+        title: 'PurgeCSS In-Memory Purger',
+        body: 'Filters raw CSS string against tokens found in templates. Reduces 235.7 KB Bootstrap down to ~77.5 KB.',
+        code: 'const purged = await new PurgeCSS().purge({\n  content: CONTENT_PATTERNS,\n  css: [{ raw: sassResult.css }]\n});'
+      },
+      'safelist': {
+        title: 'Runtime Safelist Defense',
+        body: 'Guarantees that dynamic classes applied by Bootstrap JS (like opening an accordion, sliding an offcanvas, or popping a modal) are never deleted.',
+        code: 'safelist: [\n  /show$/,\n  /collapsing$/,\n  /fade$/,\n  /active$/,\n  /^modal-/\n]'
+      },
+      'stylecss': {
+        title: 'Root style.css',
+        body: 'The final optimized production stylesheet in the project root. Ready for WAMP server or production deployment.',
+        code: '<link rel="stylesheet" href="style.css">'
+      },
+      'wamp': {
+        title: 'WAMP Local Apache Server',
+        body: 'Serves the project locally at http://localhost/synovus. Fast, native, and completely offline.',
+        code: 'Apache 2.4 + PHP 8.x + MySQL'
+      },
+      'git': {
+        title: 'Git Version Control',
+        body: 'Synced to GitHub repository iamfromnepal/synovus on branch main.',
+        code: 'git push origin main'
+      }
+    };
+
+    function inspectNode(nodeKey) {
+      const data = nodeDetails[nodeKey];
+      if (!data) return;
+      document.getElementById('insp-title').innerText = data.title;
+      document.getElementById('insp-body').innerHTML = `
+        <p>${data.body}</p>
+        <div class="inspector-code">${data.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+      `;
+      document.getElementById('node-inspector').style.display = 'block';
+    }
+
+    function closeInspector() {
+      document.getElementById('node-inspector').style.display = 'none';
     }
   </script>
 </body>
