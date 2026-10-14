@@ -1,0 +1,19 @@
+// ==========================================
+// Synovus - Master Stylesheet Entry
+// ==========================================
+
+// 1. Include Bootstrap Functions first (required for color and map manipulations)
+@import "bootstrap/functions";
+
+// 2. Include Custom Overrides (Variable overrides & custom components)
+@import "custom-overrides";
+
+// 3. Core Bootstrap variables, dark mode variables, maps, and mixins
+@import "bootstrap/variables";
+@import "bootstrap/variables-dark";
+@import "bootstrap/maps";
+@import "bootstrap/mixins";
+@import "bootstrap/root";
+
+// 4. Complete Bootstrap Framework
+@import "bootstrap/bootstrap";

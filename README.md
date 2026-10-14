@@ -1,30 +1,33 @@
 # Synovus
 
-A modern web project built with **Raw HTML**, **SCSS**, and **Bootstrap 5**.
+A modern web project built with **Raw HTML5**, **SCSS**, and **Bootstrap 5**.
 
 ---
 
 ## 🛠 Tech Stack
 
 - **HTML5**: Clean, semantic markup.
-- **Bootstrap 5**: Responsive layout framework and components.
-- **SCSS**: Modular, structured styling and custom theme variables.
+- **Bootstrap 5**: Responsive layout framework and components located in `scss/bootstrap/`.
+- **SCSS**: Custom variables and styling overrides via `scss/custom-overrides.scss`, compiling to root `style.css`.
 
 ---
 
-## 📁 Suggested Project Structure
+## 📁 Project Structure
 
 ```text
 synovus/
+├── scss/
+│   ├── bootstrap/            # Bootstrap 5 SCSS source files
+│   ├── custom-overrides.scss # Custom variable overrides & component styling
+│   └── style.scss            # Master SCSS entry point
+├── style.css                 # Compiled CSS in the main path
 ├── assets/
-│   ├── css/          # Compiled CSS
-│   ├── scss/         # SCSS source files
-│   │   ├── _variables.scss
-│   │   ├── _custom.scss
-│   │   └── main.scss
-│   ├── js/           # JavaScript files
-│   └── images/       # Static assets and images
-├── index.html        # Main landing page
+│   ├── js/
+│   │   ├── bootstrap.bundle.min.js
+│   │   └── main.js
+│   └── images/
+├── index.html                # Main landing page
+├── package.json              # NPM scripts for compilation
 ├── .gitignore
 └── README.md
 ```
@@ -33,15 +36,20 @@ synovus/
 
 ## 🚀 Getting Started
 
-1. Clone or navigate to the repository:
+1. Install dependencies:
    ```bash
-   git clone https://github.com/iamfromnepal/synovus.git
-   cd synovus
+   npm install
    ```
 
-2. Compile SCSS (using Sass CLI or your preferred SCSS compiler / bundler):
+2. Watch and compile SCSS:
    ```bash
-   sass assets/scss/main.scss assets/css/main.css --watch
+   npm run dev
    ```
 
-3. Open `index.html` in your browser or serve it via your local server (WAMP).
+3. Build production stylesheet:
+   ```bash
+   npm run build:css
+   ```
+
+4. View locally:
+   Open `index.html` directly in your browser or run through WAMP at `http://localhost/synovus`.
