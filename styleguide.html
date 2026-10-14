@@ -443,13 +443,14 @@
         </section>
 
         <!-- =================================================== -->
-        <!-- 3. BUTTONS (STRICTLY 3 FIGMA SIZES)                 -->
+        <!-- 3. BUTTONS (FIGMA SIZES & ROUNDED RADII)            -->
         <!-- =================================================== -->
         <section id="buttons" class="mb-5 pb-4 border-bottom">
           <span class="spec-badge">Section 3</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Buttons &amp; CTAs (Strictly 3 Figma Sizes)</h2>
+          <h2 class="fw-bold mb-2" style="color: #283862;">Buttons &amp; CTAs (Corner Radii &amp; Sizes)</h2>
           <div class="figma-callout">
-            <strong>Figma Designer Button Rules:</strong> Designer notes explicitly specify 3 button sizes across all modules: <strong>XL Button Size</strong>, <strong>Standard Button Size</strong>, and <strong>Small Button Size</strong>, plus the tertiary underlined link style.
+            <strong>Figma Corner Radius Analysis:</strong> The design uses rounded corners across buttons: 
+            <strong>8px</strong> on Standard/Small buttons, <strong>12px</strong> on XL buttons, and a signature asymmetric radius <strong>0 8px 8px 8px</strong> / <strong>0 12px 12px 12px</strong> (top-left sharp 0px, remaining 3 corners rounded) used in over 28 button components across Belt Straps, Content Cards, and Articles.
           </div>
 
           <div class="row g-4">
@@ -459,12 +460,13 @@
                 <div>
                   <div class="fw-bold text-dark mb-1">XL Button Size</div>
                   <div class="small text-muted mb-3">Hero &amp; Belt Straps (60px height)</div>
-                  <div class="mb-3">
+                  <div class="d-flex flex-column gap-2 mb-3">
                     <a href="javascript:void(0)" class="btn-syn-xl w-100">Learn More</a>
+                    <a href="javascript:void(0)" class="btn-syn-xl btn-uniform w-100">Uniform (12px)</a>
                   </div>
                 </div>
                 <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  height: 60px<br>pad: 16px 24px<br>font: Realist 20px Bold<br>radius: 0px
+                  height: 60px<br>pad: 16px 24px<br>font: Realist 20px Bold<br>radius: 0 12px 12px 12px / 12px
                 </div>
               </div>
             </div>
@@ -475,12 +477,13 @@
                 <div>
                   <div class="fw-bold text-dark mb-1">Standard Button Size</div>
                   <div class="small text-muted mb-3">Modules 2, 3, 4, 11 (46px height)</div>
-                  <div class="mb-3">
+                  <div class="d-flex flex-column gap-2 mb-3">
                     <a href="javascript:void(0)" class="btn-syn-standard w-100">Standard button</a>
+                    <a href="javascript:void(0)" class="btn-syn-standard btn-uniform w-100">Uniform (8px)</a>
                   </div>
                 </div>
                 <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  height: 46px<br>pad: 12px 20px<br>font: Realist 16px Bold<br>radius: 0px
+                  height: 46px<br>pad: 12px 20px<br>font: Realist 16px Bold<br>radius: 0 8px 8px 8px / 8px
                 </div>
               </div>
             </div>
@@ -491,12 +494,13 @@
                 <div>
                   <div class="fw-bold text-dark mb-1">Small Button Size</div>
                   <div class="small text-muted mb-3">Modules 10, 16 (38px height)</div>
-                  <div class="mb-3">
+                  <div class="d-flex flex-column gap-2 mb-3">
                     <a href="javascript:void(0)" class="btn-syn-small w-100">View Details</a>
+                    <a href="javascript:void(0)" class="btn-syn-small btn-uniform w-100">Uniform (8px)</a>
                   </div>
                 </div>
                 <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  height: 38px<br>pad: 8px 20px<br>font: Realist 14px Bold<br>radius: 0px
+                  height: 38px<br>pad: 8px 20px<br>font: Realist 14px Bold<br>radius: 0 8px 8px 8px / 8px
                 </div>
               </div>
             </div>
@@ -509,11 +513,11 @@
                   <div class="small text-muted mb-3">Underlined Link &amp; Lightest Blue</div>
                   <div class="d-flex flex-column gap-2 mb-3">
                     <a href="javascript:void(0)" class="btn-syn-tertiary">Secondary button <i class="bi bi-arrow-right"></i></a>
-                    <a href="javascript:void(0)" class="btn-syn-tint w-100">Tint button</a>
+                    <a href="javascript:void(0)" class="btn-syn-tint btn-uniform w-100">Tint button</a>
                   </div>
                 </div>
                 <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  Tertiary: underline in #0074C4<br>Tint: #CCE3F3 fill / #283862 text
+                  Tertiary: underline in #0074C4<br>Tint: #CCE3F3 fill (8px radius)
                 </div>
               </div>
             </div>

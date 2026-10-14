@@ -44,11 +44,12 @@ $font-weight-bold:       700; // Bold (Headlines, CTAs, field labels)
 $headings-font-weight:   600;
 
 // ---------------------------------------------------
-// 3. CORNER RADIUS (Figma Designer Rule: 12px for Tiles)
+// 3. CORNER RADIUS (Strict Figma Specifications)
 // ---------------------------------------------------
 $border-radius-tile:     12px; // Explicit designer note: "Corner radius 12 degrees"
 $border-radius-input:    6px;  // 5.7px in Figma Form specs
-$border-radius-btn:      0px;  // Figma default for standard/XL buttons is square (0px)
+$border-radius-btn-std:  8px;  // Figma standard button radius
+$border-radius-btn-xl:   12px; // Figma XL button radius
 
 // ---------------------------------------------------
 // 4. SHADOWS (Figma Drop Shadows)
@@ -74,13 +75,14 @@ $shadow-login-card:      0 8px 28px rgba(0, 0, 0, 0.12);
   --syn-error: #{$syn-error};
 
   --syn-radius-tile: 12px;
+  --syn-radius-btn: 8px;
 }
 
 // ---------------------------------------------------
-// 6. BUTTON SIZES & STYLES (Strictly 3 Figma Sizes)
+// 6. BUTTON SIZES & STYLES (Strictly 3 Figma Sizes with Rounded Corners)
 // ---------------------------------------------------
 
-// 1. XL Button Size (Hero & Belt Straps: 60px height, Realist 20px Bold)
+// 1. XL Button Size (Hero & Belt Straps: 60px height, Realist 20px Bold, 0 12px 12px 12px or 12px radius)
 .btn-syn-xl {
   min-height: 60px;
   background-color: $syn-blue;
@@ -90,21 +92,26 @@ $shadow-login-card:      0 8px 28px rgba(0, 0, 0, 0.12);
   font-size: 1.25rem; // 20px
   padding: 16px 24px;
   border: 1px solid $syn-blue;
-  border-radius: 0;
+  border-radius: 0 12px 12px 12px; // Figma signature asymmetric radius (or uniform 12px)
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 
   &:hover, &:focus {
     background-color: $syn-blue-hover;
     border-color: $syn-blue-hover;
     color: $syn-white;
+    transform: translateY(-1px);
+  }
+
+  &.btn-uniform {
+    border-radius: 12px;
   }
 }
 
-// 2. Standard Button Size (Modules 2, 3, 4, 11: 46px height, Realist 16px Bold)
+// 2. Standard Button Size (Modules 2, 3, 4, 11: 46px/48px height, Realist 16px Bold, 0 8px 8px 8px or 8px radius)
 .btn-syn-standard {
   min-height: 46px;
   background-color: $syn-blue;
@@ -114,21 +121,26 @@ $shadow-login-card:      0 8px 28px rgba(0, 0, 0, 0.12);
   font-size: 1rem; // 16px
   padding: 12px 20px;
   border: 1px solid $syn-blue;
-  border-radius: 0;
+  border-radius: 0 8px 8px 8px; // Figma [0,8,8,8] signature asymmetric radius
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 
   &:hover, &:focus {
     background-color: $syn-blue-hover;
     border-color: $syn-blue-hover;
     color: $syn-white;
+    transform: translateY(-1px);
+  }
+
+  &.btn-uniform {
+    border-radius: 8px;
   }
 }
 
-// 3. Small Button Size (Modules 10, 16: 38px height, Realist 14px Bold)
+// 3. Small Button Size (Modules 10, 16: 38px height, Realist 14px Bold, 0 8px 8px 8px or 8px radius)
 .btn-syn-small {
   min-height: 38px;
   background-color: $syn-blue;
@@ -138,17 +150,22 @@ $shadow-login-card:      0 8px 28px rgba(0, 0, 0, 0.12);
   font-size: 0.875rem; // 14px
   padding: 8px 20px;
   border: 1px solid $syn-blue;
-  border-radius: 0;
+  border-radius: 0 8px 8px 8px; // Figma [0,8,8,8]
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 
   &:hover, &:focus {
     background-color: $syn-blue-hover;
     border-color: $syn-blue-hover;
     color: $syn-white;
+    transform: translateY(-1px);
+  }
+
+  &.btn-uniform {
+    border-radius: 8px;
   }
 }
 
