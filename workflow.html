@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Synovus Development & Code Workflow Architecture - Interactive Pipeline Diagram">
+  <title>Synovus | Technical Workflow & Architecture Diagram</title>
+
+  <!-- Adobe Typekit: Realist & Realist Narrow -->
+  <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --primary-subtle: #dbeafe;
+      --secondary: #475569;
+      --success: #059669;
+      --success-subtle: #d1fae5;
+      --info: #0284c7;
+      --info-subtle: #e0f2fe;
+      --warning: #d97706;
+      --warning-subtle: #fef3c7;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --dark-card: #1e293b;
+      --light-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --font-realist: "realist", system-ui, -apple-system, sans-serif;
+      --font-narrow: "realistnarrow", system-ui, -apple-system, sans-serif;
+      --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-realist);
+      font-size: 15px;
+      line-height: 1.6;
+      color: #334155;
+      background-color: var(--light-bg);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.04) 0%, transparent 40%);
+      min-height: 100vh;
+      padding-bottom: 4rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Top Bar & Header */
+    header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .badge-success {
+      background-color: var(--success-subtle);
+      color: var(--success);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+    }
+
+    .badge-primary {
+      background-color: var(--primary-subtle);
+      color: var(--primary);
+      border: 1px solid rgba(30, 64, 175, 0.2);
+    }
+
+    /* Hero / Intro Banner */
+    .hero-banner {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 1.25rem;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .hero-text h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text p {
+      color: var(--secondary);
+      font-size: 1rem;
+      max-width: 650px;
+    }
+
+    /* Scenario Simulation Controls */
+    .sim-bar {
+      background: var(--dark);
+      border-radius: 1rem;
+      padding: 1.25rem 1.75rem;
+      color: #fff;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.25);
+    }
+
+    .sim-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .sim-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #94a3b8;
+    }
+
+    .sim-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .sim-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      padding: 0.5rem 1rem;
+      border-radius: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+    }
+
+    .sim-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .sim-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary-light);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+
+    .sim-banner-status {
+      font-size: 0.85rem;
+      padding: 0.6rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      border-left: 3px solid var(--primary-light);
+      font-family: var(--font-mono);
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Pipeline Grid Layout */
+    .pipeline-wrapper {
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 1200px) {
+      .pipeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .pipeline-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Column Cards */
+    .stage-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .stage-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stage-num {
+      width: 1.5rem;
+      height: 1.5rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Process Card */
+    .card-node {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .card-node:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
+      border-color: #cbd5e1;
+    }
+
+    /* Active Highlight in Simulation */
+    .card-node.highlight {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3), 0 12px 28px -4px rgba(30, 64, 175, 0.15);
+      background: #fdfefe;
+    }
+
+    .card-node.highlight-green {
+      border-color: var(--success);
+      box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.3), 0 12px 28px -4px rgba(5, 150, 105, 0.15);
+      background: #fdfefe;
+    }
+
+    .card-node-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .node-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .icon-blue { background: #eff6ff; color: #2563eb; }
+    .icon-cyan { background: #ecfeff; color: #0891b2; }
+    .icon-emerald { background: #ecfdf5; color: #059669; }
+    .icon-amber { background: #fffbeb; color: #d97706; }
+    .icon-purple { background: #faf5ff; color: #7c3aed; }
+    .icon-slate { background: #f1f5f9; color: #475569; }
+
+    .node-title-group h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.15rem;
+    }
+
+    .node-title-group .file-path {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      display: inline-block;
+    }
+
+    .card-node p {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.35rem;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .tag-accent {
+      background: #eff6ff;
+      color: #1e40af;
+    }
+
+    /* Key Architecture Deep-Dive Grid */
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .deep-dive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 992px) {
+      .deep-dive-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .deep-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+    }
+
+    .deep-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .deep-card p {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-bottom: 1rem;
+      line-height: 1.55;
+    }
+
+    /* Code block inside card */
+    .code-box {
+      background: var(--dark);
+      color: #f8fafc;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 1rem;
+      border-radius: 0.65rem;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+
+    .code-box .keyword { color: #f43f5e; }
+    .code-box .string { color: #38bdf8; }
+    .code-box .comment { color: #94a3b8; font-style: italic; }
+    .code-box .val { color: #a7f3d0; }
+
+    /* Performance Meter */
+    .metric-bar-wrapper {
+      margin-top: 1rem;
+      background: #f1f5f9;
+      border-radius: 999px;
+      height: 1.5rem;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    .metric-fill-purged {
+      background: linear-gradient(90deg, #10b981, #059669);
+      width: 33%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .metric-fill-saved {
+      background: #e2e8f0;
+      width: 67%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+
+    /* CLI Commands Box */
+    .command-strip {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 1.25rem;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+    }
+
+    .cmd-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cmd-badge {
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid rgba(30, 64, 175, 0.2);
+    }
+
+    .cmd-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    footer a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="container header-content">
+      <a href="index.html" class="brand-title">
+        <div class="brand-icon">
+          <i class="bi bi-diagram-3-fill"></i>
+        </div>
+        <span>Synovus Architecture</span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span class="badge-pill badge-primary">
+          <i class="bi bi-cpu-fill"></i>
+          <span>Dart Sass + PurgeCSS Engine</span>
+        </span>
+        <span class="badge-pill badge-success">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Multi-Template Ready</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero / Scope Banner -->
+    <div class="hero-banner">
+      <div class="hero-text">
+        <h1>Technical Pipeline & Workflow Diagram</h1>
+        <p>
+          This responsive interactive blueprint illustrates how source SCSS and multi-extension templates (.php, .html, .cshtml) are compiled and tree-shaken in-memory to generate our production-ready, ultra-lightweight stylesheet.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <a href="index.html" class="sim-btn" style="background: var(--primary); color: #fff; border: none; padding: 0.65rem 1.25rem;">
+          <i class="bi bi-eye-fill"></i>
+          <span>View Live Site</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Interactive Simulation Controls -->
+    <div class="sim-bar">
+      <div class="sim-header">
+        <div class="sim-title">
+          <i class="bi bi-sliders"></i>
+          <span>INTERACTIVE PIPELINE SIMULATOR (Click a workflow scenario to trace active paths):</span>
+        </div>
+        <div class="sim-btn-group">
+          <button class="sim-btn active" id="btn-all" onclick="setScenario('all')">
+            <i class="bi bi-grid-fill"></i> All Systems
+          </button>
+          <button class="sim-btn" id="btn-scss" onclick="setScenario('scss')">
+            <i class="bi bi-palette-fill"></i> 1. SCSS Theme Edit
+          </button>
+          <button class="sim-btn" id="btn-template" onclick="setScenario('template')">
+            <i class="bi bi-filetype-php"></i> 2. PHP / HTML Template Edit
+          </button>
+          <button class="sim-btn" id="btn-build" onclick="setScenario('build')">
+            <i class="bi bi-lightning-charge-fill"></i> 3. One-Shot Build
+          </button>
+        </div>
+      </div>
+
+      <div class="sim-banner-status" id="sim-status">
+        <i class="bi bi-info-circle-fill" style="color: var(--primary-light);"></i>
+        <span id="sim-status-text">Displaying complete system overview. All 4 stages active and connected.</span>
+      </div>
+    </div>
+
+    <!-- Connected 4-Stage Pipeline Grid -->
+    <div class="pipeline-wrapper">
+      <div class="pipeline-grid">
+
+        <!-- STAGE 1: SOURCE FILES -->
+        <div class="stage-column" id="col-sources">
+          <div class="stage-header">
+            <div class="stage-title">
+              <span class="stage-num">1</span>
+              <span>Source Inputs</span>
+            </div>
+            <span class="tag">Editable</span>
+          </div>
+
+          <!-- Card 1.1 -->
+          <div class="card-node" id="node-custom-overrides">
+            <div class="card-node-head">
+              <div class="node-icon icon-blue">
+                <i class="bi bi-brush"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Custom Overrides</h4>
+                <span class="file-path">scss/custom-overrides.scss</span>
+              </div>
+            </div>
+            <p>
+              Your design tokens, Adobe Realist font mappings (SemiLight to Bold), custom buttons, card hover effects, and theme palette ($primary, $secondary).
+            </p>
+            <div class="tag-list">
+              <span class="tag tag-accent">Variables</span>
+              <span class="tag">Realist Typekit</span>
+              <span class="tag">!default Overrides</span>
+            </div>
+          </div>
+
+          <!-- Card 1.2 -->
+          <div class="card-node" id="node-bootstrap-src">
+            <div class="card-node-head">
+              <div class="node-icon icon-purple">
+                <i class="bi bi-bootstrap"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Bootstrap 5 Source</h4>
+                <span class="file-path">scss/bootstrap/</span>
+              </div>
+            </div>
+            <p>
+              Local source modules (grid, buttons, cards, accordions, modals, tables, navbars) allowing granular control without external node_modules coupling.
+            </p>
+            <div class="tag-list">
+              <span class="tag">47 SCSS Modules</span>
+              <span class="tag">Reboot</span>
+              <span class="tag">Mixins</span>
+            </div>
+          </div>
+
+          <!-- Card 1.3 -->
+          <div class="card-node" id="node-templates">
+            <div class="card-node-head">
+              <div class="node-icon icon-emerald">
+                <i class="bi bi-code-square"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Multi-Extension Templates</h4>
+                <span class="file-path">**/*.{html,php,cshtml,js}</span>
+              </div>
+            </div>
+            <p>
+              Any file containing class names. Whether a PHP view, HTML page, or CSHTML template, classes are matched automatically by token extractors.
+            </p>
+            <div class="tag-list">
+              <span class="tag tag-accent">.php</span>
+              <span class="tag tag-accent">.html</span>
+              <span class="tag">.xhtml</span>
+              <span class="tag">.cshtml</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 2: REACTIVE ENGINE -->
+        <div class="stage-column" id="col-engine">
+          <div class="stage-header">
+            <div class="stage-title">
+              <span class="stage-num">2</span>
+              <span>Reactive Engine</span>
+            </div>
+            <span class="tag">build.js</span>
+          </div>
+
+          <!-- Card 2.1 -->
+          <div class="card-node" id="node-chokidar">
+            <div class="card-node-head">
+              <div class="node-icon icon-cyan">
+                <i class="bi bi-eye"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Chokidar Watcher</h4>
+                <span class="file-path">npm run dev</span>
+              </div>
+            </div>
+            <p>
+              Real-time multi-path file watcher with a 60ms debounce. Triggers in-memory builds whenever SCSS or template markup is saved.
+            </p>
+            <div class="tag-list">
+              <span class="tag">60ms Debounce</span>
+              <span class="tag">Two-Way Reactive</span>
+            </div>
+          </div>
+
+          <!-- Card 2.2 -->
+          <div class="card-node" id="node-sass-compiler">
+            <div class="card-node-head">
+              <div class="node-icon icon-amber">
+                <i class="bi bi-filetype-sass"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>In-Memory Dart Sass</h4>
+                <span class="file-path">sass.compile()</span>
+              </div>
+            </div>
+            <p>
+              Compiles SCSS directly into a memory buffer (no intermediate disk writes). Silences third-party deprecations and applies instant compression.
+            </p>
+            <div class="tag-list">
+              <span class="tag">~80ms Compile</span>
+              <span class="tag">Zero Disk I/O</span>
+            </div>
+          </div>
+
+          <!-- Card 2.3 -->
+          <div class="card-node" id="node-purge-engine">
+            <div class="card-node-head">
+              <div class="node-icon icon-emerald">
+                <i class="bi bi-scissors"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>PurgeCSS Tree-Shaker</h4>
+                <span class="file-path">PurgeCSS.purge()</span>
+              </div>
+            </div>
+            <p>
+              Scans all project template files with a universal regex token extractor. Retains only the CSS selectors you actually wrote, stripping the rest.
+            </p>
+            <div class="tag-list">
+              <span class="tag tag-accent">-67% Reduction</span>
+              <span class="tag">Regex Extractor</span>
+            </div>
+          </div>
+
+          <!-- Card 2.4 -->
+          <div class="card-node" id="node-safelist">
+            <div class="card-node-head">
+              <div class="node-icon icon-slate">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Dynamic Safelist</h4>
+                <span class="file-path">SAFELIST Config</span>
+              </div>
+            </div>
+            <p>
+              Protects Bootstrap runtime JavaScript animation states (.show, .collapsing, .fade, .active, modals, tooltips) from being accidentally purged.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Modal Defense</span>
+              <span class="tag">Accordion Defense</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 3: DELIVERABLE ARTIFACTS -->
+        <div class="stage-column" id="col-artifacts">
+          <div class="stage-header">
+            <div class="stage-title">
+              <span class="stage-num">3</span>
+              <span>Compiled Output</span>
+            </div>
+            <span class="tag">Root Path</span>
+          </div>
+
+          <!-- Card 3.1 -->
+          <div class="card-node" id="node-style-css">
+            <div class="card-node-head">
+              <div class="node-icon icon-emerald">
+                <i class="bi bi-filetype-css"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Lightweight CSS</h4>
+                <span class="file-path">./style.css</span>
+              </div>
+            </div>
+            <p>
+              Single production stylesheet in the project root. Drops from 235.7 KB unpurged to ~77.5 KB compressed (~11 KB gzipped over network).
+            </p>
+            <div class="tag-list">
+              <span class="tag tag-accent">77.5 KB Output</span>
+              <span class="tag">Root Location</span>
+              <span class="tag">Clean Cache</span>
+            </div>
+          </div>
+
+          <!-- Card 3.2 -->
+          <div class="card-node" id="node-js-bundle">
+            <div class="card-node-head">
+              <div class="node-icon icon-amber">
+                <i class="bi bi-filetype-js"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Self-Contained JS</h4>
+                <span class="file-path">assets/js/</span>
+              </div>
+            </div>
+            <p>
+              Local Bootstrap 5 bundle (bootstrap.bundle.min.js) and custom interactive tooltip / scroll dynamics (main.js).
+            </p>
+            <div class="tag-list">
+              <span class="tag">Zero CDN Lock-in</span>
+              <span class="tag">Tooltip Initializer</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 4: RUNTIME & SYNC -->
+        <div class="stage-column" id="col-runtime">
+          <div class="stage-header">
+            <div class="stage-title">
+              <span class="stage-num">4</span>
+              <span>Runtime & Deployment</span>
+            </div>
+            <span class="tag">WAMP / Git</span>
+          </div>
+
+          <!-- Card 4.1 -->
+          <div class="card-node" id="node-wamp">
+            <div class="card-node-head">
+              <div class="node-icon icon-blue">
+                <i class="bi bi-hdd-network"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>WAMP Apache Server</h4>
+                <span class="file-path">http://localhost/synovus</span>
+              </div>
+            </div>
+            <p>
+              Instant browser rendering through local Apache and PHP interpreter. Works offline and independent of Node build processes.
+            </p>
+            <div class="tag-list">
+              <span class="tag tag-accent">Localhost</span>
+              <span class="tag">Apache</span>
+              <span class="tag">Fast Refresh</span>
+            </div>
+          </div>
+
+          <!-- Card 4.2 -->
+          <div class="card-node" id="node-git">
+            <div class="card-node-head">
+              <div class="node-icon icon-purple">
+                <i class="bi bi-github"></i>
+              </div>
+              <div class="node-title-group">
+                <h4>Git Remote Sync</h4>
+                <span class="file-path">origin/main</span>
+              </div>
+            </div>
+            <p>
+              Clean version control tracked on GitHub. Ignores node_modules while tracking root style.css so deployment targets run immediately.
+            </p>
+            <div class="tag-list">
+              <span class="tag">iamfromnepal/synovus</span>
+              <span class="tag">CI/CD Ready</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 2: Deep Dive Cards -->
+    <h2 class="section-title">
+      <i class="bi bi-boxes" style="color: var(--primary);"></i>
+      <span>Architectural Mechanisms Explained</span>
+    </h2>
+
+    <div class="deep-dive-grid">
+
+      <!-- Deep Card 1: Multi-Template Extractor -->
+      <div class="deep-card">
+        <h3>
+          <i class="bi bi-file-earmark-code" style="color: var(--primary);"></i>
+          <span>Multi-Template Scanning</span>
+        </h3>
+        <p>
+          PurgeCSS uses a universal word-boundary regex extractor: <code>/[\w-/:]+(?<!:)/g</code>. It extracts every CSS class token regardless of embedded PHP tags, Blade syntax, or ASP.NET Razor directives:
+        </p>
+        <div class="code-box">
+<span class="comment">// Scans all templates automatically</span>
+content: [
+  <span class="string">'./**/*.{html,php,xhtml,shtml,cshtml,js}'</span>,
+  <span class="string">'!./node_modules/**'</span>,
+  <span class="string">'!./vendor/**'</span>
+]
+        </div>
+      </div>
+
+      <!-- Deep Card 2: Safelist Protection -->
+      <div class="deep-card">
+        <h3>
+          <i class="bi bi-shield-shaded" style="color: var(--success);"></i>
+          <span>Bootstrap Safelist Matrix</span>
+        </h3>
+        <p>
+          Dynamic classes added at runtime by JavaScript are preserved via regex safelisting so interactive components never lose animations:
+        </p>
+        <div class="code-box">
+<span class="keyword">safelist</span>: {
+  standard: [
+    <span class="string">/show$/</span>, <span class="string">/collapsing$/</span>,
+    <span class="string">/fade$/</span>, <span class="string">/active$/</span>,
+    <span class="string">/^modal-/</span>, <span class="string">/^offcanvas-/</span>
+  ],
+  deep: [<span class="string">/^tooltip/</span>, <span class="string">/^popover/</span>]
+}
+        </div>
+      </div>
+
+      <!-- Deep Card 3: Performance Payload -->
+      <div class="deep-card">
+        <h3>
+          <i class="bi bi-speedometer2" style="color: var(--info);"></i>
+          <span>Payload Optimization</span>
+        </h3>
+        <p>
+          By dropping unneeded components and compressing selectors in-memory, network transfer size is drastically minimized:
+        </p>
+        <div style="font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+          <span>Purged: 77.5 KB</span>
+          <span style="color: #94a3b8;">Original: 235.7 KB (-67%)</span>
+        </div>
+        <div class="metric-bar-wrapper">
+          <div class="metric-fill-purged">77.5 KB</div>
+          <div class="metric-fill-saved">158 KB Cut</div>
+        </div>
+        <p style="margin-top: 0.75rem; font-size: 0.8rem; color: #64748b;">
+          *Gzipped over HTTP connection: transfers at approx. <strong>~11 KB</strong>.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Section 3: Commands Quick Reference -->
+    <div class="command-strip">
+      <div class="cmd-item">
+        <span class="cmd-badge">npm run dev</span>
+        <div>
+          <strong style="color: var(--dark); display: block;">Live Watcher Mode</strong>
+          <span class="cmd-desc">Watches SCSS & all .php/.html templates, recompiles & purges in ~150ms on save</span>
+        </div>
+      </div>
+
+      <div class="cmd-item">
+        <span class="cmd-badge">npm run build</span>
+        <div>
+          <strong style="color: var(--dark); display: block;">One-Shot Production Build</strong>
+          <span class="cmd-desc">Compiles Dart Sass, purges unused rules, outputs minified root style.css</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <strong>Synovus Web Architecture</strong> &bull; Bootstrap 5.3 + Modular SCSS + In-Memory PurgeCSS
+      </div>
+      <div>
+        <a href="index.html">Live Demo</a> &bull;
+        <a href="https://github.com/iamfromnepal/synovus" target="_blank">GitHub Repository</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    function clearHighlights() {
+      document.querySelectorAll('.card-node').forEach(node => {
+        node.classList.remove('highlight', 'highlight-green');
+      });
+      document.querySelectorAll('.sim-btn').forEach(btn => btn.classList.remove('active'));
+    }
+
+    function setScenario(type) {
+      clearHighlights();
+      const statusText = document.getElementById('sim-status-text');
+
+      if (type === 'scss') {
+        document.getElementById('btn-scss').classList.add('active');
+        document.getElementById('node-custom-overrides').classList.add('highlight');
+        document.getElementById('node-chokidar').classList.add('highlight');
+        document.getElementById('node-sass-compiler').classList.add('highlight');
+        document.getElementById('node-style-css').classList.add('highlight');
+        document.getElementById('node-wamp').classList.add('highlight');
+        statusText.innerHTML = "<strong>Scenario 1 (SCSS Theme Edit):</strong> You edit <code>scss/custom-overrides.scss</code>. Chokidar detects save &rarr; In-Memory Dart Sass compiles &rarr; style.css updates in root.";
+      } else if (type === 'template') {
+        document.getElementById('btn-template').classList.add('active');
+        document.getElementById('node-templates').classList.add('highlight-green');
+        document.getElementById('node-chokidar').classList.add('highlight-green');
+        document.getElementById('node-purge-engine').classList.add('highlight-green');
+        document.getElementById('node-safelist').classList.add('highlight-green');
+        document.getElementById('node-style-css').classList.add('highlight-green');
+        document.getElementById('node-wamp').classList.add('highlight-green');
+        statusText.innerHTML = "<strong>Scenario 2 (PHP/HTML Edit):</strong> You add a component (e.g. Accordion) to a <code>.php</code> or <code>.html</code> file. Chokidar triggers &rarr; PurgeCSS token extractor detects class &rarr; Accordion styles included in style.css.";
+      } else if (type === 'build') {
+        document.getElementById('btn-build').classList.add('active');
+        document.querySelectorAll('.card-node').forEach(n => n.classList.add('highlight'));
+        statusText.innerHTML = "<strong>Scenario 3 (One-Shot Production Build):</strong> Executing <code>npm run build</code>. Compiles Dart Sass in-memory &rarr; scans all project templates &rarr; writes production <code>style.css</code>.";
+      } else {
+        document.getElementById('btn-all').classList.add('active');
+        statusText.innerHTML = "Displaying complete system overview. All 4 stages active and connected.";
+      }
+    }
+  </script>
+</body>
+</html>
