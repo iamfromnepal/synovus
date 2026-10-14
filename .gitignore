@@ -27,3 +27,4 @@ Desktop.ini
 # Environment and Local Config
 .env
 .env.local
+.agents/
