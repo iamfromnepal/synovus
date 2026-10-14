@@ -4,9 +4,10 @@
   "description": "A modern web project built with **Raw HTML**, **SCSS**, and **Bootstrap 5**.",
   "main": "index.js",
   "scripts": {
-    "build:css": "sass --silence-deprecation=import,global-builtin,color-functions,if-function scss/style.scss style.css",
-    "watch:css": "sass --silence-deprecation=import,global-builtin,color-functions,if-function scss/style.scss style.css --watch",
-    "dev": "sass --silence-deprecation=import,global-builtin,color-functions,if-function scss/style.scss style.css --watch"
+    "dev": "node build.js --watch",
+    "watch": "node build.js --watch",
+    "build": "node build.js",
+    "build:css": "node build.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,8 @@
     "bootstrap": "^5.3.8"
   },
   "devDependencies": {
+    "chokidar": "^5.0.0",
+    "purgecss": "^8.0.0",
     "sass": "^1.105.1"
   }
 }
