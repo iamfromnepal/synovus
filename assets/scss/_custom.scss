@@ -1,0 +1,88 @@
+// ==========================================
+// Synovus - Custom Utilities & Components
+// ==========================================
+
+// Gradient Text Utility
+.text-gradient {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Glassmorphism Navbar
+.navbar-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s ease;
+}
+
+// Interactive Feature Cards
+.feature-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+  }
+
+  .icon-wrapper {
+    width: 3.25rem;
+    height: 3.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.85rem;
+    font-size: 1.4rem;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover .icon-wrapper {
+    transform: scale(1.08);
+  }
+}
+
+// Hero Glow Backdrop
+.hero-glow {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+// Custom Button Micro-interactions
+.btn-primary {
+  box-shadow: 0 4px 14px 0 rgba(30, 64, 175, 0.3);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px 0 rgba(30, 64, 175, 0.4);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// Subtle badge enhancement
+.badge-soft {
+  background-color: rgba(30, 64, 175, 0.1);
+  color: #1e40af;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+}

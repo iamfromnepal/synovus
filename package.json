@@ -1,0 +1,20 @@
+{
+  "name": "synovus",
+  "version": "1.0.0",
+  "description": "A modern web project built with **Raw HTML**, **SCSS**, and **Bootstrap 5**.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import assets/scss/main.scss assets/css/main.css",
+    "watch:css": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import assets/scss/main.scss assets/css/main.css --watch",
+    "dev": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import assets/scss/main.scss assets/css/main.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.105.1"
+  }
+}

@@ -1,0 +1,55 @@
+// ==========================================
+// Synovus - Bootstrap 5 Theme Variables
+// ==========================================
+
+// Typography
+$font-family-sans-serif: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$headings-font-family: $font-family-sans-serif;
+$headings-font-weight: 700;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+
+// Custom Brand Colors
+$primary: #1e40af;       // Deep Royal Blue
+$secondary: #475569;     // Slate Gray
+$success: #059669;       // Emerald
+$info: #0284c7;          // Sky Blue
+$warning: #d97706;       // Amber
+$danger: #dc2626;        // Rose Red
+$light: #f8fafc;         // Ultra Light Slate
+$dark: #0f172a;          // Deep Navy Slate
+
+// Body Defaults
+$body-bg: #f8fafc;
+$body-color: #1e293b;
+
+// Border Radius (Modern, slightly rounded)
+$border-radius: 0.65rem;
+$border-radius-sm: 0.45rem;
+$border-radius-lg: 1rem;
+$border-radius-xl: 1.5rem;
+$border-radius-2xl: 2rem;
+
+// Buttons & Forms
+$btn-padding-y: 0.65rem;
+$btn-padding-x: 1.35rem;
+$btn-font-weight: 600;
+$btn-border-radius: $border-radius;
+
+$input-padding-y: 0.65rem;
+$input-padding-x: 1rem;
+$input-border-radius: $border-radius;
+$input-focus-border-color: rgba($primary, 0.45);
+$input-focus-box-shadow: 0 0 0 0.25rem rgba($primary, 0.15);
+
+// Card styling
+$card-border-width: 1px;
+$card-border-color: rgba(#0f172a, 0.07);
+$card-border-radius: $border-radius-lg;
+$card-cap-bg: transparent;
+
+// Navbars
+$navbar-padding-y: 1rem;
+$navbar-light-color: #334155;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
