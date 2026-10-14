@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synovus | Module A: Hero with Login Showcase</title>
+
+  <!-- Adobe Typekit Realist Fonts -->
+  <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background-color: #EEF2F6;
+      color: #151515;
+      font-family: "realist", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Top Control Bar */
+    .showcase-control-bar {
+      background: #FFFFFF;
+      border-bottom: 1px solid #D1D1D1;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .breakpoint-btn {
+      background: #F5F5F5;
+      border: 1px solid #D1D1D1;
+      color: #525252;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .breakpoint-btn:hover {
+      background: #CCE3F3;
+      color: #0074C4;
+      border-color: #0074C4;
+    }
+
+    .breakpoint-btn.active {
+      background: #0074C4;
+      color: #FFFFFF;
+      border-color: #0074C4;
+    }
+
+    /* Viewport Stage Frame */
+    .stage-wrapper {
+      padding: 32px 0 60px 0;
+      display: flex;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stage-viewport {
+      width: 100%;
+      background: #FFFFFF;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      transition: max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    /* Code & Specs Drawer */
+    .specs-panel {
+      background: #FFFFFF;
+      border: 1px solid #D1D1D1;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 0 auto;
+      max-width: 1328px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .spec-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #CCE3F3;
+      color: #0074C4;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    pre.code-block {
+      background: #1B2745;
+      color: #E2E8F0;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      overflow-x: auto;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =================================================== -->
+  <!-- SHOWCASE TOOLBAR                                    -->
+  <!-- =================================================== -->
+  <header class="showcase-control-bar">
+    <div class="d-flex align-items-center gap-3">
+      <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+        <div class="bg-primary text-white fw-bold px-2 py-1" style="font-size: 1rem;">S</div>
+        <span class="fw-bold" style="color: #283862; font-size: 1.15rem;">SYNOVUS</span>
+      </a>
+      <div class="vr text-muted" style="height: 20px;"></div>
+      <span class="fw-bold" style="color: #0074C4; font-size: 0.95rem;">Module A: Hero w/ Login Showcase</span>
+    </div>
+
+    <!-- Viewport Switcher Controls -->
+    <div class="d-flex align-items-center gap-2">
+      <span class="small text-muted fw-bold d-none d-sm-inline">Preview Canvas:</span>
+      <button class="breakpoint-btn active" id="btn-1920" onclick="setCanvasWidth('1920px', this)">
+        <i class="bi bi-display"></i> 1920px (Desktop L)
+      </button>
+      <button class="breakpoint-btn" id="btn-1440" onclick="setCanvasWidth('1440px', this)">
+        <i class="bi bi-laptop"></i> 1440px (Desktop Std)
+      </button>
+      <button class="breakpoint-btn" id="btn-430" onclick="setCanvasWidth('430px', this)">
+        <i class="bi bi-phone"></i> 430px (Mobile)
+      </button>
+      <button class="breakpoint-btn" id="btn-fluid" onclick="setCanvasWidth('100%', this)">
+        <i class="bi bi-arrows-fullscreen"></i> 100% Fluid
+      </button>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <a href="styleguide.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
+        <i class="bi bi-palette"></i> Style Guide
+      </a>
+      <a href="index.html" class="btn btn-sm btn-outline-secondary">
+        Homepage
+      </a>
+    </div>
+  </header>
+
+  <!-- =================================================== -->
+  <!-- VIEWPORT CANVAS STAGE                               -->
+  <!-- =================================================== -->
+  <div class="stage-wrapper px-2">
+    <div class="stage-viewport" id="stageViewport" style="max-width: 1920px;">
+
+      <!-- =================================================== -->
+      <!-- MODULE A: HERO WITH LOGIN (COMPONENT ENTRY)         -->
+      <!-- =================================================== -->
+      <section class="hero-module-a">
+        <!-- Background Lifestyle Photo Overlay -->
+        <div class="hero-bg-media"></div>
+
+        <!-- Inner Content (Figma Margins: 296px at 1920px, 160px at 1440px) -->
+        <div class="container-syn-1920">
+          <div class="hero-inner py-lg-0 py-5">
+
+            <!-- LEFT: Hero Content Plaque -->
+            <div class="hero-content-plaque">
+              <h1 class="hero-title">
+                Pinnacle is choosing to lead
+              </h1>
+              <p class="hero-subtitle">
+                President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.
+              </p>
+              <div>
+                <a href="javascript:void(0)" class="btn-syn-xl">
+                  Learn More
+                </a>
+              </div>
+            </div>
+
+            <!-- RIGHT: Floating Login Card (352px width) -->
+            <div class="hero-login-card">
+              <!-- Signature Dual-Tier Accent Top Bar -->
+              <div class="accent-bar-dual"></div>
+
+              <div class="login-body">
+                <!-- Title with Lock Icon -->
+                <div class="login-title">
+                  <i class="bi bi-lock-fill" style="color: #283862;"></i>
+                  <span>Manage Your Account</span>
+                </div>
+
+                <!-- Form Controls -->
+                <form onsubmit="event.preventDefault();">
+                  <!-- Account Dropdown Selector -->
+                  <div class="mb-2">
+                    <select class="form-select form-select-syn" style="height: 56px; border-radius: 8px;">
+                      <option selected>My Pinnacle</option>
+                      <option>Personal Online Banking</option>
+                      <option>Commercial Advantage</option>
+                    </select>
+                  </div>
+
+                  <!-- Username & Password Inputs -->
+                  <div class="mb-3">
+                    <input type="text" class="form-control form-control-syn mb-1" placeholder="Username" style="border-radius: 4px;">
+                    <div class="password-field-wrap">
+                      <input type="password" id="heroPasswordInput" class="form-control form-control-syn" placeholder="Password" style="border-radius: 4px;">
+                      <button type="button" class="btn-toggle-pwd" id="heroPasswordBtn" onclick="toggleHeroPassword()">Show</button>
+                    </div>
+                  </div>
+
+                  <!-- Helper Links -->
+                  <div class="d-flex justify-content-between align-items-center mb-3" style="font-size: 1rem;">
+                    <a href="javascript:void(0)" style="color: #525252; text-decoration: none;">Forgot Username?</a>
+                    <span style="color: #525252;">|</span>
+                    <a href="javascript:void(0)" style="color: #525252; text-decoration: none;">Forgot Password?</a>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="d-flex flex-column gap-1">
+                    <button type="submit" class="btn-syn-xl w-100" style="min-height: 60px; font-size: 1.25rem;">
+                      Login
+                    </button>
+                    <a href="javascript:void(0)" class="btn text-center fw-bold text-decoration-none py-3" style="color: #0074C4; font-size: 1.25rem;">
+                      Enroll
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- =================================================== -->
+      <!-- END MODULE A                                        -->
+      <!-- =================================================== -->
+
+    </div>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- COMPONENT SPECIFICATION & DEVELOPER NOTES           -->
+  <!-- =================================================== -->
+  <div class="container-fluid px-lg-5 pb-5">
+    <div class="specs-panel">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <span class="spec-pill">Developer Specs</span>
+          <h3 class="h5 fw-bold mt-2 mb-0" style="color: #283862;">Module A Component Anatomy</h3>
+        </div>
+        <span class="badge bg-light text-muted border">Figma Frame 588:4841</span>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="border-start border-4 border-primary ps-3">
+            <div class="small text-muted fw-bold">CANVAS DIMENSIONS</div>
+            <div class="fw-bold fs-6">Height: 646px</div>
+            <div class="small text-muted">1920px (296px margins), 1440px (160px margins), 430px (20px gutters)</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="border-start border-4 border-primary ps-3">
+            <div class="small text-muted fw-bold">TYPOGRAPHY</div>
+            <div class="fw-bold fs-6">Realist 400 52px / 20px</div>
+            <div class="small text-muted">Headline (#283862), Subhead (#151515), Buttons (Realist 700 20px)</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="border-start border-4 border-primary ps-3">
+            <div class="small text-muted fw-bold">LOGIN CARD</div>
+            <div class="fw-bold fs-6">352px Fixed Width</div>
+            <div class="small text-muted">White drop shadow (0 8px 28px), dual accent header bar, password toggle</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyable Drop-in HTML Snippet -->
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="small fw-bold text-muted text-uppercase">Drop-in HTML Snippet:</span>
+        <button class="btn btn-sm btn-outline-secondary" onclick="copySnippet()">
+          <i class="bi bi-clipboard"></i> Copy HTML
+        </button>
+      </div>
+      <pre class="code-block" id="snippetBlock"><code>&lt;!-- Synovus Module A: Hero with Login --&gt;
+&lt;section class="hero-module-a"&gt;
+  &lt;div class="hero-bg-media"&gt;&lt;/div&gt;
+  &lt;div class="container-syn-1920"&gt;
+    &lt;div class="hero-inner py-lg-0 py-5"&gt;
+      &lt;div class="hero-content-plaque"&gt;
+        &lt;h1 class="hero-title"&gt;Pinnacle is choosing to lead&lt;/h1&gt;
+        &lt;p class="hero-subtitle"&gt;President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.&lt;/p&gt;
+        &lt;a href="#" class="btn-syn-xl"&gt;Learn More&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class="hero-login-card"&gt;
+        &lt;div class="accent-bar-dual"&gt;&lt;/div&gt;
+        &lt;div class="login-body"&gt;
+          &lt;div class="login-title"&gt;
+            &lt;i class="bi bi-lock-fill"&gt;&lt;/i&gt;
+            &lt;span&gt;Manage Your Account&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;form&gt;
+            &lt;select class="form-select form-select-syn mb-2"&gt;
+              &lt;option&gt;My Pinnacle&lt;/option&gt;
+              &lt;option&gt;Personal Online Banking&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;input type="text" class="form-control form-control-syn mb-1" placeholder="Username"&gt;
+            &lt;div class="password-field-wrap mb-3"&gt;
+              &lt;input type="password" class="form-control form-control-syn" placeholder="Password"&gt;
+              &lt;button type="button" class="btn-toggle-pwd"&gt;Show&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;button type="submit" class="btn-syn-xl w-100"&gt;Login&lt;/button&gt;
+            &lt;a href="#" class="btn text-center fw-bold py-3" style="color: #0074C4;"&gt;Enroll&lt;/a&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST -->
+  <div id="copyToast" style="display:none; position: fixed; bottom: 24px; right: 24px; background: #283862; color: #FFF; padding: 12px 20px; border-radius: 6px; z-index: 9999;">
+    <i class="bi bi-check-circle-fill text-info me-2"></i> Copied to clipboard!
+  </div>
+
+  <script>
+    // Viewport switcher
+    function setCanvasWidth(width, btn) {
+      const stage = document.getElementById('stageViewport');
+      stage.style.maxWidth = width;
+      document.querySelectorAll('.breakpoint-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Password Show/Hide Toggle
+    function toggleHeroPassword() {
+      const input = document.getElementById('heroPasswordInput');
+      const btn = document.getElementById('heroPasswordBtn');
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        input.type = 'password';
+        btn.textContent = 'Show';
+      }
+    }
+
+    // Copy snippet
+    function copySnippet() {
+      const code = document.getElementById('snippetBlock').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const toast = document.getElementById('copyToast');
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 2000);
+      });
+    }
+  </script>
+</body>
+</html>

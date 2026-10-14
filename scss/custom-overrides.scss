@@ -428,3 +428,111 @@ $shadow-login-card:      0 8px 28px rgba(0, 0, 0, 0.12);
   padding-left: 20px;
   padding-right: 20px;
 }
+
+// ---------------------------------------------------
+// 12. MODULE A: HERO WITH LOGIN (Figma 588:4841)
+// ---------------------------------------------------
+.hero-module-a {
+  position: relative;
+  background-color: $syn-light-blue;
+  overflow: hidden;
+  min-height: 646px;
+
+  // Background lifestyle photography
+  .hero-bg-media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background-image: url('assets/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center right;
+    z-index: 1;
+
+    @media (max-width: 991.98px) {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background-image: url('assets/images/hero-mobile-bg.jpg');
+    }
+  }
+
+  // Inner content container
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    min-height: 646px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    @media (max-width: 991.98px) {
+      flex-direction: column;
+      align-items: center;
+      min-height: auto;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }
+
+  // Left Content Plaque with white angular background
+  .hero-content-plaque {
+    position: relative;
+    background: #FFFFFF;
+    padding: 60px 48px;
+    max-width: 520px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+    @media (max-width: 576px) {
+      padding: 32px 20px;
+      max-width: 100%;
+    }
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 3.5vw, 3.25rem); // 52px in Figma
+    line-height: 1.18;
+    color: $syn-navy;
+    font-weight: 400;
+    margin-bottom: 18px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem; // 20px in Figma
+    line-height: 1.5;
+    color: $syn-black;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+
+  // Floating Login Card (352px width)
+  .hero-login-card {
+    width: 100%;
+    max-width: 352px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+    position: relative;
+    z-index: 3;
+
+    .login-body {
+      padding: 28px 28px 24px 28px;
+    }
+
+    .login-title {
+      font-size: 1.25rem; // 20px in Figma
+      font-weight: 700;
+      color: $syn-navy;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+
+      i {
+        font-size: 1.35rem;
+      }
+    }
+  }
+}
+
