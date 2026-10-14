@@ -439,6 +439,165 @@
       line-height: 1.5;
     }
 
+    /* ==========================================
+       File & Folder Structure Explorer Component
+       ========================================== */
+    .file-tree-wrapper {
+      margin-top: 3.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1.15rem;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .file-tree-header {
+      padding: 1.25rem 1.75rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .file-tree-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .tree-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+    }
+
+    @media (max-width: 1024px) {
+      .tree-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tree-explorer {
+      background: #0b111e;
+      border-right: 1px solid var(--card-border);
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      user-select: none;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .t-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      color: #cbd5e1;
+      transition: all 0.15s ease;
+    }
+
+    .t-row:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+    }
+
+    .t-row.active {
+      background: rgba(37, 99, 235, 0.2);
+      border-left: 3px solid #3b82f6;
+      color: #93c5fd;
+    }
+
+    .t-indent-1 { margin-left: 1.25rem; }
+    .t-indent-2 { margin-left: 2.5rem; }
+    .t-indent-3 { margin-left: 3.75rem; }
+
+    .tree-details {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--card-bg);
+    }
+
+    .detail-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .detail-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .detail-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.35rem;
+      font-weight: 600;
+    }
+
+    .badge-src { background: rgba(37, 99, 235, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-out { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-sys { background: rgba(245, 158, 11, 0.2); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    .detail-desc {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .detail-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .meta-label {
+      width: 140px;
+      color: #64748b;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .meta-val {
+      color: #cbd5e1;
+    }
+
+    .detail-code-box {
+      background: #060911;
+      border: 1px solid var(--card-border);
+      border-radius: 0.6rem;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+
     /* Node Click Modal / Inspector Drawer */
     #node-inspector {
       position: fixed;
@@ -867,6 +1026,148 @@
       </div>
     </div>
 
+    <!-- ============================================== -->
+    <!-- SECTION: FILE & FOLDER STRUCTURE EXPLORER      -->
+    <!-- ============================================== -->
+    <div class="file-tree-wrapper">
+      <div class="file-tree-header">
+        <div class="file-tree-title">
+          <i class="bi bi-folder2-open" style="color: #60a5fa;"></i>
+          <span>Project Files & Folder Structure</span>
+        </div>
+        <span style="font-size: 0.8rem; color: #94a3b8; font-family: var(--font-mono);">
+          Click any file to inspect purpose, role, and usage
+        </span>
+      </div>
+
+      <div class="tree-grid">
+        <!-- Left: Interactive Directory Tree -->
+        <div class="tree-explorer">
+          <div class="t-row" onclick="showFile('root')">
+            <i class="bi bi-folder-fill" style="color: #60a5fa;"></i>
+            <strong>synovus/</strong>
+          </div>
+
+          <!-- scss/ -->
+          <div class="t-row t-indent-1" onclick="showFile('scss-dir')">
+            <i class="bi bi-folder-fill" style="color: #93c5fd;"></i>
+            <span>scss/</span>
+          </div>
+          <div class="t-row t-indent-2 active" id="tree-custom-overrides" onclick="showFile('custom-overrides')">
+            <i class="bi bi-filetype-scss" style="color: #38bdf8;"></i>
+            <span>custom-overrides.scss</span>
+          </div>
+          <div class="t-row t-indent-2" id="tree-style-scss" onclick="showFile('style-scss')">
+            <i class="bi bi-filetype-scss" style="color: #38bdf8;"></i>
+            <span>style.scss</span>
+          </div>
+          <div class="t-row t-indent-2" id="tree-bootstrap-dir" onclick="showFile('bootstrap-dir')">
+            <i class="bi bi-folder-fill" style="color: #c084fc;"></i>
+            <span>bootstrap/ (47 modules)</span>
+          </div>
+
+          <!-- style.css -->
+          <div class="t-row t-indent-1" id="tree-style-css" onclick="showFile('style-css')">
+            <i class="bi bi-filetype-css" style="color: #34d399;"></i>
+            <span>style.css</span>
+          </div>
+
+          <!-- assets/ -->
+          <div class="t-row t-indent-1" onclick="showFile('assets-dir')">
+            <i class="bi bi-folder-fill" style="color: #fde68a;"></i>
+            <span>assets/</span>
+          </div>
+          <div class="t-row t-indent-2" id="tree-js-dir" onclick="showFile('js-dir')">
+            <i class="bi bi-folder-fill" style="color: #fde68a;"></i>
+            <span>js/</span>
+          </div>
+          <div class="t-row t-indent-3" id="tree-bootstrap-js" onclick="showFile('bootstrap-js')">
+            <i class="bi bi-filetype-js" style="color: #fbbf24;"></i>
+            <span>bootstrap.bundle.min.js</span>
+          </div>
+          <div class="t-row t-indent-3" id="tree-main-js" onclick="showFile('main-js')">
+            <i class="bi bi-filetype-js" style="color: #fbbf24;"></i>
+            <span>main.js</span>
+          </div>
+          <div class="t-row t-indent-2" id="tree-images-dir" onclick="showFile('images-dir')">
+            <i class="bi bi-folder-fill" style="color: #94a3b8;"></i>
+            <span>images/</span>
+          </div>
+
+          <!-- Root Pages & Config -->
+          <div class="t-row t-indent-1" id="tree-index-html" onclick="showFile('index-html')">
+            <i class="bi bi-filetype-html" style="color: #f43f5e;"></i>
+            <span>index.html</span>
+          </div>
+          <div class="t-row t-indent-1" id="tree-workflow-html" onclick="showFile('workflow-html')">
+            <i class="bi bi-diagram-3-fill" style="color: #60a5fa;"></i>
+            <span>workflow.html</span>
+          </div>
+          <div class="t-row t-indent-1" id="tree-build-js" onclick="showFile('build-js')">
+            <i class="bi bi-file-code-fill" style="color: #22d3ee;"></i>
+            <span>build.js</span>
+          </div>
+          <div class="t-row t-indent-1" id="tree-package-json" onclick="showFile('package-json')">
+            <i class="bi bi-filetype-json" style="color: #94a3b8;"></i>
+            <span>package.json</span>
+          </div>
+          <div class="t-row t-indent-1" id="tree-gitignore" onclick="showFile('gitignore')">
+            <i class="bi bi-git" style="color: #f97316;"></i>
+            <span>.gitignore</span>
+          </div>
+          <div class="t-row t-indent-1" id="tree-readme" onclick="showFile('readme')">
+            <i class="bi bi-file-earmark-text" style="color: #cbd5e1;"></i>
+            <span>README.md</span>
+          </div>
+        </div>
+
+        <!-- Right: Dynamic File Inspector Details -->
+        <div class="tree-details">
+          <div>
+            <div class="detail-head">
+              <div class="detail-title">
+                <i id="f-icon" class="bi bi-filetype-scss" style="color: #38bdf8;"></i>
+                <span id="f-title">scss/custom-overrides.scss</span>
+              </div>
+              <span class="detail-badge badge-src" id="f-badge">Primary Edit Source</span>
+            </div>
+
+            <div class="detail-desc" id="f-desc">
+              Your primary styling playground. Contains your brand colors, Adobe Typekit Realist font configuration, and Bootstrap 5 variable overrides. Because Bootstrap variables use !default, declaring variables here overrides defaults without touching original Bootstrap files.
+            </div>
+
+            <div class="detail-meta-list">
+              <div class="meta-row">
+                <span class="meta-label">Edit Role:</span>
+                <span class="meta-val" id="f-role">Developer Edit Target (Your Custom Tokens)</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Pipeline Trigger:</span>
+                <span class="meta-val" id="f-trigger">Triggers Chokidar &rarr; In-Memory Dart Sass &rarr; PurgeCSS</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Output Target:</span>
+                <span class="meta-val" id="f-target">Compiles directly into root <code>style.css</code></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-code-box" id="f-code">
+// Typography - Realist Typekit
+$font-family-sans-serif: "realist", sans-serif;
+$font-weight-light: 300;     // SemiLight
+$font-weight-normal: 400;    // Regular
+$font-weight-medium: 600;    // Medium
+$font-weight-bold: 700;      // Bold
+
+// Custom Palette
+$primary: #1e40af;
+$body-bg: #f8fafc;
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Interactive Inspector Drawer / Card Popup -->
@@ -1003,7 +1304,7 @@
       'templates': {
         title: 'Template Files Pattern',
         body: 'Scanned automatically by build.js. Supports .php, .html, .cshtml, .xhtml, .shtml, .js, etc. Allows server-side logic (PHP tags, ASP.NET Razor) without breaking PurgeCSS.',
-        code: '<div class="card <?php echo $active; ?>">\n  <button class="btn btn-primary">\n    Submit\n  </button>\n</div>'
+        code: '\x3Cdiv class="card <?php echo $active; ?>">\n  \x3Cbutton class="btn btn-primary">\n    Submit\n  \x3C/button>\n\x3C/div>'
       },
       'style-entry': {
         title: 'scss/style.scss',
@@ -1038,7 +1339,7 @@
       'stylecss': {
         title: 'Root style.css',
         body: 'The final optimized production stylesheet in the project root. Ready for WAMP server or production deployment.',
-        code: '<link rel="stylesheet" href="style.css">'
+        code: '\x3Clink rel="stylesheet" href="style.css">'
       },
       'wamp': {
         title: 'WAMP Local Apache Server',
@@ -1065,6 +1366,241 @@
 
     function closeInspector() {
       document.getElementById('node-inspector').style.display = 'none';
+    }
+
+    // ==========================================
+    // Interactive File Tree Data & Handler
+    // ==========================================
+
+    const fileTreeData = {
+      'custom-overrides': {
+        title: 'scss/custom-overrides.scss',
+        icon: 'bi-filetype-scss',
+        iconColor: '#38bdf8',
+        badge: 'Primary Edit Source',
+        badgeClass: 'badge-src',
+        desc: 'Your main styling workspace. Defines theme tokens, Adobe Realist font scale (SemiLight 300 to Bold 700), and Bootstrap variable overrides. Because Bootstrap variables use !default, declaring variables here overrides defaults without touching original Bootstrap files.',
+        role: 'Developer Edit Target (Your Custom Tokens & Overrides)',
+        trigger: 'Triggers Chokidar &rarr; Dart Sass in-memory &rarr; PurgeCSS rebuild',
+        target: 'Compiles directly into root style.css',
+        code: '// Typography - Realist Typekit\n$font-family-sans-serif: "realist", sans-serif;\n$font-weight-light: 300;     // SemiLight\n$font-weight-normal: 400;    // Regular\n$font-weight-medium: 600;    // Medium\n$font-weight-bold: 700;      // Bold\n\n// Custom Theme Palette\n$primary: #1e40af;\n$body-bg: #f8fafc;'
+      },
+      'style-scss': {
+        title: 'scss/style.scss',
+        icon: 'bi-filetype-scss',
+        iconColor: '#38bdf8',
+        badge: 'Master SCSS Orchestrator',
+        badgeClass: 'badge-src',
+        desc: 'The master entry point for Sass. Imports Bootstrap functions first, followed by your custom-overrides, then core Bootstrap stylesheets. Dart Sass starts compiling from this single file.',
+        role: 'Architecture Orchestrator (Import Sequence)',
+        trigger: 'Triggers Sass compilation of the complete framework',
+        target: 'Read by build.js to generate raw in-memory CSS buffer',
+        code: '@import "bootstrap/functions";\n@import "custom-overrides";\n@import "bootstrap/variables";\n@import "bootstrap/variables-dark";\n@import "bootstrap/maps";\n@import "bootstrap/mixins";\n@import "bootstrap/root";\n@import "bootstrap/bootstrap";'
+      },
+      'bootstrap-dir': {
+        title: 'scss/bootstrap/ (Directory)',
+        icon: 'bi-folder-fill',
+        iconColor: '#c084fc',
+        badge: 'Framework Source',
+        badgeClass: 'badge-sys',
+        desc: 'Complete local copies of all 47 Bootstrap 5.3 SCSS source files (forms, grid, buttons, cards, modals, navbars, tables, utilities). Self-contained inside your repository without node_modules path coupling.',
+        role: 'Local Framework Library (Unmodified Base)',
+        trigger: 'Available for import by style.scss',
+        target: 'Provides core Bootstrap mixins, utilities, and components',
+        code: 'scss/bootstrap/\n├── _variables.scss\n├── _root.scss\n├── _reboot.scss\n├── _buttons.scss\n├── _card.scss\n└── ... (47 modular SCSS source files)'
+      },
+      'style-css': {
+        title: 'style.css (Project Root)',
+        icon: 'bi-filetype-css',
+        iconColor: '#34d399',
+        badge: 'Production Output (Purged)',
+        badgeClass: 'badge-out',
+        desc: 'The single compiled, tree-shaken, and compressed production stylesheet located directly in your project root. Kept tiny (~77.5 KB vs 235.7 KB raw, ~11 KB gzipped) by build.js.',
+        role: 'Production Deliverable (Referenced by all pages)',
+        trigger: 'Generated automatically by build.js',
+        target: 'Loaded by index.html, workflow.html, and your PHP/HTML views',
+        code: '// Referenced directly in your HTML or PHP <head>\n\x3Clink rel="stylesheet" href="style.css">\n\n// Output Size: ~77.5 KB compressed (-67% reduction)'
+      },
+      'bootstrap-js': {
+        title: 'assets/js/bootstrap.bundle.min.js',
+        icon: 'bi-filetype-js',
+        iconColor: '#fbbf24',
+        badge: 'Local Vendor Script',
+        badgeClass: 'badge-sys',
+        desc: 'Local copy of the complete Bootstrap 5 JavaScript bundle including Popper.js. Runs completely offline on WAMP server without CDN dependencies.',
+        role: 'Runtime Component Interactivity (Modals, Dropdowns, Offcanvas)',
+        trigger: 'Loaded on client-side',
+        target: 'Enables interactive Bootstrap UI widgets',
+        code: '\x3Cscript src="assets/js/bootstrap.bundle.min.js">\x3C/script>'
+      },
+      'main-js': {
+        title: 'assets/js/main.js',
+        icon: 'bi-filetype-js',
+        iconColor: '#fbbf24',
+        badge: 'Custom Client Script',
+        badgeClass: 'badge-src',
+        desc: 'Your custom project JavaScript file. Automatically initializes Bootstrap 5 tooltips, popovers, and scroll dynamics.',
+        role: 'Developer Script Target (Your Custom JS Logic)',
+        trigger: 'Scanned by PurgeCSS to detect dynamically added class names',
+        target: 'Executes custom DOM events and animations',
+        code: 'document.addEventListener("DOMContentLoaded", () => {\n  // Auto-initialize Bootstrap tooltips\n  const tooltips = document.querySelectorAll("[data-bs-toggle=\'tooltip\']");\n  [...tooltips].map(el => new bootstrap.Tooltip(el));\n});'
+      },
+      'build-js': {
+        title: 'build.js (Engine Core)',
+        icon: 'bi-file-code-fill',
+        iconColor: '#22d3ee',
+        badge: 'In-Memory Build Engine',
+        badgeClass: 'badge-sys',
+        desc: 'Custom Node.js engine powering both `npm run dev` and `npm run build`. Compiles Dart Sass in-memory, pipes through PurgeCSS with multi-extension template scanning (.php, .html, .cshtml), applies safelists, and outputs style.css.',
+        role: 'Build & Watch Automation Core',
+        trigger: 'Executed via `npm run dev` (watch) or `npm run build` (single)',
+        target: 'Generates and maintains root style.css in ~150ms',
+        code: 'const sassResult = sass.compile("scss/style.scss", { style: "compressed" });\nconst purgeResult = await new PurgeCSS().purge({\n  content: ["./**/*.{html,php,xhtml,shtml,cshtml,js}"],\n  css: [{ raw: sassResult.css }],\n  safelist: SAFELIST\n});'
+      },
+      'index-html': {
+        title: 'index.html (Main Page)',
+        icon: 'bi-filetype-html',
+        iconColor: '#f43f5e',
+        badge: 'Production View',
+        badgeClass: 'badge-src',
+        desc: 'The main web page showcasing our customized Bootstrap 5 components, Realist typography, and glassmorphic navbar. Links directly to root style.css.',
+        role: 'Main Frontend View & Content Source',
+        trigger: 'Scanned by PurgeCSS to keep matching CSS selectors in style.css',
+        target: 'Rendered in browser or at http://localhost/synovus',
+        code: '\x3C!DOCTYPE html>\n\x3Chtml lang="en">\n\x3Chead>\n  \x3Clink rel="stylesheet" href="https://use.typekit.net/zie0aus.css">\n  \x3Clink rel="stylesheet" href="style.css">\n\x3C/head>'
+      },
+      'workflow-html': {
+        title: 'workflow.html (Diagram & Guide)',
+        icon: 'bi-diagram-3-fill',
+        iconColor: '#60a5fa',
+        badge: 'Architecture Explorer',
+        badgeClass: 'badge-src',
+        desc: 'This self-contained interactive architecture diagram and file structure explorer. Provides a live node-graph simulator, architectural explanations, and file tree breakdown.',
+        role: 'Architecture Blueprint & Team Documentation',
+        trigger: 'Scanned by PurgeCSS to retain diagram utility classes',
+        target: 'Accessible at http://localhost/synovus/workflow.html',
+        code: '\x3Ca href="workflow.html">Workflow Diagram\x3C/a>'
+      },
+      'package-json': {
+        title: 'package.json',
+        icon: 'bi-filetype-json',
+        iconColor: '#94a3b8',
+        badge: 'NPM Project Config',
+        badgeClass: 'badge-sys',
+        desc: 'Declares project dependencies (bootstrap, sass, purgecss, chokidar) and convenient developer commands (`npm run dev`, `npm run build`).',
+        role: 'Dependency & Script Management',
+        trigger: 'NPM CLI',
+        target: 'Configures developer workflows',
+        code: '"scripts": {\n  "dev": "node build.js --watch",\n  "build": "node build.js"\n}'
+      },
+      'gitignore': {
+        title: '.gitignore',
+        icon: 'bi-git',
+        iconColor: '#f97316',
+        badge: 'Git Rules',
+        badgeClass: 'badge-sys',
+        desc: 'Ensures temporary cache, node_modules, and OS garbage files are never committed, keeping the repository light and pristine.',
+        role: 'VCS Cleanliness',
+        trigger: 'Git operations',
+        target: 'Ignores node_modules/, .sass-cache/, logs, .DS_Store',
+        code: 'node_modules/\n.sass-cache/\nlogs/\n.env'
+      },
+      'readme': {
+        title: 'README.md',
+        icon: 'bi-file-earmark-text',
+        iconColor: '#cbd5e1',
+        badge: 'Documentation',
+        badgeClass: 'badge-sys',
+        desc: 'Comprehensive project documentation, tech stack overview, quick-start commands, and architectural summary for new contributors.',
+        role: 'Project Overview & Onboarding',
+        trigger: 'Displayed on GitHub repository home',
+        target: 'Documents setup and build steps',
+        code: '# Synovus\nA modern web project built with Raw HTML5/PHP, SCSS, and Bootstrap 5.'
+      },
+      'root': {
+        title: 'synovus/ (Project Root)',
+        icon: 'bi-folder-fill',
+        iconColor: '#60a5fa',
+        badge: 'Workspace Root',
+        badgeClass: 'badge-sys',
+        desc: 'The root directory of the project, served under WAMP at `d:\\wamp64\\www\\synovus` and tracked by Git.',
+        role: 'Project Container',
+        trigger: 'WAMP Document Root',
+        target: 'http://localhost/synovus',
+        code: 'd:\\wamp64\\www\\synovus'
+      },
+      'scss-dir': {
+        title: 'scss/ (Styles Directory)',
+        icon: 'bi-folder-fill',
+        iconColor: '#93c5fd',
+        badge: 'Styles Folder',
+        badgeClass: 'badge-src',
+        desc: 'Located directly at the project root outside assets/. Houses your custom-overrides.scss, style.scss, and the local scss/bootstrap/ library.',
+        role: 'Style Source Folder',
+        trigger: 'Watched by Chokidar',
+        target: 'Source for all styling',
+        code: 'scss/\n├── bootstrap/\n├── custom-overrides.scss\n└── style.scss'
+      },
+      'assets-dir': {
+        title: 'assets/ (Static Assets Directory)',
+        icon: 'bi-folder-fill',
+        iconColor: '#fde68a',
+        badge: 'Static Assets',
+        badgeClass: 'badge-sys',
+        desc: 'Contains runtime assets: client scripts in `assets/js/` and media assets in `assets/images/`.',
+        role: 'Runtime Assets Container',
+        trigger: 'Browser HTTP requests',
+        target: 'assets/js/ and assets/images/',
+        code: 'assets/\n├── js/\n└── images/'
+      },
+      'js-dir': {
+        title: 'assets/js/ (Scripts Directory)',
+        icon: 'bi-folder-fill',
+        iconColor: '#fde68a',
+        badge: 'Client Scripts',
+        badgeClass: 'badge-src',
+        desc: 'Houses client-side JavaScript including bootstrap.bundle.min.js and main.js.',
+        role: 'JavaScript Container',
+        trigger: 'Loaded by HTML/PHP pages',
+        target: 'Client interactivity',
+        code: 'assets/js/\n├── bootstrap.bundle.min.js\n└── main.js'
+      },
+      'images-dir': {
+        title: 'assets/images/ (Media Directory)',
+        icon: 'bi-folder-fill',
+        iconColor: '#94a3b8',
+        badge: 'Media Assets',
+        badgeClass: 'badge-sys',
+        desc: 'Storage directory for graphic files, SVGs, brand logos, and photography.',
+        role: 'Media Storage',
+        trigger: 'Referenced in HTML / CSS',
+        target: 'Visual branding',
+        code: 'assets/images/'
+      }
+    };
+
+    function showFile(key) {
+      document.querySelectorAll('.t-row').forEach(r => r.classList.remove('active'));
+      const activeRow = document.getElementById('tree-' + key);
+      if (activeRow) activeRow.classList.add('active');
+
+      const data = fileTreeData[key];
+      if (!data) return;
+
+      const iconElem = document.getElementById('f-icon');
+      iconElem.className = 'bi ' + data.icon;
+      iconElem.style.color = data.iconColor;
+
+      document.getElementById('f-title').innerText = data.title;
+      const badgeElem = document.getElementById('f-badge');
+      badgeElem.innerText = data.badge;
+      badgeElem.className = 'detail-badge ' + data.badgeClass;
+
+      document.getElementById('f-desc').innerText = data.desc;
+      document.getElementById('f-role').innerText = data.role;
+      document.getElementById('f-trigger').innerHTML = data.trigger;
+      document.getElementById('f-target').innerHTML = data.target;
+      document.getElementById('f-code').innerText = data.code;
     }
   </script>
 </body>
