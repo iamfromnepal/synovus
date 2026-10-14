@@ -1,514 +1,394 @@
 // ===================================================
-// Synovus - Custom Overrides & Figma Design Tokens
-// Master Design System extracted from 10-7-26 Figma
+// Synovus - Design System Tokens & Classes
+// STRICT FIGMA SPECIFICATION (10-7-26 Dot Com Design)
+// Only tokens & styles explicitly used in the design
 // ===================================================
 
 // ---------------------------------------------------
-// 1. SYNOVUS DESIGN TOKENS (Variables)
+// 1. BRAND COLORS (Strictly from Designer Specs)
 // ---------------------------------------------------
+$syn-blue:             #0074C4; // Pinnacle Blue (Primary CTA, links, active)
+$syn-blue-hover:       #005FA3;
+$syn-navy:             #283862; // Pinnacle Navy Deep (Titles, dark contrasts)
+$syn-light-blue:       #CCE3F3; // Pinnacle Ice / Lightest Blue (Hero, tile fills)
+$syn-light-blue-28:    rgba(204, 227, 243, 0.28); // Tile background variant
+$syn-black:            #151515; // Pinnacle Black (Body copy, field labels)
+$syn-white:            #FFFFFF; // Pinnacle White (Cards, canvas, CTA text)
+$syn-grey:             #525252; // Grey (Secondary lines, descriptions, helper)
+$syn-placeholder:      #989898; // Grey (Input placeholder text)
+$syn-border:           #D1D1D1; // Form input & tile borders
+$syn-bg-light:         #F5F5F5; // Light Grey (Module background variant)
+$syn-gold:             #EBC52C; // Alert Gold (Module F Alert Bar)
+$syn-asterisk:         #E61E25; // Red asterisk (*) for required fields
+$syn-error:            #BD302C; // Red error border & error code text
 
-// Brand Core Colors
-$synovus-blue:            #0074C4; // Primary Brand Blue (3,192 uses in Figma)
-$synovus-blue-hover:      #005FA3;
-$synovus-blue-active:     #004D84;
-$synovus-navy:            #283862; // Deep Navy (696 uses)
-$synovus-navy-dark:       #1B2745;
-$synovus-light-blue:      #CCE3F3; // Light Blue Tint (456 uses)
-$synovus-light-blue-28:   rgba(204, 227, 243, 0.28);
-$synovus-light-blue-40:   rgba(204, 227, 243, 0.40);
-$synovus-black:           #151515; // Primary Text / Matt Black (1,096 uses)
-$synovus-white:           #FFFFFF; // Pure White (1,990 uses)
-
-// Supporting & Accent Colors
-$synovus-cyan:            #00B4C4;
-$synovus-sky:             #84C2ED;
-$synovus-ice:             #7FF6FF;
-$synovus-gold:            #EBC52C; // Alert Bar (Module F) / Accent
-$synovus-danger:          #D30529;
-$synovus-burgundy:        #851F41;
-$synovus-success:         #059669;
-$synovus-mint:            #5FEE9F;
-$synovus-orange:          #D17326;
-
-// Neutral Grays
-$synovus-gray-dark:       #525252; // Secondary text & metadata
-$synovus-gray-placeholder:#989898; // Form input placeholders
-$synovus-gray-border:     #D1D1D1; // Form & subtle card borders
-$synovus-gray-light:      #E6E6E6; // Dividers
-$synovus-bg-light:        #F5F5F5;
-$synovus-bg-offwhite:     #F8FAFC;
-
-// Typography - Adobe Typekit Realist
-$font-family-sans-serif:  "realist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-$font-family-base:        $font-family-sans-serif;
-$font-family-narrow:      "realistnarrow", sans-serif;
-$headings-font-family:    $font-family-sans-serif;
-
-// Font Weights
-$font-weight-light:       300; // SemiLight (Display metrics)
-$font-weight-normal:      400; // Regular (Body & subheadings)
-$font-weight-medium:      600; // Medium (Section subheads, card titles)
-$font-weight-semibold:    600;
-$font-weight-bold:        700; // Bold (Headlines, CTAs)
-$headings-font-weight:    700;
-
-// Bootstrap Theme Overrides
-$primary:                 $synovus-blue;
-$secondary:               $synovus-navy;
-$success:                 $synovus-success;
-$info:                    $synovus-cyan;
-$warning:                 $synovus-gold;
-$danger:                  $synovus-danger;
-$light:                   $synovus-light-blue;
-$dark:                    $synovus-navy;
-
-$body-bg:                 #FFFFFF;
-$body-color:              $synovus-black;
-$font-size-base:          1rem;
-$line-height-base:        1.6;
-
-// Border Radii (12px is dominant card radius in Figma)
-$border-radius-sm:        4px;
-$border-radius:           8px;
-$border-radius-card:      12px;
-$border-radius-lg:        16px;
-$border-radius-xl:        20px;
-$border-radius-pill:      9999px;
-
-// Shadows & Elevations
-$shadow-sm:               0 1px 3px rgba(16, 24, 40, 0.06);
-$shadow-card:             0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-elevated:         0 8px 28px rgba(0, 0, 0, 0.12);
-$shadow-glow:             0 8px 28px rgba(0, 116, 196, 0.18);
-
-// Buttons
-$btn-font-weight:         700;
-$btn-border-radius:       8px;
-$btn-padding-y:           0.85rem;
-$btn-padding-x:           1.5rem;
-
-// Forms
-$input-border-color:      $synovus-gray-border;
-$input-border-radius:     8px;
-$input-placeholder-color: $synovus-gray-placeholder;
-$input-focus-border-color:$synovus-blue;
-$input-focus-box-shadow:  0 0 0 0.25rem rgba($synovus-blue, 0.16);
+// Bootstrap Theme Map Overrides
+$primary:              $syn-blue;
+$secondary:            $syn-navy;
+$dark:                 $syn-navy;
+$light:                $syn-light-blue;
+$body-bg:              $syn-white;
+$body-color:           $syn-black;
 
 // ---------------------------------------------------
-// 2. ROOT CSS CUSTOM PROPERTIES
+// 2. TYPOGRAPHY (Adobe Typekit Realist)
+// ---------------------------------------------------
+$font-family-sans-serif: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+$font-family-base:       $font-family-sans-serif;
+$headings-font-family:   $font-family-sans-serif;
+
+$font-weight-light:      300; // SemiLight (Display numbers)
+$font-weight-normal:     400; // Regular (Body, subtitles)
+$font-weight-medium:     600; // Medium (Titles, section headers)
+$font-weight-bold:       700; // Bold (Headlines, CTAs, field labels)
+$headings-font-weight:   600;
+
+// ---------------------------------------------------
+// 3. CORNER RADIUS (Figma Designer Rule: 12px for Tiles)
+// ---------------------------------------------------
+$border-radius-tile:     12px; // Explicit designer note: "Corner radius 12 degrees"
+$border-radius-input:    6px;  // 5.7px in Figma Form specs
+$border-radius-btn:      0px;  // Figma default for standard/XL buttons is square (0px)
+
+// ---------------------------------------------------
+// 4. SHADOWS (Figma Drop Shadows)
+// ---------------------------------------------------
+$shadow-tile:            0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-login-card:      0 8px 28px rgba(0, 0, 0, 0.12);
+
+// ---------------------------------------------------
+// 5. CSS CUSTOM PROPERTIES
 // ---------------------------------------------------
 :root {
-  --syn-blue: #{$synovus-blue};
-  --syn-blue-hover: #{$synovus-blue-hover};
-  --syn-navy: #{$synovus-navy};
-  --syn-navy-dark: #{$synovus-navy-dark};
-  --syn-light-blue: #{$synovus-light-blue};
-  --syn-black: #{$synovus-black};
-  --syn-white: #{$synovus-white};
-  --syn-cyan: #{$synovus-cyan};
-  --syn-sky: #{$synovus-sky};
-  --syn-ice: #{$synovus-ice};
-  --syn-gold: #{$synovus-gold};
-  --syn-danger: #{$synovus-danger};
-  --syn-success: #{$synovus-success};
-  --syn-gray-dark: #{$synovus-gray-dark};
-  --syn-gray-placeholder: #{$synovus-gray-placeholder};
-  --syn-gray-border: #{$synovus-gray-border};
-  --syn-gray-light: #{$synovus-gray-light};
-  --syn-bg-light: #{$synovus-bg-light};
+  --syn-blue: #{$syn-blue};
+  --syn-navy: #{$syn-navy};
+  --syn-light-blue: #{$syn-light-blue};
+  --syn-black: #{$syn-black};
+  --syn-white: #{$syn-white};
+  --syn-grey: #{$syn-grey};
+  --syn-placeholder: #{$syn-placeholder};
+  --syn-border: #{$syn-border};
+  --syn-bg-light: #{$syn-bg-light};
+  --syn-gold: #{$syn-gold};
+  --syn-asterisk: #{$syn-asterisk};
+  --syn-error: #{$syn-error};
 
-  --syn-shadow-card: #{$shadow-card};
-  --syn-shadow-elevated: #{$shadow-elevated};
-  --syn-shadow-glow: #{$shadow-glow};
-
-  --syn-radius-card: #{$border-radius-card};
+  --syn-radius-tile: 12px;
 }
 
 // ---------------------------------------------------
-// 3. TYPOGRAPHY UTILITIES
+// 6. BUTTON SIZES & STYLES (Strictly 3 Figma Sizes)
 // ---------------------------------------------------
-.font-realist {
-  font-family: $font-family-sans-serif !important;
-}
 
-.font-realist-narrow {
-  font-family: $font-family-narrow !important;
-}
-
-.fw-light,
-.fw-semilight {
-  font-weight: 300 !important;
-}
-
-.fw-regular {
-  font-weight: 400 !important;
-}
-
-.fw-medium {
-  font-weight: 600 !important;
-}
-
-.fw-bold {
-  font-weight: 700 !important;
-}
-
-// Display & Heading Scale
-.display-hero {
-  font-size: clamp(2.5rem, 5vw, 3.25rem);
-  line-height: 1.15;
-  font-weight: 400;
-  color: $synovus-navy;
-}
-
-.display-large {
-  font-size: clamp(3rem, 7vw, 6rem);
-  line-height: 1.1;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-}
-
-.text-synovus-blue { color: $synovus-blue !important; }
-.text-synovus-navy { color: $synovus-navy !important; }
-.text-synovus-black { color: $synovus-black !important; }
-.text-synovus-muted { color: $synovus-gray-dark !important; }
-.text-synovus-placeholder { color: $synovus-gray-placeholder !important; }
-
-.bg-synovus-blue { background-color: $synovus-blue !important; }
-.bg-synovus-navy { background-color: $synovus-navy !important; }
-.bg-synovus-light-blue { background-color: $synovus-light-blue !important; }
-.bg-synovus-gold { background-color: $synovus-gold !important; }
-.bg-synovus-offwhite { background-color: $synovus-bg-offwhite !important; }
-
-// ---------------------------------------------------
-// 4. BUTTONS & CTAS
-// ---------------------------------------------------
-.btn-synovus-primary {
-  background-color: $synovus-blue;
-  color: $synovus-white;
-  border: 1px solid $synovus-blue;
+// 1. XL Button Size (Hero & Belt Straps: 60px height, Realist 20px Bold)
+.btn-syn-xl {
+  min-height: 60px;
+  background-color: $syn-blue;
+  color: $syn-white;
   font-family: $font-family-sans-serif;
   font-weight: 700;
-  font-size: 1.125rem; // 18px
-  padding: 14px 28px;
-  border-radius: 0px; // Standard Figma sharp Hero CTA default
+  font-size: 1.25rem; // 20px
+  padding: 16px 24px;
+  border: 1px solid $syn-blue;
+  border-radius: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 
   &:hover, &:focus {
-    background-color: $synovus-blue-hover;
-    border-color: $synovus-blue-hover;
-    color: $synovus-white;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba($synovus-blue, 0.25);
-  }
-
-  &:active {
-    background-color: $synovus-blue-active;
-    transform: translateY(1px);
-  }
-
-  &.btn-rounded {
-    border-radius: 8px;
-  }
-
-  &.btn-pill {
-    border-radius: 9999px;
+    background-color: $syn-blue-hover;
+    border-color: $syn-blue-hover;
+    color: $syn-white;
   }
 }
 
-.btn-synovus-navy {
-  background-color: $synovus-navy;
-  color: $synovus-white;
-  border: 1px solid $synovus-navy;
+// 2. Standard Button Size (Modules 2, 3, 4, 11: 46px height, Realist 16px Bold)
+.btn-syn-standard {
+  min-height: 46px;
+  background-color: $syn-blue;
+  color: $syn-white;
+  font-family: $font-family-sans-serif;
   font-weight: 700;
-  font-size: 1.125rem;
-  padding: 14px 28px;
-  border-radius: 0px;
+  font-size: 1rem; // 16px
+  padding: 12px 20px;
+  border: 1px solid $syn-blue;
+  border-radius: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 
   &:hover, &:focus {
-    background-color: $synovus-navy-dark;
-    border-color: $synovus-navy-dark;
-    color: $synovus-white;
-    transform: translateY(-1px);
+    background-color: $syn-blue-hover;
+    border-color: $syn-blue-hover;
+    color: $syn-white;
   }
 }
 
-.btn-synovus-outline {
-  background-color: transparent;
-  color: $synovus-blue;
-  border: 2px solid $synovus-blue;
+// 3. Small Button Size (Modules 10, 16: 38px height, Realist 14px Bold)
+.btn-syn-small {
+  min-height: 38px;
+  background-color: $syn-blue;
+  color: $syn-white;
+  font-family: $font-family-sans-serif;
   font-weight: 700;
-  font-size: 1.125rem;
-  padding: 12px 26px;
-  border-radius: 0px;
+  font-size: 0.875rem; // 14px
+  padding: 8px 20px;
+  border: 1px solid $syn-blue;
+  border-radius: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 
   &:hover, &:focus {
-    background-color: $synovus-blue;
-    color: $synovus-white;
+    background-color: $syn-blue-hover;
+    border-color: $syn-blue-hover;
+    color: $syn-white;
   }
 }
 
-.btn-synovus-link {
-  color: $synovus-blue;
+// Tertiary Button (Underlined link in Pinnacle Blue with arrow)
+.btn-syn-tertiary {
+  color: $syn-blue;
   background: transparent;
   border: none;
+  font-family: $font-family-sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1rem; // 16px
   padding: 8px 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
   transition: color 0.2s ease;
 
-  i {
-    transition: transform 0.2s ease;
+  &:hover {
+    color: $syn-blue-hover;
   }
+}
+
+// Tint Button (Lightest Blue #CCE3F3 with Navy text)
+.btn-syn-tint {
+  min-height: 46px;
+  background-color: $syn-light-blue;
+  color: $syn-navy;
+  font-family: $font-family-sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 
   &:hover {
-    color: $synovus-blue-hover;
-    text-decoration: underline;
-
-    i {
-      transform: translateX(4px);
-    }
+    background-color: darken($syn-light-blue, 5%);
+    color: $syn-navy;
   }
 }
 
 // ---------------------------------------------------
-// 5. CARDS & SURFACES
+// 7. FORM FIELDS (Module A & Module 3 Form Specs)
 // ---------------------------------------------------
-.card-synovus {
-  background-color: $synovus-white;
-  border: 1px solid $synovus-gray-light;
-  border-radius: $border-radius-card; // 12px dominant
-  box-shadow: $shadow-card;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  overflow: hidden;
-
-  &.card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-elevated;
-  }
-}
-
-.card-synovus-tint {
-  background-color: $synovus-light-blue;
-  border: 1px solid rgba($synovus-blue, 0.15);
-  border-radius: $border-radius-card;
-}
-
-.card-synovus-navy {
-  background-color: $synovus-navy;
-  color: $synovus-white;
-  border: none;
-  border-radius: $border-radius-card;
-}
-
-// Dual Accent Decorative Header
-.card-header-dual-accent {
-  position: relative;
-  height: 8px;
-  width: 100%;
-  background-color: $synovus-blue;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 72%;
-    background-color: $synovus-navy;
-  }
-}
-
-.accent-bar-dual {
-  position: relative;
-  height: 8px;
-  width: 100%;
-  background-color: $synovus-blue;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 72%;
-    background-color: $synovus-navy;
-  }
-}
-
-// ---------------------------------------------------
-// 6. FORMS & INPUT CONTROLS
-// ---------------------------------------------------
-.form-label-synovus {
+.form-label-syn {
   font-family: $font-family-sans-serif;
-  font-size: 0.875rem; // 14px
-  font-weight: 600;
-  color: $synovus-navy;
+  font-size: 1.125rem; // 18px (from Figma: "Realist, bold, 18 pts, text color: #151515")
+  font-weight: 700;
+  color: $syn-black;
+  margin-bottom: 6px;
+  display: block;
+
+  .required-asterisk {
+    color: $syn-asterisk; // #E61E25
+  }
+}
+
+.form-desc-syn {
+  font-family: $font-family-sans-serif;
+  font-size: 0.875rem; // 14px (from Figma: "Realist, reg 14 pts, text color: #525252")
+  color: $syn-grey;
+  margin-top: 4px;
   margin-bottom: 6px;
   display: block;
 }
 
-.form-control-synovus,
-.form-select-synovus {
-  height: 52px;
+.form-control-syn,
+.form-select-syn {
+  height: 54px; // 54px in Figma
   font-family: $font-family-sans-serif;
-  font-size: 1rem;
-  color: $synovus-black;
-  background-color: $synovus-white;
-  border: 1px solid $synovus-gray-border;
-  border-radius: 4px;
+  font-size: 1rem; // 16px
+  color: $syn-black;
+  background-color: $syn-white;
+  border: 1px solid $syn-border; // #D1D1D1
+  border-radius: $border-radius-input; // 6px
   padding: 12px 16px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 
   &::placeholder {
-    color: $synovus-gray-placeholder;
-    font-weight: 400;
+    color: $syn-placeholder; // #989898
   }
 
   &:focus {
-    border-color: $synovus-blue;
-    box-shadow: 0 0 0 3px rgba($synovus-blue, 0.16);
+    border-color: $syn-blue;
     outline: none;
+    box-shadow: 0 0 0 3px rgba($syn-blue, 0.15);
   }
 
   &.is-invalid {
-    border-color: $synovus-danger;
-    box-shadow: 0 0 0 3px rgba($synovus-danger, 0.12);
+    border-color: $syn-error; // #BD302C
   }
 }
 
-// Password Field with Show/Hide Toggle
-.password-field-group {
+.form-error-syn {
+  color: $syn-asterisk; // #E61E25 from Figma: "(with error message in red font #E61E25)"
+  font-family: $font-family-sans-serif;
+  font-size: 0.875rem; // 14px
+  margin-top: 4px;
+}
+
+// Password field with Show/Hide toggle (Module A)
+.password-field-wrap {
   position: relative;
 
-  .form-control-synovus {
+  .form-control-syn {
     padding-right: 64px;
   }
 
-  .btn-password-toggle {
+  .btn-toggle-pwd {
     position: absolute;
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
     background: transparent;
     border: none;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: $synovus-blue;
-    padding: 4px 8px;
+    color: $syn-blue;
+    padding: 4px 6px;
     cursor: pointer;
-    user-select: none;
 
     &:hover {
-      color: $synovus-blue-hover;
       text-decoration: underline;
     }
   }
 }
 
-// ---------------------------------------------------
-// 7. BADGES & ALERT BANNERS
-// ---------------------------------------------------
-.badge-synovus-blue {
-  background-color: $synovus-blue;
-  color: $synovus-white;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.8125rem;
-}
-
-.badge-synovus-navy {
-  background-color: $synovus-navy;
-  color: $synovus-white;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.8125rem;
-}
-
-.badge-synovus-soft {
-  background-color: rgba($synovus-blue, 0.1);
-  color: $synovus-blue;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
-}
-
-.badge-synovus-gold {
-  background-color: $synovus-gold;
-  color: $synovus-navy;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
-}
-
-// Module F Alert Bar
-.alert-banner-synovus {
-  background-color: $synovus-gold;
-  color: $synovus-navy;
-  padding: 14px 24px;
-  font-weight: 600;
-  font-size: 1rem;
+// Multiple Choice Radio Field (Module 3 Form: "Realist, reg 18 pts")
+.choice-wrap-syn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-left: 6px solid $synovus-navy;
+  gap: 20px;
+  margin-top: 8px;
 
-  a {
-    color: $synovus-navy;
-    font-weight: 700;
-    text-decoration: underline;
+  .choice-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.125rem; // 18px
+    color: $syn-black;
+    cursor: pointer;
 
-    &:hover {
-      color: #000;
+    input[type="radio"] {
+      width: 22px;
+      height: 22px;
+      accent-color: $syn-blue;
     }
   }
 }
 
 // ---------------------------------------------------
-// 8. SHADOWS & RADII UTILITIES
+// 8. TILES & SURFACES (Explicit: 12px Corner Radius)
 // ---------------------------------------------------
-.shadow-syn-sm { box-shadow: $shadow-sm !important; }
-.shadow-syn-card { box-shadow: $shadow-card !important; }
-.shadow-syn-elevated { box-shadow: $shadow-elevated !important; }
-.shadow-syn-glow { box-shadow: $shadow-glow !important; }
+.tile-syn {
+  background-color: $syn-white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: $border-radius-tile; // 12px
+  box-shadow: $shadow-tile;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
 
-.rounded-syn-sm { border-radius: $border-radius-sm !important; } // 4px
-.rounded-syn-md { border-radius: $border-radius !important; }    // 8px
-.rounded-syn-card { border-radius: $border-radius-card !important; } // 12px
-.rounded-syn-lg { border-radius: $border-radius-xl !important; } // 20px
-.rounded-syn-pill { border-radius: $border-radius-pill !important; } // 9999px
-.rounded-syn-none { border-radius: 0px !important; }
+.tile-syn-ice {
+  background-color: $syn-light-blue; // #CCE3F3
+  border: 1px solid rgba($syn-blue, 0.15);
+  border-radius: $border-radius-tile;
+  padding: 32px 28px;
+}
 
-// ---------------------------------------------------
-// 9. LAYOUT CONTAINERS (FIGMA BREAKPOINTS)
-// ---------------------------------------------------
-// 1920px container (296px margins)
-.container-synovus-1920 {
+// Login Card from Module A (352px width, white, drop shadow)
+.login-card-syn {
   width: 100%;
+  max-width: 352px;
+  background-color: $syn-white;
+  border-radius: 0;
+  box-shadow: $shadow-login-card;
+  padding: 28px;
+  position: relative;
+}
+
+// Signature Dual Accent Bar (Module A & Tiles)
+.accent-bar-dual {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  background-color: $syn-blue; // 100% width
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 72%; // 72% width overlay
+    background-color: $syn-navy;
+  }
+}
+
+// ---------------------------------------------------
+// 9. ALERT BAR (Module F)
+// ---------------------------------------------------
+.alert-bar-syn {
+  background-color: $syn-gold; // #EBC52C
+  color: $syn-navy; // #283862
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  a {
+    color: $syn-navy;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+// ---------------------------------------------------
+// 10. FOOTNOTE SUPERSCRIPT
+// ---------------------------------------------------
+.footnote-ref {
+  color: $syn-blue;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+// ---------------------------------------------------
+// 11. RESPONSIVE CONTAINERS (Figma Specs)
+// ---------------------------------------------------
+.container-syn-1920 {
   max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
@@ -516,9 +396,7 @@ $input-focus-box-shadow:  0 0 0 0.25rem rgba($synovus-blue, 0.16);
   padding-right: clamp(20px, 8vw, 296px);
 }
 
-// 1440px container (160px margins)
-.container-synovus-1440 {
-  width: 100%;
+.container-syn-1440 {
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
@@ -526,9 +404,7 @@ $input-focus-box-shadow:  0 0 0 0.25rem rgba($synovus-blue, 0.16);
   padding-right: clamp(20px, 6vw, 160px);
 }
 
-// Mobile 430px container (20px gutters)
-.container-synovus-mobile {
-  width: 100%;
+.container-syn-mobile {
   max-width: 430px;
   margin-left: auto;
   margin-right: auto;
