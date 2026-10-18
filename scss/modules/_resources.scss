@@ -1,0 +1,80 @@
+// ===========================================
+// MODULE: Resources row (Figma 588:4523, immediately after the hero)
+// Section intro, Featured Insight + image (Original/Alternate style),
+// and the 3 product/flip cards.
+// ===========================================
+
+// Reusable section intro: eyebrow + title + body (Figma 588:4524, "Let's
+// reach your financial potential"). Other homepage sections reuse this.
+// ---------------------------------------------------
+.section-heading-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 581px;
+
+  .section-heading-syn-eyebrow {
+    @include syn-type(0.875rem, 1.4, 700, $syn-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .section-heading-syn-title { @include syn-type(2.5rem, 1.4, 400, $syn-navy); }
+
+  @media (max-width: $syn-mobile-max) {
+    .section-heading-syn-title { font-size: 2rem; }
+  }
+}
+
+// ---------------------------------------------------
+// Homepage: "Resources" row (Figma 588:4523, immediately after the hero)
+// Heading, Featured Insight + photo, then 3 Product Card v3 tiles.
+// ---------------------------------------------------
+.resources-syn {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.resources-syn-intro {
+  margin-bottom: 48px;
+}
+
+.resources-syn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resources-syn-photo {
+  overflow: hidden;
+  border-radius: $syn-leaf-12;
+  box-shadow: $syn-shadow-card;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.resources-syn-products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -3,770 +3,1055 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Synovus Design System &amp; Style Guide</title>
-  
-  <!-- Adobe Typekit Realist Fonts -->
+  <title>Pinnacle Dot Com Style Guide</title>
+
+  <!-- Adobe Typekit Realist -->
   <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
-  
-  <!-- Bootstrap Icons -->
+
+  <!-- Bootstrap Icons (flip card back-face icon) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
+
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      background-color: #F5F5F5;
-      color: #151515;
-      font-family: "realist", sans-serif;
-    }
-    .guide-sidebar {
-      position: sticky;
-      top: 24px;
-      height: calc(100vh - 48px);
-      overflow-y: auto;
-    }
-    .guide-nav-item {
-      color: #525252;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      padding: 8px 12px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .guide-nav-item:hover, .guide-nav-item.active {
-      color: #0074C4;
-      background-color: #CCE3F3;
-    }
-    .spec-swatch {
-      background: #FFFFFF;
-      border: 1px solid #D1D1D1;
-      border-radius: 8px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .spec-swatch:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    }
-    .swatch-color {
-      height: 90px;
-      width: 100%;
-      padding: 10px 12px;
-      display: flex;
-      align-items: flex-end;
-      font-weight: 700;
-      font-size: 0.875rem;
-    }
-    .spec-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #0074C4;
-      background: #CCE3F3;
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-    }
-    .figma-callout {
-      border-left: 4px solid #0074C4;
-      background: #FFFFFF;
-      padding: 12px 16px;
-      margin-bottom: 24px;
-      font-size: 0.875rem;
-      color: #525252;
-    }
-    .figma-callout strong {
-      color: #283862;
-    }
-    /* Floating copy toast */
-    #copyToast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #283862;
-      color: #FFFFFF;
-      padding: 12px 20px;
-      border-radius: 6px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 9999;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
-    }
-    #copyToast.show {
-      opacity: 1;
-      transform: translateY(0);
+    /* Style guide chrome only. Components below use the real classes from style.css. */
+    html { scroll-behavior: smooth; }
+    body { background: #FFFFFF; color: #151515; font-family: "realist", sans-serif; }
+
+    .sg-topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #E6E6E6; }
+    .sg-topbar-title { display: flex; align-items: center; gap: 16px; font-weight: 700; color: #283862; }
+    .sg-topbar-title img { height: 32px; width: auto; }
+    .sg-topbar nav { display: flex; gap: 20px; }
+
+    .sg-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); }
+    .sg-sidebar { position: sticky; top: 61px; align-self: start; height: calc(100vh - 61px); overflow-y: auto; padding: 32px 16px 32px 32px; border-right: 1px solid #E6E6E6; }
+    .sg-sidebar a { display: block; padding: 6px 10px; font-size: 0.9375rem; color: #525252; text-decoration: none; border-radius: 6px; }
+    .sg-sidebar a:hover { color: #0074C4; background: #F1F7FC; }
+    .sg-sidebar-label { margin: 20px 0 6px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #989898; }
+    .sg-sidebar-label:first-child { margin-top: 0; }
+    .sg-main { min-width: 0; padding: 48px 56px 120px; }
+
+    .sg-section { padding: 56px 0; border-bottom: 1px solid #E6E6E6; scroll-margin-top: 70px; }
+    .sg-section:first-child { padding-top: 0; }
+    .sg-section > header { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; max-width: 900px; }
+    .sg-h3 { margin: 40px 0 16px; font-size: 1.25rem; font-weight: 700; color: #283862; }
+    .sg-note { margin: 0; font-size: 0.9375rem; line-height: 1.52; color: #525252; }
+    .sg-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8125rem; color: #525252; }
+
+    .sg-badge { display: inline-block; padding: 2px 8px; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 4px; vertical-align: middle; }
+    .sg-badge-figma { color: #0074C4; background: #EBF4FA; }
+    .sg-badge-dev { color: #8A5A00; background: #FFF3CF; }
+    .sg-badge-note { color: #7A2E05; background: #FBE7DA; }
+
+    .sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+    .sg-swatch { overflow: hidden; background: #FFFFFF; border: 1px solid #E6E6E6; border-radius: 8px; cursor: pointer; text-align: left; padding: 0; font: inherit; }
+    .sg-swatch:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+    .sg-swatch-chip { height: 80px; border-bottom: 1px solid #E6E6E6; }
+    .sg-swatch-info { display: flex; flex-direction: column; gap: 2px; padding: 12px; }
+    .sg-swatch-name { font-weight: 700; font-size: 0.9375rem; }
+
+    .sg-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .sg-table th { padding: 10px 12px; text-align: left; font-size: 0.75rem; letter-spacing: 0.5px; text-transform: uppercase; color: #525252; border-bottom: 2px solid #E6E6E6; }
+    .sg-table td { padding: 16px 12px; vertical-align: middle; border-bottom: 1px solid #E6E6E6; }
+    .sg-table-wrap { overflow-x: auto; }
+
+    .sg-stage { padding: 32px; background: #FFFFFF; border: 1px solid #E6E6E6; border-radius: 8px; }
+    .sg-stage-tint { background: #F1F7FC; }
+    .sg-stage-dark { background: #283862; border-color: #283862; }
+    .sg-stage-bleed { padding: 0; overflow: hidden; }
+    /* Inside the guide, page-width containers use a fixed gutter instead of viewport-based margins */
+    .sg-stage .container-syn { padding-left: 32px; padding-right: 32px; }
+    .sg-row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+    .sg-grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
+    .sg-caption { margin-top: 12px; font-size: 0.8125rem; color: #525252; }
+
+    .sg-radius-box { display: flex; align-items: center; justify-content: center; width: 140px; height: 96px; font-size: 0.8125rem; text-align: center; color: #283862; background: #EBF4FA; border: 2px solid #0074C4; }
+    .sg-shadow-box { display: flex; align-items: center; justify-content: center; width: 200px; height: 120px; padding: 12px; font-size: 0.8125rem; text-align: center; background: #FFFFFF; border-radius: 12px; }
+
+    .sg-margins { display: flex; height: 56px; font-size: 0.75rem; font-weight: 700; color: #283862; border: 1px solid #E6E6E6; }
+    .sg-margins span { display: flex; align-items: center; justify-content: center; }
+    .sg-margins .m { background: #F5F5F5; }
+    .sg-margins .c { flex: 1; background: #EBF4FA; }
+
+    #sgToast { position: fixed; right: 24px; bottom: 24px; z-index: 200; padding: 12px 20px; font-size: 0.9375rem; color: #FFFFFF; background: #283862; border-radius: 6px; opacity: 0; transform: translateY(12px); transition: opacity 0.2s, transform 0.2s; pointer-events: none; }
+    #sgToast.show { opacity: 1; transform: none; }
+
+    @media (max-width: 991.98px) {
+      .sg-layout { grid-template-columns: 1fr; }
+      .sg-sidebar { display: none; }
+      .sg-main { padding: 32px 16px 80px; }
+      .sg-topbar { padding: 12px 16px; }
+      .sg-topbar nav { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- =================================================== -->
-  <!-- TOP NAVBAR                                          -->
-  <!-- =================================================== -->
-  <header class="bg-white border-bottom py-3 sticky-top">
-    <div class="container-fluid px-lg-5 d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center gap-3">
-        <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
-          <div class="bg-primary text-white fw-bold px-2 py-1" style="font-size: 1.1rem;">S</div>
-          <span class="fs-4 fw-bold" style="color: #283862;">SYNOVUS</span>
-        </a>
-        <div class="vr mx-2 text-muted" style="height: 24px;"></div>
-        <span class="fw-bold" style="color: #0074C4;">10-7-26 Figma Design Specification</span>
-      </div>
-      <div class="d-flex align-items-center gap-2">
-        <a href="module-hero.html" class="btn btn-sm btn-primary">Hero Module A</a>
-        <a href="index.html" class="btn btn-sm btn-outline-secondary">Homepage</a>
-        <a href="workflow.html" class="btn btn-sm btn-outline-secondary">Workflow Graph</a>
-      </div>
+  <header class="sg-topbar">
+    <div class="sg-topbar-title">
+      <img src="assets/images/logo-pinnacle.png" width="160" height="47" alt="Pinnacle Financial Partners">
+      <span>Dot Com Style Guide</span>
     </div>
+    <nav>
+      <a class="link-syn-utility" href="module-hero.html">Module A showcase</a>
+      <a class="link-syn-utility" href="index.html">Project home</a>
+    </nav>
   </header>
 
-  <!-- =================================================== -->
-  <!-- MAIN CONTAINER                                      -->
-  <!-- =================================================== -->
-  <div class="container-fluid px-lg-5 py-4">
-    <div class="row g-4">
+  <div class="sg-layout">
+    <aside class="sg-sidebar">
+      <div class="sg-sidebar-label">Foundations</div>
+      <a href="#colors">Colors</a>
+      <a href="#gradients">Gradients &amp; tints</a>
+      <a href="#typography">Typography</a>
+      <a href="#radii">Corners &amp; shadows</a>
+      <a href="#layout">Layout &amp; grid</a>
+      <div class="sg-sidebar-label">Components</div>
+      <a href="#buttons">Buttons &amp; links</a>
+      <a href="#header">Global header</a>
+      <a href="#alert">Alert bar</a>
+      <a href="#forms">Forms</a>
+      <a href="#login">Login card</a>
+      <a href="#cards">Cards &amp; tiles</a>
+      <a href="#quotes">Quotes &amp; testimonials</a>
+      <a href="#help">Help band &amp; controls</a>
+      <a href="#footer">Global footer</a>
+      <div class="sg-sidebar-label">Reference</div>
+      <a href="#modules">Module index</a>
+      <a href="#conflicts">Open questions</a>
+    </aside>
 
-      <!-- SIDEBAR -->
-      <aside class="col-lg-3 d-none d-lg-block">
-        <div class="guide-sidebar pe-2">
-          <div class="small fw-bold text-uppercase text-muted mb-2">Design Tokens</div>
-          <nav class="d-flex flex-column gap-1 mb-4">
-            <a href="#colors" class="guide-nav-item"><i class="bi bi-palette text-primary"></i> 1. Brand Colors</a>
-            <a href="#typography" class="guide-nav-item"><i class="bi bi-type text-primary"></i> 2. Typography Scale</a>
-            <a href="#buttons" class="guide-nav-item"><i class="bi bi-hand-index text-primary"></i> 3. Button Sizes (XL, Std, Sm)</a>
-            <a href="#forms" class="guide-nav-item"><i class="bi bi-input-cursor text-primary"></i> 4. Form Fields &amp; Login</a>
-            <a href="#tiles" class="guide-nav-item"><i class="bi bi-card-heading text-primary"></i> 5. Tiles (12° Radius) &amp; Accent</a>
-            <a href="#alert" class="guide-nav-item"><i class="bi bi-exclamation-triangle text-primary"></i> 6. Module F Alert Bar</a>
-            <a href="#grid" class="guide-nav-item"><i class="bi bi-grid-3x3 text-primary"></i> 7. Grid Margins (1920/1440/430)</a>
-          </nav>
+    <main class="sg-main">
 
-          <div class="bg-white p-3 border rounded">
-            <div class="fw-bold mb-1" style="color: #283862; font-size: 0.875rem;">Figma Spec Rules</div>
-            <ul class="list-unstyled small text-muted mb-0">
-              <li class="py-1">&bull; <strong>Button Height:</strong> 60px (XL), 46px (Std), 38px (Sm)</li>
-              <li class="py-1">&bull; <strong>Corner Radius:</strong> 12px for Tiles</li>
-              <li class="py-1">&bull; <strong>Input Height:</strong> 54px with #D1D1D1 border</li>
-              <li class="py-1">&bull; <strong>Required Asterisk:</strong> #E61E25</li>
-              <li class="py-1">&bull; <strong>Error Code:</strong> #BD302C</li>
-            </ul>
+      <!-- =================================================== -->
+      <!-- INTRO                                               -->
+      <!-- =================================================== -->
+      <section class="sg-section">
+        <header>
+          <span class="syn-eyebrow">Design system</span>
+          <h1 class="syn-display">Pinnacle Dot Com Style Guide</h1>
+          <p class="syn-lead">Tokens and components from the Figma file <strong>10-7-26 Dot Com Product &amp; Landing Page Modules for Dev</strong>, covering the Homepage and modules 1&ndash;17. Every sample on this page uses the production classes in <code>style.css</code>.</p>
+        </header>
+        <div class="sg-row">
+          <span><span class="sg-badge sg-badge-figma">Figma</span> value read from the design data</span>
+          <span><span class="sg-badge sg-badge-note">Note only</span> stated in a designer note, not in the drawn layers</span>
+          <span><span class="sg-badge sg-badge-dev">Dev-defined</span> not specified in Figma; needs design sign-off</span>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 1. COLORS                                           -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="colors">
+        <header>
+          <span class="syn-eyebrow">Foundations</span>
+          <h2 class="syn-h2">Colors</h2>
+          <p class="sg-note">Names match the Figma color styles. Click a swatch to copy its hex value.</p>
+        </header>
+
+        <h3 class="sg-h3">Primary colors</h3>
+        <div class="sg-swatches">
+          <button type="button" class="sg-swatch" data-hex="#0074C4"><div class="sg-swatch-chip bg-syn-blue"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Pinnacle Blue</span><span class="sg-mono">#0074C4 &middot; $syn-blue</span><span class="sg-note">CTAs, links, eyebrows, stats</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#283862"><div class="sg-swatch-chip bg-syn-navy"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Deep / Navy</span><span class="sg-mono">#283862 &middot; $syn-navy</span><span class="sg-note">Titles, dark backgrounds</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#CCE3F3"><div class="sg-swatch-chip bg-syn-baby"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby / Lightest Blue</span><span class="sg-mono">#CCE3F3 &middot; $syn-light-blue</span><span class="sg-note">Titles on dark, tints, tile tips</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#84C2ED"><div class="sg-swatch-chip" style="background:#84C2ED"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Sky</span><span class="sg-mono">#84C2ED &middot; $syn-sky</span><span class="sg-note">Tag and glass-card borders, links on images</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#151515"><div class="sg-swatch-chip" style="background:#151515"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Matt / Black</span><span class="sg-mono">#151515 &middot; $syn-black</span><span class="sg-note">Body copy, labels</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#FFFFFF"><div class="sg-swatch-chip bg-syn-white"></div><div class="sg-swatch-info"><span class="sg-swatch-name">White</span><span class="sg-mono">#FFFFFF &middot; $syn-white</span><span class="sg-note">Canvas, cards, text on dark</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#E6E6E6"><div class="sg-swatch-chip" style="background:#E6E6E6"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Hint</span><span class="sg-mono">#E6E6E6 &middot; $syn-hint</span><span class="sg-note">FDIC bar divider</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#D1D1D1"><div class="sg-swatch-chip" style="background:#D1D1D1"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Ash</span><span class="sg-mono">#D1D1D1 &middot; $syn-ash</span><span class="sg-note">Inactive carousel dots</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#989898"><div class="sg-swatch-chip" style="background:#989898"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Spanish</span><span class="sg-mono">#989898 &middot; $syn-placeholder</span><span class="sg-note">Search border, placeholders</span></div></button>
+        </div>
+
+        <h3 class="sg-h3">Digital additions</h3>
+        <div class="sg-swatches">
+          <button type="button" class="sg-swatch" data-hex="#525252"><div class="sg-swatch-chip" style="background:#525252"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Text Gray</span><span class="sg-mono">#525252 &middot; $syn-grey</span><span class="sg-note">Helper text, card body, legal</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#F5F5F5"><div class="sg-swatch-chip bg-syn-smoke"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Smoke</span><span class="sg-mono">#F5F5F5 &middot; $syn-smoke</span><span class="sg-note">Form card background</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#F1F7FC"><div class="sg-swatch-chip bg-syn-ice"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Ice</span><span class="sg-mono">#F1F7FC &middot; $syn-ice</span><span class="sg-note">= Baby at 28% over white. Section tint</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#EBF4FA"><div class="sg-swatch-chip bg-syn-pale"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Pale</span><span class="sg-mono">#EBF4FA &middot; $syn-pale</span><span class="sg-note">= Baby at 40% over white. Light hero, form</span></div></button>
+        </div>
+
+        <h3 class="sg-h3">Accents</h3>
+        <div class="sg-swatches">
+          <button type="button" class="sg-swatch" data-hex="#00B4C4"><div class="sg-swatch-chip" style="background:#00B4C4"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Aqua</span><span class="sg-mono">#00B4C4 &middot; $syn-aqua</span><span class="sg-note">Quote marks, tile tips</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#D17326"><div class="sg-swatch-chip" style="background:#D17326"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Bronze</span><span class="sg-mono">#D17326 &middot; $syn-bronze</span><span class="sg-note">Quote marks, tile tips</span></div></button>
+        </div>
+
+        <h3 class="sg-h3">Functional</h3>
+        <div class="sg-swatches">
+          <button type="button" class="sg-swatch" data-hex="#FFCC3E"><div class="sg-swatch-chip" style="background:#FFCC3E"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Alert yellow</span><span class="sg-mono">#FFCC3E &middot; $syn-alert</span><span class="sg-note">Module F alert bar</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#E61E25"><div class="sg-swatch-chip" style="background:#E61E25"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Asterisk red</span><span class="sg-mono">#E61E25 &middot; $syn-asterisk</span><span class="sg-note">Required asterisk, error message</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#BD302C"><div class="sg-swatch-chip" style="background:#BD302C"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Functional Error</span><span class="sg-mono">#BD302C &middot; $syn-error</span><span class="sg-note">Invalid field border</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#B2B2B2"><div class="sg-swatch-chip" style="background:#B2B2B2"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Input border</span><span class="sg-mono">#B2B2B2 &middot; $syn-input-border</span><span class="sg-note">Form text inputs</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#767676"><div class="sg-swatch-chip" style="background:#767676"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Radio border</span><span class="sg-mono">#767676 &middot; $syn-radio-border</span><span class="sg-note">Form radios</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#808080"><div class="sg-swatch-chip" style="background:#808080"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Light Gray</span><span class="sg-mono">#808080 &middot; $syn-light-gray</span><span class="sg-note">Legal box dashed border</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#B5DAF4"><div class="sg-swatch-chip" style="background:#B5DAF4"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Flag blue <span class="sg-badge sg-badge-note">Note only</span></span><span class="sg-mono">#B5DAF4 &middot; $syn-flag-light</span><span class="sg-note">Product "Most popular" flag</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#005FA3"><div class="sg-swatch-chip" style="background:#005FA3"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Blue hover <span class="sg-badge sg-badge-dev">Dev-defined</span></span><span class="sg-mono">#005FA3 &middot; $syn-blue-hover</span><span class="sg-note">Filled button hover</span></div></button>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 2. GRADIENTS & TINTS                                -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="gradients">
+        <header>
+          <span class="syn-eyebrow">Foundations</span>
+          <h2 class="syn-h2">Gradients &amp; tints</h2>
+          <p class="sg-note">Tints are Baby (#CCE3F3) at reduced opacity, always laid over white.</p>
+        </header>
+        <div class="sg-swatches">
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-blue-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Blue Ramp</span><span class="sg-mono">#0074C4 &rarr; #283862, bottom-left to top-right</span><span class="sg-note">Hero boxes, featured cards, dark belts</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-aqua-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Aqua Ramp</span><span class="sg-mono">202.6deg #0074C4 29.9% &rarr; #00B4C4 144.8%</span><span class="sg-note">Module 5A tile</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-white-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">White Ramp</span><span class="sg-mono">60deg #E6E6E6 28% &rarr; #FFFFFF 79%</span><span class="sg-note">Light belt backgrounds</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip" style="background:linear-gradient(89.73deg, rgba(229,241,249,.4) 13.3%, rgba(0,51,102,.2) 108.8%), #6f8fae"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Image overlay</span><span class="sg-mono">#E5F1F9 40% &rarr; #003366 20%</span><span class="sg-note">Over hero 1A photography</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip" style="background:#F5F9FD"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 20%</span><span class="sg-mono">$syn-tint-20</span><span class="sg-note">Glass card, chart fee band</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-ice"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 28% (Ice)</span><span class="sg-mono">$syn-tint-28</span><span class="sg-note">Section tint, tags, chart rows</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-pale"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 40% (Pale)</span><span class="sg-mono">$syn-tint-40</span><span class="sg-note">Light hero 1D, light form</span></div></div>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 3. TYPOGRAPHY                                       -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="typography">
+        <header>
+          <span class="syn-eyebrow">Foundations</span>
+          <h2 class="syn-h2">Typography</h2>
+          <p class="sg-note">Realist (Adobe Typekit) only. Weights: SemiLight 300, Regular 400, Medium 600, Bold 700. Mobile sizes switch below 768px.</p>
+        </header>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <thead><tr><th>Style &amp; class</th><th>Spec (desktop / mobile)</th><th>Sample</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Display</strong><br><span class="sg-mono">.syn-display</span></td><td class="sg-mono">Regular 52 / 1.2, Deep<br>mobile 40</td><td><p class="syn-display">Pinnacle is choosing to lead</p></td></tr>
+              <tr><td><strong>Section title</strong><br><span class="sg-mono">.syn-h2</span></td><td class="sg-mono">Medium 40 / 1.4, Deep<br>mobile 28 &middot; modules 2, 5, 6, 7, 8, 17</td><td><p class="syn-h2">Explore our calculators</p></td></tr>
+              <tr><td><strong>Homepage section title</strong><br><span class="sg-mono">.syn-h2-light</span></td><td class="sg-mono">Regular 40 / 1.2, Deep<br>Trusted Advisors uses 1.4</td><td><p class="syn-h2-light">What&rsquo;s the latest?</p></td></tr>
+              <tr><td><strong>Block title</strong><br><span class="sg-mono">.syn-h3</span></td><td class="sg-mono">Medium 32 / 1.4, Deep<br>mobile 28 &middot; form, image &amp; CTA, belts</td><td><p class="syn-h3">I&rsquo;d like to talk with someone about Pinnacle relationship programs.</p></td></tr>
+              <tr><td><strong>Tile title</strong><br><span class="sg-mono">.syn-h4</span></td><td class="sg-mono">Medium 24 / 1.4, Matt</td><td><p class="syn-h4">Pinnacle Checking</p></td></tr>
+              <tr><td><strong>Card title</strong><br><span class="sg-mono">.syn-h5</span></td><td class="sg-mono">Regular 20 / 1.4, Deep</td><td><p class="syn-h5">Should I Save For Retirement or Pay Down my Student Loans?</p></td></tr>
+              <tr><td><strong>Lead</strong><br><span class="sg-mono">.syn-lead</span></td><td class="sg-mono">Regular 20 / 1.52, Matt</td><td><p class="syn-lead">President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.</p></td></tr>
+              <tr><td><strong>Body</strong><br><span class="sg-mono">.syn-body</span></td><td class="sg-mono">Regular 16 / 1.52, Matt</td><td><p class="syn-body">Whether you&rsquo;re securing your family&rsquo;s future or scaling a global enterprise, our solutions and expert insights are designed to help you stay informed, prepared, and financially ready.</p></td></tr>
+              <tr><td><strong>Form copy</strong><br><span class="sg-mono">.syn-body-lg</span></td><td class="sg-mono">Regular 18 / 26px, Matt</td><td><p class="syn-body-lg">Required fields are marked with an asterisk (<span style="color:#E61E25">*</span>).</p></td></tr>
+              <tr><td><strong>Helper</strong><br><span class="sg-mono">.syn-helper</span></td><td class="sg-mono">Regular 14 / 18.56px, Text Gray</td><td><p class="syn-helper">example: 888-796-6887</p></td></tr>
+              <tr><td><strong>Legal</strong><br><span class="sg-mono">.syn-legal</span></td><td class="sg-mono">Regular 12 / 1.4, Text Gray</td><td><p class="syn-legal">Banking products are provided by Pinnacle Bank, a Tennessee bank, dba Synovus Bank. Member FDIC.</p></td></tr>
+              <tr><td><strong>Eyebrow</strong><br><span class="sg-mono">.syn-eyebrow</span></td><td class="sg-mono">Bold 14 / 1.4, 1px tracking, uppercase, Pinnacle Blue</td><td><p class="syn-eyebrow">Pinnacle trusted advisors</p></td></tr>
+              <tr><td><strong>Card label</strong><br><span class="sg-mono">.syn-label-caps</span></td><td class="sg-mono">Bold 16 / 1.2, uppercase, Pinnacle Blue</td><td><p class="syn-label-caps">Pinnacle Partners</p></td></tr>
+              <tr><td><strong>Pull quote</strong><br><span class="sg-mono">.syn-quote</span></td><td class="sg-mono">Regular 32 / 1.52, Deep<br>mobile line-height 1.4</td><td><p class="syn-quote">&ldquo;A key moment, insight, or idea.&rdquo;</p></td></tr>
+              <tr><td><strong>Stat counter</strong><br><span class="sg-mono">.syn-stat / .syn-stat-sm</span></td><td class="sg-mono">SemiLight 64 / 1 (small 40), 1px tracking, Pinnacle Blue</td><td><span class="syn-stat">135+</span> &nbsp; <span class="syn-stat-sm">$116B</span></td></tr>
+              <tr><td><strong>Footnote</strong><br><span class="sg-mono">.footnote-ref</span></td><td class="sg-mono">Underlined, Pinnacle Blue, 1.6px tracking</td><td><p class="syn-body">Annual Percentage Yield<a href="#" class="footnote-ref">1</a> effective as of today.</p></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 4. CORNERS & SHADOWS                                -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="radii">
+        <header>
+          <span class="syn-eyebrow">Foundations</span>
+          <h2 class="syn-h2">Corners &amp; shadows</h2>
+          <p class="sg-note">The signature &ldquo;leaf&rdquo; corner keeps the top-left square and rounds the other three. Figma drop shadows are listed as CSS <code>box-shadow</code> (Figma blur = CSS blur).</p>
+        </header>
+        <h3 class="sg-h3">Corner radius</h3>
+        <div class="sg-row">
+          <div><div class="sg-radius-box" style="border-radius:0 8px 8px 8px">0 8 8 8</div><p class="sg-caption">$syn-leaf-8 &middot; standard, small buttons</p></div>
+          <div><div class="sg-radius-box" style="border-radius:0 12px 12px 12px">0 12 12 12</div><p class="sg-caption">$syn-leaf-12 &middot; XL buttons, cards</p></div>
+          <div><div class="sg-radius-box" style="border-radius:0 20px 20px 20px">0 20 20 20</div><p class="sg-caption">$syn-leaf-20 &middot; hero box, quote, product card</p></div>
+          <div><div class="sg-radius-box" style="border-radius:12px">12</div><p class="sg-caption">$syn-radius-tile &middot; tiles, images</p></div>
+          <div><div class="sg-radius-box" style="border-radius:20px">20</div><p class="sg-caption">$syn-radius-chart &middot; comparison chart</p></div>
+          <div><div class="sg-radius-box" style="border-radius:10px">10</div><p class="sg-caption">testimonial card</p></div>
+          <div><div class="sg-radius-box" style="border-radius:8px">8</div><p class="sg-caption">search bar, dropdowns</p></div>
+          <div><div class="sg-radius-box" style="border-radius:5px">5</div><p class="sg-caption">form inputs</p></div>
+        </div>
+        <h3 class="sg-h3">Shadows</h3>
+        <div class="sg-stage sg-stage-tint">
+          <div class="sg-row">
+            <div class="sg-shadow-box" style="box-shadow:0 8px 28px rgba(0,0,0,.12)">Card<br><span class="sg-mono">0 8 28 #000 12%</span></div>
+            <div class="sg-shadow-box" style="box-shadow:0 8px 28px rgba(0,116,196,.12)">Card, blue<br><span class="sg-mono">0 8 28 #0074C4 12%</span></div>
+            <div class="sg-shadow-box" style="box-shadow:0 4px 4px rgba(0,0,0,.25)">Button<br><span class="sg-mono">0 4 4 #000 25%</span></div>
+            <div class="sg-shadow-box" style="box-shadow:0 1px 2px rgba(16,24,40,.05)">Shadow/xs<br><span class="sg-mono">0 1 2 #101828 5%</span></div>
           </div>
         </div>
-      </aside>
+      </section>
 
-      <!-- MAIN CONTENT -->
-      <main class="col-lg-9">
+      <!-- =================================================== -->
+      <!-- 5. LAYOUT                                           -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="layout">
+        <header>
+          <span class="syn-eyebrow">Foundations</span>
+          <h2 class="syn-h2">Layout &amp; grid</h2>
+          <p class="sg-note">Homepage frames are 1920 wide; module frames are 1440; mobile frames are 430. <span class="sg-mono">.container-syn</span> scales the side margins between them.</p>
+        </header>
+        <div class="d-flex flex-column gap-3">
+          <div><div class="sg-margins"><span class="m" style="width:15.4%">296</span><span class="c">1328 content &middot; 1920 frame</span><span class="m" style="width:15.4%">296</span></div></div>
+          <div style="max-width:75%"><div class="sg-margins"><span class="m" style="width:11.1%">160</span><span class="c">1120 content &middot; 1440 frame</span><span class="m" style="width:11.1%">160</span></div></div>
+          <div style="max-width:22.4%;min-width:220px"><div class="sg-margins"><span class="m" style="width:16px">16</span><span class="c">398 &middot; 430</span><span class="m" style="width:16px">16</span></div></div>
+        </div>
+        <h3 class="sg-h3">Grid patterns</h3>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <thead><tr><th>Pattern</th><th>Desktop (1440)</th><th>Used in</th></tr></thead>
+            <tbody>
+              <tr><td>3-up</td><td class="sg-mono">3 &times; 352, gap 32</td><td>Product tiles, feature cards, calculators, articles</td></tr>
+              <tr><td>4-up</td><td class="sg-mono">4 &times; 256, gap 32</td><td>Events calendar, videos, feature tiles (17D)</td></tr>
+              <tr><td>2-up</td><td class="sg-mono">2 &times; 544, gap 32</td><td>Product B, image &amp; CTA, account benefits</td></tr>
+              <tr><td>Homepage 3-up</td><td class="sg-mono">3 &times; 421&ndash;422, gap 32 (1920 frame)</td><td>Product cards, news cards</td></tr>
+              <tr><td>Narrow column</td><td class="sg-mono">928 (256 margins)</td><td>Pull quote B, comparison chart B</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="sg-h3">Section spacing</h3>
+        <p class="sg-note">Modules: 80px top and bottom (<span class="sg-mono">.section-syn</span>), 40px on mobile. Homepage sections: 120px (Trusted Advisors 120 / 160). Title to content: 40px. Title to description: 20px.</p>
+      </section>
 
-        <!-- INTRO -->
-        <section class="mb-5 pb-3 border-bottom">
-          <span class="spec-badge">Official Style Guide</span>
-          <h1 class="fw-bold mb-2" style="font-size: 2.75rem; color: #283862; line-height: 1.15;">
-            Synovus Dot Com Style Guide
-          </h1>
-          <p class="fs-5 text-muted mb-3" style="max-width: 800px;">
-            Strictly contains only the design tokens, button sizes, typography hierarchies, form inputs, tiles, and alert banners specified in the <strong>10-7-26 Dot Com Product &amp; Landing Page Modules for Dev</strong> Figma file.
-          </p>
-        </section>
+      <!-- =================================================== -->
+      <!-- 6. BUTTONS & LINKS                                  -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="buttons">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Buttons &amp; links</h2>
+          <p class="sg-note">Three sizes, each combined with a colour variant. The size a module uses is fixed by the module (&ldquo;All modules in this section are using the XL / Standard Button Size&rdquo;). Hover and focus states are <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
+        </header>
 
-        <!-- =================================================== -->
-        <!-- 1. BRAND COLORS                                     -->
-        <!-- =================================================== -->
-        <section id="colors" class="mb-5 pb-4 border-bottom">
-          <span class="spec-badge">Section 1</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Brand Color Palette</h2>
-          <div class="figma-callout">
-            <strong>Figma Designer Annotation:</strong> Named color swatches extracted verbatim from designer notes across Modules A, 2, 3, 5, 8, 14, 16. Click any card to copy the hex code.
-          </div>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <thead><tr><th>Size</th><th>Spec</th><th>On light</th><th>On dark</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>XL</strong><br><span class="sg-mono">.btn-syn-xl</span><br><span class="sg-note">Hero, Belt B, Merger Hub, Help</span></td>
+                <td class="sg-mono">60px &middot; padding 16/24<br>Bold 20 / 1.4<br>radius 0 12 12 12<br>no shadow (add .btn-syn-shadow on 1B&ndash;1D)</td>
+                <td><div class="sg-row"><a href="#" class="btn-syn-xl">Learn More</a><a href="#" class="btn-syn-xl btn-syn-outline">Find my branch</a></div></td>
+                <td class="sg-stage-dark" style="padding:24px"><div class="sg-row"><a href="#" class="btn-syn-xl btn-syn-white">Learn More</a><a href="#" class="btn-syn-xl btn-syn-outline-white">Find my branch</a></div></td>
+              </tr>
+              <tr>
+                <td><strong>Standard</strong><br><span class="sg-mono">.btn-syn-standard</span><br><span class="sg-note">Product, Form, Image &amp; CTA, Belt A, header</span></td>
+                <td class="sg-mono">48px &middot; padding 12/20<br>Bold 16 / 1.4<br>radius 0 8 8 8<br>shadow 0 4 4 25%</td>
+                <td><div class="sg-row"><a href="#" class="btn-syn-standard">Apply now</a><a href="#" class="btn-syn-standard btn-syn-outline">See details</a><a href="#" class="btn-syn-standard btn-syn-outline btn-syn-no-shadow">Open an Account</a></div></td>
+                <td class="sg-stage-dark" style="padding:24px"><div class="sg-row"><a href="#" class="btn-syn-standard btn-syn-tint">Submit</a><a href="#" class="btn-syn-standard btn-syn-white">Learn more</a></div></td>
+              </tr>
+              <tr>
+                <td><strong>Small</strong><br><span class="sg-mono">.btn-syn-small</span><br><span class="sg-note">Comparison chart B</span></td>
+                <td class="sg-mono">40px &middot; padding 0/21<br>Bold 16<br>radius 0 8 8 8<br>shadow 0 4 4 25%</td>
+                <td><div class="sg-row"><a href="#" class="btn-syn-small">Apply now</a></div></td>
+                <td class="sg-stage-dark" style="padding:24px"><div class="sg-row"><a href="#" class="btn-syn-small btn-syn-white">Apply now</a></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-          <!-- PRIMARY PALETTE -->
-          <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 mb-4">
-            <!-- Pinnacle Blue -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#0074C4', '$syn-blue')">
-                <div class="swatch-color text-white" style="background-color: #0074C4;">#0074C4</div>
-                <div class="p-3">
-                  <div class="fw-bold">Pinnacle Blue</div>
-                  <div class="small text-muted mb-1">Primary CTA Fill &amp; Links</div>
-                  <div class="small font-monospace text-primary">$syn-blue</div>
-                </div>
+        <h3 class="sg-h3">Links</h3>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <tbody>
+              <tr><td><strong>Tertiary</strong><br><span class="sg-mono">.link-syn-tertiary</span></td><td class="sg-mono">Bold 16 / 1.4 + 16px chevron, gap 4</td><td><a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron" aria-hidden="true"></span></a></td><td class="sg-stage-dark" style="padding:16px 24px"><a href="#" class="link-syn-tertiary link-syn-tertiary-white">Learn More <span class="syn-chevron" aria-hidden="true"></span></a></td></tr>
+              <tr><td><strong>Inline</strong><br><span class="sg-mono">.link-syn-inline</span></td><td class="sg-mono">Bold, underlined, inherits colour</td><td colspan="2"><p class="syn-body">Find our full holiday schedule at <a href="#" class="link-syn-inline">PNFP.com/holidays</a>.</p></td></tr>
+              <tr><td><strong>Utility</strong><br><span class="sg-mono">.link-syn-utility</span></td><td class="sg-mono">Medium 14, underlined, Text Gray</td><td colspan="2"><div class="sg-row"><a href="#" class="link-syn-utility">About us</a><a href="#" class="link-syn-utility">Locations &amp; ATMs</a></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 7. GLOBAL HEADER                                    -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="header">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Global header</h2>
+          <p class="sg-note">Figma 588:4402. FDIC bar (Italic 12 / 1.4, Hint divider), utility links + 200px search, logo 160&times;47, main nav (Regular 16, 40px gap) and a Standard outline &ldquo;Open an Account&rdquo; button with no shadow. On mobile (588:52861) the bar becomes hamburger + centred logo + &ldquo;Log in&rdquo;.</p>
+        </header>
+        <div class="sg-stage sg-stage-bleed">
+          <header class="site-header-syn">
+            <div class="fdic-bar-syn">
+              <div class="container-syn fdic-bar-syn-inner">
+                <img src="assets/images/logo-fdic.svg" width="37" height="15" alt="FDIC">
+                <span>FDIC-Insured - Backed by the full faith and credit of the U.S. Government</span>
               </div>
             </div>
-
-            <!-- Pinnacle Navy Deep -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#283862', '$syn-navy')">
-                <div class="swatch-color text-white" style="background-color: #283862;">#283862</div>
-                <div class="p-3">
-                  <div class="fw-bold">Pinnacle Navy (Deep)</div>
-                  <div class="small text-muted mb-1">Section Titles &amp; Contrast</div>
-                  <div class="small font-monospace text-primary">$syn-navy</div>
-                </div>
+            <div class="container-syn">
+              <div class="utility-nav-syn">
+                <a href="#" class="link-syn-utility">About us</a>
+                <a href="#" class="link-syn-utility">Locations &amp; ATMs</a>
+                <a href="#" class="link-syn-utility">Client support</a>
+                <a href="#" class="link-syn-utility">Fraud &amp; Security</a>
+                <label class="search-syn">
+                  <img src="assets/images/icon-search.svg" width="20" height="20" alt="">
+                  <span class="visually-hidden">Search</span>
+                  <input type="search" placeholder="Search">
+                </label>
+              </div>
+              <div class="main-nav-syn">
+                <img src="assets/images/logo-pinnacle.png" width="160" height="47" alt="Pinnacle Financial Partners">
+                <ul class="main-nav-syn-links">
+                  <li><a href="#">Personal</a></li>
+                  <li><a href="#">Wealth</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Commercial</a></li>
+                  <li><a href="#">Insights</a></li>
+                </ul>
+                <a href="#" class="btn-syn-standard btn-syn-outline btn-syn-no-shadow">Open an Account</a>
               </div>
             </div>
+          </header>
+        </div>
+      </section>
 
-            <!-- Pinnacle Ice / Lightest Blue -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#CCE3F3', '$syn-light-blue')">
-                <div class="swatch-color" style="background-color: #CCE3F3; color: #283862;">#CCE3F3</div>
-                <div class="p-3">
-                  <div class="fw-bold">Pinnacle Ice / Light Blue</div>
-                  <div class="small text-muted mb-1">Tile Fill &amp; Hero Accent</div>
-                  <div class="small font-monospace text-primary">$syn-light-blue</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pinnacle White -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#FFFFFF', '$syn-white')">
-                <div class="swatch-color border-bottom text-dark" style="background-color: #FFFFFF;">#FFFFFF</div>
-                <div class="p-3">
-                  <div class="fw-bold">Pinnacle White</div>
-                  <div class="small text-muted mb-1">Tile Background &amp; Button Text</div>
-                  <div class="small font-monospace text-primary">$syn-white</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pinnacle Black -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#151515', '$syn-black')">
-                <div class="swatch-color text-white" style="background-color: #151515;">#151515</div>
-                <div class="p-3">
-                  <div class="fw-bold">Pinnacle Black</div>
-                  <div class="small text-muted mb-1">Body Text &amp; Field Labels</div>
-                  <div class="small font-monospace text-primary">$syn-black</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Grey -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#525252', '$syn-grey')">
-                <div class="swatch-color text-white" style="background-color: #525252;">#525252</div>
-                <div class="p-3">
-                  <div class="fw-bold">Grey</div>
-                  <div class="small text-muted mb-1">Field Descriptions &amp; Helpers</div>
-                  <div class="small font-monospace text-primary">$syn-grey</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Placeholder Grey -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#989898', '$syn-placeholder')">
-                <div class="swatch-color text-white" style="background-color: #989898;">#989898</div>
-                <div class="p-3">
-                  <div class="fw-bold">Placeholder Grey</div>
-                  <div class="small text-muted mb-1">Input Field Placeholders</div>
-                  <div class="small font-monospace text-primary">$syn-placeholder</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Border Grey -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#D1D1D1', '$syn-border')">
-                <div class="swatch-color text-dark" style="background-color: #D1D1D1;">#D1D1D1</div>
-                <div class="p-3">
-                  <div class="fw-bold">Border Grey</div>
-                  <div class="small text-muted mb-1">Input &amp; Tile Strokes</div>
-                  <div class="small font-monospace text-primary">$syn-border</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Alert Gold (Module F) -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#EBC52C', '$syn-gold')">
-                <div class="swatch-color" style="background-color: #EBC52C; color: #283862;">#EBC52C</div>
-                <div class="p-3">
-                  <div class="fw-bold">Alert Gold</div>
-                  <div class="small text-muted mb-1">Module F Alert Bar Fill</div>
-                  <div class="small font-monospace text-primary">$syn-gold</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Asterisk Red -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#E61E25', '$syn-asterisk')">
-                <div class="swatch-color text-white" style="background-color: #E61E25;">#E61E25</div>
-                <div class="p-3">
-                  <div class="fw-bold">Asterisk / Error Red</div>
-                  <div class="small text-muted mb-1">Required Field Asterisk (*)</div>
-                  <div class="small font-monospace text-primary">$syn-asterisk</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Error Code Red -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#BD302C', '$syn-error')">
-                <div class="swatch-color text-white" style="background-color: #BD302C;">#BD302C</div>
-                <div class="p-3">
-                  <div class="fw-bold">Error Border Red</div>
-                  <div class="small text-muted mb-1">Field Error State Border</div>
-                  <div class="small font-monospace text-primary">$syn-error</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Background Light -->
-            <div class="col">
-              <div class="spec-swatch" onclick="copyHex('#F5F5F5', '$syn-bg-light')">
-                <div class="swatch-color border-bottom text-dark" style="background-color: #F5F5F5;">#F5F5F5</div>
-                <div class="p-3">
-                  <div class="fw-bold">Background Light</div>
-                  <div class="small text-muted mb-1">Section Alternating Canvas</div>
-                  <div class="small font-monospace text-primary">$syn-bg-light</div>
-                </div>
-              </div>
+      <!-- =================================================== -->
+      <!-- 8. ALERT BAR                                        -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="alert">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Alert bar (Module F)</h2>
+          <p class="sg-note">Figma 1148:29078. Sits above the global header on every page when switched on. #FFCC3E fill, 16px vertical padding, 32px calendar icon, Regular 16 / 1.52 Matt text with a bold underlined link, 24px close icon.</p>
+        </header>
+        <div class="sg-stage sg-stage-bleed">
+          <div class="alert-bar-syn" role="region" aria-label="Site alert">
+            <div class="container-syn alert-bar-syn-inner">
+              <p class="alert-bar-syn-message m-0">
+                <img src="assets/images/icon-calendar.svg" width="32" height="32" alt="">
+                <span>Pinnacle offices will be closed Friday, June 19, for Juneteenth federal holiday. Find our full holiday schedule at <a href="#" class="link-syn-inline">PNFP.com/holidays</a>.</span>
+              </p>
+              <button type="button" class="alert-bar-syn-close" aria-label="Dismiss alert"><img src="assets/images/icon-close.svg" width="24" height="24" alt=""></button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- =================================================== -->
-        <!-- 2. TYPOGRAPHY SCALE                                 -->
-        <!-- =================================================== -->
-        <section id="typography" class="mb-5 pb-4 border-bottom">
-          <span class="spec-badge">Section 2</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Typography Hierarchy</h2>
-          <div class="figma-callout">
-            <strong>Figma Designer Typography Rules:</strong> Realist (Adobe Typekit) font family with exact sizes and line-heights extracted from module specs.
-          </div>
-
-          <div class="bg-white border rounded p-4 mb-4">
-            <!-- Hero Title -->
-            <div class="mb-4 pb-3 border-bottom">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Hero Title (Module A)</span>
-                <span class="small text-muted font-monospace">Realist 400 / 52px / 62px line-height / #283862</span>
+      <!-- =================================================== -->
+      <!-- 9. FORMS                                            -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="forms">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Forms (Module 3)</h2>
+          <p class="sg-note">Figma 167:55900. Only text inputs and radios are drawn. Inputs: 46px, 1px #B2B2B2, radius 5. Label Bold 18 / 26px; optional description Regular 14 sits between label and input; 4px gap inside a field, 28px between fields (20 on mobile). Max 64 characters per field. Focus and checked states are <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
+        </header>
+        <div class="row g-4">
+          <div class="col-xl-7">
+            <div class="form-card-syn">
+              <div class="d-flex flex-column gap-2">
+                <h3 class="syn-h3">I&rsquo;d like to talk with someone about Pinnacle relationship programs and CDs.</h3>
+                <p class="syn-body-lg" style="color:#525252">Required fields are marked with an asterisk (<span class="required-asterisk" style="color:#E61E25">*</span>).</p>
               </div>
-              <div style="font-size: 52px; line-height: 62px; color: #283862; font-weight: 400;">
-                Checking that fits your life.
-              </div>
-            </div>
-
-            <!-- Section Title 40pt -->
-            <div class="mb-4 pb-3 border-bottom">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Section Title (Modules 2, 5, 8, 14, 16)</span>
-                <span class="small text-muted font-monospace">Realist Medium / 40px / 140% line spacing / #283862</span>
-              </div>
-              <div style="font-size: 40px; line-height: 56px; color: #283862; font-weight: 600;">
-                Banking solutions for every stage of your business.
-              </div>
-            </div>
-
-            <!-- Section Title 32pt/28pt -->
-            <div class="mb-4 pb-3 border-bottom">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Section Title Medium (Modules 3, 6, 13)</span>
-                <span class="small text-muted font-monospace">Realist Medium / 32px / 140% line spacing / #283862</span>
-              </div>
-              <div style="font-size: 32px; line-height: 45px; color: #283862; font-weight: 600;">
-                I’d like to talk with someone about Synovus programs.
-              </div>
-            </div>
-
-            <!-- Tile Title 24pt/20pt -->
-            <div class="mb-4 pb-3 border-bottom">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Tile Title (Account Name)</span>
-                <span class="small text-muted font-monospace">Realist Medium / 24px (or 20px) / #151515</span>
-              </div>
-              <div style="font-size: 24px; line-height: 34px; color: #151515; font-weight: 600;">
-                Free Checking Account
-              </div>
-            </div>
-
-            <!-- Subtitle 20pt -->
-            <div class="mb-4 pb-3 border-bottom">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Subtitle / Subhead</span>
-                <span class="small text-muted font-monospace">Realist Regular / 20px / 140%-152% line spacing / #151515</span>
-              </div>
-              <div style="font-size: 20px; line-height: 30px; color: #151515; font-weight: 400;">
-                Simple, straightforward checking with no monthly maintenance fees and 24/7 mobile access.
-              </div>
-            </div>
-
-            <!-- Body Copy 18pt/16pt -->
-            <div class="mb-4 pb-3 border-bottom">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Body Copy</span>
-                <span class="small text-muted font-monospace">Realist Regular / 18px &amp; 16px / #151515</span>
-              </div>
-              <div style="font-size: 16px; line-height: 24px; color: #151515; font-weight: 400;">
-                Open online in minutes with direct deposit setup, contactless debit cards, and nationwide ATM access.
-              </div>
-            </div>
-
-            <!-- Field Description 14pt -->
-            <div class="mb-4 pb-3 border-bottom">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Field Description / Helper Text</span>
-                <span class="small text-muted font-monospace">Realist Regular / 14px / #525252</span>
-              </div>
-              <div style="font-size: 14px; line-height: 20px; color: #525252; font-weight: 400;">
-                example: 888-796-6887 (contained to one line with 98 character limit).
-              </div>
-            </div>
-
-            <!-- Footnote Superscript -->
-            <div>
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="badge bg-light text-dark border">Superscript for Footnotes</span>
-                <span class="small text-muted font-monospace">Realist Bold / Underlined / Color: #0074C4</span>
-              </div>
-              <div style="font-size: 16px; line-height: 24px; color: #151515;">
-                Annual Percentage Yield (APY) effective as of October 2026<a href="javascript:void(0)" class="footnote-ref">1</a>. Subject to minimum balance requirements<a href="javascript:void(0)" class="footnote-ref">2</a>.
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- =================================================== -->
-        <!-- 3. BUTTONS (FIGMA SIZES & ROUNDED RADII)            -->
-        <!-- =================================================== -->
-        <section id="buttons" class="mb-5 pb-4 border-bottom">
-          <span class="spec-badge">Section 3</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Buttons &amp; CTAs (Corner Radii &amp; Sizes)</h2>
-          <div class="figma-callout">
-            <strong>Figma Corner Radius Analysis:</strong> The design uses rounded corners across buttons: 
-            <strong>8px</strong> on Standard/Small buttons, <strong>12px</strong> on XL buttons, and a signature asymmetric radius <strong>0 8px 8px 8px</strong> / <strong>0 12px 12px 12px</strong> (top-left sharp 0px, remaining 3 corners rounded) used in over 28 button components across Belt Straps, Content Cards, and Articles.
-          </div>
-
-          <div class="row g-4">
-            <!-- 1. XL Button Size -->
-            <div class="col-md-6 col-xl-3">
-              <div class="bg-white border rounded p-4 h-100 d-flex flex-column justify-content-between">
-                <div>
-                  <div class="fw-bold text-dark mb-1">XL Button Size</div>
-                  <div class="small text-muted mb-3">Hero &amp; Belt Straps (60px height)</div>
-                  <div class="d-flex flex-column gap-2 mb-3">
-                    <a href="javascript:void(0)" class="btn-syn-xl w-100">Learn More</a>
-                    <a href="javascript:void(0)" class="btn-syn-xl btn-uniform w-100">Uniform (12px)</a>
+              <form class="form-syn" action="#" onsubmit="event.preventDefault()">
+                <div class="form-field-syn">
+                  <label class="form-label-syn" for="sgFirst">First Name <span class="required-asterisk">*</span></label>
+                  <input class="form-control-syn" id="sgFirst" type="text" maxlength="64" autocomplete="given-name">
+                </div>
+                <div class="form-field-syn">
+                  <label class="form-label-syn" for="sgPhone">Phone</label>
+                  <span class="form-desc-syn" id="sgPhoneDesc">example: 888-796-6887</span>
+                  <input class="form-control-syn" id="sgPhone" type="tel" maxlength="64" aria-describedby="sgPhoneDesc" autocomplete="tel">
+                </div>
+                <div class="form-field-syn">
+                  <label class="form-label-syn" for="sgEmail">Email <span class="required-asterisk">*</span></label>
+                  <span class="form-desc-syn" id="sgEmailDesc">example: jsmith@example.com</span>
+                  <input class="form-control-syn is-invalid" id="sgEmail" type="email" maxlength="64" value="jsmith@" aria-invalid="true" aria-describedby="sgEmailDesc sgEmailErr">
+                  <span class="form-error-syn" id="sgEmailErr">Please enter a valid email address.</span>
+                </div>
+                <fieldset class="form-field-syn border-0 p-0 m-0">
+                  <legend class="form-label-syn mb-0">Do you prefer phone or email? <span class="required-asterisk">*</span></legend>
+                  <div class="form-radios-syn">
+                    <label class="form-radio-syn"><input type="radio" name="sgPref" checked> Phone</label>
+                    <label class="form-radio-syn"><input type="radio" name="sgPref"> Email</label>
                   </div>
-                </div>
-                <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  height: 60px<br>pad: 16px 24px<br>font: Realist 20px Bold<br>radius: 0 12px 12px 12px / 12px
-                </div>
-              </div>
+                </fieldset>
+                <div><button type="submit" class="btn-syn-standard">Submit</button></div>
+              </form>
             </div>
-
-            <!-- 2. Standard Button Size -->
-            <div class="col-md-6 col-xl-3">
-              <div class="bg-white border rounded p-4 h-100 d-flex flex-column justify-content-between">
-                <div>
-                  <div class="fw-bold text-dark mb-1">Standard Button Size</div>
-                  <div class="small text-muted mb-3">Modules 2, 3, 4, 11 (46px height)</div>
-                  <div class="d-flex flex-column gap-2 mb-3">
-                    <a href="javascript:void(0)" class="btn-syn-standard w-100">Standard button</a>
-                    <a href="javascript:void(0)" class="btn-syn-standard btn-uniform w-100">Uniform (8px)</a>
-                  </div>
-                </div>
-                <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  height: 46px<br>pad: 12px 20px<br>font: Realist 16px Bold<br>radius: 0 8px 8px 8px / 8px
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. Small Button Size -->
-            <div class="col-md-6 col-xl-3">
-              <div class="bg-white border rounded p-4 h-100 d-flex flex-column justify-content-between">
-                <div>
-                  <div class="fw-bold text-dark mb-1">Small Button Size</div>
-                  <div class="small text-muted mb-3">Modules 10, 16 (38px height)</div>
-                  <div class="d-flex flex-column gap-2 mb-3">
-                    <a href="javascript:void(0)" class="btn-syn-small w-100">View Details</a>
-                    <a href="javascript:void(0)" class="btn-syn-small btn-uniform w-100">Uniform (8px)</a>
-                  </div>
-                </div>
-                <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  height: 38px<br>pad: 8px 20px<br>font: Realist 14px Bold<br>radius: 0 8px 8px 8px / 8px
-                </div>
-              </div>
-            </div>
-
-            <!-- 4. Tertiary Link & Tint Button -->
-            <div class="col-md-6 col-xl-3">
-              <div class="bg-white border rounded p-4 h-100 d-flex flex-column justify-content-between">
-                <div>
-                  <div class="fw-bold text-dark mb-1">Tertiary &amp; Tint Variants</div>
-                  <div class="small text-muted mb-3">Underlined Link &amp; Lightest Blue</div>
-                  <div class="d-flex flex-column gap-2 mb-3">
-                    <a href="javascript:void(0)" class="btn-syn-tertiary">Secondary button <i class="bi bi-arrow-right"></i></a>
-                    <a href="javascript:void(0)" class="btn-syn-tint btn-uniform w-100">Tint button</a>
-                  </div>
-                </div>
-                <div class="small font-monospace text-muted bg-light p-2 rounded">
-                  Tertiary: underline in #0074C4<br>Tint: #CCE3F3 fill (8px radius)
-                </div>
-              </div>
-            </div>
+            <p class="sg-caption">Grey variant (Smoke card). The error message text colour (#E61E25) and border (#BD302C) come from the designer notes; the error example in Figma is a flat image, so message size and spacing are <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
           </div>
-        </section>
-
-        <!-- =================================================== -->
-        <!-- 4. FORM FIELDS & LOGIN CARD                         -->
-        <!-- =================================================== -->
-        <section id="forms" class="mb-5 pb-4 border-bottom">
-          <span class="spec-badge">Section 4</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Form Fields &amp; Login Card</h2>
-          <div class="figma-callout">
-            <strong>Figma Designer Form Rules:</strong> 54px input height, border #D1D1D1, placeholder #989898, field labels in Realist Bold 18px (#151515) with required asterisk in #E61E25, error state with #BD302C border and red error message in #E61E25.
-          </div>
-
-          <div class="row g-4">
-            <!-- Login Card from Module A -->
-            <div class="col-lg-5">
-              <div class="login-card-syn">
-                <!-- Dual Accent Header -->
-                <div class="accent-bar-dual mb-4"></div>
-
-                <div class="d-flex align-items-center gap-2 mb-3" style="color: #283862;">
-                  <i class="bi bi-lock-fill fs-5"></i>
-                  <h3 class="h5 fw-bold mb-0">Manage Your Account</h3>
+          <div class="col-xl-5">
+            <div class="form-card-syn form-card-syn-navy">
+              <h3 class="syn-h3">Talk with a Pinnacle advisor</h3>
+              <form class="form-syn" action="#" onsubmit="event.preventDefault()">
+                <div class="form-field-syn">
+                  <label class="form-label-syn" for="sgZip">Zip Code <span class="required-asterisk">*</span></label>
+                  <span class="form-desc-syn">example: 31901</span>
+                  <input class="form-control-syn" id="sgZip" type="text" maxlength="64" inputmode="numeric" autocomplete="postal-code">
                 </div>
-
-                <form onsubmit="event.preventDefault();">
-                  <div class="mb-3">
-                    <select class="form-select form-select-syn">
-                      <option selected>My Pinnacle</option>
-                      <option>Personal Online Banking</option>
-                      <option>Commercial Advantage</option>
-                    </select>
+                <fieldset class="form-field-syn border-0 p-0 m-0">
+                  <legend class="form-label-syn mb-0">Are you already a Pinnacle Bank customer?</legend>
+                  <div class="form-radios-syn">
+                    <label class="form-radio-syn"><input type="radio" name="sgCust"> Yes</label>
+                    <label class="form-radio-syn"><input type="radio" name="sgCust"> No</label>
                   </div>
+                </fieldset>
+                <div><button type="submit" class="btn-syn-standard btn-syn-tint">Submit</button></div>
+              </form>
+            </div>
+            <p class="sg-caption">Navy variant (167:56135): title Baby, copy Ice, labels white, input border Ice, button Baby with Deep text. Light blue (Pale) and Pinnacle Blue variants also exist.</p>
+          </div>
+        </div>
+      </section>
 
-                  <div class="mb-3">
-                    <input type="text" class="form-control form-control-syn" placeholder="User ID">
-                  </div>
-
-                  <div class="mb-3">
-                    <div class="password-field-wrap">
-                      <input type="password" id="styleguidePwdInput" class="form-control form-control-syn" placeholder="Password">
-                      <button type="button" class="btn-toggle-pwd" id="styleguidePwdBtn" onclick="toggleGuidePassword()">Show</button>
+      <!-- =================================================== -->
+      <!-- 10. LOGIN CARD                                      -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="login">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Login card (Module A)</h2>
+          <p class="sg-note">Figma 588:4858. 352 &times; 540, White 84% with 6px backdrop blur, radius 0 12 12 12, dual accent bar. See the <a href="module-hero.html" class="link-syn-inline">Module A showcase</a> for the full hero.</p>
+        </header>
+        <div class="sg-stage sg-stage-bleed" style="background:url('assets/images/hero-mobile-bg.jpg') center / cover">
+          <div class="d-flex justify-content-center py-5">
+            <div class="hero-a-login">
+              <div class="accent-bar-dual"></div>
+              <div class="hero-a-login-body">
+                <h3 class="hero-a-login-title">
+                  <img src="assets/images/icon-lock.svg" width="28" height="28" alt="">
+                  <span>Manage Your Account</span>
+                </h3>
+                <form class="hero-a-form" action="#" onsubmit="event.preventDefault()">
+                  <div class="hero-a-fields">
+                    <div class="hero-a-select-wrap">
+                      <label for="sgAccountType" class="visually-hidden">Account type</label>
+                      <select id="sgAccountType" class="hero-a-select">
+                        <option selected>My Pinnacle</option>
+                        <option>Personal Online Banking</option>
+                        <option>Commercial Advantage</option>
+                      </select>
+                      <img class="hero-a-select-icon" src="assets/images/icon-arrow.svg" width="24" height="24" alt="">
+                    </div>
+                    <div class="hero-a-inputs">
+                      <label for="sgUser" class="visually-hidden">Username</label>
+                      <input type="text" id="sgUser" class="hero-a-input" placeholder="Username" autocomplete="username">
+                      <div class="hero-a-password">
+                        <label for="sgPwd" class="visually-hidden">Password</label>
+                        <input type="password" id="sgPwd" class="hero-a-input" placeholder="Password" autocomplete="current-password">
+                        <button type="button" class="hero-a-pwd-toggle" id="sgPwdBtn" aria-controls="sgPwd" aria-pressed="false">Show</button>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="d-flex justify-content-between mb-4 small">
-                    <a href="javascript:void(0)" style="color: #525252; text-decoration: none;">Forgot Username?</a>
-                    <span style="color: #D1D1D1;">|</span>
-                    <a href="javascript:void(0)" style="color: #525252; text-decoration: none;">Forgot Password?</a>
+                  <div class="hero-a-links">
+                    <a href="#">Forgot Username?</a>
+                    <span aria-hidden="true">|</span>
+                    <a href="#">Forgot Password?</a>
                   </div>
-
-                  <button type="submit" class="btn-syn-xl w-100 mb-3" style="min-height: 54px; font-size: 1.125rem;">Login</button>
-                  <div class="text-center">
-                    <a href="javascript:void(0)" class="fw-bold text-decoration-none small" style="color: #0074C4;">Enroll in Online Banking</a>
+                  <div class="hero-a-ctas">
+                    <button type="submit" class="btn-syn-xl">Login</button>
+                    <a href="#" class="hero-a-enroll">Enroll</a>
                   </div>
                 </form>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Form Field Variations (Module 3 Form Specs) -->
-            <div class="col-lg-7">
-              <div class="bg-white border rounded p-4 h-100">
-                <h4 class="h5 fw-bold mb-3" style="color: #283862;">Field Specifications (Module 3 Form)</h4>
+      <!-- =================================================== -->
+      <!-- 11. CARDS & TILES                                   -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="cards">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Cards &amp; tiles</h2>
+          <p class="sg-note">Homepage cards use the leaf corner and the blue-tinted shadow; module tiles use a full 12px radius and the neutral shadow.</p>
+        </header>
 
-                <!-- Normal Field with Label & Description -->
-                <div class="mb-4">
-                  <label class="form-label-syn">
-                    Phone <span class="required-asterisk">*</span>
-                  </label>
-                  <input type="text" class="form-control form-control-syn" placeholder="888-796-6887">
-                  <span class="form-desc-syn">example: 888-796-6887 (contained to one line with 98 character limit)</span>
-                </div>
+        <h3 class="sg-h3">Featured insight + image (Resources row, Homepage 588:4523)</h3>
+        <div class="sg-stage">
+          <p class="sg-note mb-3">Two treatments exist for this row. The homepage currently runs a hybrid of the two (Original layout/card with the Alternate's photo) &mdash; both pure versions are documented here for reference.</p>
 
-                <!-- Error State -->
-                <div class="mb-4">
-                  <label class="form-label-syn">
-                    Email <span class="required-asterisk">*</span>
-                  </label>
-                  <input type="text" class="form-control form-control-syn is-invalid" value="invalid-email-format">
-                  <div class="form-error-syn">Please enter a valid email address (e.g. jsmith@example.com).</div>
-                </div>
+          <p class="sg-caption mb-2"><strong>Original style</strong> &middot; dark Blue Ramp card, white-outline tag, image on the right</p>
+          <div class="section-heading-syn mb-3">
+            <span class="section-heading-syn-eyebrow">Pinnacle trusted advisors</span>
+            <h2 class="section-heading-syn-title" style="font-size:1.75rem">Let&rsquo;s reach your financial potential</h2>
+          </div>
+          <div class="resources-syn-row">
+            <div class="card-syn-featured">
+              <span class="tag-syn-outline">FEATURED INSIGHT</span>
+              <div class="card-syn-text">
+                <h4 class="card-syn-title">Fraud Prevention and Security</h4>
+                <p class="syn-body">Pinnacle is devoted to keeping your finances secure. Our fraud protection resources and tips can help you recognize &mdash; and prevent &mdash; potential scams that could have devastating effects.</p>
+              </div>
+              <a href="#" class="link-syn-tertiary link-syn-tertiary-white">Learn More <span class="syn-chevron" aria-hidden="true"></span></a>
+            </div>
+            <div class="resources-syn-photo">
+              <img src="assets/images/resources-abstract-art.png" alt="">
+            </div>
+          </div>
+          <p class="sg-caption mt-2">padding 60 &middot; gap 32 &middot; Blue Ramp &middot; leaf 12 &middot; card shadow &middot; title Regular 32 / 1.2</p>
 
-                <!-- Multiple Choice Radio (Phone / Email) -->
-                <div>
-                  <label class="form-label-syn">
-                    Do you prefer phone or email? <span class="required-asterisk">*</span>
-                  </label>
-                  <div class="choice-wrap-syn">
-                    <label class="choice-item">
-                      <input type="radio" name="contactPref" checked> Phone
-                    </label>
-                    <label class="choice-item">
-                      <input type="radio" name="contactPref"> Email
-                    </label>
+          <hr class="my-5">
+
+          <p class="sg-caption mb-2"><strong>Alternate style</strong> &middot; photo on the left, light Ice card with a dark tag badge <span class="sg-badge sg-badge-dev">Dev-named &ldquo;Alternate&rdquo;</span></p>
+          <div class="section-heading-syn mb-3">
+            <span class="section-heading-syn-eyebrow">Pinnacle trusted advisors</span>
+            <h2 class="section-heading-syn-title" style="font-size:1.75rem">Your experts in financial excellence</h2>
+          </div>
+          <div class="resources-syn-row">
+            <div class="resources-syn-photo">
+              <img src="assets/images/resources-checking-photo.png" alt="">
+            </div>
+            <div class="card-syn-featured-light">
+              <span class="tag-syn-dark">FEATURED INSIGHT</span>
+              <div class="card-syn-text">
+                <h4 class="card-syn-title">Fraud Prevention and Security</h4>
+                <p class="syn-body">Pinnacle Financial Partners is devoted to keeping your finances secure. Our fraud protection resources and tips can help you recognize and prevent potential scams that could have devastating effects.</p>
+              </div>
+              <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron" aria-hidden="true"></span></a>
+            </div>
+          </div>
+          <p class="sg-caption mt-2">Same padding/leaf/shadow as Original, with Ice fill, navy title/tag text, and the solid navy tag badge instead of white-outline.</p>
+        </div>
+
+        <h3 class="sg-h3">Flip card (Product Card v3, interactive)</h3>
+        <div class="sg-stage">
+          <div class="row g-4">
+            <div class="col-lg-4">
+              <div class="card-syn-product-flip" data-sg-flip-card>
+                <div class="card-syn-product-flip-inner">
+                  <div class="card-syn-product-flip-front">
+                    <div class="card-syn-product">
+                      <span class="tag-syn">Personal banking</span>
+                      <div class="card-syn-text">
+                        <h4 class="syn-h5">Should I Save For Retirement or Pay Down my Student Loans?</h4>
+                        <p class="syn-body">Choosing between retirement savings and student loan repayment can feel impossible &mdash; but this framework can help you make a good decision.</p>
+                      </div>
+                      <div class="card-syn-product-footer">
+                        <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron" aria-hidden="true"></span></a>
+                        <button type="button" class="card-syn-product-action" data-sg-flip-trigger aria-label="Flip card to see personal banking options"><img src="assets/images/icon-share-circle.svg" alt=""></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-syn-product-flip-back">
+                    <span class="card-syn-flip-icon"><i class="bi bi-people-fill" aria-hidden="true"></i></span>
+                    <h4 class="syn-h5">Personal banking</h4>
+                    <ul class="card-syn-flip-list">
+                      <li>Checking</li>
+                      <li>Savings</li>
+                      <li>Credit</li>
+                      <li>Life Milestones</li>
+                    </ul>
+                    <div class="card-syn-product-footer">
+                      <a href="#" class="btn-syn-standard btn-syn-white">Explore Your Options</a>
+                      <button type="button" class="card-syn-product-action" data-sg-flip-trigger aria-label="Flip card back"><img src="assets/images/icon-share-circle.svg" alt=""></button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+          <p class="sg-caption">Click the corner icon to flip (click again to flip back). Front: Product Card v3, unchanged. Back: Blue Ramp, 56px white icon badge (leaf 8), bulleted list, white &ldquo;Explore Your Options&rdquo; button. 3D rotateX, top edge tips away first <span class="sg-badge sg-badge-dev">Dev-defined icon/back copy</span>.</p>
+        </div>
 
-        <!-- =================================================== -->
-        <!-- 5. TILES & SURFACES (12° CORNER RADIUS)             -->
-        <!-- =================================================== -->
-        <section id="tiles" class="mb-5 pb-4 border-bottom">
-          <span class="spec-badge">Section 5</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Tiles &amp; Surfaces (12° Corner Radius)</h2>
-          <div class="figma-callout">
-            <strong>Figma Designer Rule:</strong> <em>"Corner radius 12 degrees"</em>. Tiles maintain consistent sizes regardless of content growth, with drop shadow: offset(0, 4), radius:12, color:#000000 (8% opacity).
-          </div>
-
-          <div class="row g-4">
-            <!-- White Tile -->
-            <div class="col-md-6">
-              <div class="tile-syn h-100 d-flex flex-column justify-content-between">
-                <div>
-                  <!-- Accent top bar -->
-                  <div class="accent-bar-dual mb-3"></div>
-                  <h3 class="fw-bold mb-2" style="font-size: 24px; color: #151515;">Pinnacle Checking Account</h3>
-                  <p class="mb-4" style="font-size: 18px; line-height: 140%; color: #151515;">
-                    No monthly service fee with direct deposit. Enjoy unlimited ATM fee rebates and free digital bill pay.
-                  </p>
+        <h3 class="sg-h3">News / partnership card (588:4601)</h3>
+        <div class="sg-stage sg-stage-tint">
+          <div class="sg-grid-3">
+            <article class="card-syn-news card-syn-news-featured">
+              <div class="card-syn-media" style="background-image:url('assets/images/hero-bg.jpg')"></div>
+              <div class="card-syn-body">
+                <div class="card-syn-text">
+                  <h4 class="card-syn-title">Pinnacle named America&rsquo;s No. 12 Best Company to Work For</h4>
+                  <p class="syn-body">Great Place To Work&reg; and Fortune Media have recognized Pinnacle Financial Partners as a top 15 workplace in the nation.</p>
                 </div>
-                <div>
-                  <a href="javascript:void(0)" class="btn-syn-standard">Open Account</a>
+                <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron" aria-hidden="true"></span></a>
+              </div>
+            </article>
+            <article class="card-syn-news">
+              <div class="card-syn-media" style="background-image:url('assets/images/hero-mobile-bg.jpg')"></div>
+              <div class="card-syn-body">
+                <div class="card-syn-text">
+                  <h4 class="card-syn-title">50 combined 2026 Coalition Greenwich Best Bank Awards</h4>
+                  <p class="syn-body">32 earned by legacy Pinnacle, 18 by legacy Synovus, these awards reflect one organization and 2 legacies of service.</p>
+                </div>
+                <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron" aria-hidden="true"></span></a>
+              </div>
+            </article>
+          </div>
+          <p class="sg-caption">Image 310 tall &middot; body padding 40, gap 20 &middot; title Bold 20 / 1.4 &middot; leaf 12 &middot; blue shadow. First card uses the Blue Ramp variant.</p>
+        </div>
+
+        <h3 class="sg-h3">Product tile with flag (Module 2)</h3>
+        <div class="sg-stage">
+          <div class="sg-grid-3">
+            <div class="tile-syn has-flag">
+              <span class="flag-syn">Most popular</span>
+              <div class="tile-syn-text">
+                <h4 class="syn-h4">Pinnacle Checking<a href="#" class="footnote-ref">1</a></h4>
+                <p class="tile-syn-desc">Everyday checking with access to thousands of ATMs.</p>
+              </div>
+              <div class="tile-syn-actions">
+                <a href="#" class="btn-syn-standard">Apply now</a>
+                <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
+              </div>
+            </div>
+            <div class="tile-syn has-flag">
+              <span class="flag-syn flag-syn-dark">Most popular</span>
+              <div class="tile-syn-text">
+                <h4 class="syn-h4">Premier Checking</h4>
+                <p class="tile-syn-desc">Interest-bearing checking with relationship benefits.</p>
+              </div>
+              <div class="tile-syn-actions">
+                <a href="#" class="btn-syn-standard">Apply now</a>
+                <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
+              </div>
+            </div>
+            <div class="tile-syn">
+              <div class="tile-syn-text">
+                <h4 class="syn-h4">Savings</h4>
+                <p class="tile-syn-desc">Tile with no flag, logo, or text on top.</p>
+              </div>
+              <div class="tile-syn-actions">
+                <a href="#" class="btn-syn-standard">Apply now</a>
+              </div>
+            </div>
+          </div>
+          <p class="sg-caption">352 wide &middot; radius 12 &middot; card shadow &middot; title Medium 24 / 1.4, description Regular 20 / 1.4 Text Gray. Flag: 168 &times; 40, Bold 16 uppercase; light fill #B5DAF4 <span class="sg-badge sg-badge-note">Note only</span>, slant depth <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
+        </div>
+
+        <h3 class="sg-h3">Feature card with coloured tip (Modules 5B, 17A)</h3>
+        <div class="sg-stage">
+          <div class="sg-grid-3">
+            <div class="tile-syn-tip">
+              <h4 class="tile-syn-title">Pinnacle Blue tip</h4>
+              <p class="syn-body">12px top border, padding 44 / 44 / 32, gap 8, radius 12, card shadow.</p>
+            </div>
+            <div class="tile-syn-tip tip-navy">
+              <h4 class="tile-syn-title">Deep tip</h4>
+              <p class="syn-body">Title Medium 20 / 1.52 Deep; body Regular 16 / 1.52 Text Gray.</p>
+            </div>
+            <div class="tile-syn-tip tip-bronze">
+              <h4 class="tile-syn-title">Bronze tip</h4>
+              <p class="syn-body">Also available: .tip-aqua, .tip-baby. One tip colour per row.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="sg-h3">Stat counters &amp; glass card (Homepage)</h3>
+        <div class="sg-stage sg-stage-tint">
+          <div class="row g-4 align-items-start">
+            <div class="col-lg-6">
+              <div class="d-flex flex-wrap gap-3">
+                <div class="stat-card-syn">
+                  <span class="syn-stat">135+</span>
+                  <p class="syn-body" style="max-width:216px">Years standing by our clients every step of the way</p>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                  <div class="stat-card-syn stat-card-syn-sm"><span class="syn-stat-sm">400+</span><p class="syn-body">Branch locations and ATMs, always close by</p></div>
+                  <div class="stat-card-syn stat-card-syn-sm"><span class="syn-stat-sm">$116B</span><p class="syn-body">Entrusted to us by clients like you</p></div>
                 </div>
               </div>
+              <p class="sg-caption">Numbers count up (odometer roll) when scrolled into view (note 610:34399).</p>
             </div>
-
-            <!-- Lightest Blue Tile -->
-            <div class="col-md-6">
-              <div class="tile-syn-ice h-100 d-flex flex-column justify-content-between">
-                <div>
-                  <h3 class="fw-bold mb-2" style="font-size: 24px; color: #283862;">High-Yield Savings</h3>
-                  <p class="mb-4" style="font-size: 18px; line-height: 140%; color: #151515;">
-                    Earn top-tier interest with 4.50% APY<a href="javascript:void(0)" class="footnote-ref">1</a> on balances over $5,000. FDIC insured with zero minimum opening deposit.
-                  </p>
+            <div class="col-lg-6">
+              <div class="card-syn-glass">
+                <div class="card-syn-text">
+                  <span class="syn-label-caps">Pinnacle Partners</span>
+                  <h4 class="card-syn-title">23XI Racing x Tyler Reddick</h4>
+                  <p class="syn-body">In a multi-year partnership with 23XI Racing, we are now the official banking sponsor of Tyler Reddick and the No. 45 team.</p>
                 </div>
-                <div>
-                  <a href="javascript:void(0)" class="btn-syn-standard">Apply Online</a>
+                <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron" aria-hidden="true"></span></a>
+              </div>
+              <p class="sg-caption">Parallax glass card: 1px Sky border, 6px backdrop blur, padding 60 / 40, leaf 12, blue shadow.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 12. QUOTES & TESTIMONIALS                           -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="quotes">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Quotes &amp; testimonials</h2>
+        </header>
+
+        <h3 class="sg-h3">Pull quote A (Module 9, 167:255205)</h3>
+        <div class="sg-stage" style="padding-top:64px">
+          <figure class="quote-syn m-0">
+            <span class="quote-syn-mark" aria-hidden="true"></span>
+            <blockquote class="syn-quote m-0">&ldquo;Use this space for a special quote that highlights a key moment, insight, or idea from the article and adds emphasis for readers as they move through the page experience thoughtfully.&rdquo;</blockquote>
+          </figure>
+          <p class="sg-caption">2px Pinnacle Blue border, leaf 20, Ice fill, padding 60 / 96. The quote mark colour is set with <span class="sg-mono">--quote-color</span>: Aqua (default), Bronze, Deep, Pinnacle Blue, Blue Ramp or Aqua Ramp.</p>
+          <div class="sg-row mt-4">
+            <span class="quote-syn-mark" style="--quote-color:#D17326" aria-hidden="true"></span>
+            <span class="quote-syn-mark" style="--quote-color:#283862" aria-hidden="true"></span>
+            <span class="quote-syn-mark" style="--quote-color:#0074C4" aria-hidden="true"></span>
+            <span class="quote-syn-mark" style="--quote-color:var(--syn-grad-blue-ramp)" aria-hidden="true"></span>
+            <span class="quote-syn-mark" style="--quote-color:var(--syn-grad-aqua-ramp)" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <h3 class="sg-h3">Testimonial A (Module 12, 176:1990)</h3>
+        <div class="sg-stage sg-stage-dark">
+          <div class="testimonial-syn">
+            <h4 class="testimonial-syn-title">Hear why our clients keep coming back</h4>
+            <div class="testimonial-syn-quote-wrap">
+              <img src="assets/images/icon-rating.svg" width="216" height="40" alt="Rated 5 out of 5">
+              <p class="testimonial-syn-quote">&ldquo;We moved our accounts from a large national bank to Pinnacle. It has been the best banking experience of my career.&rdquo;</p>
+            </div>
+            <div>
+              <p class="testimonial-syn-author">Warren Melamed DDS, President</p>
+              <p class="testimonial-syn-role">Oral Health Management / Embassy Dental</p>
+            </div>
+          </div>
+          <p class="sg-caption" style="color:#CCE3F3">White card, radius 10, padding 40 / 96, gap 40. Title Medium 36 / 1.4; quote Regular 20 / 1.52. Stars are FPO and should render from a rating value (designer note).</p>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 13. HELP BAND & CONTROLS                            -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="help">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Help band, carousel controls &amp; step markers</h2>
+        </header>
+
+        <h3 class="sg-h3">&ldquo;How can we help?&rdquo; (Homepage 588:4643 / Module 8C)</h3>
+        <div class="sg-stage sg-stage-tint">
+          <div class="help-band-syn">
+            <h4 class="syn-h2-light">How can we help?</h4>
+            <div class="help-band-syn-items">
+              <a href="#" class="help-tile-syn"><img src="assets/images/icon-help-phone.svg" width="62" height="62" alt="">Talk with us</a>
+              <a href="#" class="help-tile-syn"><img src="assets/images/icon-help-location.svg" width="62" height="61" alt="">Find a location</a>
+              <a href="#" class="help-tile-syn"><img src="assets/images/icon-help-campaign.svg" width="61" height="62" alt="">Merger hub</a>
+            </div>
+          </div>
+          <p class="sg-caption">White box, leaf 12, padding 20 / 60, gap 80. Tiles: padding 32 / 20, gap 10, 62px icon, Bold 20 / 1.2 Deep. Module 8C adds <span class="sg-mono">.help-tile-syn-raised</span> (radius 12 + card shadow).</p>
+        </div>
+
+        <h3 class="sg-h3">Carousel controls</h3>
+        <div class="sg-stage">
+          <div class="carousel-controls-syn" data-sg-carousel>
+            <button type="button" class="carousel-syn-arrow is-prev" aria-label="Previous slide"><span class="syn-chevron"></span></button>
+            <div class="carousel-syn-dots">
+              <button type="button" class="carousel-syn-dot is-active" aria-label="Slide 1" aria-current="true"></button>
+              <button type="button" class="carousel-syn-dot" aria-label="Slide 2"></button>
+              <button type="button" class="carousel-syn-dot" aria-label="Slide 3"></button>
+              <button type="button" class="carousel-syn-dot" aria-label="Slide 4"></button>
+              <button type="button" class="carousel-syn-dot" aria-label="Slide 5"></button>
+            </div>
+            <button type="button" class="carousel-syn-arrow" aria-label="Next slide"><span class="syn-chevron"></span></button>
+          </div>
+          <p class="sg-caption">24px arrows (arrow_forward_ios), 16px dots, 4px gap. Arrows sit at the container edges on desktop and cluster around the dots on mobile. Inactive dot colour is not exposed (SVG); Ash #D1D1D1 is used <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
+        </div>
+
+        <h3 class="sg-h3">Step markers (Module 15)</h3>
+        <div class="sg-stage">
+          <div class="sg-row">
+            <span class="step-syn">1</span><span class="step-syn">2</span><span class="step-syn">3</span>
+            <span class="sg-stage-dark d-inline-flex gap-3 p-3 rounded"><span class="step-syn step-syn-sm">1</span><span class="step-syn step-syn-sm">2</span></span>
+          </div>
+          <p class="sg-caption">B/C: 75px Deep circle, Medium 24 Pale number. A (on photography): 53px white circle, Bold 20 Pinnacle Blue number. Dotted connectors are SVG in Figma.</p>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 14. GLOBAL FOOTER                                   -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="footer">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Global footer</h2>
+          <p class="sg-note">Figma 588:4663. Headings Bold 16 / 1.4 Deep; links Regular 16, line-height 2, underlined, Matt. Social icons are 39px circles with a 1px Pinnacle Blue border. Legal copy (Regular 12 / 1.4 Text Gray) sits in a 1px dashed #808080 box. On mobile the columns stack, fully expanded.</p>
+        </header>
+        <div class="sg-stage sg-stage-bleed">
+          <footer class="site-footer-syn">
+            <div class="container-syn d-flex flex-column gap-5">
+              <div class="d-flex flex-wrap justify-content-between gap-5">
+                <div class="d-flex flex-wrap gap-5">
+                  <div>
+                    <p class="footer-syn-heading">Support</p>
+                    <ul class="footer-syn-links">
+                      <li><a href="#">Contact us</a></li>
+                      <li><a href="#">Find a location</a></li>
+                      <li><a href="#">Fraud and identity theft</a></li>
+                      <li><a href="#">Report a lost or stolen card</a></li>
+                      <li><a href="#">Your privacy</a></li>
+                      <li><a href="#">Website terms of use</a></li>
+                      <li><a href="#">Accessible banking</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="footer-syn-heading">About Pinnacle</p>
+                    <ul class="footer-syn-links">
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">Leadership</a></li>
+                      <li><a href="#">Awards &amp; recognition</a></li>
+                      <li><a href="#">Investor relations</a></li>
+                      <li><a href="#">Annual report</a></li>
+                      <li><a href="#">Community outreach</a></li>
+                      <li><a href="#">Media</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="d-flex flex-column gap-4">
+                  <div>
+                    <p class="footer-syn-heading">Official Bank of:</p>
+                    <div class="footer-syn-official">
+                      <img src="assets/images/footer-sponsor-1.png" width="37" height="35" alt="Official bank partner">
+                      <img src="assets/images/footer-sponsor-2.png" width="37" height="37" alt="Official bank partner">
+                      <img src="assets/images/footer-sponsor-3.png" width="37" height="35" alt="Official bank partner">
+                    </div>
+                  </div>
+                  <div>
+                    <p class="footer-syn-heading">Follow us on:</p>
+                    <div class="footer-syn-social">
+                      <a href="#" aria-label="LinkedIn"><img src="assets/images/social-linkedin.svg" width="16" height="16" alt=""></a>
+                      <a href="#" aria-label="Facebook" style="border:0"><img src="assets/images/social-facebook.svg" width="39" height="39" alt=""></a>
+                      <a href="#" aria-label="Instagram"><img src="assets/images/social-instagram.svg" width="14" height="14" alt=""></a>
+                      <a href="#" aria-label="X"><img src="assets/images/social-x.png" width="20" height="20" alt=""></a>
+                      <a href="#" aria-label="YouTube"><img src="assets/images/social-youtube.svg" width="20" height="14" alt=""></a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- =================================================== -->
-        <!-- 6. MODULE F ALERT BAR                               -->
-        <!-- =================================================== -->
-        <section id="alert" class="mb-5 pb-4 border-bottom">
-          <span class="spec-badge">Section 6</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Module F Alert Bar</h2>
-          <div class="figma-callout">
-            <strong>Figma Designer Rule:</strong> Background fill Alert Gold <code>#EBC52C</code>, text color Pinnacle Navy <code>#283862</code> with underlined action link.
-          </div>
-
-          <div class="alert-bar-syn">
-            <div class="d-flex align-items-center gap-2">
-              <i class="bi bi-exclamation-triangle-fill fs-5"></i>
-              <span><strong>Holiday Hours:</strong> Synovus branches will be closed on Monday in observance of Columbus Day. <a href="javascript:void(0)">View Branch Schedule</a></span>
-            </div>
-            <button class="btn btn-sm text-dark p-0" onclick="this.closest('.alert-bar-syn').style.display='none'"><i class="bi bi-x-lg fs-5"></i></button>
-          </div>
-        </section>
-
-        <!-- =================================================== -->
-        <!-- 7. GRID & CANVAS MARGINS                            -->
-        <!-- =================================================== -->
-        <section id="grid" class="mb-5 pb-4">
-          <span class="spec-badge">Section 7</span>
-          <h2 class="fw-bold mb-2" style="color: #283862;">Grid Margins &amp; Canvas Breakpoints</h2>
-          <div class="figma-callout">
-            <strong>Figma Designer Layout Notes:</strong> <em>"1920px frame has 296px margins; 1440px frame has 160px margins; mobile has 20px padding."</em>
-          </div>
-
-          <div class="row g-3">
-            <div class="col-md-4">
-              <div class="bg-white border rounded p-4 h-100">
-                <span class="badge mb-2 text-white" style="background-color: #0074C4;">Desktop Large (1920px)</span>
-                <div class="fs-4 fw-bold" style="color: #283862;">296px Margins</div>
-                <div class="small text-muted mt-2">Active content box: 1328px width</div>
-                <div class="small font-monospace text-primary mt-2">.container-syn-1920</div>
+              <div class="footer-syn-legal">
+                <p class="syn-legal">Banking products are provided by Pinnacle Bank, a Tennessee bank, dba Synovus Bank. Member FDIC.</p>
+                <p class="syn-legal">Pinnacle Bank, a Tennessee bank, NMLS #418535, is an Equal Housing Lender and lends in the states of Alabama, Georgia, Florida, Tennessee, North Carolina, South Carolina, Kentucky, Virginia, Maryland, and Washington D.C. Loans subject to approval including credit approval.</p>
+                <p class="syn-legal">If you would like to assert there has been an error made with the servicing of your consumer mortgage loan, or if you would like to request information about the servicing of your consumer mortgage loan, and if you would like your assertion or request to be treated in accordance with the procedures provided in 12 C.F.R. Parts 1024.35 and 1024.36, then you must send written notice to us at Synovus Bank, Attention: Mortgage Customer Service, 800 Shades Creek Parkway, MS 130, Birmingham, AL 35209. Otherwise, we will treat your assertion or request per our standard policies and procedures.</p>
+                <p class="syn-legal">You have certain rights under Federal law related to resolving errors and requesting information about your mortgage account, and you may learn more about your rights by contacting Synovus Bank, or by visiting <a href="#">https://www.consumerfinance.gov/mortgage/</a>.</p>
+                <p class="syn-legal">Investment products and services are provided and offered through Synovus Securities, Inc. (SSI) a registered Broker-Dealer, member <a href="#">FINRA</a>/SIPC and SEC registered Investment Advisor, Synovus Trust Company, N.A. (STC) and Creative Financial Group, a division of SSI. Trust services are provided by STC, a subsidiary of Pinnacle Bank, a Tennessee bank.</p>
+                <div class="footer-syn-disclaimer"><span>NOT FDIC INSURED</span><span>NO BANK GUARANTEE</span><span>MAY LOSE VALUE</span></div>
+                <p class="syn-legal">SSI is a subsidiary of Pinnacle Financial Partners, Inc. and an affiliate of Pinnacle Bank, a Tennessee bank, dba Synovus Bank, and an affiliate of STC. You can obtain more information about SSI and its Registered Representatives by accessing <a href="#">BrokerCheck</a>.</p>
+                <p class="syn-legal">Approval of any bank product or service is not contingent upon purchasing insurance from Synovus Bank. Insurance products marketed through Synovus and its affiliated companies are underwritten by insurance companies not affiliated with Synovus.</p>
+                <p class="syn-legal"><a href="#">My Money Program</a></p>
               </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="bg-white border rounded p-4 h-100">
-                <span class="badge mb-2 text-white" style="background-color: #283862;">Desktop Standard (1440px)</span>
-                <div class="fs-4 fw-bold" style="color: #283862;">160px Margins</div>
-                <div class="small text-muted mt-2">Active content box: 1120px width</div>
-                <div class="small font-monospace text-primary mt-2">.container-syn-1440</div>
+              <div class="footer-syn-bottom-logos">
+                <span class="footer-syn-fdic-housing"><img src="assets/images/footer-fdic-housing-sprite.png" alt="Equal Housing Lender"></span>
+                <img src="assets/images/footer-mastercard-securecode.png" width="72" height="38" alt="Mastercard SecureCode">
               </div>
+              <p class="footer-syn-copyright">&copy; 2026 Pinnacle Bank. All rights reserved.</p>
             </div>
+          </footer>
+        </div>
+        <p class="sg-caption">The Facebook icon is a self-contained 39px SVG in Figma (circle included), so it has no separate border. The Equal Housing Lender mark is cropped from a combined FDIC/housing sprite via an overflow-hidden wrapper, matching the Figma crop.</p>
+      </section>
 
-            <div class="col-md-4">
-              <div class="bg-white border rounded p-4 h-100">
-                <span class="badge mb-2 bg-secondary text-white">Mobile Standard (430px)</span>
-                <div class="fs-4 fw-bold" style="color: #283862;">20px Gutters</div>
-                <div class="small text-muted mt-2">Full-width stacked cards &amp; inputs</div>
-                <div class="small font-monospace text-primary mt-2">.container-syn-mobile</div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <!-- =================================================== -->
+      <!-- 15. MODULE INDEX                                    -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="modules">
+        <header>
+          <span class="syn-eyebrow">Reference</span>
+          <h2 class="syn-h2">Module index</h2>
+          <p class="sg-note">Every module section in the Figma file, with its section node id and how much of it this guide covers.</p>
+        </header>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <thead><tr><th>Module</th><th>Figma section</th><th>Priority</th><th>In this guide</th></tr></thead>
+            <tbody>
+              <tr><td>A &middot; Hero with Login</td><td class="sg-mono">3915:31003</td><td>Homepage</td><td>Built: <a href="module-hero.html" class="link-syn-inline">module-hero.html</a></td></tr>
+              <tr><td>C &middot; Two Col Content Rows (Merger Hub, counters)</td><td class="sg-mono">3915:30045</td><td>Homepage</td><td>Stat cards, buttons</td></tr>
+              <tr><td>D &middot; Parallax Carousel</td><td class="sg-mono">3915:30044</td><td>Homepage</td><td>Glass card, carousel controls</td></tr>
+              <tr><td>F &middot; Alert Bar</td><td class="sg-mono">3915:30046</td><td>Homepage</td><td>Alert bar</td></tr>
+              <tr><td>1 &middot; Hero (1A&ndash;1G, shrinking hero)</td><td class="sg-mono">3915:31017</td><td>High</td><td>Display type, XL buttons, gradients, leaf 20</td></tr>
+              <tr><td>2 &middot; Product Presentation</td><td class="sg-mono">3912:29867</td><td>High</td><td>Product tile, flag, Standard buttons</td></tr>
+              <tr><td>3 &middot; Form</td><td class="sg-mono">3914:211</td><td>Low</td><td>Form fields, radios, colour variants</td></tr>
+              <tr><td>4 &middot; Belt Straps</td><td class="sg-mono">3912:30474</td><td>Medium</td><td>Buttons, gradients</td></tr>
+              <tr><td>5 &middot; Clickable Content Tiles</td><td class="sg-mono">3912:30475</td><td>Medium</td><td>Tip tiles, Aqua Ramp</td></tr>
+              <tr><td>6 &middot; Media &ndash; Articles &amp; Photos</td><td class="sg-mono">3914:209</td><td>Low</td><td>Carousel controls, tertiary link (card styles partly specified)</td></tr>
+              <tr><td>7 &middot; Mobile App Callout</td><td class="sg-mono">3912:30477</td><td>Medium</td><td>Type on dark, inline links</td></tr>
+              <tr><td>8 &middot; More Info / Help</td><td class="sg-mono">3912:30480</td><td>Medium</td><td>Help band and tiles</td></tr>
+              <tr><td>9 &middot; Pull Quote</td><td class="sg-mono">3912:29866</td><td>High</td><td>Pull quote A, quote mark colours</td></tr>
+              <tr><td>10 &middot; Comparison Charts</td><td class="sg-mono">3912:30481</td><td>Medium</td><td>Small button, chart radius and tints</td></tr>
+              <tr><td>11 &middot; Image and CTA</td><td class="sg-mono">3912:29844</td><td>High</td><td>Block title, Standard button, leaf 20</td></tr>
+              <tr><td>12 &middot; Testimonial</td><td class="sg-mono">3912:29585</td><td>High</td><td>Testimonial A</td></tr>
+              <tr><td>13 &middot; Events Calendar</td><td class="sg-mono">3914:205</td><td>Low</td><td>4-up grid only (styles not yet read)</td></tr>
+              <tr><td>14 &middot; Team Sponsorship</td><td class="sg-mono">3912:30485</td><td>Medium</td><td>Not yet read</td></tr>
+              <tr><td>15 &middot; Process Steps</td><td class="sg-mono">3913:144</td><td>Medium</td><td>Step markers</td></tr>
+              <tr><td>16 &middot; Account Benefits</td><td class="sg-mono">3913:147</td><td>Medium</td><td>2-up grid only (styles not yet read)</td></tr>
+              <tr><td>17 &middot; Content Card with Icon</td><td class="sg-mono">3912:29581</td><td>High</td><td>Feature card with tip</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-      </main>
-    </div>
+      <!-- =================================================== -->
+      <!-- 16. OPEN QUESTIONS                                  -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="conflicts">
+        <header>
+          <span class="syn-eyebrow">Reference</span>
+          <h2 class="syn-h2">Open questions for design</h2>
+          <p class="sg-note">Places where the designer notes and the drawn design disagree, or where the design doesn&rsquo;t say. This guide follows the drawn design.</p>
+        </header>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <thead><tr><th>Topic</th><th>Designer note says</th><th>Design shows (used here)</th></tr></thead>
+            <tbody>
+              <tr><td>Secondary button (Module 2)</td><td>Tertiary style, underlined, Pinnacle Blue</td><td>2px outline Standard button</td></tr>
+              <tr><td>XL button corners</td><td>Button board: 0 / 12 / 12 / 12</td><td>Modules 8 and 15 draw XL buttons at 0 / 8 / 8 / 8</td></tr>
+              <tr><td>Section title weight</td><td>Modules: Medium 40</td><td>Homepage sections use Regular 40</td></tr>
+              <tr><td>Hero 1C title underline</td><td>#00B4C4</td><td>#3390D0</td></tr>
+              <tr><td>Hero 1D light background</td><td>#F3F8FC / #E5F1F9</td><td>#CCE3F3 at 40% (Pale #EBF4FA)</td></tr>
+              <tr><td>Module 17 card text</td><td>Title and body #151515, line spacing 120%</td><td>Title Deep, body Text Gray, line height 1.52</td></tr>
+              <tr><td>Module 7 body</td><td>24pt Medium</td><td>20px Regular</td></tr>
+              <tr><td>Module 5 description</td><td>16pt</td><td>20px</td></tr>
+              <tr><td>Process Steps A title</td><td>140% line spacing</td><td>1.5</td></tr>
+              <tr><td>Form mobile title</td><td>Medium 28</td><td>Regular 28</td></tr>
+              <tr><td>Form field description</td><td>&ldquo;below field&rdquo;</td><td>Between the label and the input</td></tr>
+              <tr><td>Blue Ramp direction</td><td>Bottom-left to top-right (note only)</td><td>Rendered as image fills; no angle in the data</td></tr>
+              <tr><td>Interaction states</td><td>&mdash;</td><td>No hover, focus, active, disabled, checked or success states are drawn anywhere</td></tr>
+              <tr><td>Module 8 purpose note</td><td>Copy of Module 7&rsquo;s purpose text</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
   </div>
 
-  <!-- FLOATING COPY TOAST -->
-  <div id="copyToast">
-    <i class="bi bi-clipboard-check-fill text-info fs-5"></i>
-    <span id="copyToastText">Copied to clipboard!</span>
-  </div>
+  <div id="sgToast" role="status" aria-live="polite"></div>
 
   <script>
-    function copyHex(hex, name) {
-      navigator.clipboard.writeText(hex).then(() => {
-        showToast(`Copied ${hex} (${name})`);
-      }).catch(() => {
-        showToast(`Selected ${hex}`);
-      });
-    }
-
+    // Copy swatch hex
+    const toast = document.getElementById('sgToast');
+    let toastTimer;
     function showToast(msg) {
-      const toast = document.getElementById('copyToast');
-      const text = document.getElementById('copyToastText');
-      text.textContent = msg;
+      toast.textContent = msg;
       toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 2000);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
     }
+    document.querySelectorAll('.sg-swatch[data-hex]').forEach(el => {
+      el.addEventListener('click', () => {
+        const hex = el.dataset.hex;
+        navigator.clipboard.writeText(hex).then(() => showToast('Copied ' + hex), () => showToast(hex));
+      });
+    });
 
-    function toggleGuidePassword() {
-      const input = document.getElementById('styleguidePwdInput');
-      const btn = document.getElementById('styleguidePwdBtn');
-      if (input.type === 'password') {
-        input.type = 'text';
-        btn.textContent = 'Hide';
-      } else {
-        input.type = 'password';
-        btn.textContent = 'Show';
-      }
-    }
+    // Login card password toggle
+    const pwd = document.getElementById('sgPwd');
+    const pwdBtn = document.getElementById('sgPwdBtn');
+    pwdBtn.addEventListener('click', () => {
+      const show = pwd.type === 'password';
+      pwd.type = show ? 'text' : 'password';
+      pwdBtn.textContent = show ? 'Hide' : 'Show';
+      pwdBtn.setAttribute('aria-pressed', String(show));
+    });
+
+    // Alert bar dismiss
+    document.querySelectorAll('.alert-bar-syn-close').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.alert-bar-syn').hidden = true);
+    });
+
+    // Flip card demo
+    document.querySelectorAll('[data-sg-flip-trigger]').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('[data-sg-flip-card]').classList.toggle('is-flipped'));
+    });
+
+    // Carousel dots demo
+    document.querySelectorAll('[data-sg-carousel]').forEach(ctrl => {
+      const dots = [...ctrl.querySelectorAll('.carousel-syn-dot')];
+      const setActive = i => dots.forEach((d, j) => {
+        d.classList.toggle('is-active', i === j);
+        if (i === j) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
+      const current = () => dots.findIndex(d => d.classList.contains('is-active'));
+      dots.forEach((d, i) => d.addEventListener('click', () => setActive(i)));
+      ctrl.querySelector('.is-prev').addEventListener('click', () => setActive((current() - 1 + dots.length) % dots.length));
+      ctrl.querySelector('.carousel-syn-arrow:not(.is-prev)').addEventListener('click', () => setActive((current() + 1) % dots.length));
+    });
   </script>
 </body>
 </html>

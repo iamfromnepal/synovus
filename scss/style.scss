@@ -5,8 +5,18 @@
 // 1. Include Bootstrap Functions first (required for color and map manipulations)
 @import "bootstrap/functions";
 
-// 2. Include Custom Overrides (Variable overrides & custom components)
+// 2. Include Custom Overrides (Design tokens: colors, type, buttons, forms, layout)
 @import "custom-overrides";
+
+// 2b. Page/component modules (each file is one homepage section or shared
+// component group; all depend on the tokens/mixins from custom-overrides)
+@import "modules/header";
+@import "modules/footer";
+@import "modules/hero";
+@import "modules/alert-bar";
+@import "modules/cards";
+@import "modules/resources";
+@import "modules/stats-carousel";
 
 // 3. Core Bootstrap variables, dark mode variables, maps, and mixins
 @import "bootstrap/variables";

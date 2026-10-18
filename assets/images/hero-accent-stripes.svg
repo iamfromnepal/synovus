@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="214" height="646" viewBox="0 0 214 646" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Accent stripes - left">
+<g id="Rectangle 115">
+<use xlink:href="#stroke0_0_7" fill="white"/>
+<use xlink:href="#stroke0_0_7" fill="#CCE3F3" fill-opacity="0.28"/>
+</g>
+<g id="Rectangle 119">
+<use xlink:href="#stroke1_0_7" fill="white"/>
+<use xlink:href="#stroke1_0_7" fill="#CCE3F3" fill-opacity="0.28"/>
+</g>
+<g id="Rectangle 118">
+<use xlink:href="#stroke2_0_7" fill="white"/>
+<use xlink:href="#stroke2_0_7" fill="#CCE3F3" fill-opacity="0.28"/>
+</g>
+</g>
+<defs>
+<path id="stroke0_0_7" d="M190 0H194L4 646H0L190 0Z"/>
+<path id="stroke1_0_7" d="M200 0H204L14 646H10L200 0Z"/>
+<path id="stroke2_0_7" d="M210 0H214L24 646H20L210 0Z"/>
+</defs>
+</svg>

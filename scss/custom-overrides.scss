@@ -1,34 +1,66 @@
 // ===================================================
 // Synovus - Design System Tokens & Classes
-// STRICT FIGMA SPECIFICATION (10-7-26 Dot Com Design)
-// Only tokens & styles explicitly used in the design
+// Source: Figma "10-7-26 Dot Com Product & Landing Page Modules for Dev"
+// (eyubaqS4wXnAD23gZn8Cgj). Values are taken from the design data; anything
+// the design does not specify (hover/focus states, etc.) is marked
+// "dev-defined" so it can be confirmed with the designers.
 // ===================================================
 
 // ---------------------------------------------------
-// 1. BRAND COLORS (Strictly from Designer Specs)
+// 1. COLORS (Figma style names in comments)
 // ---------------------------------------------------
-$syn-blue:             #0074C4; // Pinnacle Blue (Primary CTA, links, active)
-$syn-blue-hover:       #005FA3;
-$syn-navy:             #283862; // Pinnacle Navy Deep (Titles, dark contrasts)
-$syn-light-blue:       #CCE3F3; // Pinnacle Ice / Lightest Blue (Hero, tile fills)
-$syn-light-blue-28:    rgba(204, 227, 243, 0.28); // Tile background variant
-$syn-black:            #151515; // Pinnacle Black (Body copy, field labels)
-$syn-white:            #FFFFFF; // Pinnacle White (Cards, canvas, CTA text)
-$syn-grey:             #525252; // Grey (Secondary lines, descriptions, helper)
-$syn-placeholder:      #989898; // Grey (Input placeholder text)
-$syn-border:           #D1D1D1; // Form input & tile borders
-$syn-bg-light:         #F5F5F5; // Light Grey (Module background variant)
-$syn-gold:             #EBC52C; // Alert Gold (Module F Alert Bar)
-$syn-asterisk:         #E61E25; // Red asterisk (*) for required fields
-$syn-error:            #BD302C; // Red error border & error code text
+// Primary Colors
+$syn-blue:            #0074C4; // Pinnacle Blue
+$syn-navy:            #283862; // Deep / Navy
+$syn-light-blue:      #CCE3F3; // Baby / Lightest Blue
+$syn-sky:             #84C2ED; // Sky / Light Blue
+$syn-black:           #151515; // Matt / Black
+$syn-white:           #FFFFFF; // White
+$syn-hint:            #E6E6E6; // Hint
+$syn-ash:             #D1D1D1; // Ash / Gray 2
+$syn-placeholder:     #989898; // Spanish
 
-// Bootstrap Theme Map Overrides
-$primary:              $syn-blue;
-$secondary:            $syn-navy;
-$dark:                 $syn-navy;
-$light:                $syn-light-blue;
-$body-bg:              $syn-white;
-$body-color:           $syn-black;
+// Digital Additions
+$syn-grey:            #525252; // Text Gray / Utility Gray
+$syn-smoke:           #F5F5F5; // Smoke
+$syn-ice:             #F1F7FC; // Ice  (= Baby at 28% over white)
+$syn-pale:            #EBF4FA; // Pale (= Baby at 40% over white)
+
+// Accents
+$syn-aqua:            #00B4C4; // Aqua
+$syn-bronze:          #D17326; // Bronze
+
+// Functional (no Figma style name unless noted)
+$syn-alert:           #FFCC3E; // Module F alert bar
+$syn-asterisk:        #E61E25; // Required asterisk + error message text
+$syn-error:           #BD302C; // Swatch-Functional-Error ("error code color")
+$syn-input-border:    #B2B2B2; // Text input border (Module 3)
+$syn-radio-border:    #767676; // Radio border (Module 3)
+$syn-light-gray:      #808080; // Light Gray: legal box dashed border, card image borders
+$syn-flag-light:      #B5DAF4; // "Most popular" flag fill (designer note only)
+
+// Dev-defined (not in Figma): interaction colour for filled buttons
+$syn-blue-hover:      #005FA3;
+
+// Tints of Baby (#CCE3F3), always laid over white
+$syn-tint-20:         rgba(204, 227, 243, 0.20);
+$syn-tint-28:         rgba(204, 227, 243, 0.28);
+$syn-tint-40:         rgba(204, 227, 243, 0.40);
+
+// Gradients
+// Blue Ramp: note 167:4499 "on diagonal from bottom left corner to top right", 0% #0074C4 -> 100% #283862
+$syn-grad-blue-ramp:  linear-gradient(to top right, $syn-blue 0%, $syn-navy 100%);
+$syn-grad-aqua-ramp:  linear-gradient(202.646deg, $syn-blue 29.927%, $syn-aqua 144.83%);
+$syn-grad-white-ramp: linear-gradient(60.016deg, $syn-hint 27.966%, $syn-white 79.122%);
+$syn-image-overlay:   linear-gradient(89.7317deg, rgba(229, 241, 249, 0.4) 13.346%, rgba(0, 51, 102, 0.2) 108.77%);
+
+// Bootstrap theme map overrides
+$primary:             $syn-blue;
+$secondary:           $syn-navy;
+$dark:                $syn-navy;
+$light:               $syn-light-blue;
+$body-bg:             $syn-white;
+$body-color:          $syn-black;
 
 // ---------------------------------------------------
 // 2. TYPOGRAPHY (Adobe Typekit Realist)
@@ -37,502 +69,495 @@ $font-family-sans-serif: "realist", -apple-system, BlinkMacSystemFont, sans-seri
 $font-family-base:       $font-family-sans-serif;
 $headings-font-family:   $font-family-sans-serif;
 
-$font-weight-light:      300; // SemiLight (Display numbers)
-$font-weight-normal:     400; // Regular (Body, subtitles)
-$font-weight-medium:     600; // Medium (Titles, section headers)
-$font-weight-bold:       700; // Bold (Headlines, CTAs, field labels)
+$font-weight-light:      300; // SemiLight (stat counters, hero eyebrow)
+$font-weight-normal:     400; // Regular
+$font-weight-medium:     600; // Medium (module section titles, tile titles)
+$font-weight-bold:       700; // Bold (buttons, labels, eyebrows)
 $headings-font-weight:   600;
 
-// ---------------------------------------------------
-// 3. CORNER RADIUS (Strict Figma Specifications)
-// ---------------------------------------------------
-$border-radius-tile:     12px; // Explicit designer note: "Corner radius 12 degrees"
-$border-radius-input:    6px;  // 5.7px in Figma Form specs
-$border-radius-btn-std:  8px;  // Figma standard button radius
-$border-radius-btn-xl:   12px; // Figma XL button radius
+$syn-mobile-max:         767.98px; // Figma mobile frames are 430px wide
 
 // ---------------------------------------------------
-// 4. SHADOWS (Figma Drop Shadows)
+// 3. RADII, SHADOWS
 // ---------------------------------------------------
-$shadow-tile:            0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-login-card:      0 8px 28px rgba(0, 0, 0, 0.12);
+// "Leaf" corners: top-left square, other three rounded
+$syn-leaf-8:            0 8px 8px 8px;    // standard / small buttons
+$syn-leaf-12:           0 12px 12px 12px; // XL buttons, cards, stat cards
+$syn-leaf-20:           0 20px 20px 20px; // hero boxes, product card v3, pull quote, image & CTA image
+$syn-radius-tile:       12px;             // tiles, card images
+$syn-radius-chart:      20px;             // comparison chart card
+$syn-radius-testimonial: 10px;
+$syn-radius-input:      5px;
+$syn-radius-control:    8px;              // search bar, dropdowns
+
+$syn-shadow-card:       0 8px 28px 0 rgba(0, 0, 0, 0.12);    // tiles, featured insight, charts
+$syn-shadow-card-blue:  0 8px 28px 0 rgba(0, 116, 196, 0.12); // news, product v3, parallax card
+$syn-shadow-btn:        0 4px 4px 0 rgba(0, 0, 0, 0.25);
+$syn-shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 
 // ---------------------------------------------------
-// 5. CSS CUSTOM PROPERTIES
+// 4. CSS CUSTOM PROPERTIES
 // ---------------------------------------------------
 :root {
   --syn-blue: #{$syn-blue};
   --syn-navy: #{$syn-navy};
   --syn-light-blue: #{$syn-light-blue};
+  --syn-sky: #{$syn-sky};
   --syn-black: #{$syn-black};
   --syn-white: #{$syn-white};
   --syn-grey: #{$syn-grey};
+  --syn-hint: #{$syn-hint};
+  --syn-ash: #{$syn-ash};
   --syn-placeholder: #{$syn-placeholder};
-  --syn-border: #{$syn-border};
-  --syn-bg-light: #{$syn-bg-light};
-  --syn-gold: #{$syn-gold};
+  --syn-smoke: #{$syn-smoke};
+  --syn-ice: #{$syn-ice};
+  --syn-pale: #{$syn-pale};
+  --syn-aqua: #{$syn-aqua};
+  --syn-bronze: #{$syn-bronze};
+  --syn-alert: #{$syn-alert};
   --syn-asterisk: #{$syn-asterisk};
   --syn-error: #{$syn-error};
-
-  --syn-radius-tile: 12px;
-  --syn-radius-btn: 8px;
+  --syn-grad-blue-ramp: #{$syn-grad-blue-ramp};
+  --syn-grad-aqua-ramp: #{$syn-grad-aqua-ramp};
+  --syn-shadow-card: #{$syn-shadow-card};
+  --syn-shadow-card-blue: #{$syn-shadow-card-blue};
 }
 
 // ---------------------------------------------------
-// 6. BUTTON SIZES & STYLES (Strictly 3 Figma Sizes with Rounded Corners)
+// 5. BACKGROUND UTILITIES
 // ---------------------------------------------------
+.bg-syn-white      { background-color: $syn-white; }
+.bg-syn-smoke      { background-color: $syn-smoke; }
+.bg-syn-ice        { background-color: $syn-ice; }
+.bg-syn-pale       { background-color: $syn-pale; }
+.bg-syn-baby       { background-color: $syn-light-blue; }
+.bg-syn-blue       { background-color: $syn-blue; }
+.bg-syn-navy       { background-color: $syn-navy; }
+.bg-syn-blue-ramp  { background-image: $syn-grad-blue-ramp; }
+.bg-syn-aqua-ramp  { background-image: $syn-grad-aqua-ramp; }
+.bg-syn-white-ramp { background-image: $syn-grad-white-ramp; }
 
-// 1. XL Button Size (Hero & Belt Straps: 60px height, Realist 20px Bold, 0 12px 12px 12px or 12px radius)
-.btn-syn-xl {
-  min-height: 60px;
-  background-color: $syn-blue;
+// Text colour for content placed on navy / blue / ramp backgrounds
+.syn-on-dark {
   color: $syn-white;
-  font-family: $font-family-sans-serif;
-  font-weight: 700;
-  font-size: 1.25rem; // 20px
-  padding: 16px 24px;
-  border: 1px solid $syn-blue;
-  border-radius: 0 12px 12px 12px; // Figma signature asymmetric radius (or uniform 12px)
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 
-  &:hover, &:focus {
-    background-color: $syn-blue-hover;
-    border-color: $syn-blue-hover;
-    color: $syn-white;
-    transform: translateY(-1px);
-  }
-
-  &.btn-uniform {
-    border-radius: 12px;
-  }
-}
-
-// 2. Standard Button Size (Modules 2, 3, 4, 11: 46px/48px height, Realist 16px Bold, 0 8px 8px 8px or 8px radius)
-.btn-syn-standard {
-  min-height: 46px;
-  background-color: $syn-blue;
-  color: $syn-white;
-  font-family: $font-family-sans-serif;
-  font-weight: 700;
-  font-size: 1rem; // 16px
-  padding: 12px 20px;
-  border: 1px solid $syn-blue;
-  border-radius: 0 8px 8px 8px; // Figma [0,8,8,8] signature asymmetric radius
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
-
-  &:hover, &:focus {
-    background-color: $syn-blue-hover;
-    border-color: $syn-blue-hover;
-    color: $syn-white;
-    transform: translateY(-1px);
-  }
-
-  &.btn-uniform {
-    border-radius: 8px;
-  }
-}
-
-// 3. Small Button Size (Modules 10, 16: 38px height, Realist 14px Bold, 0 8px 8px 8px or 8px radius)
-.btn-syn-small {
-  min-height: 38px;
-  background-color: $syn-blue;
-  color: $syn-white;
-  font-family: $font-family-sans-serif;
-  font-weight: 700;
-  font-size: 0.875rem; // 14px
-  padding: 8px 20px;
-  border: 1px solid $syn-blue;
-  border-radius: 0 8px 8px 8px; // Figma [0,8,8,8]
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.15s ease;
-
-  &:hover, &:focus {
-    background-color: $syn-blue-hover;
-    border-color: $syn-blue-hover;
-    color: $syn-white;
-    transform: translateY(-1px);
-  }
-
-  &.btn-uniform {
-    border-radius: 8px;
-  }
-}
-
-// Tertiary Button (Underlined link in Pinnacle Blue with arrow)
-.btn-syn-tertiary {
-  color: $syn-blue;
-  background: transparent;
-  border: none;
-  font-family: $font-family-sans-serif;
-  font-weight: 700;
-  font-size: 1rem; // 16px
-  padding: 8px 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: $syn-blue-hover;
-  }
-}
-
-// Tint Button (Lightest Blue #CCE3F3 with Navy text)
-.btn-syn-tint {
-  min-height: 46px;
-  background-color: $syn-light-blue;
-  color: $syn-navy;
-  font-family: $font-family-sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-
-  &:hover {
-    background-color: darken($syn-light-blue, 5%);
-    color: $syn-navy;
-  }
+  .syn-h2, .syn-h3, .syn-display { color: $syn-light-blue; }
+  .syn-body, .syn-lead { color: $syn-white; }
+  .syn-eyebrow, .link-syn-tertiary { color: $syn-white; }
 }
 
 // ---------------------------------------------------
-// 7. FORM FIELDS (Module A & Module 3 Form Specs)
+// 6. TYPE STYLES
 // ---------------------------------------------------
-.form-label-syn {
+@mixin syn-type($size, $lh, $weight: 400, $color: $syn-black) {
   font-family: $font-family-sans-serif;
-  font-size: 1.125rem; // 18px (from Figma: "Realist, bold, 18 pts, text color: #151515")
-  font-weight: 700;
-  color: $syn-black;
-  margin-bottom: 6px;
-  display: block;
-
-  .required-asterisk {
-    color: $syn-asterisk; // #E61E25
-  }
+  font-size: $size;
+  line-height: $lh;
+  font-weight: $weight;
+  color: $color;
+  margin: 0;
 }
 
-.form-desc-syn {
-  font-family: $font-family-sans-serif;
-  font-size: 0.875rem; // 14px (from Figma: "Realist, reg 14 pts, text color: #525252")
-  color: $syn-grey;
-  margin-top: 4px;
-  margin-bottom: 6px;
-  display: block;
+// Hero headline: Regular 52/1.2 (mobile 40)
+.syn-display {
+  @include syn-type(3.25rem, 1.2, 400, $syn-navy);
+  @media (max-width: $syn-mobile-max) { font-size: 2.5rem; }
 }
 
-.form-control-syn,
-.form-select-syn {
-  height: 54px; // 54px in Figma
-  font-family: $font-family-sans-serif;
-  font-size: 1rem; // 16px
-  color: $syn-black;
-  background-color: $syn-white;
-  border: 1px solid $syn-border; // #D1D1D1
-  border-radius: $border-radius-input; // 6px
-  padding: 12px 16px;
-  transition: border-color 0.2s ease;
-
-  &::placeholder {
-    color: $syn-placeholder; // #989898
-  }
-
-  &:focus {
-    border-color: $syn-blue;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba($syn-blue, 0.15);
-  }
-
-  &.is-invalid {
-    border-color: $syn-error; // #BD302C
-  }
+// Module section title: Medium 40/1.4 (mobile 28)
+.syn-h2 {
+  @include syn-type(2.5rem, 1.4, 600, $syn-navy);
+  @media (max-width: $syn-mobile-max) { font-size: 1.75rem; }
 }
 
-.form-error-syn {
-  color: $syn-asterisk; // #E61E25 from Figma: "(with error message in red font #E61E25)"
-  font-family: $font-family-sans-serif;
-  font-size: 0.875rem; // 14px
-  margin-top: 4px;
+// Homepage section title: Regular 40/1.2
+.syn-h2-light {
+  @include syn-type(2.5rem, 1.2, 400, $syn-navy);
+  @media (max-width: $syn-mobile-max) { font-size: 1.75rem; }
 }
 
-// Password field with Show/Hide toggle (Module A)
-.password-field-wrap {
-  position: relative;
-
-  .form-control-syn {
-    padding-right: 64px;
-  }
-
-  .btn-toggle-pwd {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    font-size: 1rem;
-    font-weight: 700;
-    color: $syn-blue;
-    padding: 4px 6px;
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+// Block title: Medium 32/1.4 (mobile 28) - form title, image & CTA title, belt heading
+.syn-h3 {
+  @include syn-type(2rem, 1.4, 600, $syn-navy);
+  @media (max-width: $syn-mobile-max) { font-size: 1.75rem; }
 }
 
-// Multiple Choice Radio Field (Module 3 Form: "Realist, reg 18 pts")
-.choice-wrap-syn {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 8px;
+// Tile title: Medium 24/1.4
+.syn-h4 { @include syn-type(1.5rem, 1.4, 600, $syn-black); }
 
-  .choice-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.125rem; // 18px
-    color: $syn-black;
-    cursor: pointer;
+// Card title: Regular 20/1.4
+.syn-h5 { @include syn-type(1.25rem, 1.4, 400, $syn-navy); }
 
-    input[type="radio"] {
-      width: 22px;
-      height: 22px;
-      accent-color: $syn-blue;
-    }
-  }
+// Lead: Regular 20/1.52 - hero body, section descriptions
+.syn-lead { @include syn-type(1.25rem, 1.52); }
+
+// Body: Regular 16/1.52
+.syn-body { @include syn-type(1rem, 1.52); }
+
+// Form copy: Regular 18/26px - form intro, radio options
+.syn-body-lg { @include syn-type(1.125rem, 26px); }
+
+// Helper: Regular 14/18.56px
+.syn-helper { @include syn-type(0.875rem, 18.56px, 400, $syn-grey); }
+
+// Legal / disclosure: Regular 12/1.4
+.syn-legal { @include syn-type(0.75rem, 1.4, 400, $syn-grey); }
+
+// Eyebrow: Bold 14/1.4, 1px tracking, uppercase
+.syn-eyebrow {
+  @include syn-type(0.875rem, 1.4, 700, $syn-blue);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-// ---------------------------------------------------
-// 8. TILES & SURFACES (Explicit: 12px Corner Radius)
-// ---------------------------------------------------
-.tile-syn {
-  background-color: $syn-white;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: $border-radius-tile; // 12px
-  box-shadow: $shadow-tile;
-  padding: 32px 28px;
-  position: relative;
-  overflow: hidden;
+// Card eyebrow / label: Bold 16/1.2, uppercase
+.syn-label-caps {
+  @include syn-type(1rem, 1.2, 700, $syn-blue);
+  text-transform: uppercase;
 }
 
-.tile-syn-ice {
-  background-color: $syn-light-blue; // #CCE3F3
-  border: 1px solid rgba($syn-blue, 0.15);
-  border-radius: $border-radius-tile;
-  padding: 32px 28px;
+// Pull quote: Regular 32/1.52
+.syn-quote {
+  @include syn-type(2rem, 1.52, 400, $syn-navy);
+  @media (max-width: $syn-mobile-max) { line-height: 1.4; }
 }
 
-// Login Card from Module A (352px width, white, drop shadow)
-.login-card-syn {
-  width: 100%;
-  max-width: 352px;
-  background-color: $syn-white;
-  border-radius: 0;
-  box-shadow: $shadow-login-card;
-  padding: 28px;
-  position: relative;
+// Stat counter: SemiLight 64/1, 1px tracking (small: 40)
+.syn-stat {
+  @include syn-type(4rem, 1, 300, $syn-blue);
+  letter-spacing: 1px;
 }
 
-// Signature Dual Accent Bar (Module A & Tiles)
-.accent-bar-dual {
-  position: relative;
-  height: 8px;
-  width: 100%;
-  background-color: $syn-blue; // 100% width
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 72%; // 72% width overlay
-    background-color: $syn-navy;
-  }
+.syn-stat-sm {
+  @include syn-type(2.5rem, 1, 300, $syn-blue);
+  letter-spacing: 1px;
 }
 
-// ---------------------------------------------------
-// 9. ALERT BAR (Module F)
-// ---------------------------------------------------
-.alert-bar-syn {
-  background-color: $syn-gold; // #EBC52C
-  color: $syn-navy; // #283862
-  padding: 14px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  a {
-    color: $syn-navy;
-    font-weight: 700;
-    text-decoration: underline;
-  }
-}
-
-// ---------------------------------------------------
-// 10. FOOTNOTE SUPERSCRIPT
-// ---------------------------------------------------
+// Footnote superscript: underlined, Pinnacle Blue, 1.6px tracking
 .footnote-ref {
   color: $syn-blue;
+  font-size: 0.65em;
+  letter-spacing: 1.6px;
   text-decoration: underline;
-  font-weight: 700;
-  font-size: 0.75em;
   vertical-align: super;
   line-height: 0;
 }
 
 // ---------------------------------------------------
-// 11. RESPONSIVE CONTAINERS (Figma Specs)
+// 7. BUTTONS & LINKS
+// Heights: XL 60, Standard 48, Small 40. Every button has a 2px border
+// (same colour as the fill on filled buttons) so filled and outline
+// variants line up. Hover/focus states are not drawn in Figma (dev-defined).
 // ---------------------------------------------------
-.container-syn-1920 {
-  max-width: 1920px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: clamp(20px, 8vw, 296px);
-  padding-right: clamp(20px, 8vw, 296px);
+@mixin syn-btn($height, $pad-x, $size, $radius) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: $height;
+  padding: 0 ($pad-x - 2px);
+  font-family: $font-family-sans-serif;
+  font-size: $size;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  color: $syn-white;
+  background-color: $syn-blue;
+  border: 2px solid $syn-blue;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    color: $syn-white;
+    background-color: $syn-blue-hover;
+    border-color: $syn-blue-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $syn-blue;
+    outline-offset: 2px;
+  }
 }
 
-.container-syn-1440 {
-  max-width: 1440px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: clamp(20px, 6vw, 160px);
-  padding-right: clamp(20px, 6vw, 160px);
+// XL: 60px, padding 16/24, Bold 20/1.4, radius 0/12/12/12 (Hero, Belt Straps, Merger Hub)
+.btn-syn-xl { @include syn-btn(60px, 24px, 1.25rem, $syn-leaf-12); }
+
+// Standard: 48px, padding 12/20, Bold 16/1.4, radius 0/8/8/8, drop shadow (Product, Form, Image & CTA)
+.btn-syn-standard {
+  @include syn-btn(48px, 20px, 1rem, $syn-leaf-8);
+  box-shadow: $syn-shadow-btn;
 }
 
-.container-syn-mobile {
-  max-width: 430px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+// Small: 40px, padding 0/21, Bold 16, radius 0/8/8/8, drop shadow (Comparison chart)
+.btn-syn-small {
+  @include syn-btn(40px, 21px, 1rem, $syn-leaf-8);
+  box-shadow: $syn-shadow-btn;
 }
 
-// ---------------------------------------------------
-// 12. MODULE A: HERO WITH LOGIN (Figma 588:4841)
-// ---------------------------------------------------
-.hero-module-a {
-  position: relative;
+// Colour variants (combine with a size class)
+.btn-syn-outline {
+  color: $syn-blue;
+  background-color: transparent;
+  border-color: $syn-blue;
+
+  &:hover {
+    color: $syn-blue;
+    background-color: $syn-ice;
+    border-color: $syn-blue;
+  }
+}
+
+.btn-syn-white {
+  color: $syn-blue;
+  background-color: $syn-white;
+  border-color: $syn-white;
+
+  &:hover {
+    color: $syn-blue;
+    background-color: $syn-ice;
+    border-color: $syn-ice;
+  }
+}
+
+.btn-syn-outline-white {
+  color: $syn-white;
+  background-color: transparent;
+  border-color: $syn-white;
+
+  &:hover {
+    color: $syn-white;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: $syn-white;
+  }
+}
+
+// Baby fill with navy text (Form on Navy / Blue backgrounds)
+.btn-syn-tint {
+  color: $syn-navy;
   background-color: $syn-light-blue;
-  overflow: hidden;
-  min-height: 646px;
+  border-color: $syn-light-blue;
 
-  // Background lifestyle photography
-  .hero-bg-media {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60%;
-    height: 100%;
-    background-image: url('assets/images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center right;
-    z-index: 1;
-
-    @media (max-width: 991.98px) {
-      position: relative;
-      width: 100%;
-      height: 320px;
-      background-image: url('assets/images/hero-mobile-bg.jpg');
-    }
-  }
-
-  // Inner content container
-  .hero-inner {
-    position: relative;
-    z-index: 2;
-    min-height: 646px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-
-    @media (max-width: 991.98px) {
-      flex-direction: column;
-      align-items: center;
-      min-height: auto;
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-  }
-
-  // Left Content Plaque with white angular background
-  .hero-content-plaque {
-    position: relative;
-    background: #FFFFFF;
-    padding: 60px 48px;
-    max-width: 520px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-
-    @media (max-width: 576px) {
-      padding: 32px 20px;
-      max-width: 100%;
-    }
-  }
-
-  .hero-title {
-    font-size: clamp(2rem, 3.5vw, 3.25rem); // 52px in Figma
-    line-height: 1.18;
+  &:hover {
     color: $syn-navy;
-    font-weight: 400;
-    margin-bottom: 18px;
+    background-color: $syn-white;
+    border-color: $syn-white;
+  }
+}
+
+.btn-syn-shadow    { box-shadow: $syn-shadow-btn; }
+.btn-syn-no-shadow { box-shadow: none; }
+
+// Chevron icon that follows the text colour (Figma arrow_forward_ios)
+.syn-chevron {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  // Inlined (assets/images/icon-arrow.svg) so the mask also works when pages are opened from disk
+  mask: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='arrow icon'%3E%3Cpath id='Vector' d='M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2L18.025 12L8.025 22Z' fill='%230074C4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+// Tertiary link: Bold 16/1.4 + 16px chevron, gap 4 ("Learn More")
+.link-syn-tertiary {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: $syn-blue;
+  text-decoration: none;
+
+  &:hover {
+    color: $syn-blue;
+    text-decoration: underline;
+  }
+}
+
+.link-syn-tertiary-white {
+  color: $syn-white;
+
+  &:hover { color: $syn-white; }
+}
+
+// Inline text link: Bold, underlined, inherits colour
+.link-syn-inline {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+
+  &:hover { color: inherit; }
+}
+
+// Utility link: Medium 14, underlined, Text Gray
+.link-syn-utility {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $syn-grey;
+  text-decoration: underline;
+
+  &:hover { color: $syn-blue; }
+}
+
+// ---------------------------------------------------
+// 8. FORM (Module 3)
+// ---------------------------------------------------
+.form-card-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+  background-color: $syn-smoke;
+  border-radius: $syn-radius-tile;
+
+  @media (max-width: $syn-mobile-max) {
+    gap: 32px;
+    padding: 48px 20px;
+    border-radius: 0;
+  }
+}
+
+.form-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  @media (max-width: $syn-mobile-max) { gap: 20px; }
+}
+
+.form-field-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-label-syn {
+  font-size: 1.125rem; // 18
+  font-weight: 700;
+  line-height: 26px;
+  color: $syn-black;
+
+  .required-asterisk { color: $syn-asterisk; }
+}
+
+// Optional field description, placed between label and input
+.form-desc-syn {
+  font-size: 0.875rem; // 14
+  line-height: 18.56px;
+  color: $syn-grey;
+}
+
+.form-control-syn {
+  width: 100%;
+  height: 46px;
+  padding: 0 12px; // inner padding not specified in Figma (dev-defined)
+  font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  color: $syn-black;
+  background-color: $syn-white;
+  border: 1px solid $syn-input-border;
+  border-radius: $syn-radius-input;
+
+  // Focus ring: dev-defined
+  &:focus-visible {
+    outline: 2px solid $syn-blue;
+    outline-offset: -1px;
   }
 
-  .hero-subtitle {
-    font-size: 1.25rem; // 20px in Figma
-    line-height: 1.5;
-    color: $syn-black;
-    font-weight: 400;
-    margin-bottom: 32px;
+  &.is-invalid { border-color: $syn-error; }
+}
+
+.form-error-syn {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: $syn-asterisk;
+}
+
+// Radio: 13px circle, 1px #767676, label 18/26, gap 8, options 4px apart
+.form-radios-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-radio-syn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.125rem;
+  line-height: 26px;
+  color: $syn-black;
+  cursor: pointer;
+
+  input {
+    appearance: none;
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    background-color: $syn-white;
+    border: 1px solid $syn-radio-border;
+    border-radius: 50%;
+    cursor: pointer;
+
+    // Checked state: dev-defined
+    &:checked {
+      border-color: $syn-blue;
+      background-image: radial-gradient(circle, $syn-blue 0 3px, transparent 3.5px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $syn-blue;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Navy form variant (167:56135)
+.form-card-syn-navy {
+  background-color: $syn-navy;
+
+  .syn-h3 { color: $syn-light-blue; }
+  .syn-body-lg, .form-desc-syn { color: $syn-ice; }
+  .form-label-syn, .form-radio-syn, .required-asterisk { color: $syn-white; }
+  .form-control-syn { border-color: $syn-ice; }
+}
+
+
+// ---------------------------------------------------
+// 11b. LAYOUT
+// 1920 frames: 296px margins (1328 content). 1440 frames: 160px (1120).
+// Mobile (430): 16px gutters. Margins scale linearly between frames.
+// ---------------------------------------------------
+.container-syn {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (min-width: 768px) {
+    padding-left: clamp(16px, 11.1111vw, 160px);
+    padding-right: clamp(16px, 11.1111vw, 160px);
   }
 
-  // Floating Login Card (352px width)
-  .hero-login-card {
-    width: 100%;
-    max-width: 352px;
-    background: #FFFFFF;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
-    position: relative;
-    z-index: 3;
+  @media (min-width: 1440px) {
+    padding-left: min(296px, calc(28.3333vw - 248px));
+    padding-right: min(296px, calc(28.3333vw - 248px));
+  }
+}
 
-    .login-body {
-      padding: 28px 28px 24px 28px;
-    }
+.section-syn {
+  padding-top: 80px;
+  padding-bottom: 80px;
 
-    .login-title {
-      font-size: 1.25rem; // 20px in Figma
-      font-weight: 700;
-      color: $syn-navy;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-
-      i {
-        font-size: 1.35rem;
-      }
-    }
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }
 

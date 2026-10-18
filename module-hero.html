@@ -165,81 +165,72 @@
       <!-- MODULE A: HERO WITH LOGIN (COMPONENT ENTRY)         -->
       <!-- =================================================== -->
       <section class="hero-module-a">
-        <!-- Background Lifestyle Photo Overlay -->
-        <div class="hero-bg-media"></div>
+        <div class="hero-a-inner">
 
-        <!-- Inner Content (Figma Margins: 296px at 1920px, 160px at 1440px) -->
-        <div class="container-syn-1920">
-          <div class="hero-inner py-lg-0 py-5">
+          <!-- Slanted white panel with hero copy -->
+          <div class="hero-a-panel">
+            <img class="hero-a-stripes hero-a-stripes-left" src="assets/images/hero-accent-stripes.svg" width="214" height="646" alt="">
+            <img class="hero-a-shape" src="assets/images/hero-panel.svg" width="885" height="646" alt="">
+            <img class="hero-a-stripes hero-a-stripes-right" src="assets/images/hero-accent-stripes.svg" width="214" height="646" alt="">
 
-            <!-- LEFT: Hero Content Plaque -->
-            <div class="hero-content-plaque">
-              <h1 class="hero-title">
-                Pinnacle is choosing to lead
-              </h1>
-              <p class="hero-subtitle">
-                President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.
-              </p>
-              <div>
-                <a href="javascript:void(0)" class="btn-syn-xl">
-                  Learn More
-                </a>
+            <div class="hero-a-content">
+              <div class="hero-a-copy">
+                <h1 class="hero-title">Pinnacle is choosing to lead</h1>
+                <p class="hero-subtitle">President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.</p>
               </div>
+              <a href="#" class="btn-syn-xl">Learn More</a>
             </div>
+          </div>
 
-            <!-- RIGHT: Floating Login Card (352px width) -->
-            <div class="hero-login-card">
-              <!-- Signature Dual-Tier Accent Top Bar -->
+          <!-- Frosted login card -->
+          <div class="hero-a-login-wrap">
+            <div class="hero-a-login">
               <div class="accent-bar-dual"></div>
 
-              <div class="login-body">
-                <!-- Title with Lock Icon -->
-                <div class="login-title">
-                  <i class="bi bi-lock-fill" style="color: #283862;"></i>
+              <div class="hero-a-login-body">
+                <h2 class="hero-a-login-title">
+                  <img src="assets/images/icon-lock.svg" width="28" height="28" alt="">
                   <span>Manage Your Account</span>
-                </div>
+                </h2>
 
-                <!-- Form Controls -->
-                <form onsubmit="event.preventDefault();">
-                  <!-- Account Dropdown Selector -->
-                  <div class="mb-2">
-                    <select class="form-select form-select-syn" style="height: 56px; border-radius: 8px;">
-                      <option selected>My Pinnacle</option>
-                      <option>Personal Online Banking</option>
-                      <option>Commercial Advantage</option>
-                    </select>
-                  </div>
+                <form class="hero-a-form" action="#" method="post">
+                  <div class="hero-a-fields">
+                    <div class="hero-a-select-wrap">
+                      <label for="heroAccountType" class="visually-hidden">Account type</label>
+                      <select id="heroAccountType" class="hero-a-select" name="account_type">
+                        <option selected>My Pinnacle</option>
+                        <option>Personal Online Banking</option>
+                        <option>Commercial Advantage</option>
+                      </select>
+                      <img class="hero-a-select-icon" src="assets/images/icon-arrow.svg" width="24" height="24" alt="">
+                    </div>
 
-                  <!-- Username & Password Inputs -->
-                  <div class="mb-3">
-                    <input type="text" class="form-control form-control-syn mb-1" placeholder="Username" style="border-radius: 4px;">
-                    <div class="password-field-wrap">
-                      <input type="password" id="heroPasswordInput" class="form-control form-control-syn" placeholder="Password" style="border-radius: 4px;">
-                      <button type="button" class="btn-toggle-pwd" id="heroPasswordBtn" onclick="toggleHeroPassword()">Show</button>
+                    <div class="hero-a-inputs">
+                      <label for="heroUsername" class="visually-hidden">Username</label>
+                      <input type="text" id="heroUsername" class="hero-a-input" name="username" placeholder="Username" autocomplete="username">
+                      <div class="hero-a-password">
+                        <label for="heroPassword" class="visually-hidden">Password</label>
+                        <input type="password" id="heroPassword" class="hero-a-input" name="password" placeholder="Password" autocomplete="current-password">
+                        <button type="button" class="hero-a-pwd-toggle" id="heroPasswordBtn" aria-controls="heroPassword" aria-pressed="false" onclick="toggleHeroPassword()">Show</button>
+                      </div>
                     </div>
                   </div>
 
-                  <!-- Helper Links -->
-                  <div class="d-flex justify-content-between align-items-center mb-3" style="font-size: 1rem;">
-                    <a href="javascript:void(0)" style="color: #525252; text-decoration: none;">Forgot Username?</a>
-                    <span style="color: #525252;">|</span>
-                    <a href="javascript:void(0)" style="color: #525252; text-decoration: none;">Forgot Password?</a>
+                  <div class="hero-a-links">
+                    <a href="#">Forgot Username?</a>
+                    <span aria-hidden="true">|</span>
+                    <a href="#">Forgot Password?</a>
                   </div>
 
-                  <!-- Action Buttons -->
-                  <div class="d-flex flex-column gap-1">
-                    <button type="submit" class="btn-syn-xl w-100" style="min-height: 60px; font-size: 1.25rem;">
-                      Login
-                    </button>
-                    <a href="javascript:void(0)" class="btn text-center fw-bold text-decoration-none py-3" style="color: #0074C4; font-size: 1.25rem;">
-                      Enroll
-                    </a>
+                  <div class="hero-a-ctas">
+                    <button type="submit" class="btn-syn-xl">Login</button>
+                    <a href="#" class="hero-a-enroll">Enroll</a>
                   </div>
                 </form>
               </div>
             </div>
-
           </div>
+
         </div>
       </section>
       <!-- =================================================== -->
@@ -267,21 +258,21 @@
           <div class="border-start border-4 border-primary ps-3">
             <div class="small text-muted fw-bold">CANVAS DIMENSIONS</div>
             <div class="fw-bold fs-6">Height: 646px</div>
-            <div class="small text-muted">1920px (296px margins), 1440px (160px margins), 430px (20px gutters)</div>
+            <div class="small text-muted">1920px (132 / 296px margins), 1440px (80 / 160px margins). Below 1200px the module stacks (mobile 588:52882).</div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="border-start border-4 border-primary ps-3">
             <div class="small text-muted fw-bold">TYPOGRAPHY</div>
-            <div class="fw-bold fs-6">Realist 400 52px / 20px</div>
+            <div class="fw-bold fs-6">Realist 400 52px (40px mobile) / 20px</div>
             <div class="small text-muted">Headline (#283862), Subhead (#151515), Buttons (Realist 700 20px)</div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="border-start border-4 border-primary ps-3">
             <div class="small text-muted fw-bold">LOGIN CARD</div>
-            <div class="fw-bold fs-6">352px Fixed Width</div>
-            <div class="small text-muted">White drop shadow (0 8px 28px), dual accent header bar, password toggle</div>
+            <div class="fw-bold fs-6">352 &times; 540px</div>
+            <div class="small text-muted">White 84% with 6px backdrop blur, 0/12/12/12 radius, dual accent bar, password toggle</div>
           </div>
         </div>
       </div>
@@ -295,37 +286,72 @@
       </div>
       <pre class="code-block" id="snippetBlock"><code>&lt;!-- Synovus Module A: Hero with Login --&gt;
 &lt;section class="hero-module-a"&gt;
-  &lt;div class="hero-bg-media"&gt;&lt;/div&gt;
-  &lt;div class="container-syn-1920"&gt;
-    &lt;div class="hero-inner py-lg-0 py-5"&gt;
-      &lt;div class="hero-content-plaque"&gt;
-        &lt;h1 class="hero-title"&gt;Pinnacle is choosing to lead&lt;/h1&gt;
-        &lt;p class="hero-subtitle"&gt;President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.&lt;/p&gt;
+  &lt;div class="hero-a-inner"&gt;
+
+    &lt;!-- Slanted white panel with hero copy --&gt;
+    &lt;div class="hero-a-panel"&gt;
+      &lt;img class="hero-a-stripes hero-a-stripes-left" src="assets/images/hero-accent-stripes.svg" width="214" height="646" alt=""&gt;
+      &lt;img class="hero-a-shape" src="assets/images/hero-panel.svg" width="885" height="646" alt=""&gt;
+      &lt;img class="hero-a-stripes hero-a-stripes-right" src="assets/images/hero-accent-stripes.svg" width="214" height="646" alt=""&gt;
+
+      &lt;div class="hero-a-content"&gt;
+        &lt;div class="hero-a-copy"&gt;
+          &lt;h1 class="hero-title"&gt;Pinnacle is choosing to lead&lt;/h1&gt;
+          &lt;p class="hero-subtitle"&gt;President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.&lt;/p&gt;
+        &lt;/div&gt;
         &lt;a href="#" class="btn-syn-xl"&gt;Learn More&lt;/a&gt;
       &lt;/div&gt;
-      &lt;div class="hero-login-card"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Frosted login card --&gt;
+    &lt;div class="hero-a-login-wrap"&gt;
+      &lt;div class="hero-a-login"&gt;
         &lt;div class="accent-bar-dual"&gt;&lt;/div&gt;
-        &lt;div class="login-body"&gt;
-          &lt;div class="login-title"&gt;
-            &lt;i class="bi bi-lock-fill"&gt;&lt;/i&gt;
+
+        &lt;div class="hero-a-login-body"&gt;
+          &lt;h2 class="hero-a-login-title"&gt;
+            &lt;img src="assets/images/icon-lock.svg" width="28" height="28" alt=""&gt;
             &lt;span&gt;Manage Your Account&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;form&gt;
-            &lt;select class="form-select form-select-syn mb-2"&gt;
-              &lt;option&gt;My Pinnacle&lt;/option&gt;
-              &lt;option&gt;Personal Online Banking&lt;/option&gt;
-            &lt;/select&gt;
-            &lt;input type="text" class="form-control form-control-syn mb-1" placeholder="Username"&gt;
-            &lt;div class="password-field-wrap mb-3"&gt;
-              &lt;input type="password" class="form-control form-control-syn" placeholder="Password"&gt;
-              &lt;button type="button" class="btn-toggle-pwd"&gt;Show&lt;/button&gt;
+          &lt;/h2&gt;
+
+          &lt;form class="hero-a-form" action="#" method="post"&gt;
+            &lt;div class="hero-a-fields"&gt;
+              &lt;div class="hero-a-select-wrap"&gt;
+                &lt;label for="heroAccountType" class="visually-hidden"&gt;Account type&lt;/label&gt;
+                &lt;select id="heroAccountType" class="hero-a-select" name="account_type"&gt;
+                  &lt;option selected&gt;My Pinnacle&lt;/option&gt;
+                  &lt;option&gt;Personal Online Banking&lt;/option&gt;
+                  &lt;option&gt;Commercial Advantage&lt;/option&gt;
+                &lt;/select&gt;
+                &lt;img class="hero-a-select-icon" src="assets/images/icon-arrow.svg" width="24" height="24" alt=""&gt;
+              &lt;/div&gt;
+
+              &lt;div class="hero-a-inputs"&gt;
+                &lt;label for="heroUsername" class="visually-hidden"&gt;Username&lt;/label&gt;
+                &lt;input type="text" id="heroUsername" class="hero-a-input" name="username" placeholder="Username" autocomplete="username"&gt;
+                &lt;div class="hero-a-password"&gt;
+                  &lt;label for="heroPassword" class="visually-hidden"&gt;Password&lt;/label&gt;
+                  &lt;input type="password" id="heroPassword" class="hero-a-input" name="password" placeholder="Password" autocomplete="current-password"&gt;
+                  &lt;button type="button" class="hero-a-pwd-toggle" id="heroPasswordBtn" aria-controls="heroPassword" aria-pressed="false"&gt;Show&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
             &lt;/div&gt;
-            &lt;button type="submit" class="btn-syn-xl w-100"&gt;Login&lt;/button&gt;
-            &lt;a href="#" class="btn text-center fw-bold py-3" style="color: #0074C4;"&gt;Enroll&lt;/a&gt;
+
+            &lt;div class="hero-a-links"&gt;
+              &lt;a href="#"&gt;Forgot Username?&lt;/a&gt;
+              &lt;span aria-hidden="true"&gt;|&lt;/span&gt;
+              &lt;a href="#"&gt;Forgot Password?&lt;/a&gt;
+            &lt;/div&gt;
+
+            &lt;div class="hero-a-ctas"&gt;
+              &lt;button type="submit" class="btn-syn-xl"&gt;Login&lt;/button&gt;
+              &lt;a href="#" class="hero-a-enroll"&gt;Enroll&lt;/a&gt;
+            &lt;/div&gt;
           &lt;/form&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
+
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
     </div>
@@ -347,15 +373,12 @@
 
     // Password Show/Hide Toggle
     function toggleHeroPassword() {
-      const input = document.getElementById('heroPasswordInput');
+      const input = document.getElementById('heroPassword');
       const btn = document.getElementById('heroPasswordBtn');
-      if (input.type === 'password') {
-        input.type = 'text';
-        btn.textContent = 'Hide';
-      } else {
-        input.type = 'password';
-        btn.textContent = 'Show';
-      }
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.textContent = show ? 'Hide' : 'Show';
+      btn.setAttribute('aria-pressed', String(show));
     }
 
     // Copy snippet

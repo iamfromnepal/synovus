@@ -1,0 +1,36 @@
+// ===========================================
+// MODULE: Alert Bar (Module F)
+// ===========================================
+
+// Module F alert bar: #FFCC3E, 16px vertical padding, icon 32, gap 12, close 24
+.alert-bar-syn {
+  background-color: $syn-alert;
+
+  .alert-bar-syn-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .alert-bar-syn-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    line-height: 1.52;
+    color: $syn-black;
+  }
+
+  .alert-bar-syn-close {
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+}
+

@@ -1,0 +1,327 @@
+// ===========================================
+// MODULE: Hero (Module A: Hero with Login)
+// ===========================================
+
+// ---------------------------------------------------
+// 12. MODULE A: HERO WITH LOGIN
+// Figma: 588:4841 (1920), 588:4891 (1440), 588:52882 (mobile 430)
+// Desktop (>=1200px wide): full-bleed photo, white slanted panel with accent
+// stripes, frosted login card. Narrower, the module stacks: white copy block,
+// then the login card on the mobile photo. Uses container queries so the
+// layout follows the module width, not the viewport.
+// ---------------------------------------------------
+.hero-module-a {
+  container: hero-a / inline-size;
+  position: relative;
+  background-color: $syn-white;
+
+  // Stacked (mobile) layout
+  .hero-a-panel {
+    background-color: $syn-white;
+    padding: 40px 16px;
+  }
+
+  .hero-a-stripes,
+  .hero-a-shape {
+    display: none;
+  }
+
+  .hero-a-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .hero-a-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem; // 40px mobile
+    font-weight: 400;
+    line-height: 1.2;
+    color: $syn-navy;
+    margin: 0;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem; // 20px
+    font-weight: 400;
+    line-height: 1.52;
+    color: $syn-black;
+    margin: 0;
+  }
+
+  .hero-a-login-wrap {
+    height: 596px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background-image: url('assets/images/hero-mobile-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  // Desktop layout
+  @container hero-a (min-width: 1200px) {
+    .hero-a-inner {
+      height: 646px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 80px;
+      padding-right: calc(50cqw - 560px); // 40px @1200 -> 160px @1440
+      background-image: url('assets/images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    // Slanted white panel: stripes (214) + shape (885) + stripes (214), overlapping by 184
+    .hero-a-panel {
+      position: relative;
+      flex-shrink: 0;
+      width: 945px;
+      height: 646px;
+      margin-right: -260px; // lets the login card overlap the panel's right edge on narrower widths
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .hero-a-stripes,
+    .hero-a-shape {
+      display: block;
+      position: absolute;
+      top: 0;
+    }
+
+    .hero-a-stripes-left  { left: 0; }
+    .hero-a-shape         { left: 30px; }
+    .hero-a-stripes-right { left: 731px; }
+
+    .hero-a-content {
+      position: absolute;
+      top: 89px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 451px;
+      padding: 80px 0;
+      gap: 40px;
+    }
+
+    .hero-a-copy {
+      gap: 24px;
+    }
+
+    .hero-title {
+      font-size: 3.25rem; // 52px
+    }
+
+    .hero-a-login-wrap {
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+      height: auto;
+      padding: 0;
+      background: none;
+    }
+  }
+
+  // 1440 -> 1920: margins scale 80/160 -> 132/296
+  @container hero-a (min-width: 1440px) {
+    .hero-a-inner {
+      padding-left: calc(10.8333cqw - 76px);
+      padding-right: calc(28.3333cqw - 248px);
+    }
+  }
+
+  // Wider than 1920: keep the 1920 layout centred
+  @container hero-a (min-width: 1920px) {
+    .hero-a-inner {
+      padding-left: calc((100cqw - 1920px) / 2 + 132px);
+      padding-right: calc((100cqw - 1920px) / 2 + 296px);
+    }
+  }
+}
+
+// Frosted login card (352 x 540)
+.hero-a-login {
+  position: relative;
+  width: 352px;
+  max-width: 100%;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(6px);
+  border-radius: 0 12px 12px 12px;
+  overflow: hidden;
+
+  .accent-bar-dual {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.hero-a-login-body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px 28px 0;
+}
+
+.hero-a-login-title {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0;
+  font-size: 1.25rem; // 20px
+  font-weight: 700;
+  line-height: 1.2;
+  color: $syn-navy;
+}
+
+.hero-a-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero-a-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-a-select-wrap {
+  position: relative;
+
+  .hero-a-select-icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%) rotate(90deg);
+    pointer-events: none;
+  }
+}
+
+.hero-a-select {
+  appearance: none;
+  width: 100%;
+  padding: 16px 56px 16px 20px;
+  font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: $syn-black;
+  background-color: $syn-white;
+  border: 2px solid $syn-blue;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($syn-blue, 0.25);
+  }
+}
+
+// Username + password, joined with a 1px gap
+.hero-a-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.hero-a-input {
+  width: 100%;
+  padding: 16px 20px;
+  font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: $syn-black;
+  background-color: $syn-white;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  box-shadow: inset 0 1.208px 1.208px rgba(0, 0, 0, 0.08);
+
+  &::placeholder {
+    color: $syn-placeholder;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $syn-blue;
+    outline-offset: -2px;
+  }
+}
+
+.hero-a-password {
+  position: relative;
+
+  .hero-a-input {
+    padding-right: 72px;
+    border-radius: 0 0 8px 8px;
+  }
+}
+
+.hero-a-pwd-toggle {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  padding: 0;
+  font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: $syn-grey;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.hero-a-links {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  font-size: 1rem;
+  line-height: 1.52;
+  color: $syn-grey;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      color: $syn-blue;
+    }
+  }
+}
+
+.hero-a-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .btn-syn-xl {
+    width: 100%;
+  }
+}
+
+.hero-a-enroll {
+  display: block;
+  padding: 16px 0;
+  font-size: 1.25rem; // 20px
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  color: $syn-blue;
+  text-decoration: underline;
+
+  &:hover {
+    color: $syn-blue-hover;
+  }
+}

@@ -1,0 +1,62 @@
+// ===========================================
+// MODULE: Stats + Parallax Partner Carousel (Module C + D)
+// ===========================================
+
+// ---------------------------------------------------
+// MODULE C + D: Stat counters & parallax partner carousel
+// (Homepage. Module C: 3915:30045, Module D: 3915:30044 -
+// not in the component-reference file, so laid out here from what's
+// already specified above: stat-card-syn, card-syn-glass, carousel-*.)
+// ---------------------------------------------------
+.stats-parallax-syn {
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+// Scrolls slower than the content in front of it (JS sets the transform)
+.stats-parallax-syn-bg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  right: 0;
+  height: 140%;
+  background: linear-gradient(180deg, $syn-ice 0%, $syn-light-blue 100%);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.stats-parallax-syn-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stats-counters-syn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.carousel-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.carousel-syn-swiper {
+  overflow: hidden;
+}
+

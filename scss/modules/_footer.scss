@@ -1,0 +1,117 @@
+// ===========================================
+// MODULE: Global Footer
+// ===========================================
+
+.site-footer-syn {
+  padding-top: 60px;
+  padding-bottom: 8px;
+  background-color: $syn-white;
+
+  .footer-syn-heading {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: $syn-navy;
+  }
+
+  .footer-syn-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      font-size: 1rem;
+      line-height: 2;
+      color: $syn-black;
+      text-decoration: underline;
+
+      &:hover { color: $syn-blue; }
+    }
+  }
+
+  .footer-syn-official {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer-syn-social {
+    display: flex;
+    gap: 16px;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 39px;
+      height: 39px;
+      border: 1px solid $syn-blue;
+      border-radius: 50%;
+    }
+  }
+
+  // Legal block: 1px dashed #808080, padding 20, 8px paragraph gap
+  .footer-syn-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    border: 1px dashed $syn-light-gray;
+
+    a { color: $syn-blue; text-decoration: underline; }
+  }
+
+  .footer-syn-disclaimer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1px;
+    border: 1px solid $syn-black;
+
+    span {
+      padding: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+      color: $syn-grey;
+    }
+  }
+
+  // Equal Housing Lender + Mastercard SecureCode, centred above the copyright
+  .footer-syn-bottom-logos {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  // The Figma source is a combined "Member FDIC / Equal Housing Lender"
+  // sprite; crop to show only the Equal Housing Lender half (matches the
+  // Figma frame's own crop: a 54x44 window onto the right side of the image).
+  .footer-syn-fdic-housing {
+    position: relative;
+    display: block;
+    width: 54px;
+    height: 44px;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: -116.667%;
+      width: 216.667%;
+      max-width: none;
+      height: 100%;
+    }
+  }
+
+  .footer-syn-copyright {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.52;
+    color: #000;
+    text-align: center;
+  }
+}
+
