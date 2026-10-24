@@ -1,0 +1,27 @@
+// ===========================================
+// MODULE: News Ideas (Figma 588:4601, "What's the latest?")
+// A 3-slide partnership/news carousel between the stats section and the
+// footer. Desktop shows all 3 side by side (no real sliding needed);
+// Swiper's breakpoints switch to a 1-up swipeable view on mobile.
+// ===========================================
+
+.news-ideas-syn {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  background-color: $syn-ice;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+.news-ideas-syn-heading {
+  margin: 0 0 40px;
+}
+
+.news-ideas-syn-swiper {
+  overflow: hidden;
+
+  .swiper-slide { height: auto; }
+}

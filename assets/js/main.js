@@ -105,6 +105,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (controls) controls.hidden = swiper.slides.length <= 1;
   }
 
+  // News Ideas carousel: all 3 cards fit side by side on desktop (so Swiper
+  // has nothing to slide there), 1-up with a peek on mobile.
+  const newsCarouselEl = document.querySelector('.news-ideas-syn-swiper');
+  if (newsCarouselEl && window.Swiper) {
+    new window.Swiper(newsCarouselEl, {
+      slidesPerView: 1.1,
+      spaceBetween: 16,
+      navigation: {
+        nextEl: '.news-ideas-syn-next',
+        prevEl: '.news-ideas-syn-prev',
+      },
+      pagination: {
+        el: '.news-ideas-syn-pagination',
+        clickable: true,
+        bulletClass: 'carousel-syn-dot',
+        bulletActiveClass: 'is-active',
+      },
+      breakpoints: {
+        992: { slidesPerView: 3, spaceBetween: 32 },
+      },
+    });
+  }
+
   // Stat counters (Module C): count up from 0 the first time they scroll
   // into view (dev note: "numbers count up, odometer roll, on scroll").
   const statEls = document.querySelectorAll('.syn-stat, .syn-stat-sm');

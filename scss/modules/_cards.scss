@@ -252,6 +252,7 @@
   background-color: $syn-white;
   border-radius: $syn-leaf-12;
   box-shadow: $syn-shadow-card-blue;
+  transition: background 0.2s ease;
 
   .card-syn-media {
     height: 310px;
@@ -273,12 +274,19 @@
     gap: 12px;
   }
 
-  .card-syn-title { @include syn-type(1.25rem, 1.4, 700, $syn-black); }
+  .card-syn-title { @include syn-type(1.25rem, 1.4, 700, $syn-black); transition: color 0.2s ease; }
+  .syn-body { transition: color 0.2s ease; }
+  .link-syn-tertiary { transition: color 0.2s ease; }
 
-  &.card-syn-news-featured {
-    background: $syn-grad-blue-ramp;
+  // Hover reveals the Blue Ramp treatment - mouse/trackpad only, so touch
+  // devices (no real hover) stay on the default white look.
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-within {
+      background: $syn-grad-blue-ramp;
 
-    .card-syn-title, .syn-body, .link-syn-tertiary { color: $syn-white; }
+      .card-syn-title, .syn-body, .link-syn-tertiary { color: $syn-white; }
+    }
   }
 }
 
