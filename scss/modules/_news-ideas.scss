@@ -21,6 +21,15 @@
 }
 
 .news-ideas-syn-swiper {
+  // Both rules matter: min-width: 0 overrides the flex item default of
+  // min-width: auto, and width: 100% removes any ambiguity about
+  // flex-stretch timing. Without them, this swiper (a flex child of
+  // .carousel-syn) balloons to fit its own overflowing slides instead of
+  // respecting overflow: hidden, which makes Swiper measure a huge
+  // container width and compute even wider slides - a runaway feedback
+  // loop (confirmed live: container reached 100,000+ px).
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
 
   .swiper-slide { height: auto; }

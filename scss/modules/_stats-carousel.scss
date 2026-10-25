@@ -64,5 +64,10 @@
 }
 
 .carousel-syn-swiper {
+  // See the identical fix in _news-ideas.scss: without these, a swiper
+  // nested in a flex column can ignore its own overflow: hidden and
+  // balloon to fit its slides' content width.
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
 }
