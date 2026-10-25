@@ -1,0 +1,50 @@
+// ===========================================
+// MODULE 2: Product Presentation (High Priority component library)
+// Extends the existing .tile-syn (already built for the flagged product
+// tile) with the two pieces "Account Presentation A/B" actually need: a
+// co-brand logo header row, and a bulleted benefits list. Also adds the
+// third flag color option (Aqua) alongside the existing light/dark ones.
+//
+// Notes pulled from the Figma dev-note callouts:
+// - Purpose: provide information on our products (ie checking) in the
+//   form of concise, organized tiles.
+// - Large Tile title: Medium 24, up to 2 lines (~54-93 characters).
+// - Text stays top-aligned even when a tile has less copy than its
+//   neighbors; buttons stay in a fixed location regardless of text
+//   length - run-over text truncates rather than growing the tile.
+// - Ability to add more rows of tiles below the current row if more
+//   products need to be featured (same tile specs as the row above).
+// - Closest existing reference: Personal Checking Page / Personal
+//   Savings Page on Synovus.com.
+// ===========================================
+
+// Third flag color option (Aqua fill, Deep-ish navy text per the design
+// note's own #12224B, distinct from the standard $syn-navy for contrast).
+.flag-syn-aqua {
+  color: #12224B;
+  background-color: $syn-aqua;
+}
+
+.tile-syn-logos {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+
+  img { height: 20px; width: auto; }
+}
+
+.tile-syn-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+  flex-grow: 1;
+
+  li { @include syn-type(1rem, 1.52); }
+}
+
+// Pins the CTA row to the bottom of the tile even when neighboring tiles
+// have more copy (tiles sit in an equal-height grid row).
+.tile-syn-actions-bottom { margin-top: auto; }
