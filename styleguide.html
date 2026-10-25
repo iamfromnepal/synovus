@@ -112,6 +112,7 @@
       <a href="#header">Global header</a>
       <a href="#alert">Alert bar</a>
       <a href="#forms">Forms</a>
+      <a href="#hero-system">Hero system</a>
       <a href="#login">Login card</a>
       <a href="#cards">Cards &amp; tiles</a>
       <a href="#quotes">Quotes &amp; testimonials</a>
@@ -486,6 +487,159 @@
             </div>
             <p class="sg-caption">Navy variant (167:56135): title Baby, copy Ice, labels white, input border Ice, button Baby with Deep text. Light blue (Pale) and Pinnacle Blue variants also exist.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- =================================================== -->
+      <!-- 9b. HERO SYSTEM (MODULE 1, HIGH PRIORITY)            -->
+      <!-- =================================================== -->
+      <section class="sg-section" id="hero-system">
+        <header>
+          <span class="syn-eyebrow">Components</span>
+          <h2 class="syn-h2">Hero system (Module 1)</h2>
+          <p class="sg-note">A generic, reusable hero for other pages (separate from the homepage's own bespoke "Hero w/Login"). 7 lettered style variants per the Figma dev notes. <span class="sg-badge sg-badge-note">Purpose: capture attention, set tone, convey value prop, establish hierarchy, drive engagement</span> &middot; hero images shrink as the user scrolls (two largest sizes) &mdash; spec&rsquo;d, not demoed live here. All copy fields truncate rather than reflow past their stated character limits.</p>
+        </header>
+
+        <h3 class="sg-h3">1A &mdash; Boxed overlap (photo + floating text box)</h3>
+        <div class="sg-stage">
+          <div class="hero-syn hero-syn--a" style="background-image:url('assets/images/hero-sys-a-photo.png')">
+            <div class="hero-syn-a-box">
+              <div class="hero-syn-a-text">
+                <h3 class="hero-syn-a-title">Checking Accounts</h3>
+                <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking options.</p>
+              </div>
+              <div class="hero-syn-a-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-white">Open an Account</a>
+                <a href="#" class="btn-syn-xl btn-syn-outline-white">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <p class="sg-caption">1440&times;636. Box: leaf 20, padding 60, vertically centered, left 160. Title 48/1.2 (~2 lines/31 chars), body 24/1.52 (~3 lines/114 chars). Default fill Pinnacle Blue &mdash; try <span class="sg-mono">.hero-syn-a-box--white</span> or <span class="sg-mono">.hero-syn-a-box--gradient</span> for the other 2 color options below.</p>
+          <div class="row g-3 mt-2">
+            <div class="col-md-6">
+              <div class="hero-syn hero-syn--a" style="background-image:url('assets/images/hero-sys-a-photo.png')">
+                <div class="hero-syn-a-box hero-syn-a-box--white">
+                  <div class="hero-syn-a-text">
+                    <h3 class="hero-syn-a-title">Checking Accounts</h3>
+                    <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking options.</p>
+                  </div>
+                  <div class="hero-syn-a-ctas">
+                    <a href="#" class="btn-syn-xl">Open an Account</a>
+                    <a href="#" class="btn-syn-xl btn-syn-outline">Learn More</a>
+                  </div>
+                </div>
+              </div>
+              <p class="sg-caption">White box: title Pinnacle Blue, body Matt Black.</p>
+            </div>
+            <div class="col-md-6">
+              <div class="hero-syn hero-syn--a" style="background-image:url('assets/images/hero-sys-a-photo.png')">
+                <div class="hero-syn-a-box hero-syn-a-box--gradient">
+                  <div class="hero-syn-a-text">
+                    <h3 class="hero-syn-a-title">Checking Accounts</h3>
+                    <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking options.</p>
+                  </div>
+                  <div class="hero-syn-a-ctas">
+                    <a href="#" class="btn-syn-xl btn-syn-white">Open an Account</a>
+                    <a href="#" class="btn-syn-xl btn-syn-outline-white">Learn More</a>
+                  </div>
+                </div>
+              </div>
+              <p class="sg-caption">Blue Ramp gradient box, diagonal bottom-left to top-right.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="sg-h3">1B &mdash; Light and dark, no image</h3>
+        <div class="sg-stage">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="hero-syn hero-syn--b">
+                <div class="hero-syn-b-copy">
+                  <div class="hero-syn-b-eyebrow">
+                    <span class="hero-syn-b-eyebrow-text">Checking</span>
+                    <img src="assets/images/hero-sys-b-logo-dark.png" class="hero-syn-b-eyebrow-logo" alt="Pinnacle Financial Partners">
+                  </div>
+                  <h3 class="hero-syn-b-title"><em>Everyday</em> value.<br><em>Practical</em> benefits.</h3>
+                  <p class="hero-syn-b-body syn-body-lg">With Pinnacle Checking, we help you achieve your everyday goals.</p>
+                  <div class="hero-syn-b-ctas">
+                    <a href="#" class="btn-syn-xl">Open online</a>
+                    <a href="#" class="btn-syn-xl btn-syn-outline">Find my branch</a>
+                  </div>
+                </div>
+              </div>
+              <p class="sg-caption">White fill, padding 60/160.</p>
+            </div>
+            <div class="col-md-6">
+              <div class="hero-syn hero-syn--b hero-syn--b-dark">
+                <div class="hero-syn-b-copy">
+                  <div class="hero-syn-b-eyebrow">
+                    <span class="hero-syn-b-eyebrow-text">Checking</span>
+                    <img src="assets/images/hero-sys-b-logo-white.png" class="hero-syn-b-eyebrow-logo" alt="Pinnacle Financial Partners">
+                  </div>
+                  <h3 class="hero-syn-b-title"><em>Everyday</em> value.<br><em>Practical</em> benefits.</h3>
+                  <p class="hero-syn-b-body syn-body-lg">With Pinnacle Checking, we help you achieve your everyday goals.</p>
+                  <div class="hero-syn-b-ctas">
+                    <a href="#" class="btn-syn-xl btn-syn-white">Open online</a>
+                    <a href="#" class="btn-syn-xl btn-syn-outline-white">Find my branch</a>
+                  </div>
+                </div>
+              </div>
+              <p class="sg-caption">Dark Blue Ramp fill.</p>
+            </div>
+          </div>
+          <p class="sg-caption mt-2">Title 52/1.2 two-tone (first word per line in the accent color), body 20/1.52 (~3 lines/169 chars). Text block can shrink (drop a line) but never grows past this size.</p>
+        </div>
+
+        <h3 class="sg-h3">1C &amp; 1D &mdash; Diagonal box (dark &amp; light, meant to pair together)</h3>
+        <div class="sg-stage">
+          <div class="hero-syn hero-syn--c" style="background-image:url('assets/images/hero-sys-c-photo.png')">
+            <div class="hero-syn-cd-panel"></div>
+            <div class="hero-syn-cd-content">
+              <div class="hero-syn-c-title">
+                <span>Banking built on trust</span>
+                <div class="hero-syn-c-underline"></div>
+              </div>
+              <p class="hero-syn-c-body">From personal to business banking, we make it easy to get support when you need it.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-standard btn-syn-white">Explore Your Options</a>
+              </div>
+            </div>
+          </div>
+          <p class="sg-caption">1C: Blue Ramp diagonal panel, title 52/1.2 Baby (1 line/~23 chars) with a 4&times;80 Sky underline, body white, single CTA.</p>
+          <div class="hero-syn hero-syn--d mt-3" style="background-image:url('assets/images/hero-sys-d-photo.png')">
+            <div class="hero-syn-cd-panel"></div>
+            <div class="hero-syn-cd-content">
+              <h3 class="hero-syn-d-title">Checking Accounts</h3>
+              <p class="hero-syn-d-body">Confidently manage life&rsquo;s expenses with one of our checking options. Enjoy 24/7 access to your money at your local branch or on the go with My Pinnacle.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-standard btn-syn-outline">Open an account</a>
+              </div>
+            </div>
+          </div>
+          <p class="sg-caption">1D: light blue (40% Baby) diagonal panel, Deep navy text, no underline. A secondary button can be added per the design notes. Mobile uses a shallower diagonal angle.</p>
+        </div>
+
+        <h3 class="sg-h3">1E &amp; 1F &mdash; Image only</h3>
+        <div class="sg-stage">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="hero-syn hero-syn--e" style="background-image:url('assets/images/hero-bg.jpg')"></div>
+              <p class="sg-caption">1E: wide/short (1920&times;300 reference).</p>
+            </div>
+            <div class="col-md-6">
+              <div class="hero-syn hero-syn--f" style="background-image:url('assets/images/hero-bg.jpg')"></div>
+              <p class="sg-caption">1F: wide/tall (1440&times;460 reference).</p>
+            </div>
+          </div>
+          <p class="sg-caption mt-2">No text overlay by design &mdash; pure photography. Both shrink on scroll per the design notes.</p>
+        </div>
+
+        <h3 class="sg-h3">1G &mdash; Statement band</h3>
+        <div class="sg-stage">
+          <div class="hero-syn hero-syn--g">
+            <h3 class="hero-syn-g-title">We&rsquo;re here for whatever comes next.</h3>
+          </div>
+          <p class="sg-caption">Blue Ramp fill, centered headline only (no image, body, or CTA) &mdash; 52/1 desktop, 32/1 mobile, Medium, up to 2 lines.</p>
         </div>
       </section>
 

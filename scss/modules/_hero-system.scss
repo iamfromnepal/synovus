@@ -1,0 +1,258 @@
+// ===========================================
+// MODULE 1: Hero system (High Priority component library, 167:3)
+// A generic, reusable Hero with 7 lettered style variants (1A-1G). This
+// is separate from the homepage's own bespoke hero (_hero.scss, Module A
+// "Hero w/Login") - this module is for OTHER pages that need a hero.
+//
+// Notes pulled from the Figma dev-note callouts on each variant:
+// - Purpose: capture attention, set tone, convey value prop, establish
+//   hierarchy, drive engagement when a CTA is present.
+// - Hero images shrink as the user scrolls (applies to image-only heroes
+//   and the two largest sizes of the boxed/diagonal heroes) - documented
+//   below but not wired up live in this static showcase.
+// - All copy fields have stated max line/character counts; run-over text
+//   should truncate rather than reflow the box.
+// ===========================================
+
+.hero-syn {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: right center;
+}
+
+// ---------------------------------------------------
+// 1A - "Boxed overlap": photo + a text box overlapping the lower-left,
+// vertically centered. Box fill is flexible: Blue (default), White, or
+// a diagonal Blue Ramp gradient - only the box colors/text colors change.
+// Desktop image subject should sit right of the box. Title 48/1.2 (max ~2
+// lines, ~31 characters), body 24/1.52 (max ~3 lines, ~114 characters).
+// Shrinks on scroll at the two largest breakpoints (spec only, not wired
+// up here).
+// ---------------------------------------------------
+.hero-syn--a {
+  min-height: 636px;
+  display: flex;
+  align-items: center;
+  padding: 40px 160px;
+
+  @media (max-width: $syn-mobile-max) {
+    min-height: 425px;
+    padding: 24px 16px;
+    align-items: flex-end;
+  }
+}
+
+.hero-syn-a-box {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 520px;
+  padding: 60px;
+  background-color: $syn-blue;
+  color: $syn-white;
+  border-radius: $syn-leaf-20;
+
+  @media (max-width: $syn-mobile-max) {
+    gap: 24px;
+    padding: 32px 24px;
+    max-width: none;
+  }
+
+  &.hero-syn-a-box--white {
+    background-color: $syn-white;
+
+    .hero-syn-a-title { color: $syn-blue; }
+    .hero-syn-a-body { color: $syn-black; }
+  }
+
+  &.hero-syn-a-box--gradient {
+    background: linear-gradient(45deg, $syn-blue 0%, $syn-navy 100%);
+  }
+}
+
+.hero-syn-a-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-syn-a-title { @include syn-type(3rem, 1.2, 400, $syn-white); }
+.hero-syn-a-body { @include syn-type(1.5rem, 1.52, 400, $syn-white); }
+
+.hero-syn-a-ctas {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+// ---------------------------------------------------
+// 1B - "Light and dark, no image": full-bleed colored band, no photo.
+// Eyebrow (plus-mark + product name + small Pinnacle logo) sits above a
+// two-tone title (first word of each line in the accent color). White or
+// Dark Blue Gradient fill. Title 52/1.2, body 20/1.52 (max ~3 lines,
+// ~169 characters); the text block can shrink (drop a line) but not grow.
+// ---------------------------------------------------
+.hero-syn--b {
+  padding: 60px 160px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding: 40px 16px;
+  }
+
+  &.hero-syn--b-dark {
+    background: $syn-grad-blue-ramp;
+    color: $syn-white;
+
+    .hero-syn-b-eyebrow-text { color: $syn-white; }
+    .hero-syn-b-title em { color: $syn-light-blue; }
+  }
+}
+
+.hero-syn-b-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 522px;
+}
+
+.hero-syn-b-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.hero-syn-b-eyebrow-text { @include syn-type(2rem, 1, 300, $syn-black); }
+
+.hero-syn-b-eyebrow-logo {
+  height: 28px;
+  width: auto;
+}
+
+.hero-syn-b-title {
+  @include syn-type(3.25rem, 1.2, 400, $syn-black);
+
+  em {
+    font-style: normal;
+    color: $syn-blue;
+  }
+
+  @media (max-width: $syn-mobile-max) { font-size: 2rem; }
+}
+
+.hero-syn-b-body { @include syn-type(1.25rem, 1.52); margin-top: 24px; }
+
+.hero-syn-b-ctas {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+// ---------------------------------------------------
+// 1C / 1D - "Diagonal box": photo + a diagonal-cut color block over the
+// left ~70% of the image. 1C = dark Blue Ramp fill, light-blue (#CCE3F3)
+// title with a short aqua underline, white body, one white/blue CTA.
+// 1D = light blue fill (no underline), navy text, one outline CTA (a
+// secondary button can be added per the design notes). Desktop title
+// 52/1.2 (~23 characters, 1 line only); mobile uses a shallower diagonal
+// and a 36pt title.
+// ---------------------------------------------------
+.hero-syn--c,
+.hero-syn--d {
+  min-height: 459px;
+  display: flex;
+  align-items: center;
+  border-radius: $syn-leaf-20;
+}
+
+.hero-syn-cd-panel {
+  position: absolute;
+  inset: 0;
+  width: 73%;
+  clip-path: polygon(0 0, 0 100%, 85% 100%, 100% 0);
+
+  @media (max-width: $syn-mobile-max) {
+    width: 90%;
+    clip-path: polygon(0 0, 0 100%, 96% 100%, 100% 0);
+  }
+}
+
+.hero-syn--c .hero-syn-cd-panel { background: $syn-grad-blue-ramp; }
+.hero-syn--d .hero-syn-cd-panel { background-color: rgba($syn-light-blue, 0.4); }
+
+.hero-syn-cd-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 480px;
+  padding: 60px 0 60px 100px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding: 32px 0 32px 24px;
+    gap: 16px;
+  }
+}
+
+.hero-syn-c-title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span { @include syn-type(3.25rem, 1.2, 400, $syn-light-blue); }
+
+  .hero-syn-c-underline {
+    width: 80px;
+    height: 4px;
+    background-color: $syn-sky;
+  }
+
+  @media (max-width: $syn-mobile-max) { span { font-size: 2.25rem; } }
+}
+
+.hero-syn-c-body { @include syn-type(1.25rem, 1.4, 400, $syn-white); max-width: 400px; }
+
+.hero-syn-d-title { @include syn-type(3.25rem, 1.2, 400, $syn-navy); }
+.hero-syn-d-body { @include syn-type(1.25rem, 1.52, 400, $syn-navy); max-width: 352px; }
+
+.hero-syn-cd-ctas {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+// ---------------------------------------------------
+// 1E / 1F - "Image only": a pure full-bleed photo band, no text overlay.
+// E is wide/short (1920x300 reference), F is wide/tall (1440x460
+// reference). Both shrink on scroll per the design notes.
+// ---------------------------------------------------
+.hero-syn--e { min-height: 200px; }
+.hero-syn--f { min-height: 300px; }
+
+@media (max-width: $syn-mobile-max) {
+  .hero-syn--e { min-height: 140px; }
+  .hero-syn--f { min-height: 220px; }
+}
+
+// ---------------------------------------------------
+// 1G - a single-statement band: Blue Ramp fill, centered headline only
+// (no body, no CTA, no image). Title 52/1 desktop, 32/1 mobile, Medium.
+// ---------------------------------------------------
+.hero-syn--g {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 225px;
+  padding: 40px;
+  background: $syn-grad-blue-ramp;
+  text-align: center;
+}
+
+.hero-syn-g-title { @include syn-type(3.25rem, 1.2, 600, $syn-white); }
+
+@media (max-width: $syn-mobile-max) {
+  .hero-syn--g { min-height: 180px; }
+  .hero-syn-g-title { font-size: 2rem; }
+}
