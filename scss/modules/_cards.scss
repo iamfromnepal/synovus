@@ -368,6 +368,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  max-width: 560px;
   padding: 60px 40px;
   background: linear-gradient($syn-tint-20, $syn-tint-20), rgba(255, 255, 255, 0.88);
   border: 1px solid $syn-sky;

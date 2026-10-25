@@ -1,0 +1,109 @@
+// ===========================================
+// MODULE: Brand Identity (Figma 588:4544, between Resources and the
+// Parallax Carousel)
+// Two full-bleed rows:
+// 1) Merger Hub banner - NYSE photo + Pinnacle/Synovus lockup + CTA.
+// 2) "Why Pinnacle Financial Partners" copy + floating stat cards over
+//    a geometric background image. The stat cards themselves
+//    (.stats-counters-syn/.stat-card-syn) were previously misplaced in
+//    the Parallax Carousel section - they belong here instead.
+// ===========================================
+
+.brand-identity-syn-merger {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: 80px 0;
+  background-color: $syn-tint-20;
+
+  @media (max-width: $syn-mobile-max) {
+    flex-direction: column;
+    padding: 0 0 40px;
+  }
+}
+
+.brand-identity-syn-merger-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  object-fit: cover;
+
+  @media (max-width: $syn-mobile-max) {
+    position: static;
+    width: 100%;
+    height: auto;
+    order: -1;
+  }
+}
+
+.brand-identity-syn-merger-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 512px;
+  max-width: 100%;
+  padding: 0 clamp(16px, 11.1111vw, 296px);
+
+  @media (max-width: $syn-mobile-max) {
+    width: 100%;
+    padding: 24px 16px 0;
+  }
+}
+
+.brand-identity-syn-merger-logo {
+  width: 100%;
+  max-width: 512px;
+  height: auto;
+}
+
+.brand-identity-syn-why {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  overflow: hidden;
+  padding: 120px clamp(16px, 11.1111vw, 160px) 120px clamp(16px, 11.1111vw, 296px);
+  background-color: $syn-tint-20;
+
+  @media (max-width: 991.98px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 60px 16px;
+  }
+}
+
+.brand-identity-syn-why-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 512px;
+  max-width: 100%;
+}
+
+.brand-identity-syn-why-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-size: cover;
+  background-position: center;
+  border-radius: $syn-leaf-12;
+  padding: 24px;
+
+  @media (max-width: 575.98px) {
+    flex-direction: column;
+  }
+}
+
+// Stat counters (Figma 588:4558, floating over the Brand Identity photo)
+.stats-counters-syn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

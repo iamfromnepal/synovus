@@ -1,22 +1,33 @@
 // ===========================================
-// MODULE: Stats + Parallax Partner Carousel (Module C + D)
-// ===========================================
-
-// ---------------------------------------------------
-// MODULE C + D: Stat counters & parallax partner carousel
-// (Homepage. Module C: 3915:30045, Module D: 3915:30044 -
-// not in the component-reference file, so laid out here from what's
-// already specified above: stat-card-syn, card-syn-glass, carousel-*.)
+// MODULE: Parallax Partner Carousel (Homepage D, 588:4572)
+// "Meet Our Community" heading (white) + a glass card on an oversized
+// photo background that scrolls slower than the page (JS sets the
+// transform), + carousel controls in their own white band below.
+// Stat counters previously (wrongly) lived in this section - they belong
+// to Brand Identity instead, see _brand-identity.scss.
 // ---------------------------------------------------
 .stats-parallax-syn {
-  position: relative;
-  overflow: hidden;
   padding-top: 80px;
-  padding-bottom: 80px;
 
   @media (max-width: $syn-mobile-max) {
     padding-top: 40px;
-    padding-bottom: 40px;
+  }
+}
+
+.stats-parallax-syn-heading {
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.stats-parallax-syn-media {
+  position: relative;
+  overflow: hidden;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 }
 
@@ -27,27 +38,23 @@
   left: 0;
   right: 0;
   height: 140%;
-  background: linear-gradient(180deg, $syn-ice 0%, $syn-light-blue 100%);
+  background-size: cover;
+  background-position: center;
   pointer-events: none;
   will-change: transform;
 }
 
 .stats-parallax-syn-inner {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-
-  @media (max-width: 991.98px) {
-    grid-template-columns: 1fr;
-  }
 }
 
-.stats-counters-syn {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+.stats-parallax-syn-controls {
+  padding-top: 40px;
+  padding-bottom: 80px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-bottom: 40px;
+  }
 }
 
 .carousel-syn {
@@ -59,4 +66,3 @@
 .carousel-syn-swiper {
   overflow: hidden;
 }
-
