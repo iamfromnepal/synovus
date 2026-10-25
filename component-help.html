@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinnacle Dot Com Style Guide | Help band &amp; controls</title>
+
+  <!-- Adobe Typekit Realist -->
+  <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
+
+  <!-- Bootstrap Icons (flip card back-face icon) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Style guide chrome only. Components below use the real classes from style.css. */
+    html { scroll-behavior: smooth; }
+    body { background: #FFFFFF; color: #151515; font-family: "realist", sans-serif; }
+
+    .sg-topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #E6E6E6; }
+    .sg-topbar-title { display: flex; align-items: center; gap: 16px; font-weight: 700; color: #283862; }
+    .sg-topbar-title img { height: 32px; width: auto; }
+    .sg-topbar nav { display: flex; gap: 20px; }
+
+    .sg-main { min-width: 0; max-width: 1100px; margin: 0 auto; padding: 48px 32px 120px; }
+
+    .sg-section { padding: 0 0 56px; scroll-margin-top: 70px; }
+    .sg-section > header { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; max-width: 900px; }
+    .sg-h3 { margin: 40px 0 16px; font-size: 1.25rem; font-weight: 700; color: #283862; }
+    .sg-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8125rem; color: #525252; }
+    .sg-badge { display: inline-block; padding: 2px 8px; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 4px; vertical-align: middle; }
+    .sg-badge-dev { color: #8A5A00; background: #FFF3CF; }
+
+    .sg-stage { padding: 32px; background: #FFFFFF; border: 1px solid #E6E6E6; border-radius: 8px; }
+    .sg-stage-tint { background: #F1F7FC; }
+    .sg-stage-dark { background: #283862; border-color: #283862; }
+    .sg-row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+    .sg-caption { margin-top: 12px; font-size: 0.8125rem; color: #525252; }
+
+    .sg-pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 24px; border-top: 1px solid #E6E6E6; font-size: 0.9375rem; }
+    .sg-pager a { color: #0074C4; text-decoration: none; font-weight: 700; }
+    .sg-pager a:hover { text-decoration: underline; }
+    .sg-pager-spacer { flex: 1; }
+
+    @media (max-width: 991.98px) {
+      .sg-main { padding: 32px 16px 80px; }
+      .sg-topbar { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="sg-topbar">
+    <div class="sg-topbar-title">
+      <img src="assets/images/logo-pinnacle.png" width="160" height="47" alt="Pinnacle Financial Partners">
+      <span>Dot Com Style Guide</span>
+    </div>
+    <nav>
+      <a class="link-syn-utility" href="styleguide.html">&larr; Style guide index</a>
+    </nav>
+  </header>
+
+  <main class="sg-main">
+
+    <section class="sg-section" id="help">
+      <header>
+        <span class="syn-eyebrow">Components</span>
+        <h2 class="syn-h2">Help band, carousel controls &amp; step markers</h2>
+      </header>
+
+      <h3 class="sg-h3">&ldquo;How can we help?&rdquo; (Homepage 588:4643 / Module 8C)</h3>
+      <div class="sg-stage sg-stage-tint">
+        <div class="help-band-syn">
+          <h4 class="syn-h2-light">How can we help?</h4>
+          <div class="help-band-syn-items">
+            <a href="#" class="help-tile-syn"><img src="assets/images/icon-help-phone.svg" width="62" height="62" alt="">Talk with us</a>
+            <a href="#" class="help-tile-syn"><img src="assets/images/icon-help-location.svg" width="62" height="61" alt="">Find a location</a>
+            <a href="#" class="help-tile-syn"><img src="assets/images/icon-help-campaign.svg" width="61" height="62" alt="">Merger hub</a>
+          </div>
+        </div>
+        <p class="sg-caption">White box, leaf 12, padding 20 / 60, gap 80. Tiles: padding 32 / 20, gap 10, 62px icon, Bold 20 / 1.2 Deep &mdash; leaf 12, no shadow, confirmed against the live Module 8C node. The <span class="sg-mono">.help-tile-syn-raised</span> variant (full 12px radius + card shadow) is kept for other placements of this tile.</p>
+      </div>
+
+      <h3 class="sg-h3">Carousel controls</h3>
+      <div class="sg-stage">
+        <div class="carousel-controls-syn" data-sg-carousel>
+          <button type="button" class="carousel-syn-arrow is-prev" aria-label="Previous slide"><span class="syn-chevron"></span></button>
+          <div class="carousel-syn-dots">
+            <button type="button" class="carousel-syn-dot is-active" aria-label="Slide 1" aria-current="true"></button>
+            <button type="button" class="carousel-syn-dot" aria-label="Slide 2"></button>
+            <button type="button" class="carousel-syn-dot" aria-label="Slide 3"></button>
+            <button type="button" class="carousel-syn-dot" aria-label="Slide 4"></button>
+            <button type="button" class="carousel-syn-dot" aria-label="Slide 5"></button>
+          </div>
+          <button type="button" class="carousel-syn-arrow" aria-label="Next slide"><span class="syn-chevron"></span></button>
+        </div>
+        <p class="sg-caption">24px arrows (arrow_forward_ios), 16px dots, 4px gap. Arrows sit at the container edges on desktop and cluster around the dots on mobile. Inactive dot colour is not exposed (SVG); Ash #D1D1D1 is used <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
+      </div>
+
+      <h3 class="sg-h3">Step markers (Module 15)</h3>
+      <div class="sg-stage">
+        <div class="sg-row">
+          <span class="step-syn">1</span><span class="step-syn">2</span><span class="step-syn">3</span>
+          <span class="sg-stage-dark d-inline-flex gap-3 p-3 rounded"><span class="step-syn step-syn-sm">1</span><span class="step-syn step-syn-sm">2</span></span>
+        </div>
+        <p class="sg-caption">B/C: 75px Deep circle, Medium 24 Pale number. A (on photography): 53px white circle, Bold 20 Pinnacle Blue number. Dotted connectors are SVG in Figma.</p>
+      </div>
+    </section>
+
+    <div class="sg-pager">
+      <a href="component-quotes.html">&larr; Quotes &amp; testimonials</a>
+      <span class="sg-pager-spacer"></span>
+      <a href="component-footer.html">Global footer &rarr;</a>
+    </div>
+
+  </main>
+
+  <script>
+    document.querySelectorAll('[data-sg-carousel]').forEach(ctrl => {
+      const dots = [...ctrl.querySelectorAll('.carousel-syn-dot')];
+      const setActive = i => dots.forEach((d, j) => {
+        d.classList.toggle('is-active', i === j);
+        if (i === j) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
+      const current = () => dots.findIndex(d => d.classList.contains('is-active'));
+      dots.forEach((d, i) => d.addEventListener('click', () => setActive(i)));
+      ctrl.querySelector('.is-prev').addEventListener('click', () => setActive((current() - 1 + dots.length) % dots.length));
+      ctrl.querySelector('.carousel-syn-arrow:not(.is-prev)').addEventListener('click', () => setActive((current() + 1) % dots.length));
+    });
+  </script>
+</body>
+</html>

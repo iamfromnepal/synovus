@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinnacle Dot Com Style Guide | Forms</title>
+
+  <!-- Adobe Typekit Realist -->
+  <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
+
+  <!-- Bootstrap Icons (flip card back-face icon) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Style guide chrome only. Components below use the real classes from style.css. */
+    html { scroll-behavior: smooth; }
+    body { background: #FFFFFF; color: #151515; font-family: "realist", sans-serif; }
+
+    .sg-topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #E6E6E6; }
+    .sg-topbar-title { display: flex; align-items: center; gap: 16px; font-weight: 700; color: #283862; }
+    .sg-topbar-title img { height: 32px; width: auto; }
+    .sg-topbar nav { display: flex; gap: 20px; }
+
+    .sg-main { min-width: 0; max-width: 1100px; margin: 0 auto; padding: 48px 32px 120px; }
+
+    .sg-section { padding: 0 0 56px; scroll-margin-top: 70px; }
+    .sg-section > header { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; max-width: 900px; }
+    .sg-note { margin: 0; font-size: 0.9375rem; line-height: 1.52; color: #525252; }
+    .sg-badge { display: inline-block; padding: 2px 8px; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 4px; vertical-align: middle; }
+    .sg-badge-dev { color: #8A5A00; background: #FFF3CF; }
+    .sg-caption { margin-top: 12px; font-size: 0.8125rem; color: #525252; }
+
+    .sg-pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 24px; border-top: 1px solid #E6E6E6; font-size: 0.9375rem; }
+    .sg-pager a { color: #0074C4; text-decoration: none; font-weight: 700; }
+    .sg-pager a:hover { text-decoration: underline; }
+    .sg-pager-spacer { flex: 1; }
+
+    @media (max-width: 991.98px) {
+      .sg-main { padding: 32px 16px 80px; }
+      .sg-topbar { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="sg-topbar">
+    <div class="sg-topbar-title">
+      <img src="assets/images/logo-pinnacle.png" width="160" height="47" alt="Pinnacle Financial Partners">
+      <span>Dot Com Style Guide</span>
+    </div>
+    <nav>
+      <a class="link-syn-utility" href="styleguide.html">&larr; Style guide index</a>
+    </nav>
+  </header>
+
+  <main class="sg-main">
+
+    <section class="sg-section" id="forms">
+      <header>
+        <span class="syn-eyebrow">Components</span>
+        <h2 class="syn-h2">Forms (Module 3)</h2>
+        <p class="sg-note">Figma 167:55900. Only text inputs and radios are drawn. Inputs: 46px, 1px #B2B2B2, radius 5. Label Bold 18 / 26px; optional description Regular 14 sits between label and input; 4px gap inside a field, 28px between fields (20 on mobile). Max 64 characters per field. Focus and checked states are <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
+      </header>
+      <div class="row g-4">
+        <div class="col-xl-7">
+          <div class="form-card-syn">
+            <div class="d-flex flex-column gap-2">
+              <h3 class="syn-h3">I&rsquo;d like to talk with someone about Pinnacle relationship programs and CDs.</h3>
+              <p class="syn-body-lg" style="color:#525252">Required fields are marked with an asterisk (<span class="required-asterisk" style="color:#E61E25">*</span>).</p>
+            </div>
+            <form class="form-syn" action="#" onsubmit="event.preventDefault()">
+              <div class="form-field-syn">
+                <label class="form-label-syn" for="sgFirst">First Name <span class="required-asterisk">*</span></label>
+                <input class="form-control-syn" id="sgFirst" type="text" maxlength="64" autocomplete="given-name">
+              </div>
+              <div class="form-field-syn">
+                <label class="form-label-syn" for="sgPhone">Phone</label>
+                <span class="form-desc-syn" id="sgPhoneDesc">example: 888-796-6887</span>
+                <input class="form-control-syn" id="sgPhone" type="tel" maxlength="64" aria-describedby="sgPhoneDesc" autocomplete="tel">
+              </div>
+              <div class="form-field-syn">
+                <label class="form-label-syn" for="sgEmail">Email <span class="required-asterisk">*</span></label>
+                <span class="form-desc-syn" id="sgEmailDesc">example: jsmith@example.com</span>
+                <input class="form-control-syn is-invalid" id="sgEmail" type="email" maxlength="64" value="jsmith@" aria-invalid="true" aria-describedby="sgEmailDesc sgEmailErr">
+                <span class="form-error-syn" id="sgEmailErr">Please enter a valid email address.</span>
+              </div>
+              <fieldset class="form-field-syn border-0 p-0 m-0">
+                <legend class="form-label-syn mb-0">Do you prefer phone or email? <span class="required-asterisk">*</span></legend>
+                <div class="form-radios-syn">
+                  <label class="form-radio-syn"><input type="radio" name="sgPref" checked> Phone</label>
+                  <label class="form-radio-syn"><input type="radio" name="sgPref"> Email</label>
+                </div>
+              </fieldset>
+              <div><button type="submit" class="btn-syn-standard">Submit</button></div>
+            </form>
+          </div>
+          <p class="sg-caption">Grey variant (Smoke card). The error message text colour (#E61E25) and border (#BD302C) come from the designer notes; the error example in Figma is a flat image, so message size and spacing are <span class="sg-badge sg-badge-dev">Dev-defined</span>.</p>
+        </div>
+        <div class="col-xl-5">
+          <div class="form-card-syn form-card-syn-navy">
+            <h3 class="syn-h3">Talk with a Pinnacle advisor</h3>
+            <form class="form-syn" action="#" onsubmit="event.preventDefault()">
+              <div class="form-field-syn">
+                <label class="form-label-syn" for="sgZip">Zip Code <span class="required-asterisk">*</span></label>
+                <span class="form-desc-syn">example: 31901</span>
+                <input class="form-control-syn" id="sgZip" type="text" maxlength="64" inputmode="numeric" autocomplete="postal-code">
+              </div>
+              <fieldset class="form-field-syn border-0 p-0 m-0">
+                <legend class="form-label-syn mb-0">Are you already a Pinnacle Bank customer?</legend>
+                <div class="form-radios-syn">
+                  <label class="form-radio-syn"><input type="radio" name="sgCust"> Yes</label>
+                  <label class="form-radio-syn"><input type="radio" name="sgCust"> No</label>
+                </div>
+              </fieldset>
+              <div><button type="submit" class="btn-syn-standard btn-syn-tint">Submit</button></div>
+            </form>
+          </div>
+          <p class="sg-caption">Navy variant (167:56135): title Baby, copy Ice, labels white, input border Ice, button Baby with Deep text. Light blue (Pale) and Pinnacle Blue variants also exist.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="sg-pager">
+      <a href="component-alert.html">&larr; Alert bar</a>
+      <span class="sg-pager-spacer"></span>
+      <a href="component-hero-system.html">Hero system &rarr;</a>
+    </div>
+
+  </main>
+</body>
+</html>
