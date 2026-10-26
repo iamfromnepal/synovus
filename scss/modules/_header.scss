@@ -30,8 +30,15 @@
 }
 
 .site-header-syn {
-  position: relative; // anchors the full-bleed mega-menu panels
+  position: sticky; // anchors the full-bleed mega-menu panels, and sticks
+  top: 0;           // to the viewport so it can hide/show on scroll
+  z-index: 1000;
   background-color: $syn-white;
+  transition: transform 0.3s ease;
+
+  &.is-header-hidden {
+    transform: translateY(-100%);
+  }
 
   .fdic-bar-syn {
     border-bottom: 1px solid $syn-hint;

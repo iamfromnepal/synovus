@@ -21,6 +21,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Sticky header: hides on scroll down, reappears on scroll up. Stays
+  // visible near the top of the page regardless of direction so it
+  // doesn't flicker while the alert bar is still scrolling past.
+  const siteHeader = document.querySelector('.site-header-syn');
+  if (siteHeader) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateHeaderVisibility = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY <= siteHeader.offsetHeight) {
+        siteHeader.classList.remove('is-header-hidden');
+      } else if (currentScrollY > lastScrollY) {
+        siteHeader.classList.add('is-header-hidden');
+      } else if (currentScrollY < lastScrollY) {
+        siteHeader.classList.remove('is-header-hidden');
+      }
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHeaderVisibility);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
   // Desktop mega-menu: hover-intent with a short close-delay so moving the
   // mouse from the nav item to its panel doesn't close it early.
   const megaItems = document.querySelectorAll('.nav-mega-syn-item');
@@ -105,12 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (controls) controls.hidden = swiper.slides.length <= 1;
   }
 
-  // News Ideas carousel: all 3 cards fit side by side on desktop (so Swiper
-  // has nothing to slide there), 1-up with a peek on mobile.
+  // News Ideas carousel: 1 card below 575px, 2 between 575-1023, 3 at
+  // 1024px+ (where all cards fit side by side with nothing left to slide).
   const newsCarouselEl = document.querySelector('.news-ideas-syn-swiper');
   if (newsCarouselEl && window.Swiper) {
     new window.Swiper(newsCarouselEl, {
-      slidesPerView: 1.1,
+      slidesPerView: 1,
       spaceBetween: 16,
       navigation: {
         nextEl: '.news-ideas-syn-next',
@@ -123,7 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bulletActiveClass: 'is-active',
       },
       breakpoints: {
-        992: { slidesPerView: 3, spaceBetween: 32 },
+        575: { slidesPerView: 2, spaceBetween: 16 },
+        1024: { slidesPerView: 3, spaceBetween: 32 },
       },
     });
   }
@@ -158,25 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
 
     statEls.forEach(el => statObserver.observe(el));
-  }
-
-  // Parallax background (Module D): the band behind the stats/carousel row
-  // scrolls slower than the content in front of it.
-  const parallaxBg = document.querySelector('.stats-parallax-syn-bg');
-  if (parallaxBg) {
-    let ticking = false;
-    const updateParallax = () => {
-      const rect = parallaxBg.parentElement.getBoundingClientRect();
-      parallaxBg.style.transform = `translateY(${rect.top * 0.3}px)`;
-      ticking = false;
-    };
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }, { passive: true });
-    updateParallax();
   }
 
   console.log('Synovus initialized: Bootstrap 5 & SCSS ready.');

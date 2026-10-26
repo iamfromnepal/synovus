@@ -1,8 +1,8 @@
 // ===========================================
-// MODULE: Parallax Partner Carousel (Homepage D, 588:4572)
-// "Meet Our Community" heading (white) + a glass card on an oversized
-// photo background that scrolls slower than the page (JS sets the
-// transform), + carousel controls in their own white band below.
+// MODULE: Partner Carousel (Homepage D, 588:4572)
+// "Meet Our Community" heading (white) + a glass card over a full-cover
+// photo background, + carousel controls in their own white band below.
+// (No parallax scroll effect for now - plain background-size: cover.)
 // Stat counters previously (wrongly) lived in this section - they belong
 // to Brand Identity instead, see _brand-identity.scss.
 // ---------------------------------------------------
@@ -31,17 +31,12 @@
   }
 }
 
-// Scrolls slower than the content in front of it (JS sets the transform)
 .stats-parallax-syn-bg {
   position: absolute;
-  top: -20%;
-  left: 0;
-  right: 0;
-  height: 140%;
+  inset: 0;
   background-size: cover;
   background-position: center;
   pointer-events: none;
-  will-change: transform;
 }
 
 .stats-parallax-syn-inner {
@@ -60,7 +55,7 @@
 .carousel-syn {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
 }
 
 .carousel-syn-swiper {

@@ -14,7 +14,7 @@
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  padding: 80px 0;
+  padding: 80px clamp(16px, 11.1111vw, 296px);
   background-color: $syn-tint-20;
 
   @media (max-width: $syn-mobile-max) {
@@ -46,7 +46,6 @@
   gap: 32px;
   width: 512px;
   max-width: 100%;
-  padding: 0 clamp(16px, 11.1111vw, 296px);
 
   @media (max-width: $syn-mobile-max) {
     width: 100%;
@@ -86,23 +85,29 @@
   max-width: 100%;
 }
 
-.brand-identity-syn-why-media {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+// Full-bleed backdrop behind the stat cards - spans the right half of the
+// section (960/1920 reference), not a small padded box of its own.
+.brand-identity-syn-why-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
   background-size: cover;
   background-position: center;
-  border-radius: $syn-leaf-12;
-  padding: 24px;
 
-  @media (max-width: 575.98px) {
-    flex-direction: column;
+  @media (max-width: 991.98px) {
+    position: static;
+    width: 100%;
+    height: 240px;
+    order: -1;
   }
 }
 
 // Stat counters (Figma 588:4558, floating over the Brand Identity photo)
 .stats-counters-syn {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;

@@ -248,6 +248,7 @@
 .card-syn-news {
   display: flex;
   flex-direction: column;
+  height: 100%;
   overflow: hidden;
   background-color: $syn-white;
   border-radius: $syn-leaf-12;
@@ -255,6 +256,7 @@
   transition: background 0.2s ease;
 
   .card-syn-media {
+    flex-shrink: 0;
     height: 310px;
     background-color: $syn-pale;
     background-size: cover;
@@ -264,6 +266,7 @@
   .card-syn-body {
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 20px;
     padding: 40px;
   }
@@ -272,6 +275,11 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+
+  // Pins "Learn More" to the bottom of the card regardless of copy length
+  .link-syn-tertiary {
+    margin-top: auto;
   }
 
   .card-syn-title { @include syn-type(1.25rem, 1.4, 700, $syn-black); transition: color 0.2s ease; }

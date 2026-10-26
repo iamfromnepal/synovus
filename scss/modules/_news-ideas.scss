@@ -32,5 +32,27 @@
   min-width: 0;
   overflow: hidden;
 
-  .swiper-slide { height: auto; }
+  // Swiper's own .swiper-wrapper is already display:flex, so flex's
+  // default align-items: stretch would make every card in a row match
+  // the tallest one - but Swiper's bundled CSS sets .swiper-slide to an
+  // explicit height: 100%, which (against this auto-height wrapper)
+  // resolves as unstretchable rather than auto. Forcing height: auto
+  // restores the stretch, and .card-syn-news (height: 100%) + its
+  // flex: 1 body fill that stretched slide height.
+  .swiper-wrapper {
+    gap: 16px;
+
+    @media (min-width: 1024px) { gap: 32px; }
+  }
+
+  .swiper-slide {
+    height: auto;
+  }
+
+  // Spacing comes from the gap above, not Swiper's own spaceBetween
+  // margin (spaceBetween is still passed to Swiper so it sizes slides
+  // correctly; this cancels the inline margin it adds for that).
+  .swiper-slide {
+    margin-right: 0 !important;
+  }
 }
