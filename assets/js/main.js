@@ -31,7 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateHeaderVisibility = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY <= siteHeader.offsetHeight) {
+      const headerHeight = siteHeader.offsetHeight;
+
+      // Only flips once per threshold crossing, not on every scroll tick -
+      // switching position on every direction change (instead of only
+      // here) was what made scrolling feel janky.
+      siteHeader.classList.toggle('is-scrolled', currentScrollY > headerHeight);
+
+      if (currentScrollY <= headerHeight) {
         siteHeader.classList.remove('is-header-hidden');
       } else if (currentScrollY > lastScrollY) {
         siteHeader.classList.add('is-header-hidden');

@@ -39,10 +39,17 @@
 
   // A stuck sticky element still reserves its "stuck" layout position even
   // once transformed away, leaving a blank gap the height of the header.
-  // Switching to fixed only while hidden removes it from flow at that
-  // point, so nothing is reserved underneath it.
-  &.is-header-hidden {
+  // is-scrolled (set once when passing the header's own height, not on
+  // every scroll tick) switches to fixed so nothing is reserved - tying
+  // this to is-header-hidden instead caused it to flip on every direction
+  // change, reflowing the page and making scrolling feel janky.
+  &.is-scrolled {
     position: fixed;
+    left: 0;
+    right: 0;
+  }
+
+  &.is-header-hidden {
     transform: translateY(-100%);
   }
 
