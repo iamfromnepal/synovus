@@ -34,9 +34,15 @@
   top: 0;           // to the viewport so it can hide/show on scroll
   z-index: 1000;
   background-color: $syn-white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); // separates it from whatever white section scrolls underneath while stuck
   transition: transform 0.3s ease;
 
+  // A stuck sticky element still reserves its "stuck" layout position even
+  // once transformed away, leaving a blank gap the height of the header.
+  // Switching to fixed only while hidden removes it from flow at that
+  // point, so nothing is reserved underneath it.
   &.is-header-hidden {
+    position: fixed;
     transform: translateY(-100%);
   }
 
