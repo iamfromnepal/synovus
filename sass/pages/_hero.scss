@@ -61,7 +61,7 @@
     align-items: center;
     justify-content: center;
     padding: 0 16px;
-    background-image: url('assets/images/hero-mobile-bg.jpg');
+    background-image: url('../images/hero-mobile-bg.jpg');
     background-size: cover;
     background-position: center;
   }
@@ -75,7 +75,7 @@
       justify-content: space-between;
       padding-left: 80px;
       padding-right: calc(50cqw - 560px); // 40px @1200 -> 160px @1440
-      background-image: url('assets/images/hero-bg.jpg');
+      background-image: url('../images/hero-bg.jpg');
       background-size: cover;
       background-position: center top;
     }
