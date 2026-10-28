@@ -1,0 +1,78 @@
+// ===========================================
+// MODULE: Partner Carousel (Homepage D, 588:4572)
+// "Meet Our Community" heading (white) + a glass card over a full-cover
+// photo background, + carousel controls in their own white band below.
+// (No parallax scroll effect for now - plain background-size: cover.)
+// Stat counters previously (wrongly) lived in this section - they belong
+// to Brand Identity instead, see _brand-identity.scss.
+// ---------------------------------------------------
+.stats-parallax-syn {
+  padding-top: 80px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 40px;
+  }
+}
+
+.stats-parallax-syn-heading {
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.stats-parallax-syn-media {
+  position: relative;
+  overflow: hidden;
+  // A tall, fixed-height band (Figma: 780px) with the glass card vertically
+  // centered inside it - the full-bleed photo needs to stay visible all
+  // around the card, not padding-hugged tight around it like before.
+  // flex-direction: column (not row) so justify-content centers vertically
+  // while the inner container keeps its own full width via cross-axis
+  // stretch, instead of shrink-wrapping like a row's main-axis item would.
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 730px;
+
+  @media (max-width: $syn-mobile-max) {
+    display: block;
+    height: auto;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+.stats-parallax-syn-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.stats-parallax-syn-inner {
+  position: relative;
+}
+
+.stats-parallax-syn-controls {
+  padding-top: 40px;
+  padding-bottom: 80px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-bottom: 40px;
+  }
+}
+
+.carousel-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.carousel-syn-swiper {
+  // See the identical fix in _news-ideas.scss: without these, a swiper
+  // nested in a flex column can ignore its own overflow: hidden and
+  // balloon to fit its slides' content width.
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}

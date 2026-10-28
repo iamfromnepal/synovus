@@ -1,0 +1,170 @@
+// ===========================================
+// MODULE: Resources row (Figma 588:4523, immediately after the hero)
+// Section intro, Featured Insight + image (Original/Alternate style),
+// and the 3 product/flip cards.
+// ===========================================
+
+// Reusable section intro: eyebrow + title + body (Figma 588:4524, "Let's
+// reach your financial potential"). Other homepage sections reuse this.
+// ---------------------------------------------------
+.section-heading-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 581px;
+
+  .section-heading-syn-eyebrow {
+    @include syn-type(0.875rem, 1.4, 700, $syn-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .section-heading-syn-title {
+    @include syn-type(2.5rem, 1.4, 400, $syn-navy);
+  }
+
+  @media (max-width: $syn-mobile-max) {
+    .section-heading-syn-title {
+      font-size: 2rem;
+    }
+  }
+}
+
+// ---------------------------------------------------
+// Homepage: "Resources" row (Figma 588:4523, immediately after the hero)
+// Heading, Featured Insight + photo, then 3 Product Card v3 tiles.
+// ---------------------------------------------------
+.resources-syn {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  // @media (max-width: $syn-mobile-max) {
+  //   padding-top: 40px;
+  //   padding-bottom: 40px;
+  // }
+}
+
+.resources-syn-intro { 
+  margin-bottom: 48px;
+}
+
+.resources-syn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+  }
+
+  // Below this, the row + grid give way to .resources-syn-slider instead
+  // (same "two parallel blocks, toggled by display" split the header uses
+  // for its own mobile vs. desktop nav).
+  @media (max-width: $syn-mobile-max) {
+    display: none;
+  }
+}
+
+.resources-syn-photo {
+  overflow: hidden;
+  border-radius: $syn-leaf-12;
+  box-shadow: $syn-shadow-card;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.resources-syn-products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: $syn-mobile-max) {
+    display: none;
+  }
+}
+
+// Mobile/tablet slider (Figma 588:52923, "Resources Idea 1" mobile frame):
+// the featured card becomes slide 1 with the photo as its own background,
+// then each product card is a plain slide. Shown only below the
+// breakpoint where the row/grid above hide themselves.
+.resources-syn-slider {
+  display: none;
+
+  @media (max-width: $syn-mobile-max) {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .carousel-controls-syn {
+    padding: 0 16px;
+  }
+}
+
+.resources-syn-swiper {
+  // See .news-ideas-syn-swiper for why both of these matter: without them
+  // this swiper balloons to fit its own overflowing slides instead of
+  // respecting overflow: hidden.
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  // Slide cards cast a 0 8px 28px box-shadow; overflow: hidden (needed
+  // above to mask off-screen slides) was clipping it flat at this
+  // container's own edges, since autoHeight fits the slide with zero
+  // margin to spare. This padding gives the shadow room on every side
+  // before it reaches that clipped boundary - the bottom gets the most
+  // since the shadow's downward offset pushes it furthest that way.
+  padding: 20px 16px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 23px;
+
+  .swiper-wrapper {
+    gap: 16px;
+    // align-items defaults to stretch, which (since height: auto below
+    // still permits stretching, it doesn't opt out of it) stretched every
+    // slide to match the tallest one regardless - measured live, all 4
+    // slides came out to an identical 50D8px even with height: auto set.
+    // flex-start plus Swiper's autoHeight: true (assets/js/main.js) is
+    // what actually makes the wrapper adopt each slide's own height.
+    align-items: flex-start;
+
+    @media (min-width: 575px) {
+      gap: 24px;
+    }
+  }
+
+  // Swiper's bundled CSS sets .swiper-slide to height: 100%, which these
+  // slides (not meant to be equal height - the featured slide and the
+  // fixed-height product cards differ) don't need.
+  .swiper-slide {
+    height: auto;
+    margin-right: 0 !important;
+  }
+}
+
+// Slide 1's background: the photo bleeds around the still-opaque featured
+// card instead of sitting beside it in its own column (Figma: px-16 py-32
+// around the card, both revealing the image).
+.resources-syn-slide-featured {
+  display: flex;
+  padding: 12px 0;
+  background-size: cover;
+  background-position: center;
+
+  .card-syn-featured {
+    width: 100%;
+  }
+}

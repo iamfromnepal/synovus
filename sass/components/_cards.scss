@@ -1,0 +1,594 @@
+// ===========================================
+// MODULE: Cards & Tiles
+// Shared card/tile components used across pages (not tied to one
+// homepage section): featured/product/news/flip cards, tags, tiles,
+// stat cards, glass card, quotes, help band, carousel controls.
+// ===========================================
+
+// Signature dual accent bar (Module A login card)
+.accent-bar-dual {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  background-color: $syn-blue;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 72.44%; // Figma: 255px of 352px, right-aligned
+    background-color: $syn-navy;
+  }
+}
+
+// Tag: px16 py8, Ice fill, Bold 14/1.4 uppercase 1px tracking (Product card v3)
+.tag-syn {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $syn-blue;
+  background-color: $syn-ice;
+}
+
+// Outline tag: white fill, 1px Sky, Medium 16/1.2 ("FEATURED INSIGHT")
+.tag-syn-outline {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 9px 21px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: $syn-blue;
+  background-color: $syn-white;
+  border: 1px solid $syn-sky;
+}
+
+// Dark solid badge: Resources "Alternate Style" FEATURED INSIGHT tag
+// (on the light card, instead of the white-outline tag on the dark card)
+.tag-syn-dark {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 9px 21px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: $syn-white;
+  background-color: $syn-navy;
+}
+
+// Flag: 40px tall, min 168px, slanted right edge (Module 2). Slant depth is not specified.
+.flag-syn {
+  display: inline-flex;
+  align-items: center;
+  min-width: 168px;
+  height: 40px;
+  padding: 0 32px 0 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: $syn-navy;
+  background-color: $syn-flag-light;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
+}
+
+.flag-syn-dark {
+  color: $syn-white;
+  background: $syn-grad-blue-ramp;
+}
+
+// Product card v3 (homepage): padding 40, leaf 20, blue shadow, gap 24
+.card-syn-product {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+  background-color: $syn-white;
+  border-radius: $syn-leaf-20;
+  box-shadow: $syn-shadow-card-blue;
+
+  .card-syn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    // Clamped like the body below: unclamped, a long headline could push
+    // the footer (and its "Learn More" link) past the flip card's fixed
+    // 330px height, out from under the card's own white background.
+    .syn-h5 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .syn-body {
+    display: -webkit-box;
+    // 2, not 3: with the title above also capped at 2 lines, 3 body lines
+    // still overflowed the fixed 330px card (measured live: footer sat
+    // 50px below the card's bottom edge). 2 lines is what actually fits.
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Floating circular action on a product card's bottom-right corner.
+// The SVG itself already contains the tinted circle fill, so this just
+// positions and sizes it.
+// Row pairing a card's primary link/CTA with the flip-trigger action icon
+.card-syn-product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto; // pins to the bottom of the flex-column card
+}
+
+.card-syn-product-action {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  img { display: block; width: 100%; height: 100%; }
+}
+
+// Flip-card behavior (Figma spec: "Card Flip Behavior"). The corner icon
+// above is the flip trigger, not a share action - it sits in the same
+// bottom-right spot on both faces. Flips horizontally via rotateY.
+.card-syn-product-flip {
+  position: relative;
+  height: 330px;
+  perspective: 1500px;
+}
+
+.card-syn-product-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.card-syn-product-flip.is-flipped .card-syn-product-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.card-syn-product-flip-front,
+.card-syn-product-flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.card-syn-product-flip-front .card-syn-product { height: 100%; }
+
+.card-syn-product-flip-back {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px; // matches the front face's padding (card-syn-product)
+  color: $syn-white;
+  background: $syn-grad-blue-ramp;
+  border-radius: $syn-leaf-20;
+  box-shadow: $syn-shadow-card-blue;
+  transform: rotateY(180deg);
+
+  .syn-h5 { color: $syn-white; }
+}
+
+.card-syn-flip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 1.125rem;
+  color: $syn-blue;
+  background-color: $syn-white;
+  border-radius: $syn-leaf-8;
+}
+
+.card-syn-flip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+// Featured insight: Blue Ramp, padding 60, leaf 12, gap 32
+.card-syn-featured {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 60px;
+  color: $syn-white;
+  background: $syn-grad-blue-ramp;
+  border-radius: $syn-leaf-12;
+  box-shadow: $syn-shadow-card;
+
+  @media (max-width: $syn-mobile-max) { padding: 40px 24px; }
+
+  .card-syn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-syn-title { @include syn-type(2rem, 1.2, 400, $syn-white); }
+  .syn-body { color: $syn-white; }
+}
+
+// Light/Ice variant of the featured card (Resources "Alternate Style")
+.card-syn-featured-light {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 60px;
+  background-color: $syn-ice;
+  border-radius: $syn-leaf-12;
+  box-shadow: $syn-shadow-card;
+
+  @media (max-width: $syn-mobile-max) { padding: 40px 24px; }
+
+  .card-syn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-syn-title { @include syn-type(2rem, 1.2, 400, $syn-navy); }
+}
+
+// News / partnership card: image 310 + body padding 40, leaf 12, blue shadow
+.card-syn-news {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: $syn-white;
+  border-radius: $syn-leaf-12;
+  box-shadow: $syn-shadow-card-blue;
+  transition: background 0.2s ease;
+
+  .card-syn-media {
+    flex-shrink: 0;
+    height: 310px;
+    background-color: $syn-pale;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-syn-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+    padding: 40px;
+  }
+
+  .card-syn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  // Pins "Learn More" to the bottom of the card regardless of copy length
+  .link-syn-tertiary {
+    margin-top: auto;
+  }
+
+  .card-syn-title { @include syn-type(1.25rem, 1.4, 700, $syn-black); transition: color 0.2s ease; }
+  .syn-body { transition: color 0.2s ease; }
+  .link-syn-tertiary { transition: color 0.2s ease; }
+
+  // Hover reveals the Blue Ramp treatment - mouse/trackpad only, so touch
+  // devices (no real hover) stay on the default white look.
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-within {
+      background: $syn-grad-blue-ramp;
+
+      .card-syn-title, .syn-body, .link-syn-tertiary { color: $syn-white; }
+    }
+  }
+}
+
+// Product tile (Module 2): white, radius 12, shadow, padding 40/32/32, gap 24
+.tile-syn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px 32px 32px;
+  background-color: $syn-white;
+  border-radius: $syn-radius-tile;
+  box-shadow: $syn-shadow-card;
+
+  &.has-flag { padding-top: 72px; }
+
+  .flag-syn {
+    position: absolute;
+    top: 16px;
+    left: 0;
+  }
+
+  .tile-syn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tile-syn-desc { @include syn-type(1.25rem, 1.4, 400, $syn-grey); }
+
+  .tile-syn-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+// Feature card with coloured tip (Modules 5B, 17A): 12px top border, padding 44/44/32, gap 8
+.tile-syn-tip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 44px 44px 32px;
+  background-color: $syn-white;
+  border-top: 12px solid $syn-blue;
+  border-radius: $syn-radius-tile;
+  box-shadow: $syn-shadow-card;
+
+  .tile-syn-title { @include syn-type(1.25rem, 1.52, 600, $syn-navy); }
+  .syn-body { color: $syn-grey; }
+
+  &.tip-navy   { border-top-color: $syn-navy; }
+  &.tip-bronze { border-top-color: $syn-bronze; }
+  &.tip-aqua   { border-top-color: $syn-aqua; }
+  &.tip-baby   { border-top-color: $syn-light-blue; }
+}
+
+// Stat counter card: white, leaf 12
+.stat-card-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 280px;
+  padding: 40px 32px;
+  background-color: $syn-white;
+  border-radius: $syn-leaf-12;
+
+  .syn-body { color: $syn-navy; }
+
+  // Without a max-width here, the body copy ("Branch locations and
+  // ATMs, always close by") renders on one unconstrained line, growing
+  // the card far past its intended ~352px and forcing the whole
+  // cluster to wrap into a single column instead of sitting side by
+  // side with the larger card.
+  &.stat-card-syn-sm {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    max-width: 352px;
+    padding: 32px;
+  }
+}
+
+// Parallax "glass" card
+.card-syn-glass {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 560px;
+  padding: 60px 40px;
+  background: linear-gradient($syn-tint-20, $syn-tint-20), rgba(255, 255, 255, 0.88);
+  border: 1px solid $syn-sky;
+  border-radius: $syn-leaf-12;
+  box-shadow: $syn-shadow-card-blue;
+  backdrop-filter: blur(6px);
+
+  .card-syn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .card-syn-title { @include syn-type(2.5rem, 1.2, 400, $syn-navy); }
+}
+
+// Pull quote A: 2px blue border, leaf 20, Ice fill, padding 60/96, coloured quote mark
+.quote-syn {
+  position: relative;
+  padding: 60px 96px;
+  background-color: $syn-ice;
+  border: 2px solid $syn-blue;
+  border-radius: $syn-leaf-20;
+
+  @media (max-width: $syn-mobile-max) { padding: 56px 40px; }
+
+  .quote-syn-mark {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+  }
+}
+
+// Quote mark (rotated 180deg in Figma). Colour via --quote-color: solid colour or gradient
+.quote-syn-mark {
+  display: block;
+  width: 90px;
+  height: 64px;
+  transform: rotate(180deg);
+  background: var(--quote-color, #{$syn-aqua});
+  // Inlined (assets/images/icon-quote.svg) so the mask also works from disk
+  mask: url("data:image/svg+xml,%3Csvg width='90.1252' height='64' viewBox='0 0 90.1252 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath id='Vector' d='M19.3125 25.6C17.0433 25.6 14.8968 26.06 12.875 26.78V25.6C12.875 18.54 18.6487 12.8 25.75 12.8C29.3048 12.8 32.1876 9.934 32.1876 6.4C32.1876 2.866 29.3108 0 25.75 0C11.5513 0 0 11.48 0 25.6V44.8C0 55.404 8.64638 64 19.3125 64C29.9787 64 38.6251 55.404 38.6251 44.8C38.6251 34.196 29.9747 25.6 19.3125 25.6ZM70.8126 25.6C68.5434 25.6 66.3969 26.061 64.3751 26.7758V25.6C64.3751 18.54 70.1488 12.8 77.2501 12.8C80.8049 12.8 83.6877 9.934 83.6877 6.4C83.6877 2.866 80.8049 0 77.2501 0C63.0514 0 51.5001 11.484 51.5001 25.6V44.8C51.5001 55.404 60.1465 64 70.8126 64C81.4788 64 90.1252 55.404 90.1252 44.8C90.1252 34.196 81.4748 25.6 70.8126 25.6Z' fill='%2300B4C4'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+// Testimonial A: white, radius 10, padding 40/96, centred
+.testimonial-syn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 96px;
+  text-align: center;
+  background-color: $syn-white;
+  border-radius: $syn-radius-testimonial;
+
+  @media (max-width: $syn-mobile-max) { padding: 40px 24px; }
+
+  .testimonial-syn-quote-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonial-syn-title { @include syn-type(2.25rem, 1.4, 600, $syn-navy); }
+  .testimonial-syn-quote { @include syn-type(1.25rem, 1.52); max-width: 816px; }
+  .testimonial-syn-author { @include syn-type(1rem, 1.52, 700, $syn-navy); }
+  .testimonial-syn-role { @include syn-type(1rem, 1.52, 400, $syn-grey); }
+}
+
+// Step marker (Module 15)
+.step-syn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.48px;
+  color: $syn-pale;
+  background-color: $syn-navy;
+  border-radius: 50%;
+
+  &.step-syn-sm {
+    width: 53px;
+    height: 53px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: $syn-blue;
+    background-color: $syn-white;
+  }
+}
+
+
+// "How can we help?" band: white box leaf 12, padding 20/60, gap 80
+.help-band-syn {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 20px 60px;
+  background-color: $syn-white;
+  border-radius: $syn-leaf-12;
+
+  @media (max-width: $syn-mobile-max) {
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+
+  .help-band-syn-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+}
+
+// Help tile: 165 wide, padding 32/20, gap 10, icon 62, Bold 20/1.2 navy
+.help-tile-syn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 165px;
+  padding: 32px 20px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $syn-navy;
+  text-decoration: none;
+  background-color: $syn-white;
+  border-radius: $syn-leaf-12;
+
+  &:hover { color: $syn-blue; }
+
+  // Module 8C variant: full radius + tile shadow
+  &.help-tile-syn-raised {
+    border-radius: $syn-radius-tile;
+    box-shadow: $syn-shadow-card;
+  }
+}
+
+// Carousel controls: 24px arrows, 16px dots with 4px gap
+.carousel-controls-syn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .carousel-syn-arrow {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    color: $syn-blue;
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    .syn-chevron { width: 24px; height: 24px; }
+
+    &.is-prev .syn-chevron { transform: rotate(180deg); }
+  }
+
+  .carousel-syn-dots {
+    display: flex;
+    // Swiper's own bundled CSS puts width: 100% on the pagination element
+    // (.swiper-pagination-bullets) for its usual absolutely-positioned
+    // usage; as a plain flex item here that balloons this box out to
+    // nearly the full controls row width, with the actual dots (sized by
+    // content) left-aligned inside it instead of looking centered.
+    // flex/width here cancel that; justify-content centers the dots
+    // regardless of whatever width the box ends up with.
+    flex: 0 0 auto;
+    width: auto;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  // Active dot Pinnacle Blue; inactive colour is not exposed in Figma (Ash #D1D1D1 is in the section styles)
+  .carousel-syn-dot {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    background-color: $syn-ash;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.is-active { background-color: $syn-blue; }
+  }
+}
+

@@ -21,29 +21,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Sticky header: hides on scroll down, reappears on scroll up. Stays
-  // visible near the top of the page regardless of direction so it
-  // doesn't flicker while the alert bar is still scrolling past.
-  const siteHeader = document.querySelector('.site-header-syn');
-  if (siteHeader) {
+  // Fixed header: the alert bar + header stack is position: fixed from
+  // page load (see .site-header-fixed-syn) - it never toggles position on
+  // scroll, which is what used to make scrolling feel like it jumped.
+  // Being fixed takes it out of document flow entirely, so body needs
+  // matching padding-top; a ResizeObserver keeps that in sync with the
+  // stack's real height (viewport width changes how the alert bar's text
+  // wraps, and dismissing it removes it from the stack entirely).
+  const headerFixed = document.querySelector('.site-header-fixed-syn');
+  if (headerFixed) {
+    const syncHeaderSpace = () => {
+      document.body.style.paddingTop = `${headerFixed.offsetHeight}px`;
+    };
+    syncHeaderSpace();
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(syncHeaderSpace).observe(headerFixed);
+    } else {
+      window.addEventListener('resize', syncHeaderSpace);
+    }
+
+    // Hides on scroll down, reappears on scroll up. Stays visible near the
+    // top of the page regardless of direction so it doesn't flicker while
+    // the alert bar is still scrolling past.
     let lastScrollY = window.scrollY;
     let ticking = false;
 
     const updateHeaderVisibility = () => {
       const currentScrollY = window.scrollY;
-      const headerHeight = siteHeader.offsetHeight;
+      const threshold = headerFixed.offsetHeight;
 
-      // Only flips once per threshold crossing, not on every scroll tick -
-      // switching position on every direction change (instead of only
-      // here) was what made scrolling feel janky.
-      siteHeader.classList.toggle('is-scrolled', currentScrollY > headerHeight);
-
-      if (currentScrollY <= headerHeight) {
-        siteHeader.classList.remove('is-header-hidden');
+      if (currentScrollY <= threshold) {
+        headerFixed.classList.remove('is-header-hidden');
       } else if (currentScrollY > lastScrollY) {
-        siteHeader.classList.add('is-header-hidden');
+        headerFixed.classList.add('is-header-hidden');
       } else if (currentScrollY < lastScrollY) {
-        siteHeader.classList.remove('is-header-hidden');
+        headerFixed.classList.remove('is-header-hidden');
       }
       lastScrollY = currentScrollY;
       ticking = false;
@@ -139,6 +151,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // are added later.
     const controls = document.querySelector('[data-carousel-controls]');
     if (controls) controls.hidden = swiper.slides.length <= 1;
+  }
+
+  // Resources/"Pinnacle trusted advisors" mobile slider: 1 slide below
+  // 575px, 2 between 575-767.98px (above that, the slider is hidden in
+  // favor of the row + grid layout, so Swiper never needs 3+ slidesPerView).
+  const resourcesCarouselEl = document.querySelector('.resources-syn-swiper');
+  if (resourcesCarouselEl && window.Swiper) {
+    new window.Swiper(resourcesCarouselEl, {
+      slidesPerView: 1,
+      spaceBetween: 16,
+      autoHeight: true,
+      navigation: {
+        nextEl: '.resources-syn-next',
+        prevEl: '.resources-syn-prev',
+      },
+      pagination: {
+        el: '.resources-syn-pagination',
+        clickable: true,
+        bulletClass: 'carousel-syn-dot',
+        bulletActiveClass: 'is-active',
+      },
+      breakpoints: {
+        575: { slidesPerView: 2, spaceBetween: 24 },
+      },
+    });
   }
 
   // News Ideas carousel: 1 card below 575px, 2 between 575-1023, 3 at

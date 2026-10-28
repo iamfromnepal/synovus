@@ -1,0 +1,648 @@
+// ===========================================
+// MODULE 1: Hero system (High Priority component library, 167:3)
+// A generic, reusable Hero with 7 lettered style variants (1A-1G). This
+// is separate from the homepage's own bespoke hero (_hero.scss, Module A
+// "Hero w/Login") - this module is for OTHER pages that need a hero.
+//
+// Notes pulled from the Figma dev-note callouts on each variant:
+// - Purpose: capture attention, set tone, convey value prop, establish
+//   hierarchy, drive engagement when a CTA is present.
+// - Hero images are FPO only in Figma (no final photo picked) - swap per
+//   page. Some heroes also come in shorter size variants (see 1A below).
+// - All copy fields have stated max line/character counts; run-over text
+//   should truncate rather than reflow the box.
+// ===========================================
+
+.hero-syn {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: right center;
+}
+
+// ---------------------------------------------------
+// 1A - "Boxed overlap": photo + a text box overlapping the lower-left,
+// vertically centered. Box fill is flexible: Blue (default), White, or
+// a diagonal Blue Ramp gradient - only the box colors/text colors change.
+// Desktop image subject should sit right of the box. Title 48/1.2 (max ~2
+// lines, ~31 characters), body 24/1.52 (max ~3 lines, ~114 characters).
+// Also comes in 2 shorter size variants - see "1A size variants" below.
+// ---------------------------------------------------
+// 1A switches to its stacked "mobile" layout earlier than the rest of the
+// site (991px, not the shared $syn-mobile-max) because the overlapping
+// box + bled photo needs more room than a typical text section does.
+$hero-a-stack-max: 991px;
+
+// Box overlaps a full-bleed photo (the hero's own background - it, plus
+// the gradient wash, is set here so mobile can still read the same
+// --hero-syn-a-photo custom property further down the tree), with the
+// FPO label floating in the open photo area beside the box.
+.hero-syn--a {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  min-height: 636px;
+  padding-top: 40px;
+  // A few px more than the box's own shadow (0 8px 28px) needs below it,
+  // so .hero-syn-a-box--white's shadow has room and doesn't get clipped
+  // by this element's overflow: hidden (inherited from .hero-syn).
+  padding-bottom: 56px;
+  background-image: linear-gradient(90deg, rgba(229, 241, 249, 0.4) 13%, rgba(0, 51, 102, 0.2) 109%), var(--hero-syn-a-photo);
+  background-size: cover;
+  background-position: center;
+
+  // column-reverse: the FPO column is second in the DOM (so it lands on
+  // the right above 991px) but needs to render on top when stacked.
+  @media (max-width: $hero-a-stack-max) {
+    flex-direction: column-reverse;
+    min-height: 0;
+    gap: 0;
+    padding: 0 16px;
+    background-image: none; // mobile shows the photo on the FPO block instead
+  }
+}
+
+.hero-syn-a-box {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 0 0 520px;
+  // Aligns the card's left edge with where a centered, 1120px-max-width,
+  // 16px-gutter container's content would start.
+  margin-left: max(16px, calc((100% - 1120px) / 2 + 16px));
+  padding: 60px;
+  background-color: $syn-blue;
+  color: $syn-white;
+  border-radius: $syn-leaf-20;
+
+  @media (max-width: $hero-a-stack-max) {
+    gap: 24px;
+    padding: 32px 24px;
+    flex-basis: auto;
+    margin-left: 0;
+    margin-top: -27px;
+  }
+
+  &.hero-syn-a-box--white {
+    background-color: $syn-white;
+    box-shadow: $syn-shadow-card;
+
+    .hero-syn-a-title {
+      color: $syn-blue;
+    }
+
+    .hero-syn-a-body {
+      color: $syn-black;
+    }
+  }
+
+  &.hero-syn-a-box--gradient {
+    background: linear-gradient(45deg, $syn-blue 0%, $syn-navy 100%);
+  }
+}
+
+.hero-syn-a-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-syn-a-title {
+  @include syn-type(3rem, 1.2, 400, $syn-white);
+
+  @media (max-width: $hero-a-stack-max) {
+    font-size: 2.5rem;
+  }
+}
+
+.hero-syn-a-body {
+  @include syn-type(1.5rem, 1.52, 400, $syn-white);
+}
+
+.hero-syn-a-ctas {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+// Layout spacer that fills the rest of the hero beside the box, centering
+// "FPO" in normal flow (not absolutely positioned) - the photo itself
+// lives on .hero-syn--a above 991px, or is repeated here via the same
+// custom property once stacked (see below).
+.hero-syn-a-fpo-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch; // sizes from the row's height rather than the
+  // parent's align-items: center (sized for the box)
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+
+  @media (max-width: $hero-a-stack-max) {
+    flex: 0 0 425px;
+    margin: 0 -16px;
+    background-image: linear-gradient(90deg, rgba(229, 241, 249, 0.4) 13%, rgba(0, 51, 102, 0.2) 109%), var(--hero-syn-a-photo);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+// Figma marks the photo fill on this module "FPO only" (For Position
+// Only, i.e. not a final asset) with a huge, bold, solid-white watermark -
+// reproduced here so the component library makes unmistakably clear the
+// photo needs swapping per page the hero is used on.
+.hero-syn-a-fpo {
+  pointer-events: none;
+  @include syn-type(140px, 1.1, 700, $syn-white);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: $hero-a-stack-max) {
+    font-size: 96px;
+  }
+}
+
+// ---------------------------------------------------
+// 1A size variants: Full (default, the base .hero-syn--a above), Compact
+// and Minimal are just 2 shorter fixed heights to pick per page context -
+// not a scroll effect. Minimal drops the body copy and CTAs to a
+// title-only band.
+// ---------------------------------------------------
+.hero-syn--a.hero-syn-a--compact {
+  min-height: 407px;
+
+  .hero-syn-a-box {
+    padding: 36px;
+    gap: 24px;
+  }
+
+  .hero-syn-a-title {
+    font-size: 2rem;
+  }
+
+  .hero-syn-a-body {
+    font-size: 1.125rem;
+  }
+
+  .hero-syn-a-fpo {
+    font-size: 82px;
+  }
+}
+
+.hero-syn--a.hero-syn-a--minimal {
+  min-height: 146px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  .hero-syn-a-box {
+    padding: 12px 32px;
+    gap: 0;
+  }
+
+  .hero-syn-a-body,
+  .hero-syn-a-ctas {
+    display: none;
+  }
+
+  .hero-syn-a-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-syn-a-fpo {
+    font-size: 29px;
+  }
+}
+
+// Reusable 1120px-content / 16px-gutter wrapper (the 1A "massive padding"
+// fix) for any variant whose fill doesn't need to bleed past it.
+.hero-syn-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+// ---------------------------------------------------
+// 1B - "Light and dark, no image": full-bleed colored band, no photo.
+// Eyebrow (plus-mark + product name + small Pinnacle logo) sits above a
+// two-tone title (first word of each line in the accent color). White or
+// Dark Blue Gradient fill. Title 52/1.2 desktop, 48/1.2 mobile, body
+// 20/1.52 (max ~3 lines, ~169 characters); the text block can shrink
+// (drop a line) but not grow.
+// ---------------------------------------------------
+.hero-syn--b {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: $syn-white;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  &.hero-syn--b-dark {
+    // Mirrored from the shared $syn-grad-blue-ramp (which runs bottom-left
+    // to top-right) - this module's gradient runs the opposite diagonal.
+    background: linear-gradient(to bottom left, $syn-blue 0%, $syn-navy 100%);
+    color: $syn-white;
+
+    .hero-syn-b-eyebrow-text {
+      color: $syn-white;
+    }
+
+    .hero-syn-b-eyebrow-plus::before,
+    .hero-syn-b-eyebrow-plus::after {
+      background-color: $syn-light-blue;
+    }
+
+    // syn-type() sets its own color with a $syn-black default, so these
+    // don't inherit the white set above - override them explicitly.
+    .hero-syn-b-title {
+      color: $syn-white;
+    }
+
+    .hero-syn-b-title em {
+      color: $syn-light-blue;
+    }
+
+    .hero-syn-b-body {
+      color: $syn-white;
+    }
+  }
+}
+
+.hero-syn-b-copy {
+  max-width: 522px;
+}
+
+.hero-syn-b-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.hero-syn-b-eyebrow-text {
+  @include syn-type(2rem, 1, 300, $syn-black);
+}
+
+.hero-syn-b-eyebrow-logo {
+  height: 28px;
+  width: auto;
+}
+
+// The small "+" after "Checking" - two bars, 6px thick x 22px, matching
+// the Figma plus-mark exactly.
+.hero-syn-b-eyebrow-plus {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: $syn-blue;
+  }
+
+  &::before {
+    left: 8px;
+    top: 0;
+    width: 6px;
+    height: 22px;
+  }
+
+  &::after {
+    left: 0;
+    top: 8px;
+    width: 22px;
+    height: 6px;
+  }
+}
+
+.hero-syn-b-title {
+  @include syn-type(3.25rem, 1.2, 400, $syn-black);
+
+  em {
+    font-style: normal;
+    color: $syn-blue;
+  }
+
+  @media (max-width: $syn-mobile-max) {
+    font-size: 3rem;
+  }
+}
+
+.hero-syn-b-body {
+  @include syn-type(1.25rem, 1.52);
+  margin-top: 24px;
+}
+
+.hero-syn-b-ctas {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+// ---------------------------------------------------
+// 1C / 1D - "Diagonal box": photo + a diagonal-cut color block over the
+// left ~56% of a full-bleed photo (the real panel is 800px of a 1440px
+// frame, not a 70% estimate). 1C = dark Blue Ramp fill, light-blue title
+// + aqua underline, white body, one white/blue CTA. 1D = light blue fill
+// (no underline), navy text, one outline CTA. Desktop title 52/1.2 (1
+// line only, ~23 chars); mobile 40/1.2. Diagonal is 50deg desktop, ~13deg
+// mobile - mobile stacks photo-on-top / panel-below instead of
+// side-by-side (same pattern as 1A/1B). "FPO" sits in the open photo
+// area at the same massive-watermark scale as the rest of this module.
+// ---------------------------------------------------
+.hero-syn--c,
+.hero-syn--d {
+  position: relative;
+  min-height: 459px;
+  display: flex;
+  align-items: center;
+  // border-radius: $syn-leaf-20;
+  overflow: hidden;
+  background-image: var(--hero-syn-cd-photo);
+  background-size: cover;
+  background-position: center;
+
+  @media (max-width: $syn-mobile-max) {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    min-height: 0;
+    background-image: none; // mobile shows the photo on .hero-syn-cd-fpo-col instead
+  }
+}
+
+// Generic diagonal-panel shape, shared by 1C and 1D - each sets its own
+// flex-basis and clip-path below (their real proportions differ), but
+// both use the same ::before/overflow-buffer/mobile mechanics. The shape
+// is a ::before so it never clips the actual text/CTA content.
+.hero-syn-cd-panel {
+  position: relative;
+  z-index: 10;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: -100px;
+    bottom: 0;
+    top: 0;
+  }
+
+  @media (max-width: $syn-mobile-max) {
+    flex: 1 1 auto;
+    align-self: auto;
+    width: 100%;
+
+    &::before {
+      right: 0;
+      top: -45px;
+      clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+}
+
+// Fill colors - apply at every width (mobile included, since the panel
+// is still visible there, just reshaped). Kept separate from the
+// desktop-only shape/sizing below so neither has to fight the generic
+// .hero-syn-cd-panel mobile override on specificity.
+// Figma names 1C's gradient "#283862 -> #0074C4" (navy to blue), the
+// opposite order from the shared $syn-grad-blue-ramp - override locally
+// rather than flip the shared token other components rely on.
+.hero-syn--c .hero-syn-cd-panel::before {
+  background: linear-gradient(to top right, $syn-navy 0%, $syn-blue 100%);
+}
+
+.hero-syn--d .hero-syn-cd-panel::before {
+  background-color: #CCE3F3; // default/light fill (D1/D2)
+}
+
+.hero-syn--d.hero-syn--d-blue .hero-syn-cd-panel::before {
+  background-color: $syn-blue;
+}
+
+// Same reversed-stop override as 1C's gradient.
+.hero-syn--d.hero-syn--d-gradient .hero-syn-cd-panel::before {
+  background: linear-gradient(to top right, $syn-navy 0%, $syn-blue 100%);
+}
+
+.hero-syn--d.hero-syn--d-navy .hero-syn-cd-panel::before {
+  background-color: $syn-navy;
+}
+
+// Desktop-only shape/sizing - mobile uses the generic .hero-syn-cd-panel
+// values above instead (same shallow cut for both letters), so these are
+// scoped to a min-width rather than left unscoped, where their higher
+// specificity would otherwise beat that mobile override at every width.
+@media (min-width: 768px) {
+
+  // 1C: panel's own width is 800/1440 of the real frame; its right edge
+  // (confirmed from the actual SVG render, not the angle note) is wide at
+  // the top (~100%) and recedes to ~70% at the bottom.
+  .hero-syn--c .hero-syn-cd-panel {
+    flex: 0 0 45.56%;
+
+    &::before {
+      clip-path: polygon(0 0, 0 100%, 70% 100%, 100% 0);
+    }
+  }
+
+  // 1D: measured from the real pre-masked photo asset's own alpha edge -
+  // wide at the top (~56.5%), recedes to ~67% of its own width at the
+  // bottom. 4 fill variants share this same panel, only color changes.
+  .hero-syn--d .hero-syn-cd-panel {
+    flex: 0 0 56.5%;
+
+    &::before {
+      clip-path: polygon(0 0, 0 100%, 67% 100%, 100% 0);
+    }
+  }
+}
+
+.hero-syn--d.hero-syn--d-blue .hero-syn-cd-panel::before {
+  background-color: $syn-blue;
+}
+
+// Same reversed-stop override as 1C's gradient.
+.hero-syn--d.hero-syn--d-gradient .hero-syn-cd-panel::before {
+  background: linear-gradient(to top right, $syn-navy 0%, $syn-blue 100%);
+}
+
+.hero-syn--d.hero-syn--d-navy .hero-syn-cd-panel::before {
+  background-color: $syn-navy;
+}
+
+// Flex spacer that reveals the photo beside the panel and centers "FPO"
+// in normal flow - same unified role as 1A's .hero-syn-a-fpo-col, which
+// also doubles as the mobile photo band once stacked.
+.hero-syn-cd-fpo-col {
+  position: relative;
+  flex: 1 1 auto;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 0;
+
+  @media (max-width: $syn-mobile-max) {
+    flex: 0 0 240px;
+    align-self: auto;
+    background-image: linear-gradient(90deg, rgba(229, 241, 249, 0.4) 13%, rgba(0, 51, 102, 0.2) 109%), var(--hero-syn-cd-photo);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.hero-syn-cd-fpo {
+  pointer-events: none;
+  @include syn-type(140px, 1.1, 700, $syn-white);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: $syn-mobile-max) {
+    font-size: 64px;
+  }
+
+  @media(min-width: 1366px) {
+    font-size: 300px;
+  }
+}
+
+.hero-syn-cd-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 480px;
+  padding: 60px 24px 60px clamp(24px, 10vw, 160px);
+
+  @media (max-width: $syn-mobile-max) {
+    padding: 32px 24px;
+    gap: 16px;
+  }
+}
+
+.hero-syn-c-title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    @include syn-type(3.25rem, 1.2, 400, $syn-light-blue);
+  }
+
+  .hero-syn-c-underline {
+    width: 80px;
+    height: 4px;
+    // Not a named Figma style - a one-off accent between $syn-sky and
+    // $syn-blue, used only here.
+    background-color: #3390D0;
+  }
+
+  @media (max-width: $syn-mobile-max) {
+    span {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.hero-syn-c-body {
+  @include syn-type(1.25rem, 1.4, 400, $syn-white);
+  max-width: 400px;
+}
+
+// 1D now shares 1C's exact construction (full-bleed photo on the hero
+// itself, clip-path panel on top) using the same photo and the same
+// .hero-syn-cd-panel / .hero-syn-cd-fpo-col - only its 4 fill colors are
+// variant-specific (set above, alongside 1C's), plus its own text color.
+.hero-syn--d.hero-syn--d-blue,
+.hero-syn--d.hero-syn--d-gradient,
+.hero-syn--d.hero-syn--d-navy {
+
+  .hero-syn-d-title,
+  .hero-syn-d-body {
+    color: $syn-white;
+  }
+}
+
+.hero-syn-d-title {
+  @include syn-type(3.25rem, 1.2, 400, $syn-navy);
+
+  @media (max-width: $syn-mobile-max) {
+    font-size: 2.5rem;
+  }
+}
+
+.hero-syn-d-body {
+  @include syn-type(1.25rem, 1.52, 400, $syn-navy);
+  max-width: 352px;
+}
+
+.hero-syn-cd-ctas {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+// ---------------------------------------------------
+// 1E / 1F - "Image only": a pure full-bleed photo band, no text overlay.
+// E is wide/short (1920x300 reference), F is wide/tall (1440x460
+// reference). Both shrink on scroll per the design notes.
+// ---------------------------------------------------
+.hero-syn--e {
+  min-height: 200px;
+}
+
+.hero-syn--f {
+  min-height: 300px;
+}
+
+@media (max-width: $syn-mobile-max) {
+  .hero-syn--e {
+    min-height: 140px;
+  }
+
+  .hero-syn--f {
+    min-height: 220px;
+  }
+}
+
+// ---------------------------------------------------
+// 1G - a single-statement band: Blue Ramp fill, centered headline only
+// (no body, no CTA, no image). Title 52/1 desktop, 32/1 mobile, Medium.
+// ---------------------------------------------------
+.hero-syn--g {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 225px;
+  padding: 40px;
+  background: $syn-grad-blue-ramp;
+  text-align: center;
+}
+
+.hero-syn-g-title {
+  @include syn-type(3.25rem, 1.2, 600, $syn-white);
+}
+
+@media (max-width: $syn-mobile-max) {
+  .hero-syn--g {
+    min-height: 180px;
+  }
+
+  .hero-syn-g-title {
+    font-size: 2rem;
+  }
+}

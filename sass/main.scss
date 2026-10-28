@@ -1,0 +1,44 @@
+// ==========================================
+// Synovus - Master Stylesheet Entry
+//
+// Table of Contents
+// 1. Basics (design tokens - no Bootstrap dependency, so these load first)
+// 2. Layouts (header, footer)
+// 3. Components (shared, reusable across pages)
+// 4. Pages (one homepage section each)
+// 5. Bootstrap 5 (from node_modules, not vendored in-repo)
+// ==========================================
+
+// ---------------------------------------------------
+// 1. Basics
+// ---------------------------------------------------
+@import "base/custom-overrides";
+
+// ---------------------------------------------------
+// 2. Layouts
+// ---------------------------------------------------
+@import "layouts/header";
+@import "layouts/footer";
+
+// ---------------------------------------------------
+// 3. Components
+// ---------------------------------------------------
+@import "components/alert-bar";
+@import "components/cards";
+
+// ---------------------------------------------------
+// 4. Pages
+// ---------------------------------------------------
+@import "pages/hero";
+@import "pages/hero-system";
+@import "pages/resources";
+@import "pages/product-presentation";
+@import "pages/brand-identity";
+@import "pages/stats-carousel";
+@import "pages/news-ideas";
+@import "pages/support-ideas";
+
+// ---------------------------------------------------
+// 5. Bootstrap 5
+// ---------------------------------------------------
+@import "bootstrap";

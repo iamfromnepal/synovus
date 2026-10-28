@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components | Pinnacle</title>
+
+  <!-- Adobe Typekit Realist -->
+  <link rel="stylesheet" href="https://use.typekit.net/zie0aus.css">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Swiper (Meet Our Community + News Ideas carousels) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="../wwwroot/assets/css/style.css">
+
+  <style>
+    /* 200px gap between each component on this page, not between a
+       component's own internal pieces. */
+    .component-block+.component-block {
+      margin-top: 200px;
+    }
+
+    /* The live homepage hides .resources-syn-row below 767.98px because
+       its own mobile slider takes over instead (see homepage.html) - this
+       page has no slider to hand off to, so keep the row visible
+       (stacked, same as the 768-991px tablet behavior) here. */
+    @media (max-width: 767.98px) {
+      .resources-syn-row {
+        display: grid !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <!-- Alert bar + header: a single fixed stack, pinned from page load -->
+    <header id="site-header" class="site-header-fixed-syn">
+
+      <!-- =================================================== -->
+      <!-- ALERT BAR (Module F)                                -->
+      <!-- =================================================== -->
+      <div class="alert-bar-syn" role="region" aria-label="Site alert">
+        <div class="container-syn alert-bar-syn-inner">
+          <p class="alert-bar-syn-message m-0">
+            <img src="../wwwroot/assets/images/icon-calendar.svg" width="32" height="32" alt="">
+            <span>Pinnacle offices will be closed Friday, June 19, for Juneteenth federal holiday. Find our full holiday
+              schedule at <a href="#" class="link-syn-inline">PNFP.com/holidays</a>.</span>
+          </p>
+          <button type="button" class="alert-bar-syn-close" aria-label="Dismiss alert"><img
+              src="../wwwroot/assets/images/icon-close.svg" width="24" height="24" alt=""></button>
+        </div>
+      </div>
+
+      <!-- =================================================== -->
+      <!-- GLOBAL HEADER                                       -->
+      <!-- =================================================== -->
+      <div class="site-header-syn">
+        <div class="fdic-bar-syn">
+          <div class="container-syn fdic-bar-syn-inner">
+            <img src="../wwwroot/assets/images/logo-fdic.svg" width="37" height="15" alt="FDIC">
+            <span>FDIC-Insured - Backed by the full faith and credit of the U.S. Government</span>
+          </div>
+        </div>
+        <div class="container-syn">
+
+          <!-- Desktop: utility links + search -->
+          <div class="utility-nav-syn">
+            <a href="#" class="link-syn-utility">About us</a>
+            <a href="#" class="link-syn-utility">Locations &amp; ATMs</a>
+            <a href="#" class="link-syn-utility">Client support</a>
+            <a href="#" class="link-syn-utility">Fraud &amp; Security</a>
+            <label class="search-syn">
+              <img src="../wwwroot/assets/images/icon-search.svg" width="20" height="20" alt="">
+              <span class="visually-hidden">Search</span>
+              <input type="search" placeholder="Search">
+            </label>
+          </div>
+
+          <!-- Desktop: logo + main nav + Open an Account -->
+          <div class="main-nav-syn">
+            <img src="../wwwroot/assets/images/logo-pinnacle.png" width="160" height="47" alt="Pinnacle Financial Partners">
+            <ul class="main-nav-syn-links">
+              <li class="nav-mega-syn-item">
+                <a href="#" class="nav-mega-syn-trigger">Personal</a>
+                <div class="nav-mega-syn-panel">
+                  <div class="container-syn nav-mega-syn-panel-inner">
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Checking</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Free Checking</a></li>
+                        <li><a href="#">Student Checking</a></li>
+                        <li><a href="#">Senior Checking</a></li>
+                        <li><a href="#">Compare Checking Accounts</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Savings &amp; CDs</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Statement Savings</a></li>
+                        <li><a href="#">Money Market</a></li>
+                        <li><a href="#">Certificates of Deposit</a></li>
+                        <li><a href="#">Compare Savings Accounts</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Cards &amp; Loans</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Credit Cards</a></li>
+                        <li><a href="#">Auto Loans</a></li>
+                        <li><a href="#">Personal Loans</a></li>
+                        <li><a href="#">Mortgages</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-mega-syn-item">
+                <a href="#" class="nav-mega-syn-trigger">Wealth</a>
+                <div class="nav-mega-syn-panel">
+                  <div class="container-syn nav-mega-syn-panel-inner">
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Investing</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Brokerage Accounts</a></li>
+                        <li><a href="#">Retirement Planning</a></li>
+                        <li><a href="#">Managed Portfolios</a></li>
+                        <li><a href="#">Compare Investment Plans</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Trust &amp; Estate</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Trust Services</a></li>
+                        <li><a href="#">Estate Planning</a></li>
+                        <li><a href="#">Guardianship Accounts</a></li>
+                        <li><a href="#">Charitable Giving</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Private Banking</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Wealth Advisory</a></li>
+                        <li><a href="#">Concierge Banking</a></li>
+                        <li><a href="#">Family Office Services</a></li>
+                        <li><a href="#">Schedule a Consultation</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-mega-syn-item">
+                <a href="#" class="nav-mega-syn-trigger">Business</a>
+                <div class="nav-mega-syn-panel">
+                  <div class="container-syn nav-mega-syn-panel-inner">
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Banking</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Business Checking</a></li>
+                        <li><a href="#">Business Savings</a></li>
+                        <li><a href="#">Merchant Services</a></li>
+                        <li><a href="#">Treasury Management</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Lending</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Business Loans</a></li>
+                        <li><a href="#">Lines of Credit</a></li>
+                        <li><a href="#">SBA Loans</a></li>
+                        <li><a href="#">Equipment Financing</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Resources</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Business Resource Center</a></li>
+                        <li><a href="#">Payroll Solutions</a></li>
+                        <li><a href="#">Online Business Banking</a></li>
+                        <li><a href="#">Compare Business Accounts</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-mega-syn-item">
+                <a href="#" class="nav-mega-syn-trigger">Commercial</a>
+                <div class="nav-mega-syn-panel">
+                  <div class="container-syn nav-mega-syn-panel-inner">
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Commercial Banking</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Commercial Lending</a></li>
+                        <li><a href="#">Commercial Real Estate</a></li>
+                        <li><a href="#">Asset-Based Lending</a></li>
+                        <li><a href="#">Treasury Services</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Capital Markets</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Syndicated Finance</a></li>
+                        <li><a href="#">Interest Rate Management</a></li>
+                        <li><a href="#">Foreign Exchange</a></li>
+                        <li><a href="#">Capital Markets Advisory</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Industry Solutions</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Healthcare Banking</a></li>
+                        <li><a href="#">Government Banking</a></li>
+                        <li><a href="#">Nonprofit Banking</a></li>
+                        <li><a href="#">Correspondent Banking</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-mega-syn-item">
+                <a href="#" class="nav-mega-syn-trigger">Insights</a>
+                <div class="nav-mega-syn-panel">
+                  <div class="container-syn nav-mega-syn-panel-inner">
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Articles</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Market Commentary</a></li>
+                        <li><a href="#">Financial Planning Tips</a></li>
+                        <li><a href="#">Economic Outlook</a></li>
+                        <li><a href="#">Industry News</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Tools &amp; Calculators</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Mortgage Calculator</a></li>
+                        <li><a href="#">Savings Calculator</a></li>
+                        <li><a href="#">Retirement Calculator</a></li>
+                        <li><a href="#">Loan Calculator</a></li>
+                      </ul>
+                    </div>
+                    <div class="nav-mega-syn-col">
+                      <h3 class="nav-mega-syn-heading">Events</h3>
+                      <ul class="nav-mega-syn-links">
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">In-Branch Events</a></li>
+                        <li><a href="#">Community Events</a></li>
+                        <li><a href="#">Annual Report</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <a href="#" class="btn-syn-standard btn-syn-outline btn-syn-no-shadow">Open an Account</a>
+          </div>
+
+          <!-- Mobile: hamburger + centred logo + Log in -->
+          <div class="mobile-nav-syn">
+            <button type="button" class="mobile-nav-toggle-syn" data-bs-toggle="offcanvas"
+              data-bs-target="#navOffcanvasSyn" aria-controls="navOffcanvasSyn" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+            <img class="mobile-nav-logo-syn" src="../wwwroot/assets/images/logo-pinnacle.png" width="135" height="40"
+              alt="Pinnacle Financial Partners">
+            <a href="#" class="mobile-nav-login-syn">Log in</a>
+          </div>
+
+        </div>
+      </div>
+
+    </header>
+
+    <!-- =================================================== -->
+    <!-- MOBILE MENU: utility + main nav + Open an Account,  -->
+    <!-- opens from the right (opposite the hamburger)       -->
+    <!-- =================================================== -->
+    <div class="offcanvas offcanvas-end nav-offcanvas-syn" tabindex="-1" id="navOffcanvasSyn"
+      aria-labelledby="navOffcanvasSynLabel">
+      <div class="offcanvas-header">
+        <span id="navOffcanvasSynLabel" class="visually-hidden">Site menu</span>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <!-- Root: utility links, the 5 top items, Open an Account -->
+        <div class="nav-offcanvas-syn-screen is-active" data-screen="root">
+          <div class="nav-offcanvas-syn-utility">
+            <a href="#" class="link-syn-utility">About us</a>
+            <a href="#" class="link-syn-utility">Locations &amp; ATMs</a>
+            <a href="#" class="link-syn-utility">Client support</a>
+            <a href="#" class="link-syn-utility">Fraud &amp; Security</a>
+            <label class="search-syn">
+              <img src="../wwwroot/assets/images/icon-search.svg" width="20" height="20" alt="">
+              <span class="visually-hidden">Search</span>
+              <input type="search" placeholder="Search">
+            </label>
+          </div>
+          <ul class="nav-offcanvas-syn-links">
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Personal</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="personal"
+                aria-label="Open Personal menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Wealth</a><button type="button"
+                class="nav-offcanvas-syn-arrow" data-open-screen="wealth" aria-label="Open Wealth menu"><span
+                  class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Business</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="business"
+                aria-label="Open Business menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Commercial</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="commercial"
+                aria-label="Open Commercial menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Insights</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="insights"
+                aria-label="Open Insights menu"><span class="syn-chevron"></span></button></li>
+          </ul>
+        </div>
+
+        <!-- Level 2: Personal -->
+        <div class="nav-offcanvas-syn-screen" data-screen="personal">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="root"><span class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Personal</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Checking</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="personal-checking"
+                aria-label="Open Checking menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Savings &amp; CDs</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="personal-savings"
+                aria-label="Open Savings &amp; CDs menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Cards &amp; Loans</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="personal-cards"
+                aria-label="Open Cards &amp; Loans menu"><span class="syn-chevron"></span></button></li>
+          </ul>
+        </div>
+        <!-- Level 3: Personal > Checking / Savings & CDs / Cards & Loans -->
+        <div class="nav-offcanvas-syn-screen" data-screen="personal-checking">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="personal"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Checking</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Free Checking</a></li>
+            <li><a href="#">Student Checking</a></li>
+            <li><a href="#">Senior Checking</a></li>
+            <li><a href="#">Compare Checking Accounts</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="personal-savings">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="personal"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Savings &amp; CDs</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Statement Savings</a></li>
+            <li><a href="#">Money Market</a></li>
+            <li><a href="#">Certificates of Deposit</a></li>
+            <li><a href="#">Compare Savings Accounts</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="personal-cards">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="personal"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Cards &amp; Loans</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Credit Cards</a></li>
+            <li><a href="#">Auto Loans</a></li>
+            <li><a href="#">Personal Loans</a></li>
+            <li><a href="#">Mortgages</a></li>
+          </ul>
+        </div>
+
+        <!-- Level 2: Wealth -->
+        <div class="nav-offcanvas-syn-screen" data-screen="wealth">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="root"><span class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Wealth</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Investing</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="wealth-investing"
+                aria-label="Open Investing menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Trust &amp; Estate</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="wealth-trust"
+                aria-label="Open Trust &amp; Estate menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Private Banking</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="wealth-private"
+                aria-label="Open Private Banking menu"><span class="syn-chevron"></span></button></li>
+          </ul>
+        </div>
+        <!-- Level 3: Wealth > Investing / Trust & Estate / Private Banking -->
+        <div class="nav-offcanvas-syn-screen" data-screen="wealth-investing">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="wealth"><span
+              class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Investing</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Brokerage Accounts</a></li>
+            <li><a href="#">Retirement Planning</a></li>
+            <li><a href="#">Managed Portfolios</a></li>
+            <li><a href="#">Compare Investment Plans</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="wealth-trust">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="wealth"><span
+              class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Trust &amp; Estate</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Trust Services</a></li>
+            <li><a href="#">Estate Planning</a></li>
+            <li><a href="#">Guardianship Accounts</a></li>
+            <li><a href="#">Charitable Giving</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="wealth-private">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="wealth"><span
+              class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Private Banking</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Wealth Advisory</a></li>
+            <li><a href="#">Concierge Banking</a></li>
+            <li><a href="#">Family Office Services</a></li>
+            <li><a href="#">Schedule a Consultation</a></li>
+          </ul>
+        </div>
+
+        <!-- Level 2: Business -->
+        <div class="nav-offcanvas-syn-screen" data-screen="business">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="root"><span class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Business</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Banking</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="business-banking"
+                aria-label="Open Banking menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Lending</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="business-lending"
+                aria-label="Open Lending menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Resources</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="business-resources"
+                aria-label="Open Resources menu"><span class="syn-chevron"></span></button></li>
+          </ul>
+        </div>
+        <!-- Level 3: Business > Banking / Lending / Resources -->
+        <div class="nav-offcanvas-syn-screen" data-screen="business-banking">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="business"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Banking</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Business Checking</a></li>
+            <li><a href="#">Business Savings</a></li>
+            <li><a href="#">Merchant Services</a></li>
+            <li><a href="#">Treasury Management</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="business-lending">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="business"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Lending</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Business Loans</a></li>
+            <li><a href="#">Lines of Credit</a></li>
+            <li><a href="#">SBA Loans</a></li>
+            <li><a href="#">Equipment Financing</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="business-resources">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="business"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Resources</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Business Resource Center</a></li>
+            <li><a href="#">Payroll Solutions</a></li>
+            <li><a href="#">Online Business Banking</a></li>
+            <li><a href="#">Compare Business Accounts</a></li>
+          </ul>
+        </div>
+
+        <!-- Level 2: Commercial -->
+        <div class="nav-offcanvas-syn-screen" data-screen="commercial">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="root"><span class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Commercial</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Commercial Banking</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="commercial-banking"
+                aria-label="Open Commercial Banking menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Capital Markets</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="commercial-capital"
+                aria-label="Open Capital Markets menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Industry Solutions</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="commercial-industry"
+                aria-label="Open Industry Solutions menu"><span class="syn-chevron"></span></button></li>
+          </ul>
+        </div>
+        <!-- Level 3: Commercial > Commercial Banking / Capital Markets / Industry Solutions -->
+        <div class="nav-offcanvas-syn-screen" data-screen="commercial-banking">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="commercial"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Commercial Banking</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Commercial Lending</a></li>
+            <li><a href="#">Commercial Real Estate</a></li>
+            <li><a href="#">Asset-Based Lending</a></li>
+            <li><a href="#">Treasury Services</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="commercial-capital">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="commercial"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Capital Markets</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Syndicated Finance</a></li>
+            <li><a href="#">Interest Rate Management</a></li>
+            <li><a href="#">Foreign Exchange</a></li>
+            <li><a href="#">Capital Markets Advisory</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="commercial-industry">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="commercial"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Industry Solutions</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Healthcare Banking</a></li>
+            <li><a href="#">Government Banking</a></li>
+            <li><a href="#">Nonprofit Banking</a></li>
+            <li><a href="#">Correspondent Banking</a></li>
+          </ul>
+        </div>
+
+        <!-- Level 2: Insights -->
+        <div class="nav-offcanvas-syn-screen" data-screen="insights">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="root"><span class="syn-chevron"></span>
+            Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Insights</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Articles</a><button
+                type="button" class="nav-offcanvas-syn-arrow" data-open-screen="insights-articles"
+                aria-label="Open Articles menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Tools &amp;
+                Calculators</a><button type="button" class="nav-offcanvas-syn-arrow" data-open-screen="insights-tools"
+                aria-label="Open Tools &amp; Calculators menu"><span class="syn-chevron"></span></button></li>
+            <li class="nav-offcanvas-syn-row"><a href="#" class="nav-offcanvas-syn-link">Events</a><button type="button"
+                class="nav-offcanvas-syn-arrow" data-open-screen="insights-events" aria-label="Open Events menu"><span
+                  class="syn-chevron"></span></button></li>
+          </ul>
+        </div>
+        <!-- Level 3: Insights > Articles / Tools & Calculators / Events -->
+        <div class="nav-offcanvas-syn-screen" data-screen="insights-articles">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="insights"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Articles</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Market Commentary</a></li>
+            <li><a href="#">Financial Planning Tips</a></li>
+            <li><a href="#">Economic Outlook</a></li>
+            <li><a href="#">Industry News</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="insights-tools">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="insights"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Tools &amp; Calculators</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Mortgage Calculator</a></li>
+            <li><a href="#">Savings Calculator</a></li>
+            <li><a href="#">Retirement Calculator</a></li>
+            <li><a href="#">Loan Calculator</a></li>
+          </ul>
+        </div>
+        <div class="nav-offcanvas-syn-screen" data-screen="insights-events">
+          <button type="button" class="nav-offcanvas-syn-back" data-back-screen="insights"><span
+              class="syn-chevron"></span> Back</button>
+          <h3 class="nav-offcanvas-syn-screen-title">Events</h3>
+          <ul class="nav-offcanvas-syn-links">
+            <li><a href="#">Webinars</a></li>
+            <li><a href="#">In-Branch Events</a></li>
+            <li><a href="#">Community Events</a></li>
+            <li><a href="#">Annual Report</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Persistent CTA: stays visible regardless of scroll position or -->
+      <!-- which drill-down level is showing -->
+      <div class="nav-offcanvas-syn-footer">
+        <a href="#" class="btn-syn-standard btn-syn-outline btn-syn-no-shadow">Open an Account</a>
+      </div>
+    </div>
+
+    <main id="site-main" class="site-main">
+
+      <!-- Hero with Login (Module A) -->
+      <div class="component-block" id="hero">
+        <section class="hero-module-a">
+          <div class="hero-a-inner">
+            <div class="hero-a-panel">
+              <img class="hero-a-stripes hero-a-stripes-left" src="../wwwroot/assets/images/hero-accent-stripes.svg" width="214"
+                height="646" alt="">
+              <img class="hero-a-shape" src="../wwwroot/assets/images/hero-panel.svg" width="885" height="646" alt="">
+              <img class="hero-a-stripes hero-a-stripes-right" src="../wwwroot/assets/images/hero-accent-stripes.svg" width="214"
+                height="646" alt="">
+              <div class="hero-a-content">
+                <div class="hero-a-copy">
+                  <h1 class="hero-title">Pinnacle is choosing to lead</h1>
+                  <p class="hero-subtitle">President and CEO Kevin Blair celebrates the 2025 Annual Report and our
+                    continued momentum.</p>
+                </div>
+                <a href="#" class="btn-syn-xl">Learn More</a>
+              </div>
+            </div>
+            <div class="hero-a-login-wrap">
+              <div class="hero-a-login">
+                <div class="accent-bar-dual"></div>
+                <div class="hero-a-login-body">
+                  <h2 class="hero-a-login-title">
+                    <img src="../wwwroot/assets/images/icon-lock.svg" width="28" height="28" alt="">
+                    <span>Manage Your Account</span>
+                  </h2>
+                  <form class="hero-a-form" action="#" onsubmit="event.preventDefault()">
+                    <div class="hero-a-fields">
+                      <div class="hero-a-select-wrap">
+                        <label for="heroAccountType" class="visually-hidden">Account type</label>
+                        <select id="heroAccountType" class="hero-a-select" name="account_type">
+                          <option selected>My Pinnacle</option>
+                          <option>Personal Online Banking</option>
+                          <option>Commercial Advantage</option>
+                        </select>
+                        <img class="hero-a-select-icon" src="../wwwroot/assets/images/icon-arrow.svg" width="24" height="24"
+                          alt="">
+                      </div>
+                      <div class="hero-a-inputs">
+                        <label for="heroUsername" class="visually-hidden">Username</label>
+                        <input type="text" id="heroUsername" class="hero-a-input" name="username" placeholder="Username"
+                          autocomplete="username">
+                        <div class="hero-a-password">
+                          <label for="heroPassword" class="visually-hidden">Password</label>
+                          <input type="password" id="heroPassword" class="hero-a-input" name="password"
+                            placeholder="Password" autocomplete="current-password">
+                          <button type="button" class="hero-a-pwd-toggle" id="heroPasswordBtn"
+                            aria-controls="heroPassword" aria-pressed="false">Show</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="hero-a-links">
+                      <a href="#">Forgot Username?</a>
+                      <span aria-hidden="true">|</span>
+                      <a href="#">Forgot Password?</a>
+                    </div>
+                    <div class="hero-a-ctas">
+                      <button type="submit" class="btn-syn-xl">Login</button>
+                      <a href="#" class="hero-a-enroll">Enroll</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Brand Identity: Merger Hub banner -->
+      <div class="component-block" id="merger-hub">
+        <section class="brand-identity-syn-merger">
+          <img src="../wwwroot/assets/images/merger-hub-photo.png" class="brand-identity-syn-merger-photo"
+            alt="Pinnacle and Synovus leadership ringing the opening bell at the New York Stock Exchange">
+          <div class="brand-identity-syn-merger-content">
+            <div class="brand-identity-syn-merger-text">
+              <span class="syn-eyebrow">Merger hub</span>
+              <img src="../wwwroot/assets/images/pnfp-synovus-lockup.png" class="brand-identity-syn-merger-logo"
+                alt="Pinnacle Financial Partners and Synovus">
+              <p class="syn-body">Synovus and Pinnacle Financial Partners are now one firm. As we transition to a
+                complete
+                Pinnacle experience, check out our Merger Hub to follow the journey ahead.</p>
+              <a href="#" class="btn-syn-xl align-self-start">Explore the Merger Hub</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Brand Identity: Why Pinnacle stat counters -->
+      <div class="component-block" id="why-pinnacle">
+        <section class="brand-identity-syn-why">
+          <div class="brand-identity-syn-why-text">
+            <div class="brand-identity-syn-why-text-wrapper">
+              <span class="syn-eyebrow">Why Pinnacle Financial Partners</span>
+              <h2 class="section-heading-syn-title">Built on trust. Thriving on relationships.</h2>
+              <p class="syn-body">At Pinnacle Financial Partners, we measure success by the trust we&rsquo;ve earned.
+                With
+                over a century of experience supporting our clients&rsquo; goals, we&rsquo;ve grown alongside you.</p>
+            </div>
+          </div>
+          <div class="brand-identity-syn-why-media"
+            style="background-image:url('../wwwroot/assets/images/brand-identity-geometric-bg.png')">
+            <div class="stats-counters-syn">
+              <div class="stat-card-syn">
+                <span class="syn-stat">135+</span>
+                <p class="syn-body" style="max-width:216px">Years standing by our clients every step of the way</p>
+              </div>
+              <div class="d-flex flex-column gap-3">
+                <div class="stat-card-syn stat-card-syn-sm"><span class="syn-stat-sm">400+</span>
+                  <p class="syn-body">Branch locations and ATMs, always close by</p>
+                </div>
+                <div class="stat-card-syn stat-card-syn-sm"><span class="syn-stat-sm">$116B</span>
+                  <p class="syn-body">Entrusted to us by clients like you</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Meet Our Community parallax carousel (Module D) -->
+      <div class="component-block" id="community">
+        <section class="stats-parallax-syn">
+          <div class="container-syn">
+            <h2 class="section-heading-syn-title stats-parallax-syn-heading">Meet Our Community</h2>
+          </div>
+          <div class="stats-parallax-syn-media">
+            <div class="stats-parallax-syn-bg" style="background-image:url('../wwwroot/assets/images/parallax-carousel-bg.png')"
+              aria-hidden="true"></div>
+            <div class="container-syn stats-parallax-syn-inner">
+              <div class="swiper carousel-syn-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="card-syn-glass">
+                      <div class="card-syn-text">
+                        <span class="syn-label-caps">Pinnacle Partners</span>
+                        <h4 class="card-syn-title">23XI Racing x Tyler Reddick</h4>
+                        <p class="syn-body">In a multi-year partnership with 23XI Racing, we are now the official
+                          banking
+                          sponsor of Tyler Reddick and the No. 45 team.</p>
+                      </div>
+                      <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                          aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="card-syn-glass">
+                      <div class="card-syn-text">
+                        <span class="syn-label-caps">Pinnacle Partners</span>
+                        <h4 class="card-syn-title">23XI Racing x Tyler Reddick</h4>
+                        <p class="syn-body">In a multi-year partnership with 23XI Racing, we are now the official
+                          banking
+                          sponsor of Tyler Reddick and the No. 45 team.</p>
+                      </div>
+                      <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                          aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="card-syn-glass">
+                      <div class="card-syn-text">
+                        <span class="syn-label-caps">Pinnacle Partners</span>
+                        <h4 class="card-syn-title">23XI Racing x Tyler Reddick</h4>
+                        <p class="syn-body">In a multi-year partnership with 23XI Racing, we are now the official
+                          banking
+                          sponsor of Tyler Reddick and the No. 45 team.</p>
+                      </div>
+                      <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                          aria-hidden="true"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stats-parallax-syn-controls">
+            <div class="container-syn">
+              <div class="carousel-controls-syn" data-carousel-controls>
+                <button type="button" class="carousel-syn-arrow is-prev carousel-syn-prev"
+                  aria-label="Previous slide"><span class="syn-chevron"></span></button>
+                <div class="carousel-syn-dots carousel-syn-pagination"></div>
+                <button type="button" class="carousel-syn-arrow carousel-syn-next" aria-label="Next slide"><span
+                    class="syn-chevron"></span></button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- News Ideas carousel -->
+      <div class="component-block" id="news-ideas">
+        <section class="news-ideas-syn">
+          <div class="container-syn">
+            <h2 class="section-heading-syn-title news-ideas-syn-heading">What&rsquo;s the latest?</h2>
+
+            <div class="carousel-syn">
+              <div class="swiper news-ideas-syn-swiper">
+                <div class="swiper-wrapper">
+
+                  <div class="swiper-slide">
+                    <article class="card-syn-news">
+                      <div class="card-syn-media"
+                        style="background-image:url('../wwwroot/assets/images/news-best-company.png'); background-position:left center;">
+                      </div>
+                      <div class="card-syn-body">
+                        <div class="card-syn-text">
+                          <h3 class="card-syn-title">Pinnacle named America&rsquo;s No. 12 Best Company to Work For</h3>
+                          <p class="syn-body">Great Place To Work&reg; and Fortune Media have recognized Pinnacle
+                            Financial
+                            Partners as a top 15 workplace in the nation as listed on the 2026 list of Fortune 100 Best
+                            Companies to Work For&reg;.</p>
+                        </div>
+                        <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                            aria-hidden="true"></span></a>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <article class="card-syn-news">
+                      <div class="card-syn-media"
+                        style="background-image:url('../wwwroot/assets/images/news-coalition-awards.png'); background-position:left center;">
+                      </div>
+                      <div class="card-syn-body">
+                        <div class="card-syn-text">
+                          <h3 class="card-syn-title">50 combined 2026 Coalition Greenwich Best Bank Awards</h3>
+                          <p class="syn-body">32 earned by legacy Pinnacle, 18 by legacy Synovus, these awards reflect
+                            one
+                            organization and 2 legacies of service, building on strong foundations of trust.</p>
+                        </div>
+                        <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                            aria-hidden="true"></span></a>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <article class="card-syn-news">
+                      <div class="card-syn-media" style="background-image:url('../wwwroot/assets/images/news-pga-cadillac.png');">
+                      </div>
+                      <div class="card-syn-body">
+                        <div class="card-syn-text">
+                          <h3 class="card-syn-title">Pinnacle named Official Bank of the PGA TOUR&rsquo;s Cadillac
+                            Championship</h3>
+                          <p class="syn-body">Pinnacle Financial Partners announced a multiyear sponsorship with the PGA
+                            TOUR&rsquo;s Cadillac Championship in Miami, Florida, marking the firm&rsquo;s first PGA
+                            TOUR
+                            event partnership.</p>
+                        </div>
+                        <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                            aria-hidden="true"></span></a>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <article class="card-syn-news">
+                      <div class="card-syn-media"
+                        style="background-image:url('../wwwroot/assets/images/news-best-company.png'); background-position:left center;">
+                      </div>
+                      <div class="card-syn-body">
+                        <div class="card-syn-text">
+                          <h3 class="card-syn-title">Pinnacle named America&rsquo;s No. 12 Best Company to Work For</h3>
+                          <p class="syn-body">Great Place To Work&reg; and Fortune Media have recognized Pinnacle
+                            Financial
+                            Partners as a top 15 workplace in the nation as listed on the 2026 list of Fortune 100 Best
+                            Companies to Work For&reg;.</p>
+                        </div>
+                        <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                            aria-hidden="true"></span></a>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <article class="card-syn-news">
+                      <div class="card-syn-media"
+                        style="background-image:url('../wwwroot/assets/images/news-coalition-awards.png'); background-position:left center;">
+                      </div>
+                      <div class="card-syn-body">
+                        <div class="card-syn-text">
+                          <h3 class="card-syn-title">50 combined 2026 Coalition Greenwich Best Bank Awards</h3>
+                          <p class="syn-body">32 earned by legacy Pinnacle, 18 by legacy Synovus, these awards reflect
+                            one
+                            organization and 2 legacies of service, building on strong foundations of trust.</p>
+                        </div>
+                        <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                            aria-hidden="true"></span></a>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <article class="card-syn-news">
+                      <div class="card-syn-media" style="background-image:url('../wwwroot/assets/images/news-pga-cadillac.png');">
+                      </div>
+                      <div class="card-syn-body">
+                        <div class="card-syn-text">
+                          <h3 class="card-syn-title">Pinnacle named Official Bank of the PGA TOUR&rsquo;s Cadillac
+                            Championship</h3>
+                          <p class="syn-body">Pinnacle Financial Partners announced a multiyear sponsorship with the PGA
+                            TOUR&rsquo;s Cadillac Championship in Miami, Florida, marking the firm&rsquo;s first PGA
+                            TOUR
+                            event partnership.</p>
+                        </div>
+                        <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron"
+                            aria-hidden="true"></span></a>
+                      </div>
+                    </article>
+                  </div>
+
+                </div>
+              </div>
+              <div class="carousel-controls-syn" data-carousel-controls>
+                <button type="button" class="carousel-syn-arrow is-prev news-ideas-syn-prev"
+                  aria-label="Previous slide"><span class="syn-chevron"></span></button>
+                <div class="carousel-syn-dots news-ideas-syn-pagination"></div>
+                <button type="button" class="carousel-syn-arrow news-ideas-syn-next" aria-label="Next slide"><span
+                    class="syn-chevron"></span></button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Support Ideas: "How can we help?" band (Module 8C) -->
+      <div class="component-block" id="support">
+        <section class="support-ideas-syn">
+          <div class="support-ideas-syn-bg" style="background-image:url('../wwwroot/assets/images/help-band-bg.png')"
+            aria-hidden="true"></div>
+          <div class="container-syn support-ideas-syn-inner">
+            <div class="help-band-syn">
+              <h2 class="syn-h2-light">How can we help?</h2>
+              <div class="help-band-syn-items">
+                <a href="#" class="help-tile-syn"><img src="../wwwroot/assets/images/icon-help-phone.svg" width="62" height="62"
+                    alt="">Talk with us</a>
+                <a href="#" class="help-tile-syn"><img src="../wwwroot/assets/images/icon-help-location.svg" width="62" height="61"
+                    alt="">Find a location</a>
+                <a href="#" class="help-tile-syn"><img src="../wwwroot/assets/images/icon-help-campaign.svg" width="61" height="62"
+                    alt="">Merger hub</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Buttons & links -->
+      <div class="component-block" id="buttons">
+        <div class="d-flex flex-wrap align-items-center gap-3 p-4">
+          <a href="#" class="btn-syn-xl">Learn More</a>
+          <a href="#" class="btn-syn-xl btn-syn-outline">Find my branch</a>
+          <a href="#" class="btn-syn-standard">Apply now</a>
+          <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
+          <a href="#" class="btn-syn-standard btn-syn-outline btn-syn-no-shadow">Open an Account</a>
+          <a href="#" class="btn-syn-small">Apply now</a>
+          <a href="#" class="link-syn-tertiary">Learn More <span class="syn-chevron" aria-hidden="true"></span></a>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-3 p-4" style="background:#283862">
+          <a href="#" class="btn-syn-xl btn-syn-white">Learn More</a>
+          <a href="#" class="btn-syn-xl btn-syn-outline-white">Find my branch</a>
+          <a href="#" class="btn-syn-standard btn-syn-tint">Submit</a>
+          <a href="#" class="btn-syn-standard btn-syn-white">Learn more</a>
+          <a href="#" class="btn-syn-small btn-syn-white">Apply now</a>
+          <a href="#" class="link-syn-tertiary link-syn-tertiary-white">Learn More <span class="syn-chevron"
+              aria-hidden="true"></span></a>
+        </div>
+        <div class="p-4">
+          <p class="syn-body">Find our full holiday schedule at <a href="#"
+              class="link-syn-inline">PNFP.com/holidays</a>.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#" class="link-syn-utility">About us</a>
+            <a href="#" class="link-syn-utility">Locations &amp; ATMs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert bar -->
+      <div class="component-block" id="alert">
+        <div class="alert-bar-syn" role="region" aria-label="Site alert">
+          <div class="container-syn alert-bar-syn-inner">
+            <p class="alert-bar-syn-message m-0">
+              <img src="../wwwroot/assets/images/icon-calendar.svg" width="32" height="32" alt="">
+              <span>Pinnacle offices will be closed Friday, June 19, for Juneteenth federal holiday. Find our full
+                holiday
+                schedule at <a href="#" class="link-syn-inline">PNFP.com/holidays</a>.</span>
+            </p>
+            <button type="button" class="alert-bar-syn-close" aria-label="Dismiss alert"><img
+                src="../wwwroot/assets/images/icon-close.svg" width="24" height="24" alt=""></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero system 1A: boxed overlap - 3 box colors, plus the compact/minimal size variants -->
+      <div class="component-block" id="hero-syn-a">
+        <div class="hero-syn hero-syn--a" style="--hero-syn-a-photo:url('../wwwroot/assets/images/hero-sys-a-photo.png')">
+          <div class="hero-syn-a-box">
+            <div class="hero-syn-a-text">
+              <h2 class="hero-syn-a-title">Checking Accounts</h2>
+              <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking
+                options.</p>
+            </div>
+            <div class="hero-syn-a-ctas">
+              <a href="#" class="btn-syn-xl btn-syn-white">Open an Account</a>
+              <a href="#" class="btn-syn-xl btn-syn-outline-white">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-syn-a-fpo-col">
+            <span class="hero-syn-a-fpo">FPO</span>
+          </div>
+        </div>
+        <div class="hero-syn hero-syn--a mt-3" style="--hero-syn-a-photo:url('../wwwroot/assets/images/hero-sys-a-photo.png')">
+          <div class="hero-syn-a-box hero-syn-a-box--white">
+            <div class="hero-syn-a-text">
+              <h2 class="hero-syn-a-title">Checking Accounts</h2>
+              <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking
+                options.</p>
+            </div>
+            <div class="hero-syn-a-ctas">
+              <a href="#" class="btn-syn-xl">Open an Account</a>
+              <a href="#" class="btn-syn-xl btn-syn-outline">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-syn-a-fpo-col">
+            <span class="hero-syn-a-fpo">FPO</span>
+          </div>
+        </div>
+        <div class="hero-syn hero-syn--a mt-3" style="--hero-syn-a-photo:url('../wwwroot/assets/images/hero-sys-a-photo.png')">
+          <div class="hero-syn-a-box hero-syn-a-box--gradient">
+            <div class="hero-syn-a-text">
+              <h2 class="hero-syn-a-title">Checking Accounts</h2>
+              <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking
+                options.</p>
+            </div>
+            <div class="hero-syn-a-ctas">
+              <a href="#" class="btn-syn-xl btn-syn-white">Open an Account</a>
+              <a href="#" class="btn-syn-xl btn-syn-outline-white">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-syn-a-fpo-col">
+            <span class="hero-syn-a-fpo">FPO</span>
+          </div>
+        </div>
+        <div class="hero-syn hero-syn--a hero-syn-a--compact mt-3"
+          style="--hero-syn-a-photo:url('../wwwroot/assets/images/hero-sys-a-photo.png')">
+          <div class="hero-syn-a-box">
+            <div class="hero-syn-a-text">
+              <h2 class="hero-syn-a-title">Checking Accounts</h2>
+              <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking
+                options.</p>
+            </div>
+            <div class="hero-syn-a-ctas">
+              <a href="#" class="btn-syn-xl btn-syn-white">Open an Account</a>
+              <a href="#" class="btn-syn-xl btn-syn-outline-white">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-syn-a-fpo-col">
+            <span class="hero-syn-a-fpo">FPO</span>
+          </div>
+        </div>
+        <div class="hero-syn hero-syn--a hero-syn-a--minimal mt-3"
+          style="--hero-syn-a-photo:url('../wwwroot/assets/images/hero-sys-a-photo.png')">
+          <div class="hero-syn-a-box">
+            <div class="hero-syn-a-text">
+              <h2 class="hero-syn-a-title">Checking Accounts</h2>
+              <p class="hero-syn-a-body">Confidently manage life&rsquo;s expenses with one of our checking
+                options.</p>
+            </div>
+            <div class="hero-syn-a-ctas">
+              <a href="#" class="btn-syn-xl btn-syn-white">Open an Account</a>
+              <a href="#" class="btn-syn-xl btn-syn-outline-white">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-syn-a-fpo-col">
+            <span class="hero-syn-a-fpo">FPO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero system 1B: light and dark, no image -->
+      <div class="component-block" id="hero-syn-b">
+        <div class="hero-syn hero-syn--b">
+          <div class="hero-syn-container">
+            <div class="hero-syn-b-copy">
+              <div class="hero-syn-b-eyebrow">
+                <img src="../wwwroot/assets/images/hero-sys-b-logo-dark.png" class="hero-syn-b-eyebrow-logo"
+                  alt="Pinnacle Financial Partners">
+                <span class="hero-syn-b-eyebrow-text">Checking</span>
+                <span class="hero-syn-b-eyebrow-plus"></span>
+              </div>
+              <h2 class="hero-syn-b-title"><em>Everyday</em> value.<br><em>Practical</em> benefits.</h2>
+              <p class="hero-syn-b-body">With Pinnacle Checking, we help you achieve your everyday goals.</p>
+              <div class="hero-syn-b-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-shadow">Open online</a>
+                <a href="#" class="btn-syn-xl btn-syn-outline">Find my branch</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-syn hero-syn--b hero-syn--b-dark mt-3">
+          <div class="hero-syn-container">
+            <div class="hero-syn-b-copy">
+              <div class="hero-syn-b-eyebrow">
+                <img src="../wwwroot/assets/images/hero-sys-b-logo-white.png" class="hero-syn-b-eyebrow-logo"
+                  alt="Pinnacle Financial Partners">
+                <span class="hero-syn-b-eyebrow-text">Checking</span>
+                <span class="hero-syn-b-eyebrow-plus"></span>
+              </div>
+              <h2 class="hero-syn-b-title"><em>Everyday</em> value.<br><em>Practical</em> benefits.</h2>
+              <p class="hero-syn-b-body">With Pinnacle Checking, we help you achieve your everyday goals.</p>
+              <div class="hero-syn-b-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-shadow btn-syn-white">Open online</a>
+                <a href="#" class="btn-syn-xl btn-syn-outline-white">Find my branch</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero system 1C: diagonal box -->
+      <div class="component-block" id="hero-syn-c">
+        <div class="hero-syn hero-syn--c" style="--hero-syn-cd-photo:url('../wwwroot/assets/images/hero-sys-c-photo.png')">
+          <div class="hero-syn-cd-panel">
+            <div class="hero-syn-cd-content">
+              <div class="hero-syn-c-title">
+                <span>Banking built on trust</span>
+                <div class="hero-syn-c-underline"></div>
+              </div>
+              <p class="hero-syn-c-body">From personal to business banking, we make it easy to get support when you
+                need it.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-shadow btn-syn-white">Explore Your Options</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-syn-cd-fpo-col">
+            <span class="hero-syn-cd-fpo">FPO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero system 1D: diagonal box, light/dark fill variants -->
+      <div class="component-block" id="hero-syn-d">
+        <!-- D1: light tint, outline button -->
+        <div class="hero-syn hero-syn--d" style="--hero-syn-cd-photo:url('../wwwroot/assets/images/hero-sys-c-photo.png')">
+          <div class="hero-syn-cd-panel">
+            <div class="hero-syn-cd-content">
+              <h2 class="hero-syn-d-title">Checking Accounts</h2>
+              <p class="hero-syn-d-body">Confidently manage life&rsquo;s expenses with one of our checking options.
+                Enjoy 24/7 access to your money at your local branch or on the go with My Pinnacle.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-outline">Open an account</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-syn-cd-fpo-col">
+            <span class="hero-syn-cd-fpo">FPO</span>
+          </div>
+        </div>
+        <!-- D2: light tint, filled button -->
+        <div class="hero-syn hero-syn--d mt-3" style="--hero-syn-cd-photo:url('../wwwroot/assets/images/hero-sys-c-photo.png')">
+          <div class="hero-syn-cd-panel">
+            <div class="hero-syn-cd-content">
+              <h2 class="hero-syn-d-title">Checking Accounts</h2>
+              <p class="hero-syn-d-body">Confidently manage life&rsquo;s expenses with one of our checking options.
+                Enjoy 24/7 access to your money at your local branch or on the go with My Pinnacle.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-shadow">Open an account</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-syn-cd-fpo-col">
+            <span class="hero-syn-cd-fpo">FPO</span>
+          </div>
+        </div>
+        <!-- D3: solid Pinnacle Blue, filled white button -->
+        <div class="hero-syn hero-syn--d hero-syn--d-blue mt-3"
+          style="--hero-syn-cd-photo:url('../wwwroot/assets/images/hero-sys-c-photo.png')">
+          <div class="hero-syn-cd-panel">
+            <div class="hero-syn-cd-content">
+              <h2 class="hero-syn-d-title">Checking Accounts</h2>
+              <p class="hero-syn-d-body">Confidently manage life&rsquo;s expenses with one of our checking options.
+                Enjoy 24/7 access to your money at your local branch or on the go with My Pinnacle.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-shadow btn-syn-white">Open an account</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-syn-cd-fpo-col">
+            <span class="hero-syn-cd-fpo">FPO</span>
+          </div>
+        </div>
+        <!-- D4A: Blue Ramp gradient, filled white button -->
+        <div class="hero-syn hero-syn--d hero-syn--d-gradient mt-3"
+          style="--hero-syn-cd-photo:url('../wwwroot/assets/images/hero-sys-c-photo.png')">
+          <div class="hero-syn-cd-panel">
+            <div class="hero-syn-cd-content">
+              <h2 class="hero-syn-d-title">Checking Accounts</h2>
+              <p class="hero-syn-d-body">Confidently manage life&rsquo;s expenses with one of our checking options.
+                Enjoy 24/7 access to your money at your local branch or on the go with My Pinnacle.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-shadow btn-syn-white">Open an account</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-syn-cd-fpo-col">
+            <span class="hero-syn-cd-fpo">FPO</span>
+          </div>
+        </div>
+        <!-- D4B: Blue Ramp gradient, outline white button -->
+        <div class="hero-syn hero-syn--d hero-syn--d-gradient mt-3"
+          style="--hero-syn-cd-photo:url('../wwwroot/assets/images/hero-sys-c-photo.png')">
+          <div class="hero-syn-cd-panel">
+            <div class="hero-syn-cd-content">
+              <h2 class="hero-syn-d-title">Checking Accounts</h2>
+              <p class="hero-syn-d-body">Confidently manage life&rsquo;s expenses with one of our checking options.
+                Enjoy 24/7 access to your money at your local branch or on the go with My Pinnacle.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-xl btn-syn-outline-white">Open an account</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-syn-cd-fpo-col">
+            <span class="hero-syn-cd-fpo">FPO</span>
+          </div>
+        </div>
+        <!-- D5B: solid Navy, outline white standard-size button -->
+        <div class="hero-syn hero-syn--d hero-syn--d-navy mt-3"
+          style="--hero-syn-cd-photo:url('../wwwroot/assets/images/hero-sys-c-photo.png')">
+          <div class="hero-syn-cd-panel">
+            <div class="hero-syn-cd-content">
+              <h2 class="hero-syn-d-title">Checking Accounts</h2>
+              <p class="hero-syn-d-body">Confidently manage life&rsquo;s expenses with one of our checking options.
+                Enjoy 24/7 access to your money at your local branch or on the go with My Pinnacle.</p>
+              <div class="hero-syn-cd-ctas">
+                <a href="#" class="btn-syn-standard btn-syn-outline-white">Open an account</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-syn-cd-fpo-col">
+            <span class="hero-syn-cd-fpo">FPO</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Global footer -->
+    <footer id="site-footer" class="site-footer-syn">
+      <div class="container-syn d-flex flex-column gap-5">
+        <div class="d-flex flex-wrap justify-content-between gap-5">
+          <div class="d-flex flex-wrap gap-5">
+            <div>
+              <p class="footer-syn-heading">Support</p>
+              <ul class="footer-syn-links">
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Find a location</a></li>
+                <li><a href="#">Fraud and identity theft</a></li>
+                <li><a href="#">Report a lost or stolen card</a></li>
+                <li><a href="#">Your privacy</a></li>
+                <li><a href="#">Website terms of use</a></li>
+                <li><a href="#">Accessible banking</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="footer-syn-heading">About Pinnacle</p>
+              <ul class="footer-syn-links">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Leadership</a></li>
+                <li><a href="#">Awards &amp; recognition</a></li>
+                <li><a href="#">Investor relations</a></li>
+                <li><a href="#">Annual report</a></li>
+                <li><a href="#">Community outreach</a></li>
+                <li><a href="#">Media</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-4">
+            <div>
+              <p class="footer-syn-heading">Official Bank of:</p>
+              <div class="footer-syn-official">
+                <img src="../wwwroot/assets/images/footer-sponsor-1.png" width="37" height="35" alt="Official bank partner">
+                <img src="../wwwroot/assets/images/footer-sponsor-2.png" width="37" height="37" alt="Official bank partner">
+                <img src="../wwwroot/assets/images/footer-sponsor-3.png" width="37" height="35" alt="Official bank partner">
+              </div>
+            </div>
+            <div>
+              <p class="footer-syn-heading">Follow us on:</p>
+              <div class="footer-syn-social">
+                <a href="#" aria-label="LinkedIn"><img src="../wwwroot/assets/images/social-linkedin.svg" width="16" height="16"
+                    alt=""></a>
+                <a href="#" aria-label="Facebook" style="border:0"><img src="../wwwroot/assets/images/social-facebook.svg"
+                    width="39" height="39" alt=""></a>
+                <a href="#" aria-label="Instagram"><img src="../wwwroot/assets/images/social-instagram.svg" width="14" height="14"
+                    alt=""></a>
+                <a href="#" aria-label="X"><img src="../wwwroot/assets/images/social-x.png" width="20" height="20" alt=""></a>
+                <a href="#" aria-label="YouTube"><img src="../wwwroot/assets/images/social-youtube.svg" width="20" height="14"
+                    alt=""></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-syn-legal">
+          <p class="syn-legal">Banking products are provided by Pinnacle Bank, a Tennessee bank, dba Synovus Bank.
+            Member FDIC.</p>
+          <p class="syn-legal">Pinnacle Bank, a Tennessee bank, NMLS #418535, is an Equal Housing Lender and lends in
+            the states of Alabama, Georgia, Florida, Tennessee, North Carolina, South Carolina, Kentucky, Virginia,
+            Maryland, and Washington D.C. Loans subject to approval including credit approval.</p>
+          <p class="syn-legal">If you would like to assert there has been an error made with the servicing of your
+            consumer mortgage loan, or if you would like to request information about the servicing of your consumer
+            mortgage loan, and if you would like your assertion or request to be treated in accordance with the
+            procedures provided in 12 C.F.R. Parts 1024.35 and 1024.36, then you must send written notice to us at
+            Synovus Bank, Attention: Mortgage Customer Service, 800 Shades Creek Parkway, MS 130, Birmingham, AL
+            35209. Otherwise, we will treat your assertion or request per our standard policies and procedures.</p>
+          <p class="syn-legal">You have certain rights under Federal law related to resolving errors and requesting
+            information about your mortgage account, and you may learn more about your rights by contacting Synovus
+            Bank, or by visiting <a href="#">https://www.consumerfinance.gov/mortgage/</a>.</p>
+          <p class="syn-legal">Investment products and services are provided and offered through Synovus Securities,
+            Inc. (SSI) a registered Broker-Dealer, member <a href="#">FINRA</a>/SIPC and SEC registered Investment
+            Advisor, Synovus Trust Company, N.A. (STC) and Creative Financial Group, a division of SSI. Trust services
+            are provided by STC, a subsidiary of Pinnacle Bank, a Tennessee bank.</p>
+          <div class="footer-syn-disclaimer"><span>NOT FDIC INSURED</span><span>NO BANK GUARANTEE</span><span>MAY LOSE
+              VALUE</span></div>
+          <p class="syn-legal">SSI is a subsidiary of Pinnacle Financial Partners, Inc. and an affiliate of Pinnacle
+            Bank, a Tennessee bank, dba Synovus Bank, and an affiliate of STC. You can obtain more information about
+            SSI and its Registered Representatives by accessing <a href="#">BrokerCheck</a>.</p>
+          <p class="syn-legal">Approval of any bank product or service is not contingent upon purchasing insurance
+            from Synovus Bank. Insurance products marketed through Synovus and its affiliated companies are
+            underwritten by insurance companies not affiliated with Synovus.</p>
+          <p class="syn-legal"><a href="#">My Money Program</a></p>
+        </div>
+        <div class="footer-syn-bottom-logos">
+          <span class="footer-syn-fdic-housing"><img src="../wwwroot/assets/images/footer-fdic-housing-sprite.png"
+              alt="Equal Housing Lender"></span>
+          <img src="../wwwroot/assets/images/footer-mastercard-securecode.png" width="72" height="38" alt="Mastercard SecureCode">
+        </div>
+        <p class="footer-syn-copyright">&copy; 2026 Pinnacle Bank. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+  <!-- Bootstrap bundle (offcanvas/tooltips used elsewhere in main.js) -->
+  <script src="../wwwroot/assets/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Swiper (Meet Our Community + News Ideas carousels) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Shared site behavior: wires up .carousel-syn-swiper / .news-ideas-syn-swiper
+       (Swiper init), [data-flip-trigger] product-card flip, and the
+       .syn-stat count-up animation - all already present on this page. -->
+  <script src="../wwwroot/assets/js/main.js"></script>
+
+  <script>
+    // Alert bar dismiss
+    document.querySelectorAll('.alert-bar-syn-close').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.alert-bar-syn').hidden = true);
+    });
+
+    // Hero (Module A) password toggle
+    const heroPwd = document.getElementById('heroPassword');
+    const heroPwdBtn = document.getElementById('heroPasswordBtn');
+    heroPwdBtn.addEventListener('click', () => {
+      const show = heroPwd.type === 'password';
+      heroPwd.type = show ? 'text' : 'password';
+      heroPwdBtn.textContent = show ? 'Hide' : 'Show';
+      heroPwdBtn.setAttribute('aria-pressed', String(show));
+    });
+
+    // Login card (standalone component) password toggle
+    const loginPwd = document.getElementById('loginPwd');
+    const loginPwdBtn = document.getElementById('loginPwdBtn');
+    loginPwdBtn.addEventListener('click', () => {
+      const show = loginPwd.type === 'password';
+      loginPwd.type = show ? 'text' : 'password';
+      loginPwdBtn.textContent = show ? 'Hide' : 'Show';
+      loginPwdBtn.setAttribute('aria-pressed', String(show));
+    });
+
+    // Carousel controls dots (isolated "carousel controls" demo below -
+    // the real Meet Our Community / News Ideas carousels above are
+    // Swiper-driven via main.js instead)
+    document.querySelectorAll('[data-carousel]').forEach(ctrl => {
+      const dots = [...ctrl.querySelectorAll('.carousel-syn-dot')];
+      const setActive = i => dots.forEach((d, j) => {
+        d.classList.toggle('is-active', i === j);
+        if (i === j) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
+      const current = () => dots.findIndex(d => d.classList.contains('is-active'));
+      dots.forEach((d, i) => d.addEventListener('click', () => setActive(i)));
+      ctrl.querySelector('.is-prev').addEventListener('click', () => setActive((current() - 1 + dots.length) % dots.length));
+      ctrl.querySelector('.carousel-syn-arrow:not(.is-prev)').addEventListener('click', () => setActive((current() + 1) % dots.length));
+    });
+  </script>
+</body>
+
+</html>

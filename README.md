@@ -48,9 +48,9 @@ synovus/
    ```bash
    npm run dev
    ```
-   *Watches `scss/` and all template files (`.html`, `.php`, `.xhtml`, `.shtml`, `.cshtml`, etc.). On every save, it automatically compiles and purges into `style.css` in ~150ms.*
+   *Watches `scss/` and all template files (`.html`, `.php`, `.xhtml`, `.shtml`, `.cshtml`, etc.) and recompiles `style.css` on every save. While watching, the output is unpurged/expanded and paired with `style.css.map`, so browser devtools can show which `.scss` partial (and line) a rule actually came from - open any page's styles panel and click a rule to jump straight to its source.*
 
-3. **Run a single build**:
+3. **Run a single build** (purged + compressed, no source map - this is the version to ship):
    ```bash
    npm run build
    ```
