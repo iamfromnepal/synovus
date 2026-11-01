@@ -677,29 +677,33 @@ $hero-a-stack-max: 991px;
 }
 
 // ---------------------------------------------------
-// 1G - a single-statement band: Blue Ramp fill, centered headline only
-// (no body, no CTA, no image). Title 52/1 desktop, 32/1 mobile, Medium.
+// 1G - a single-statement band: Blue Ramp fill, left-aligned headline only
+// (no body, no CTA, no image). Title 52/1.2 desktop, 32/1.2 mobile, Medium -
+// confirmed via get_design_context (not the centered/600-weight guess the
+// stub started with; text is left-aligned and 600 was already correct for
+// "Medium" per $font-weight-medium). Padding instead of a fixed height, so
+// the band grows for longer copy instead of clipping, same as every other
+// letter in this module.
 // ---------------------------------------------------
 .hero-syn--g {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 225px;
-  padding: 40px;
-  background: $syn-grad-blue-ramp;
-  text-align: center;
+  padding: 80px 0;
+  // Figma renders this navy (left) -> blue (right); the shared
+  // $syn-grad-blue-ramp runs the opposite way (blue -> navy), same mismatch
+  // already worked around for 1B/1C.
+  background: linear-gradient(to right, $syn-navy 0%, $syn-blue 100%);
+
+  @media (max-width: $syn-mobile-max) {
+    padding: 56px 0;
+  }
 }
 
 .hero-syn-g-title {
-  @include syn-type(3.25rem, 1.2, 600, $syn-white);
-}
+  margin: 0;
+  @include syn-type(3.25rem, 1.2, 600, $syn-white); // 52px desktop
 
-@media (max-width: $syn-mobile-max) {
-  .hero-syn--g {
-    min-height: 180px;
-  }
-
-  .hero-syn-g-title {
-    font-size: 2rem;
+  @media (max-width: $syn-mobile-max) {
+    font-size: 2rem; // 32px mobile
   }
 }

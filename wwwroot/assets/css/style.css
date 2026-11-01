@@ -2551,14 +2551,17 @@
 .hero-syn--g {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 225px;
-  padding: 40px;
-  background: linear-gradient(to top right, #0074C4 0%, #283862 100%);
-  text-align: center;
+  padding: 80px 0;
+  background: linear-gradient(to right, #283862 0%, #0074C4 100%);
+}
+@media (max-width: 767.98px) {
+  .hero-syn--g {
+    padding: 56px 0;
+  }
 }
 
 .hero-syn-g-title {
+  margin: 0;
   font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 3.25rem;
   line-height: 1.2;
@@ -2566,15 +2569,12 @@
   color: #FFFFFF;
   margin: 0;
 }
-
 @media (max-width: 767.98px) {
-  .hero-syn--g {
-    min-height: 180px;
-  }
   .hero-syn-g-title {
     font-size: 2rem;
   }
 }
+
 .section-heading-syn {
   display: flex;
   flex-direction: column;
