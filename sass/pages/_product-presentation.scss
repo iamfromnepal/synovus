@@ -29,13 +29,16 @@
   background-color: $syn-aqua;
 }
 
+// Exported as one flattened image straight from Figma (the co-brand
+// lockup isn't meant to be re-laid-out from separate logo files).
 .tile-syn-logos {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin-bottom: 4px;
 
-  img { height: 20px; width: auto; }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .tile-syn-benefits {
@@ -55,10 +58,16 @@
 
 // Stacks any number of "title + tile row" sections (56px between them,
 // matching the Figma gap between "Primary"/"Secondary checking products").
+// Its own max-width + centering (not .container-syn's wider clamp-based
+// margins, which run up to 296px and felt far too wide for this module).
 .product-presentation-syn {
   display: flex;
   flex-direction: column;
   gap: 56px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 // One section: title + its row of tiles (32px gap, matches Figma).
@@ -80,6 +89,10 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 352px));
   gap: 32px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 352px));
+  }
 
   @media (max-width: $syn-mobile-max) {
     grid-template-columns: 1fr;
