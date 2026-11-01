@@ -2519,7 +2519,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  max-width: min(89%, 1712px);
   padding: 20px 40px;
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(2px);
@@ -2527,7 +2526,6 @@
 }
 @media (max-width: 767.98px) {
   .hero-syn-ef-bar {
-    max-width: min(80%, 300px);
     border-radius: 12px;
     padding: 20px 24px;
   }

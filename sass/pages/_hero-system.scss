@@ -654,14 +654,12 @@ $hero-a-stack-max: 991px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  max-width: min(89%, 1712px);
   padding: 20px 40px;
   background-color: rgba($syn-white, 0.3);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 
   @media (max-width: $syn-mobile-max) {
-    max-width: min(80%, 300px);
     border-radius: 12px;
     padding: 20px 24px;
   }
