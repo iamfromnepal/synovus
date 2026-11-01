@@ -2849,6 +2849,59 @@
   --quote-color: linear-gradient(202.646deg, #0074C4 29.927%, #00B4C4 144.83%);
 }
 
+.quote-syn-mark--sm {
+  width: 60px;
+  height: 42.607px;
+}
+
+.pull-quote-line-section-syn {
+  max-width: 928px;
+  margin: 0 auto;
+  padding: 60px 16px;
+}
+
+.quote-line-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.quote-line-syn-divider-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.quote-line-syn-divider {
+  flex: 1 1 0;
+  height: 2px;
+  background-color: #CCE3F3;
+}
+
+.quote-line-syn-text {
+  margin: 0;
+  text-align: left;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.75rem;
+  line-height: 1.52;
+  font-weight: 400;
+  color: #283862;
+  margin: 0;
+}
+
+.quote-line-syn-author {
+  margin: 0;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.75rem;
+  line-height: 1.52;
+  font-weight: 400;
+  color: #283862;
+  margin: 0;
+}
+.quote-line-syn-author em {
+  font-style: italic;
+}
+
 .brand-identity-syn-merger {
   display: flex;
   align-items: stretch;

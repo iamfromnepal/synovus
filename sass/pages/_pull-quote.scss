@@ -40,3 +40,57 @@
 .quote-syn-mark--deep      { --quote-color: #{$syn-navy}; }
 .quote-syn-mark--blue      { --quote-color: #{$syn-blue}; }
 .quote-syn-mark--aqua-ramp { --quote-color: #{$syn-grad-aqua-ramp}; }
+
+// Smaller mark for 9B's line variant (60x42.6, vs 9A's boxed 90x64).
+.quote-syn-mark--sm {
+  width: 60px;
+  height: 42.607px;
+}
+
+// ---------------------------------------------------
+// 9B - no box/border, just a divider-and-mark row over left-aligned quote
+// text and an author line. Narrower column than 9A (928px vs 1120px) -
+// Figma gets there with a flat 256px side padding at 1440px width, which
+// doesn't scale down gracefully on narrower desktops, so this uses its
+// own max-width instead (same reasoning as .product-presentation-syn and
+// .pull-quote-section-syn above).
+// ---------------------------------------------------
+.pull-quote-line-section-syn {
+  max-width: 928px;
+  margin: 0 auto;
+  padding: 60px 16px;
+}
+
+.quote-line-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.quote-line-syn-divider-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.quote-line-syn-divider {
+  flex: 1 1 0;
+  height: 2px;
+  background-color: $syn-light-blue;
+}
+
+// Text size matches desktop at every breakpoint (the Figma mobile example
+// showed a larger size, but that reads as a copy-paste mismatch from 9A's
+// own text style rather than an intentional mobile-is-bigger choice).
+.quote-line-syn-text {
+  margin: 0;
+  text-align: left;
+  @include syn-type(1.75rem, 1.52, 400, $syn-navy); // 28px
+}
+
+.quote-line-syn-author {
+  margin: 0;
+  @include syn-type(1.75rem, 1.52, 400, $syn-navy); // 28px
+
+  em { font-style: italic; }
+}
