@@ -77,25 +77,37 @@
   gap: 32px;
 }
 
-// Tile row: 3 equal columns, up to 352px each - minmax(0, 352px) instead
-// of a flex flex-basis so columns shrink together under the row's actual
-// width instead of wrapping. (A fixed 352px flex-basis wrapped the 3rd
-// tile to its own row: at the exact 1120px content width a real browser's
-// scrollbar steals a few px. auto-fit/minmax also tried and mis-measured
-// to 2 columns instead of 3, so this stays an explicit 3-up grid.) One
-// full-width column on mobile. align-items:stretch (grid default) is what
-// gives tiles in the same row equal height without hardcoding one.
+// Tile row: 3/3 desktop, 2/2 below 1024px, 1/1 below 575px. flex-basis is
+// a percentage of the row's own width (not a flat 352px) so N tiles +
+// their gaps always sum to exactly 100% - a flat px basis wrapped the 3rd
+// tile to its own row at the exact 1120px content width, because a real
+// browser's scrollbar steals a few px there. max-width:352px keeps tiles
+// from growing past the Figma spec when there's extra room; the 1-up
+// tier drops that cap so the tile fills the mobile container (430px
+// frame minus its own gutters), same as before. align-items:stretch
+// (flex default) is what gives tiles in the same row equal height
+// without hardcoding one.
 .product-tiles-syn {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 352px));
+  display: flex;
+  flex-wrap: wrap;
   gap: 32px;
 
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, minmax(0, 352px));
+  > * {
+    flex: 0 1 calc((100% - 64px) / 3); // 2 gaps of 32px between 3 tiles
+    max-width: 352px;
   }
 
-  @media (max-width: $syn-mobile-max) {
-    grid-template-columns: 1fr;
+  @media (max-width: 1024px) {
+    > * {
+      flex-basis: calc((100% - 32px) / 2); // 1 gap of 32px between 2 tiles
+    }
+  }
+
+  @media (max-width: 575px) {
+    > * {
+      flex-basis: 100%;
+      max-width: none;
+    }
   }
 }
 
