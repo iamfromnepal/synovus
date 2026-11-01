@@ -2497,6 +2497,23 @@
   }
 }
 
+.hero-syn--f {
+  min-height: 460px;
+}
+@media (max-width: 767.98px) {
+  .hero-syn--f {
+    min-height: 537px;
+  }
+}
+@media (min-width: 768px) {
+  .hero-syn--f .hero-syn-ef-bar {
+    padding: 0;
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 .hero-syn-ef-bar {
   position: relative;
   display: flex;

@@ -598,13 +598,13 @@ $hero-a-stack-max: 991px;
 
 // ---------------------------------------------------
 // 1E / 1F - "Image only": a pure full-bleed photo band, no title/body/CTA.
-// The only thing on top is a frosted-glass "FPO" placeholder bar (translucent
-// white + backdrop-blur), not the plain giant-text watermark used elsewhere
-// in this module. E is wide/short (1920x300 desktop, 430x371 mobile - the
-// stub's old 200/140px guesses were wrong); F is wide/tall (1440x460
-// reference, confirmed when we build it). No scroll-shrink behavior - same
-// call as 1A, where the real scroll-JS version was tried and dropped for a
-// static treatment instead.
+// 1E's "FPO" sits in a frosted-glass bar (translucent white + backdrop-blur)
+// at every width (1920x300 desktop, 430x371 mobile). 1F is wide/tall
+// (1440x460 desktop, 430x537 mobile) and only has that same frosted bar on
+// mobile - desktop shows the bare white watermark straight on the photo,
+// per Figma (confirmed via get_design_context on both breakpoints). No
+// scroll-shrink behavior on either - same call as 1A, where the real
+// scroll-JS version was tried and dropped for a static treatment instead.
 // ---------------------------------------------------
 .hero-syn--e,
 .hero-syn--f {
@@ -623,6 +623,26 @@ $hero-a-stack-max: 991px;
 
   @media (max-width: $syn-mobile-max) {
     min-height: 371px;
+  }
+}
+
+.hero-syn--f {
+  min-height: 460px;
+
+  @media (max-width: $syn-mobile-max) {
+    min-height: 537px;
+  }
+
+  // Unlike 1E, 1F's desktop treatment has no frosted box at all - just the
+  // bare white FPO watermark straight on the photo. Mobile keeps the same
+  // frosted bar as 1E (confirmed identical 300x194/radius-12/blur-2 spec).
+  @media (min-width: 768px) {
+    .hero-syn-ef-bar {
+      padding: 0;
+      background-color: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
   }
 }
 
