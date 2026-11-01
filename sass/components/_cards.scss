@@ -416,12 +416,10 @@
 // Pull quote A: 2px blue border, leaf 20, Ice fill, padding 60/96, coloured quote mark
 .quote-syn {
   position: relative;
-  padding: 40px 48px;
+  padding: 60px 40px;
   background-color: $syn-ice;
   border: 2px solid $syn-blue;
   border-radius: $syn-leaf-20;
-
-  @media (max-width: $syn-mobile-max) { padding: 24px 20px; }
 
   .quote-syn-mark {
     position: absolute;

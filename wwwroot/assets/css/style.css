@@ -1477,15 +1477,10 @@
 
 .quote-syn {
   position: relative;
-  padding: 40px 48px;
+  padding: 60px 40px;
   background-color: #F1F7FC;
   border: 2px solid #0074C4;
   border-radius: 0 20px 20px 20px;
-}
-@media (max-width: 767.98px) {
-  .quote-syn {
-    padding: 24px 20px;
-  }
 }
 .quote-syn .quote-syn-mark {
   position: absolute;
