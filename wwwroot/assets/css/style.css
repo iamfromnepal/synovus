@@ -2819,6 +2819,37 @@
   margin: 0;
 }
 
+.pull-quote-section-syn {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+@media (max-width: 767.98px) {
+  .pull-quote-section-syn {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+.quote-syn-mark--bronze {
+  --quote-color: #D17326;
+}
+
+.quote-syn-mark--blue-ramp {
+  --quote-color: linear-gradient(to top right, #0074C4 0%, #283862 100%);
+}
+
+.quote-syn-mark--deep {
+  --quote-color: #283862;
+}
+
+.quote-syn-mark--blue {
+  --quote-color: #0074C4;
+}
+
+.quote-syn-mark--aqua-ramp {
+  --quote-color: linear-gradient(202.646deg, #0074C4 29.927%, #00B4C4 144.83%);
+}
+
 .brand-identity-syn-merger {
   display: flex;
   align-items: stretch;

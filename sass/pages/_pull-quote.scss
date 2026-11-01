@@ -1,0 +1,38 @@
+// ===========================================
+// MODULE 9: Pull Quote (High Priority component library)
+// 9A is almost entirely already built: .quote-syn/.quote-syn-mark
+// (components/_cards.scss) already match Figma's box, border, radius,
+// and responsive padding exactly, and .syn-quote (base/_custom-overrides)
+// already matches the 32px/1.52 (mobile 1.4) quote text. This file only
+// adds the 6 named mark colors the dev notes ask for ("a variety of
+// different color quote marks") and the section's own outer spacing.
+//
+// Notes pulled from the Figma dev-note callouts:
+// - Purpose: provide inspirational quotes from our sponsored partners.
+// - Desired flexibility: grow to fit as much text as the quote needs
+//   (confirmed in Figma itself via a second, explicitly taller example
+//   labelled "Box grows to accommodate more text") - no fixed height,
+//   same as every other module in this library.
+// - A stray photo + "thumb_up" icon appear in the mobile frame's layer
+//   tree but are positioned thousands of pixels outside the frame itself
+//   (canvas debris left over from elsewhere) - not part of this module.
+// ===========================================
+
+// padding-top/bottom only (not the shorthand) - this combines with
+// .container-syn on the same element, whose own padding-left/right must
+// survive rather than get zeroed out by a padding:Npx 0 shorthand here.
+.pull-quote-section-syn {
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+.quote-syn-mark--bronze    { --quote-color: #{$syn-bronze}; }
+.quote-syn-mark--blue-ramp { --quote-color: #{$syn-grad-blue-ramp}; }
+.quote-syn-mark--deep      { --quote-color: #{$syn-navy}; }
+.quote-syn-mark--blue      { --quote-color: #{$syn-blue}; }
+.quote-syn-mark--aqua-ramp { --quote-color: #{$syn-grad-aqua-ramp}; }
