@@ -1,0 +1,95 @@
+// ===========================================
+// MODULE 11: Content Block with Image and CTA (High Priority component
+// library). 11A: no icon (11B adds one). A zigzag row of full-bleed photo
+// + text block, alternating sides per block, repeatable for N blocks.
+//
+// Notes pulled from the Figma dev-note callouts:
+// - Purpose: organized blocks of content that lead users to another page
+//   or resource (reference: the existing Edgar Evans page).
+// - Dev note: "Description, Title, and button are in fixed position...
+//   Tile size remains consistent, even if content size fluctuates" - the
+//   same fixed-size/truncate intent already seen in Module 2's notes. Per
+//   standing instruction this is built WITHOUT fixed heights: the photo
+//   keeps a fixed aspect-ratio (not a stretched height), the row centers
+//   the shorter side against the taller one, and content just flows
+//   naturally - a longer body paragraph grows the row instead of clipping.
+// ===========================================
+
+// Its own max-width + centering (not .container-syn's wider clamp-based
+// margins) - same reasoning as .product-presentation-syn and
+// .pull-quote-section-syn.
+.content-block-section-syn {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.content-block-syn {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 80px 0 40px;
+
+  @media (max-width: $syn-mobile-max) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+// Alternates sides: image moves to the right on every other block.
+.content-block-syn--reverse {
+  flex-direction: row-reverse;
+
+  @media (max-width: $syn-mobile-max) {
+    flex-direction: column;
+  }
+}
+
+// Fixed aspect-ratio (not a stretched height) so the photo keeps its
+// intended crop regardless of how tall the text column ends up being;
+// align-items:center on the row centers whichever side is shorter.
+.content-block-syn-media {
+  position: relative;
+  flex: 1 1 0;
+  overflow: hidden;
+  border-radius: $syn-leaf-20;
+  aspect-ratio: 544 / 600;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.content-block-syn-content {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 60px;
+  padding: 0 40px;
+
+  @media (max-width: $syn-mobile-max) {
+    padding: 0;
+  }
+
+  .syn-h3 { color: $syn-black; }
+
+  .btn-syn-standard {
+    @media (max-width: $syn-mobile-max) { width: 100%; }
+  }
+}
+
+.content-block-syn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.content-block-syn-label {
+  margin: 0;
+  text-transform: uppercase;
+  @include syn-type(1.5rem, 1.4, 400, $syn-black); // 24px
+}
