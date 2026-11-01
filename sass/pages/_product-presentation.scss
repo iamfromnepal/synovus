@@ -1,9 +1,9 @@
 // ===========================================
 // MODULE 2: Product Presentation (High Priority component library)
 // Extends the existing .tile-syn (already built for the flagged product
-// tile) with the two pieces "Account Presentation A/B" actually need: a
-// co-brand logo header row, and a bulleted benefits list. Also adds the
-// third flag color option (Aqua) alongside the existing light/dark ones.
+// tile) with the pieces "Account Presentation A/B" actually need: a
+// co-brand logo header row, a bulleted benefits list, and the row/section
+// layout that repeats (title + 3-tiles-per-row, any number of rows).
 //
 // Notes pulled from the Figma dev-note callouts:
 // - Purpose: provide information on our products (ie checking) in the
@@ -11,7 +11,11 @@
 // - Large Tile title: Medium 24, up to 2 lines (~54-93 characters).
 // - Text stays top-aligned even when a tile has less copy than its
 //   neighbors; buttons stay in a fixed location regardless of text
-//   length - run-over text truncates rather than growing the tile.
+//   length. Per explicit instruction this is done WITHOUT fixed heights
+//   or truncation anywhere: tiles in a row stretch to match the tallest
+//   one (flex default align-items:stretch) and the actions row pins to
+//   the bottom via margin-top:auto, so a longer tile just grows the
+//   whole row instead of clipping its own copy.
 // - Ability to add more rows of tiles below the current row if more
 //   products need to be featured (same tile specs as the row above).
 // - Closest existing reference: Personal Checking Page / Personal
@@ -48,3 +52,40 @@
 // Pins the CTA row to the bottom of the tile even when neighboring tiles
 // have more copy (tiles sit in an equal-height grid row).
 .tile-syn-actions-bottom { margin-top: auto; }
+
+// Stacks any number of "title + tile row" sections (56px between them,
+// matching the Figma gap between "Primary"/"Secondary checking products").
+.product-presentation-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+// One section: title + its row of tiles (32px gap, matches Figma).
+.product-section-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+// Tile row: 3 equal columns, up to 352px each - minmax(0, 352px) instead
+// of a flex flex-basis so columns shrink together under the row's actual
+// width instead of wrapping. (A fixed 352px flex-basis wrapped the 3rd
+// tile to its own row: at the exact 1120px content width a real browser's
+// scrollbar steals a few px. auto-fit/minmax also tried and mis-measured
+// to 2 columns instead of 3, so this stays an explicit 3-up grid.) One
+// full-width column on mobile. align-items:stretch (grid default) is what
+// gives tiles in the same row equal height without hardcoding one.
+.product-tiles-syn {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 352px));
+  gap: 32px;
+
+  @media (max-width: $syn-mobile-max) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Large ("Primary checking products") tile: body copy is black here,
+// vs. the grey .tile-syn-desc default used by the plain secondary tiles.
+.tile-syn--account .tile-syn-desc { color: $syn-black; }

@@ -2745,6 +2745,33 @@
   margin-top: auto;
 }
 
+.product-presentation-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.product-section-syn {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.product-tiles-syn {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 352px));
+  gap: 32px;
+}
+@media (max-width: 767.98px) {
+  .product-tiles-syn {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tile-syn--account .tile-syn-desc {
+  color: #151515;
+}
+
 .brand-identity-syn-merger {
   display: flex;
   align-items: stretch;
