@@ -2766,7 +2766,6 @@
 }
 .product-tiles-syn > * {
   flex: 0 1 calc((100% - 64px) / 3);
-  max-width: 352px;
 }
 @media (max-width: 1024px) {
   .product-tiles-syn > * {
@@ -2776,7 +2775,6 @@
 @media (max-width: 575px) {
   .product-tiles-syn > * {
     flex-basis: 100%;
-    max-width: none;
   }
 }
 

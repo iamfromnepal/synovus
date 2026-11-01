@@ -77,16 +77,18 @@
   gap: 32px;
 }
 
-// Tile row: 3/3 desktop, 2/2 below 1024px, 1/1 below 575px. flex-basis is
-// a percentage of the row's own width (not a flat 352px) so N tiles +
-// their gaps always sum to exactly 100% - a flat px basis wrapped the 3rd
-// tile to its own row at the exact 1120px content width, because a real
-// browser's scrollbar steals a few px there. max-width:352px keeps tiles
-// from growing past the Figma spec when there's extra room; the 1-up
-// tier drops that cap so the tile fills the mobile container (430px
-// frame minus its own gutters), same as before. align-items:stretch
-// (flex default) is what gives tiles in the same row equal height
-// without hardcoding one.
+// Tile row: 3/3 desktop (33/33/33%), 2/2 below 1024px (50/50%), 1/1 below
+// 575px (100%). flex-basis is a percentage of the row's own width (not a
+// flat 352px) so N tiles + their gaps always sum to exactly 100% - no
+// leftover gap after the last tile, and no early wrap either (a flat px
+// basis wrapped the 3rd tile to its own row at the exact 1120px content
+// width, because a real browser's scrollbar steals a few px there). No
+// max-width cap: the outer .product-presentation-syn already caps the
+// whole row at 1120px, so tiles stay Figma-close on desktop while still
+// genuinely splitting the row 50/50 or 100% on narrower tiers instead of
+// capping at 352px and leaving blank space beside them. align-items:stretch
+// (flex default) is what gives tiles in the same row equal height without
+// hardcoding one.
 .product-tiles-syn {
   display: flex;
   flex-wrap: wrap;
@@ -94,7 +96,6 @@
 
   > * {
     flex: 0 1 calc((100% - 64px) / 3); // 2 gaps of 32px between 3 tiles
-    max-width: 352px;
   }
 
   @media (max-width: 1024px) {
@@ -106,7 +107,6 @@
   @media (max-width: 575px) {
     > * {
       flex-basis: 100%;
-      max-width: none;
     }
   }
 }
