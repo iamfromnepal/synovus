@@ -18,12 +18,16 @@
 //   (canvas debris left over from elsewhere) - not part of this module.
 // ===========================================
 
-// padding-top/bottom only (not the shorthand) - this combines with
-// .container-syn on the same element, whose own padding-left/right must
-// survive rather than get zeroed out by a padding:Npx 0 shorthand here.
+// Its own max-width + centering (not .container-syn's wider clamp-based
+// margins, which run up to 296px and are too wide for this module - same
+// fix already applied to .product-presentation-syn).
 .pull-quote-section-syn {
+  max-width: 1120px;
+  margin: 0 auto;
   padding-top: 100px;
   padding-bottom: 100px;
+  padding-left: 16px;
+  padding-right: 16px;
 
   @media (max-width: $syn-mobile-max) {
     padding-top: 56px;
