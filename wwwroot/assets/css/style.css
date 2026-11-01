@@ -2778,8 +2778,45 @@
   }
 }
 
-.tile-syn--account .tile-syn-desc {
+.product-tiles-syn--2up {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+.product-tiles-syn--2up > * {
+  flex: 0 1 calc((100% - 32px) / 2);
+}
+@media (max-width: 575px) {
+  .product-tiles-syn--2up > * {
+    flex-basis: 100%;
+  }
+}
+
+.tile-syn--badge-top {
+  padding-top: 64px;
+}
+.tile-syn--badge-top > .flag-syn {
+  position: absolute;
+  top: 16px;
+  left: 0;
+}
+
+.tile-syn-desc--dark {
   color: #151515;
+}
+
+.tile-syn--bottom-aligned {
+  justify-content: flex-end;
+  padding-right: 80px;
+}
+
+.product-section-title {
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #283862;
+  margin: 0;
 }
 
 .brand-identity-syn-merger {

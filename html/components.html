@@ -1277,11 +1277,11 @@
             <div class="product-tiles-syn">
 
               <!-- Tile 1: "Most popular" flag -->
-              <div class="tile-syn tile-syn--account has-flag">
+              <div class="tile-syn tile-syn--badge-top">
                 <span class="flag-syn">Most popular</span>
                 <div class="tile-syn-text">
                   <h3 class="syn-h4">Checking Account 1</h3>
-                  <p class="tile-syn-desc">Get tools and benefits designed to make managing your finances a more rewarding experience.</p>
+                  <p class="tile-syn-desc tile-syn-desc--dark">Get tools and benefits designed to make managing your finances a more rewarding experience.</p>
                 </div>
                 <ul class="tile-syn-benefits">
                   <li>Access to 24/7 credit monitoring and identity theft protection services and more benefits.</li>
@@ -1294,11 +1294,11 @@
                 </div>
               </div>
 
-              <!-- Tile 2: plain, no header decoration -->
-              <div class="tile-syn tile-syn--account">
+              <!-- Tile 2: plain, no header decoration (Figma still reserves the same top clearance) -->
+              <div class="tile-syn tile-syn--badge-top">
                 <div class="tile-syn-text">
                   <h3 class="syn-h4">Checking Account 2</h3>
-                  <p class="tile-syn-desc">Get tools and benefits designed to make managing your finances a more rewarding experience.</p>
+                  <p class="tile-syn-desc tile-syn-desc--dark">Get tools and benefits designed to make managing your finances a more rewarding experience.</p>
                 </div>
                 <ul class="tile-syn-benefits">
                   <li>Access to 24/7 credit monitoring and identity theft protection services and more benefits.</li>
@@ -1311,14 +1311,14 @@
                 </div>
               </div>
 
-              <!-- Tile 3: co-brand logo header -->
-              <div class="tile-syn tile-syn--account">
+              <!-- Tile 3: co-brand logo header (normal flow, not absolute, so no top-clearance modifier needed) -->
+              <div class="tile-syn">
                 <div class="tile-syn-logos">
                   <img src="../wwwroot/assets/images/tile-logos-group.png" alt="Pinnacle and Memphis Grizzlies partnership logos">
                 </div>
                 <div class="tile-syn-text">
                   <h3 class="syn-h4">Checking Account 3</h3>
-                  <p class="tile-syn-desc">Get tools and benefits designed to make managing your finances a more rewarding experience.</p>
+                  <p class="tile-syn-desc tile-syn-desc--dark">Get tools and benefits designed to make managing your finances a more rewarding experience.</p>
                 </div>
                 <ul class="tile-syn-benefits">
                   <li>Access to 24/7 credit monitoring and identity theft protection services and more benefits.<sup class="footnote-ref">4</sup></li>
@@ -1366,6 +1366,82 @@
                   <p class="tile-syn-desc">Get tools and benefits designed to make managing your finances.</p>
                 </div>
                 <div class="tile-syn-actions tile-syn-actions-bottom">
+                  <a href="#" class="btn-syn-standard">Apply now</a>
+                  <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Module 2: Product Presentation (2B - Account Presentation B) -->
+      <div class="component-block" id="product-presentation-b">
+        <div class="section-syn product-presentation-syn">
+
+          <!-- Row 1: 2 large tiles, no section title -->
+          <div class="product-tiles-syn--2up">
+
+            <div class="tile-syn tile-syn--badge-top">
+              <span class="flag-syn flag-syn-dark">Most popular</span>
+              <div class="tile-syn-text">
+                <h3 class="syn-h4">Checking Account 1<sup class="footnote-ref">1</sup><br>Second line in case one is needed</h3>
+                <p class="tile-syn-desc">Get tools and benefits designed to make managing your finances a rewarding experience.</p>
+              </div>
+              <ul class="tile-syn-benefits">
+                <li>Access to 24/7 credit monitoring and identity theft protection services</li>
+                <li>This space is to focus on the second benefit of this particular account.</li>
+                <li>Highlight the third feature of this account here. Here is a second line in case it is needed.</li>
+              </ul>
+              <div class="tile-syn-actions tile-syn-actions-bottom">
+                <a href="#" class="btn-syn-standard">Apply now</a>
+                <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
+              </div>
+            </div>
+
+            <div class="tile-syn tile-syn--badge-top">
+              <span class="flag-syn">Premiere banking</span>
+              <div class="tile-syn-text">
+                <h3 class="syn-h4">Checking Account 2<sup class="footnote-ref">2</sup></h3>
+                <p class="tile-syn-desc">Get tools and benefits designed to make managing your finances a rewarding experience.</p>
+              </div>
+              <ul class="tile-syn-benefits">
+                <li>Access to 24/7 credit monitoring and identity theft protection services</li>
+                <li>This space is to focus on the second benefit of this particular account.</li>
+                <li>Highlight the third feature of this account here.</li>
+              </ul>
+              <div class="tile-syn-actions tile-syn-actions-bottom">
+                <a href="#" class="btn-syn-standard">Apply now</a>
+                <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Row 2: 2 small tiles, bottom-aligned content -->
+          <div class="product-section-syn">
+            <h2 class="product-section-title">Checking accounts for specific needs</h2>
+            <div class="product-tiles-syn--2up">
+
+              <div class="tile-syn tile-syn--bottom-aligned">
+                <div class="tile-syn-text">
+                  <h3 class="syn-h4">Checking 3<br>Second line available if needed.</h3>
+                  <p class="tile-syn-desc">Accessible banking that provides controls to avoid overdraft fees.</p>
+                </div>
+                <div class="tile-syn-actions">
+                  <a href="#" class="btn-syn-standard">Apply now</a>
+                  <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
+                </div>
+              </div>
+
+              <div class="tile-syn tile-syn--bottom-aligned">
+                <div class="tile-syn-text">
+                  <h3 class="syn-h4">Checking 4</h3>
+                  <p class="tile-syn-desc">Accessible banking that provides controls to avoid fees.</p>
+                </div>
+                <div class="tile-syn-actions">
                   <a href="#" class="btn-syn-standard">Apply now</a>
                   <a href="#" class="btn-syn-standard btn-syn-outline">See details</a>
                 </div>

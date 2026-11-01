@@ -111,6 +111,55 @@
   }
 }
 
-// Large ("Primary checking products") tile: body copy is black here,
-// vs. the grey .tile-syn-desc default used by the plain secondary tiles.
-.tile-syn--account .tile-syn-desc { color: $syn-black; }
+// 2/2-by-default tile row (2B's two sections, vs. 2A's 3/3-by-default
+// .product-tiles-syn): same percentage flex-basis technique, just starting
+// at 2 columns and only dropping to 1 below 575px.
+.product-tiles-syn--2up {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+
+  > * {
+    flex: 0 1 calc((100% - 32px) / 2);
+  }
+
+  @media (max-width: 575px) {
+    > * {
+      flex-basis: 100%;
+    }
+  }
+}
+
+// Reserves clearance for a badge/logo that overlaps the tile's top edge
+// (the flag is absolutely positioned; it needs the tile's own content to
+// start below it rather than behind it). Figma reserves this same 64px
+// even on tiles with no badge, so every large tile's title lines up.
+.tile-syn--badge-top {
+  padding-top: 64px;
+
+  > .flag-syn {
+    position: absolute;
+    top: 16px;
+    left: 0;
+  }
+}
+
+// Darker body copy variant - 2A's large tile uses this; 2B's large tile
+// (and every small tile in both 2A/2B) stays the default grey .tile-syn-desc.
+.tile-syn-desc--dark { color: $syn-black; }
+
+// 2B's small-tile row: content hugs the tile's bottom instead of its top
+// (so when tiles stretch to match a taller sibling, the title/body/buttons
+// stay anchored low rather than floating at the top with the gap below),
+// and the content column is narrower on the right (80px vs. the usual
+// 32px) - both straight from Figma's own measurements for this tile.
+.tile-syn--bottom-aligned {
+  justify-content: flex-end;
+  padding-right: 80px;
+}
+
+// 2B's second-row title: Regular 36/1.2 navy, distinct from .syn-h2's
+// Medium 40/28 used for 2A's section titles.
+.product-section-title {
+  @include syn-type(2.25rem, 1.2, 400, $syn-navy); // 36px
+}
