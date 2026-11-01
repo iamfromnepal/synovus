@@ -646,23 +646,22 @@ $hero-a-stack-max: 991px;
   }
 }
 
-// Padding instead of a fixed height, so the bar grows with its content
-// (longer placeholder text, multiple lines, etc.) instead of clipping or
-// spilling out of a box that can't resize.
+// No fixed height AND no fixed width: padding + inline-flex content-sizing,
+// so the bar hugs however much text it actually holds and only grows (in
+// both directions) if the placeholder copy is longer than "FPO".
 .hero-syn-ef-bar {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 89%;
-  max-width: 1712px;
+  max-width: min(89%, 1712px);
   padding: 20px 40px;
   background-color: rgba($syn-white, 0.3);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 
   @media (max-width: $syn-mobile-max) {
-    width: 300px;
+    max-width: min(80%, 300px);
     border-radius: 12px;
     padding: 20px 24px;
   }
