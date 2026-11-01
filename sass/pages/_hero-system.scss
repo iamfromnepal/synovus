@@ -597,25 +597,65 @@ $hero-a-stack-max: 991px;
 }
 
 // ---------------------------------------------------
-// 1E / 1F - "Image only": a pure full-bleed photo band, no text overlay.
-// E is wide/short (1920x300 reference), F is wide/tall (1440x460
-// reference). Both shrink on scroll per the design notes.
+// 1E / 1F - "Image only": a pure full-bleed photo band, no title/body/CTA.
+// The only thing on top is a frosted-glass "FPO" placeholder bar (translucent
+// white + backdrop-blur), not the plain giant-text watermark used elsewhere
+// in this module. E is wide/short (1920x300 desktop, 430x371 mobile - the
+// stub's old 200/140px guesses were wrong); F is wide/tall (1440x460
+// reference, confirmed when we build it). No scroll-shrink behavior - same
+// call as 1A, where the real scroll-JS version was tried and dropped for a
+// static treatment instead.
 // ---------------------------------------------------
-.hero-syn--e {
-  min-height: 200px;
-}
-
+.hero-syn--e,
 .hero-syn--f {
-  min-height: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: var(--hero-syn-ef-photo);
+  background-size: cover;
+  background-position: center;
 }
 
-@media (max-width: $syn-mobile-max) {
-  .hero-syn--e {
-    min-height: 140px;
-  }
+.hero-syn--e {
+  min-height: 300px;
 
-  .hero-syn--f {
-    min-height: 220px;
+  @media (max-width: $syn-mobile-max) {
+    min-height: 371px;
+  }
+}
+
+// Padding instead of a fixed height, so the bar grows with its content
+// (longer placeholder text, multiple lines, etc.) instead of clipping or
+// spilling out of a box that can't resize.
+.hero-syn-ef-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 89%;
+  max-width: 1712px;
+  padding: 20px 40px;
+  background-color: rgba($syn-white, 0.3);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  @media (max-width: $syn-mobile-max) {
+    width: 300px;
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+}
+
+.hero-syn-ef-fpo {
+  pointer-events: none;
+  text-align: center;
+  @include syn-type(8rem, 1.1, 700, $syn-white); // 128px
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: $syn-mobile-max) {
+    font-size: 4rem; // 64px
   }
 }
 
