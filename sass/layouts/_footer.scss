@@ -2,12 +2,12 @@
 // MODULE: Global Footer
 // ===========================================
 
-.site-footer {
+.site-footer-syn {
   padding-top: 60px;
   padding-bottom: 8px;
   background-color: $color-white;
 
-  .footer-heading {
+  .footer-syn-heading {
     margin: 0 0 8px;
     font-size: 1rem;
     font-weight: 700;
@@ -15,7 +15,7 @@
     color: $navy;
   }
 
-  .footer-links {
+  .footer-syn-links {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -30,13 +30,13 @@
     }
   }
 
-  .footer-official {
+  .footer-syn-official {
     display: flex;
     align-items: center;
     gap: 16px;
   }
 
-  .footer-social {
+  .footer-syn-social {
     display: flex;
     gap: 16px;
 
@@ -52,7 +52,7 @@
   }
 
   // Legal block: 1px dashed #808080, padding 20, 8px paragraph gap
-  .footer-legal {
+  .footer-syn-legal {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -62,7 +62,7 @@
     a { color: $color-blue; text-decoration: underline; }
   }
 
-  .footer-disclaimer {
+  .footer-syn-disclaimer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 1px;
@@ -79,7 +79,7 @@
   }
 
   // Equal Housing Lender + Mastercard SecureCode, centred above the copyright
-  .footer-bottom-logos {
+  .footer-syn-bottom-logos {
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -89,7 +89,7 @@
   // The Figma source is a combined "Member FDIC / Equal Housing Lender"
   // sprite; crop to show only the Equal Housing Lender half (matches the
   // Figma frame's own crop: a 54x44 window onto the right side of the image).
-  .footer-equal-housing {
+  .footer-syn-fdic-housing {
     position: relative;
     display: block;
     width: 54px;
@@ -106,7 +106,7 @@
     }
   }
 
-  .footer-copyright {
+  .footer-syn-copyright {
     margin: 0;
     font-size: 0.875rem;
     line-height: 1.52;
