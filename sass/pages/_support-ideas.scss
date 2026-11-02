@@ -1,31 +1,31 @@
 // ===========================================
 // MODULE: Support Ideas / "How can we help?" band (Figma 588:4643, Module 8C)
 // Full-bleed abstract-art background at 88% opacity with a centred white
-// card (help-band-syn, defined in _cards.scss) floating on top.
+// card (help-band, defined in _cards.scss) floating on top.
 // ===========================================
 
-.support-ideas-syn {
+.support-ideas {
   position: relative;
   overflow: hidden;
   padding-top: 80px;
   padding-bottom: 80px;
 
-  @media (max-width: $syn-mobile-max) {
+  @media (max-width: $mobile-max) {
     padding-top: 40px;
     padding-bottom: 40px;
   }
 }
 
-.support-ideas-syn-bg {
+.support-ideas-bg {
   position: absolute;
   inset: 0;
-  background-color: $syn-white;
+  background-color: $color-white;
   background-size: cover;
   background-position: center;
   opacity: 0.88;
 }
 
-.support-ideas-syn-inner {
+.support-ideas-inner {
   position: relative;
   display: flex;
   justify-content: center;

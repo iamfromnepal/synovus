@@ -6,20 +6,20 @@
 // Stat counters previously (wrongly) lived in this section - they belong
 // to Brand Identity instead, see _brand-identity.scss.
 // ---------------------------------------------------
-.stats-parallax-syn {
+.stats-parallax {
   padding-top: 80px;
 
-  @media (max-width: $syn-mobile-max) {
+  @media (max-width: $mobile-max) {
     padding-top: 40px;
   }
 }
 
-.stats-parallax-syn-heading {
+.stats-parallax-heading {
   text-align: center;
   margin: 0 0 40px;
 }
 
-.stats-parallax-syn-media {
+.stats-parallax-media {
   position: relative;
   overflow: hidden;
   // A tall, fixed-height band (Figma: 780px) with the glass card vertically
@@ -33,7 +33,7 @@
   justify-content: center;
   height: 730px;
 
-  @media (max-width: $syn-mobile-max) {
+  @media (max-width: $mobile-max) {
     display: block;
     height: auto;
     padding-top: 24px;
@@ -41,7 +41,7 @@
   }
 }
 
-.stats-parallax-syn-bg {
+.stats-parallax-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
@@ -49,26 +49,26 @@
   pointer-events: none;
 }
 
-.stats-parallax-syn-inner {
+.stats-parallax-inner {
   position: relative;
 }
 
-.stats-parallax-syn-controls {
+.stats-parallax-controls {
   padding-top: 40px;
   padding-bottom: 80px;
 
-  @media (max-width: $syn-mobile-max) {
+  @media (max-width: $mobile-max) {
     padding-bottom: 40px;
   }
 }
 
-.carousel-syn {
+.carousel {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
-.carousel-syn-swiper {
+.carousel-swiper {
   // See the identical fix in _news-ideas.scss: without these, a swiper
   // nested in a flex column can ignore its own overflow: hidden and
   // balloon to fit its slides' content width.

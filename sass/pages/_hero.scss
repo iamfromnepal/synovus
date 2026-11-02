@@ -13,11 +13,11 @@
 .hero-module-a {
   container: hero-a / inline-size;
   position: relative;
-  background-color: $syn-white;
+  background-color: $color-white;
 
   // Stacked (mobile) layout
   .hero-a-panel {
-    background-color: $syn-white;
+    background-color: $color-white;
     padding: 40px 16px;
   }
 
@@ -43,7 +43,7 @@
     font-size: 2.5rem; // 40px mobile
     font-weight: 400;
     line-height: 1.2;
-    color: $syn-navy;
+    color: $navy;
     margin: 0;
   }
 
@@ -51,7 +51,7 @@
     font-size: 1.25rem; // 20px
     font-weight: 400;
     line-height: 1.52;
-    color: $syn-black;
+    color: $color-black;
     margin: 0;
   }
 
@@ -183,7 +183,7 @@
   font-size: 1.25rem; // 20px
   font-weight: 700;
   line-height: 1.2;
-  color: $syn-navy;
+  color: $navy;
 }
 
 .hero-a-form {
@@ -217,15 +217,15 @@
   font-family: $font-family-sans-serif;
   font-size: 1rem;
   line-height: 1.4;
-  color: $syn-black;
-  background-color: $syn-white;
-  border: 2px solid $syn-blue;
+  color: $color-black;
+  background-color: $color-white;
+  border: 2px solid $color-blue;
   border-radius: 8px;
   cursor: pointer;
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($syn-blue, 0.25);
+    box-shadow: 0 0 0 3px rgba($color-blue, 0.25);
   }
 }
 
@@ -242,18 +242,18 @@
   font-family: $font-family-sans-serif;
   font-size: 1rem;
   line-height: 1.4;
-  color: $syn-black;
-  background-color: $syn-white;
+  color: $color-black;
+  background-color: $color-white;
   border: 0;
   border-radius: 8px 8px 0 0;
   box-shadow: inset 0 1.208px 1.208px rgba(0, 0, 0, 0.08);
 
   &::placeholder {
-    color: $syn-placeholder;
+    color: $placeholder;
   }
 
   &:focus-visible {
-    outline: 2px solid $syn-blue;
+    outline: 2px solid $color-blue;
     outline-offset: -2px;
   }
 }
@@ -276,7 +276,7 @@
   font-family: $font-family-sans-serif;
   font-size: 1rem;
   line-height: 1.4;
-  color: $syn-grey;
+  color: $grey;
   text-decoration: underline;
   background: none;
   border: 0;
@@ -289,14 +289,14 @@
   padding: 0 4px;
   font-size: 1rem;
   line-height: 1.52;
-  color: $syn-grey;
+  color: $grey;
 
   a {
     color: inherit;
     text-decoration: underline;
 
     &:hover {
-      color: $syn-blue;
+      color: $color-blue;
     }
   }
 }
@@ -306,7 +306,7 @@
   flex-direction: column;
   gap: 4px;
 
-  .btn-syn-xl {
+  .btn-xl {
     width: 100%;
   }
 }
@@ -318,10 +318,10 @@
   font-weight: 700;
   line-height: 1.4;
   text-align: center;
-  color: $syn-blue;
+  color: $color-blue;
   text-decoration: underline;
 
   &:hover {
-    color: $syn-blue-hover;
+    color: $blue-hover;
   }
 }

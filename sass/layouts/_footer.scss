@@ -2,20 +2,20 @@
 // MODULE: Global Footer
 // ===========================================
 
-.site-footer-syn {
+.site-footer {
   padding-top: 60px;
   padding-bottom: 8px;
-  background-color: $syn-white;
+  background-color: $color-white;
 
-  .footer-syn-heading {
+  .footer-heading {
     margin: 0 0 8px;
     font-size: 1rem;
     font-weight: 700;
     line-height: 1.4;
-    color: $syn-navy;
+    color: $navy;
   }
 
-  .footer-syn-links {
+  .footer-links {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -23,20 +23,20 @@
     a {
       font-size: 1rem;
       line-height: 2;
-      color: $syn-black;
+      color: $color-black;
       text-decoration: underline;
 
-      &:hover { color: $syn-blue; }
+      &:hover { color: $color-blue; }
     }
   }
 
-  .footer-syn-official {
+  .footer-official {
     display: flex;
     align-items: center;
     gap: 16px;
   }
 
-  .footer-syn-social {
+  .footer-social {
     display: flex;
     gap: 16px;
 
@@ -46,27 +46,27 @@
       justify-content: center;
       width: 39px;
       height: 39px;
-      border: 1px solid $syn-blue;
+      border: 1px solid $color-blue;
       border-radius: 50%;
     }
   }
 
   // Legal block: 1px dashed #808080, padding 20, 8px paragraph gap
-  .footer-syn-legal {
+  .footer-legal {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 20px;
-    border: 1px dashed $syn-light-gray;
+    border: 1px dashed $light-gray;
 
-    a { color: $syn-blue; text-decoration: underline; }
+    a { color: $color-blue; text-decoration: underline; }
   }
 
-  .footer-syn-disclaimer {
+  .footer-disclaimer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 1px;
-    border: 1px solid $syn-black;
+    border: 1px solid $color-black;
 
     span {
       padding: 4px;
@@ -74,12 +74,12 @@
       font-weight: 600;
       line-height: 1.4;
       text-align: center;
-      color: $syn-grey;
+      color: $grey;
     }
   }
 
   // Equal Housing Lender + Mastercard SecureCode, centred above the copyright
-  .footer-syn-bottom-logos {
+  .footer-bottom-logos {
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -89,7 +89,7 @@
   // The Figma source is a combined "Member FDIC / Equal Housing Lender"
   // sprite; crop to show only the Equal Housing Lender half (matches the
   // Figma frame's own crop: a 54x44 window onto the right side of the image).
-  .footer-syn-fdic-housing {
+  .footer-equal-housing {
     position: relative;
     display: block;
     width: 54px;
@@ -106,7 +106,7 @@
     }
   }
 
-  .footer-syn-copyright {
+  .footer-copyright {
     margin: 0;
     font-size: 0.875rem;
     line-height: 1.52;

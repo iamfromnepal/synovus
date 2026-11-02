@@ -7,24 +7,24 @@
 // Reusable section intro: eyebrow + title + body (Figma 588:4524, "Let's
 // reach your financial potential"). Other homepage sections reuse this.
 // ---------------------------------------------------
-.section-heading-syn {
+.section-heading {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 581px;
 
-  .section-heading-syn-eyebrow {
-    @include syn-type(0.875rem, 1.4, 700, $syn-blue);
+  .section-heading-eyebrow {
+    @include type(0.875rem, 1.4, 700, $color-blue);
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
-  .section-heading-syn-title {
-    @include syn-type(2.5rem, 1.4, 400, $syn-navy);
+  .section-heading-title {
+    @include type(2.5rem, 1.4, 400, $navy);
   }
 
-  @media (max-width: $syn-mobile-max) {
-    .section-heading-syn-title {
+  @media (max-width: $mobile-max) {
+    .section-heading-title {
       font-size: 2rem;
     }
   }
@@ -34,21 +34,21 @@
 // Homepage: "Resources" row (Figma 588:4523, immediately after the hero)
 // Heading, Featured Insight + photo, then 3 Product Card v3 tiles.
 // ---------------------------------------------------
-.resources-syn {
+.resources {
   padding-top: 80px;
   padding-bottom: 80px;
 
-  // @media (max-width: $syn-mobile-max) {
+  // @media (max-width: $mobile-max) {
   //   padding-top: 40px;
   //   padding-bottom: 40px;
   // }
 }
 
-.resources-syn-intro { 
+.resources-intro { 
   margin-bottom: 48px;
 }
 
-.resources-syn-row {
+.resources-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
@@ -58,18 +58,18 @@
     grid-template-columns: 1fr;
   }
 
-  // Below this, the row + grid give way to .resources-syn-slider instead
+  // Below this, the row + grid give way to .resources-slider instead
   // (same "two parallel blocks, toggled by display" split the header uses
   // for its own mobile vs. desktop nav).
-  @media (max-width: $syn-mobile-max) {
+  @media (max-width: $mobile-max) {
     display: none;
   }
 }
 
-.resources-syn-photo {
+.resources-photo {
   overflow: hidden;
-  border-radius: $syn-leaf-12;
-  box-shadow: $syn-shadow-card;
+  border-radius: $leaf-12;
+  box-shadow: $shadow-card;
 
   img {
     display: block;
@@ -79,7 +79,7 @@
   }
 }
 
-.resources-syn-products {
+.resources-products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
@@ -88,7 +88,7 @@
     grid-template-columns: 1fr;
   }
 
-  @media (max-width: $syn-mobile-max) {
+  @media (max-width: $mobile-max) {
     display: none;
   }
 }
@@ -97,10 +97,10 @@
 // the featured card becomes slide 1 with the photo as its own background,
 // then each product card is a plain slide. Shown only below the
 // breakpoint where the row/grid above hide themselves.
-.resources-syn-slider {
+.resources-slider {
   display: none;
 
-  @media (max-width: $syn-mobile-max) {
+  @media (max-width: $mobile-max) {
     display: block;
     background-size: cover;
     background-position: center;
@@ -108,13 +108,13 @@
     margin-right: -16px;
   }
 
-  .carousel-controls-syn {
+  .carousel-controls {
     padding: 0 16px;
   }
 }
 
-.resources-syn-swiper {
-  // See .news-ideas-syn-swiper for why both of these matter: without them
+.resources-swiper {
+  // See .news-ideas-swiper for why both of these matter: without them
   // this swiper balloons to fit its own overflowing slides instead of
   // respecting overflow: hidden.
   width: 100%;
@@ -158,13 +158,13 @@
 // Slide 1's background: the photo bleeds around the still-opaque featured
 // card instead of sitting beside it in its own column (Figma: px-16 py-32
 // around the card, both revealing the image).
-.resources-syn-slide-featured {
+.resources-slide-featured {
   display: flex;
   padding: 12px 0;
   background-size: cover;
   background-position: center;
 
-  .card-syn-featured {
+  .card-featured {
     width: 100%;
   }
 }
