@@ -3003,13 +3003,13 @@
 }
 
 .content-block-content--framed {
-  margin: 40px 0;
+  padding: 40px 60px;
   border: 1px solid #989898;
   border-radius: 20px;
 }
 @media (max-width: 767.98px) {
   .content-block-content--framed {
-    margin: 32px 0;
+    padding: 32px 20px;
     border-color: #525252;
     border-radius: 15px;
   }
