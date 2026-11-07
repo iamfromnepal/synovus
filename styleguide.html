@@ -61,7 +61,7 @@
     .sg-stage-dark { background: #283862; border-color: #283862; }
     .sg-stage-bleed { padding: 0; overflow: hidden; }
     /* Inside the guide, page-width containers use a fixed gutter instead of viewport-based margins */
-    .sg-stage .container-syn { padding-left: 32px; padding-right: 32px; }
+    .sg-stage .site-container { padding-left: 32px; padding-right: 32px; }
     .sg-row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
     .sg-grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
     .sg-caption { margin-top: 12px; font-size: 0.8125rem; color: #525252; }
@@ -94,8 +94,8 @@
       <span>Dot Com Style Guide</span>
     </div>
     <nav>
-      <a class="link-syn-utility" href="module-hero.html">Module A showcase</a>
-      <a class="link-syn-utility" href="index.html">Project home</a>
+      <a class="link-utility" href="module-hero.html">Module A showcase</a>
+      <a class="link-utility" href="index.html">Project home</a>
     </nav>
   </header>
 
@@ -138,9 +138,9 @@
       <!-- =================================================== -->
       <section class="sg-section">
         <header>
-          <span class="syn-eyebrow">Design system</span>
-          <h1 class="syn-display">Pinnacle Dot Com Style Guide</h1>
-          <p class="syn-lead">Tokens and components from the Figma file <strong>10-7-26 Dot Com Product &amp; Landing Page Modules for Dev</strong>, covering the Homepage and modules 1&ndash;17. Every sample on this page uses the production classes in <code>style.css</code>.</p>
+          <span class="eyebrow">Design system</span>
+          <h1 class="display">Pinnacle Dot Com Style Guide</h1>
+          <p class="lead-text">Tokens and components from the Figma file <strong>10-7-26 Dot Com Product &amp; Landing Page Modules for Dev</strong>, covering the Homepage and modules 1&ndash;17. Every sample on this page uses the production classes in <code>style.css</code>.</p>
         </header>
         <div class="sg-row">
           <span><span class="sg-badge sg-badge-figma">Figma</span> value read from the design data</span>
@@ -154,19 +154,19 @@
       <!-- =================================================== -->
       <section class="sg-section" id="colors">
         <header>
-          <span class="syn-eyebrow">Foundations</span>
-          <h2 class="syn-h2">Colors</h2>
+          <span class="eyebrow">Foundations</span>
+          <h2 class="heading-2">Colors</h2>
           <p class="sg-note">Names match the Figma color styles. Click a swatch to copy its hex value.</p>
         </header>
 
         <h3 class="sg-h3">Primary colors</h3>
         <div class="sg-swatches">
-          <button type="button" class="sg-swatch" data-hex="#0074C4"><div class="sg-swatch-chip bg-syn-blue"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Pinnacle Blue</span><span class="sg-mono">#0074C4 &middot; $color-blue</span><span class="sg-note">CTAs, links, eyebrows, stats</span></div></button>
-          <button type="button" class="sg-swatch" data-hex="#283862"><div class="sg-swatch-chip bg-syn-navy"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Deep / Navy</span><span class="sg-mono">#283862 &middot; $navy</span><span class="sg-note">Titles, dark backgrounds</span></div></button>
-          <button type="button" class="sg-swatch" data-hex="#CCE3F3"><div class="sg-swatch-chip bg-syn-baby"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby / Lightest Blue</span><span class="sg-mono">#CCE3F3 &middot; $light-blue</span><span class="sg-note">Titles on dark, tints, tile tips</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#0074C4"><div class="sg-swatch-chip bg-blue"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Pinnacle Blue</span><span class="sg-mono">#0074C4 &middot; $color-blue</span><span class="sg-note">CTAs, links, eyebrows, stats</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#283862"><div class="sg-swatch-chip bg-navy"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Deep / Navy</span><span class="sg-mono">#283862 &middot; $navy</span><span class="sg-note">Titles, dark backgrounds</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#CCE3F3"><div class="sg-swatch-chip bg-baby"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby / Lightest Blue</span><span class="sg-mono">#CCE3F3 &middot; $light-blue</span><span class="sg-note">Titles on dark, tints, tile tips</span></div></button>
           <button type="button" class="sg-swatch" data-hex="#84C2ED"><div class="sg-swatch-chip" style="background:#84C2ED"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Sky</span><span class="sg-mono">#84C2ED &middot; $sky</span><span class="sg-note">Tag and glass-card borders, links on images</span></div></button>
           <button type="button" class="sg-swatch" data-hex="#151515"><div class="sg-swatch-chip" style="background:#151515"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Matt / Black</span><span class="sg-mono">#151515 &middot; $color-black</span><span class="sg-note">Body copy, labels</span></div></button>
-          <button type="button" class="sg-swatch" data-hex="#FFFFFF"><div class="sg-swatch-chip bg-syn-white"></div><div class="sg-swatch-info"><span class="sg-swatch-name">White</span><span class="sg-mono">#FFFFFF &middot; $color-white</span><span class="sg-note">Canvas, cards, text on dark</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#FFFFFF"><div class="sg-swatch-chip bg-white"></div><div class="sg-swatch-info"><span class="sg-swatch-name">White</span><span class="sg-mono">#FFFFFF &middot; $color-white</span><span class="sg-note">Canvas, cards, text on dark</span></div></button>
           <button type="button" class="sg-swatch" data-hex="#E6E6E6"><div class="sg-swatch-chip" style="background:#E6E6E6"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Hint</span><span class="sg-mono">#E6E6E6 &middot; $hint</span><span class="sg-note">FDIC bar divider</span></div></button>
           <button type="button" class="sg-swatch" data-hex="#D1D1D1"><div class="sg-swatch-chip" style="background:#D1D1D1"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Ash</span><span class="sg-mono">#D1D1D1 &middot; $ash</span><span class="sg-note">Inactive carousel dots</span></div></button>
           <button type="button" class="sg-swatch" data-hex="#989898"><div class="sg-swatch-chip" style="background:#989898"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Spanish</span><span class="sg-mono">#989898 &middot; $placeholder</span><span class="sg-note">Search border, placeholders</span></div></button>
@@ -175,9 +175,9 @@
         <h3 class="sg-h3">Digital additions</h3>
         <div class="sg-swatches">
           <button type="button" class="sg-swatch" data-hex="#525252"><div class="sg-swatch-chip" style="background:#525252"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Text Gray</span><span class="sg-mono">#525252 &middot; $grey</span><span class="sg-note">Helper text, card body, legal</span></div></button>
-          <button type="button" class="sg-swatch" data-hex="#F5F5F5"><div class="sg-swatch-chip bg-syn-smoke"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Smoke</span><span class="sg-mono">#F5F5F5 &middot; $smoke</span><span class="sg-note">Form card background</span></div></button>
-          <button type="button" class="sg-swatch" data-hex="#F1F7FC"><div class="sg-swatch-chip bg-syn-ice"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Ice</span><span class="sg-mono">#F1F7FC &middot; $ice</span><span class="sg-note">= Baby at 28% over white. Section tint</span></div></button>
-          <button type="button" class="sg-swatch" data-hex="#EBF4FA"><div class="sg-swatch-chip bg-syn-pale"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Pale</span><span class="sg-mono">#EBF4FA &middot; $pale</span><span class="sg-note">= Baby at 40% over white. Light hero, form</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#F5F5F5"><div class="sg-swatch-chip bg-smoke"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Smoke</span><span class="sg-mono">#F5F5F5 &middot; $smoke</span><span class="sg-note">Form card background</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#F1F7FC"><div class="sg-swatch-chip bg-ice"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Ice</span><span class="sg-mono">#F1F7FC &middot; $ice</span><span class="sg-note">= Baby at 28% over white. Section tint</span></div></button>
+          <button type="button" class="sg-swatch" data-hex="#EBF4FA"><div class="sg-swatch-chip bg-pale"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Pale</span><span class="sg-mono">#EBF4FA &middot; $pale</span><span class="sg-note">= Baby at 40% over white. Light hero, form</span></div></button>
         </div>
 
         <h3 class="sg-h3">Accents</h3>
@@ -204,18 +204,18 @@
       <!-- =================================================== -->
       <section class="sg-section" id="gradients">
         <header>
-          <span class="syn-eyebrow">Foundations</span>
-          <h2 class="syn-h2">Gradients &amp; tints</h2>
+          <span class="eyebrow">Foundations</span>
+          <h2 class="heading-2">Gradients &amp; tints</h2>
           <p class="sg-note">Tints are Baby (#CCE3F3) at reduced opacity, always laid over white.</p>
         </header>
         <div class="sg-swatches">
-          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-blue-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Blue Ramp</span><span class="sg-mono">#0074C4 &rarr; #283862, bottom-left to top-right</span><span class="sg-note">Hero boxes, featured cards, dark belts</span></div></div>
-          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-aqua-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Aqua Ramp</span><span class="sg-mono">202.6deg #0074C4 29.9% &rarr; #00B4C4 144.8%</span><span class="sg-note">Module 5A tile</span></div></div>
-          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-white-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">White Ramp</span><span class="sg-mono">60deg #E6E6E6 28% &rarr; #FFFFFF 79%</span><span class="sg-note">Light belt backgrounds</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-blue-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Blue Ramp</span><span class="sg-mono">#0074C4 &rarr; #283862, bottom-left to top-right</span><span class="sg-note">Hero boxes, featured cards, dark belts</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-aqua-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Aqua Ramp</span><span class="sg-mono">202.6deg #0074C4 29.9% &rarr; #00B4C4 144.8%</span><span class="sg-note">Module 5A tile</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-white-ramp"></div><div class="sg-swatch-info"><span class="sg-swatch-name">White Ramp</span><span class="sg-mono">60deg #E6E6E6 28% &rarr; #FFFFFF 79%</span><span class="sg-note">Light belt backgrounds</span></div></div>
           <div class="sg-swatch"><div class="sg-swatch-chip" style="background:linear-gradient(89.73deg, rgba(229,241,249,.4) 13.3%, rgba(0,51,102,.2) 108.8%), #6f8fae"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Image overlay</span><span class="sg-mono">#E5F1F9 40% &rarr; #003366 20%</span><span class="sg-note">Over hero 1A photography</span></div></div>
           <div class="sg-swatch"><div class="sg-swatch-chip" style="background:#F5F9FD"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 20%</span><span class="sg-mono">$tint-20</span><span class="sg-note">Glass card, chart fee band</span></div></div>
-          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-ice"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 28% (Ice)</span><span class="sg-mono">$tint-28</span><span class="sg-note">Section tint, tags, chart rows</span></div></div>
-          <div class="sg-swatch"><div class="sg-swatch-chip bg-syn-pale"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 40% (Pale)</span><span class="sg-mono">$tint-40</span><span class="sg-note">Light hero 1D, light form</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-ice"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 28% (Ice)</span><span class="sg-mono">$tint-28</span><span class="sg-note">Section tint, tags, chart rows</span></div></div>
+          <div class="sg-swatch"><div class="sg-swatch-chip bg-pale"></div><div class="sg-swatch-info"><span class="sg-swatch-name">Baby 40% (Pale)</span><span class="sg-mono">$tint-40</span><span class="sg-note">Light hero 1D, light form</span></div></div>
         </div>
       </section>
 
@@ -224,30 +224,30 @@
       <!-- =================================================== -->
       <section class="sg-section" id="typography">
         <header>
-          <span class="syn-eyebrow">Foundations</span>
-          <h2 class="syn-h2">Typography</h2>
+          <span class="eyebrow">Foundations</span>
+          <h2 class="heading-2">Typography</h2>
           <p class="sg-note">Realist (Adobe Typekit) only. Weights: SemiLight 300, Regular 400, Medium 600, Bold 700. Mobile sizes switch below 768px.</p>
         </header>
         <div class="sg-table-wrap">
           <table class="sg-table">
             <thead><tr><th>Style &amp; class</th><th>Spec (desktop / mobile)</th><th>Sample</th></tr></thead>
             <tbody>
-              <tr><td><strong>Display</strong><br><span class="sg-mono">.syn-display</span></td><td class="sg-mono">Regular 52 / 1.2, Deep<br>mobile 40</td><td><p class="syn-display">Pinnacle is choosing to lead</p></td></tr>
-              <tr><td><strong>Section title</strong><br><span class="sg-mono">.syn-h2</span></td><td class="sg-mono">Medium 40 / 1.4, Deep<br>mobile 28 &middot; modules 2, 5, 6, 7, 8, 17</td><td><p class="syn-h2">Explore our calculators</p></td></tr>
-              <tr><td><strong>Homepage section title</strong><br><span class="sg-mono">.syn-h2-light</span></td><td class="sg-mono">Regular 40 / 1.2, Deep<br>Trusted Advisors uses 1.4</td><td><p class="syn-h2-light">What&rsquo;s the latest?</p></td></tr>
-              <tr><td><strong>Block title</strong><br><span class="sg-mono">.syn-h3</span></td><td class="sg-mono">Medium 32 / 1.4, Deep<br>mobile 28 &middot; form, image &amp; CTA, belts</td><td><p class="syn-h3">I&rsquo;d like to talk with someone about Pinnacle relationship programs.</p></td></tr>
-              <tr><td><strong>Tile title</strong><br><span class="sg-mono">.syn-h4</span></td><td class="sg-mono">Medium 24 / 1.4, Matt</td><td><p class="syn-h4">Pinnacle Checking</p></td></tr>
-              <tr><td><strong>Card title</strong><br><span class="sg-mono">.syn-h5</span></td><td class="sg-mono">Regular 20 / 1.4, Deep</td><td><p class="syn-h5">Should I Save For Retirement or Pay Down my Student Loans?</p></td></tr>
-              <tr><td><strong>Lead</strong><br><span class="sg-mono">.syn-lead</span></td><td class="sg-mono">Regular 20 / 1.52, Matt</td><td><p class="syn-lead">President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.</p></td></tr>
-              <tr><td><strong>Body</strong><br><span class="sg-mono">.syn-body</span></td><td class="sg-mono">Regular 16 / 1.52, Matt</td><td><p class="syn-body">Whether you&rsquo;re securing your family&rsquo;s future or scaling a global enterprise, our solutions and expert insights are designed to help you stay informed, prepared, and financially ready.</p></td></tr>
-              <tr><td><strong>Form copy</strong><br><span class="sg-mono">.syn-body-lg</span></td><td class="sg-mono">Regular 18 / 26px, Matt</td><td><p class="syn-body-lg">Required fields are marked with an asterisk (<span style="color:#E61E25">*</span>).</p></td></tr>
-              <tr><td><strong>Helper</strong><br><span class="sg-mono">.syn-helper</span></td><td class="sg-mono">Regular 14 / 18.56px, Text Gray</td><td><p class="syn-helper">example: 888-796-6887</p></td></tr>
-              <tr><td><strong>Legal</strong><br><span class="sg-mono">.syn-legal</span></td><td class="sg-mono">Regular 12 / 1.4, Text Gray</td><td><p class="syn-legal">Banking products are provided by Pinnacle Bank, a Tennessee bank, dba Synovus Bank. Member FDIC.</p></td></tr>
-              <tr><td><strong>Eyebrow</strong><br><span class="sg-mono">.syn-eyebrow</span></td><td class="sg-mono">Bold 14 / 1.4, 1px tracking, uppercase, Pinnacle Blue</td><td><p class="syn-eyebrow">Pinnacle trusted advisors</p></td></tr>
-              <tr><td><strong>Card label</strong><br><span class="sg-mono">.syn-label-caps</span></td><td class="sg-mono">Bold 16 / 1.2, uppercase, Pinnacle Blue</td><td><p class="syn-label-caps">Pinnacle Partners</p></td></tr>
-              <tr><td><strong>Pull quote</strong><br><span class="sg-mono">.syn-quote</span></td><td class="sg-mono">Regular 32 / 1.52, Deep<br>mobile line-height 1.4</td><td><p class="syn-quote">&ldquo;A key moment, insight, or idea.&rdquo;</p></td></tr>
-              <tr><td><strong>Stat counter</strong><br><span class="sg-mono">.syn-stat / .syn-stat-sm</span></td><td class="sg-mono">SemiLight 64 / 1 (small 40), 1px tracking, Pinnacle Blue</td><td><span class="syn-stat">135+</span> &nbsp; <span class="syn-stat-sm">$116B</span></td></tr>
-              <tr><td><strong>Footnote</strong><br><span class="sg-mono">.footnote-ref</span></td><td class="sg-mono">Underlined, Pinnacle Blue, 1.6px tracking</td><td><p class="syn-body">Annual Percentage Yield<a href="#" class="footnote-ref">1</a> effective as of today.</p></td></tr>
+              <tr><td><strong>Display</strong><br><span class="sg-mono">.display</span></td><td class="sg-mono">Regular 52 / 1.2, Deep<br>mobile 40</td><td><p class="display">Pinnacle is choosing to lead</p></td></tr>
+              <tr><td><strong>Section title</strong><br><span class="sg-mono">.heading-2</span></td><td class="sg-mono">Medium 40 / 1.4, Deep<br>mobile 28 &middot; modules 2, 5, 6, 7, 8, 17</td><td><p class="heading-2">Explore our calculators</p></td></tr>
+              <tr><td><strong>Homepage section title</strong><br><span class="sg-mono">.heading-2-light</span></td><td class="sg-mono">Regular 40 / 1.2, Deep<br>Trusted Advisors uses 1.4</td><td><p class="heading-2-light">What&rsquo;s the latest?</p></td></tr>
+              <tr><td><strong>Block title</strong><br><span class="sg-mono">.heading-3</span></td><td class="sg-mono">Medium 32 / 1.4, Deep<br>mobile 28 &middot; form, image &amp; CTA, belts</td><td><p class="heading-3">I&rsquo;d like to talk with someone about Pinnacle relationship programs.</p></td></tr>
+              <tr><td><strong>Tile title</strong><br><span class="sg-mono">.heading-4</span></td><td class="sg-mono">Medium 24 / 1.4, Matt</td><td><p class="heading-4">Pinnacle Checking</p></td></tr>
+              <tr><td><strong>Card title</strong><br><span class="sg-mono">.heading-5</span></td><td class="sg-mono">Regular 20 / 1.4, Deep</td><td><p class="heading-5">Should I Save For Retirement or Pay Down my Student Loans?</p></td></tr>
+              <tr><td><strong>Lead</strong><br><span class="sg-mono">.lead-text</span></td><td class="sg-mono">Regular 20 / 1.52, Matt</td><td><p class="lead-text">President and CEO Kevin Blair celebrates the 2025 Annual Report and our continued momentum.</p></td></tr>
+              <tr><td><strong>Body</strong><br><span class="sg-mono">.body</span></td><td class="sg-mono">Regular 16 / 1.52, Matt</td><td><p class="body">Whether you&rsquo;re securing your family&rsquo;s future or scaling a global enterprise, our solutions and expert insights are designed to help you stay informed, prepared, and financially ready.</p></td></tr>
+              <tr><td><strong>Form copy</strong><br><span class="sg-mono">.body-lg</span></td><td class="sg-mono">Regular 18 / 26px, Matt</td><td><p class="body-lg">Required fields are marked with an asterisk (<span style="color:#E61E25">*</span>).</p></td></tr>
+              <tr><td><strong>Helper</strong><br><span class="sg-mono">.helper</span></td><td class="sg-mono">Regular 14 / 18.56px, Text Gray</td><td><p class="helper">example: 888-796-6887</p></td></tr>
+              <tr><td><strong>Legal</strong><br><span class="sg-mono">.legal</span></td><td class="sg-mono">Regular 12 / 1.4, Text Gray</td><td><p class="legal">Banking products are provided by Pinnacle Bank, a Tennessee bank, dba Synovus Bank. Member FDIC.</p></td></tr>
+              <tr><td><strong>Eyebrow</strong><br><span class="sg-mono">.eyebrow</span></td><td class="sg-mono">Bold 14 / 1.4, 1px tracking, uppercase, Pinnacle Blue</td><td><p class="eyebrow">Pinnacle trusted advisors</p></td></tr>
+              <tr><td><strong>Card label</strong><br><span class="sg-mono">.label-caps</span></td><td class="sg-mono">Bold 16 / 1.2, uppercase, Pinnacle Blue</td><td><p class="label-caps">Pinnacle Partners</p></td></tr>
+              <tr><td><strong>Pull quote</strong><br><span class="sg-mono">.quote</span></td><td class="sg-mono">Regular 32 / 1.52, Deep<br>mobile line-height 1.4</td><td><p class="quote">&ldquo;A key moment, insight, or idea.&rdquo;</p></td></tr>
+              <tr><td><strong>Stat counter</strong><br><span class="sg-mono">.stat / .stat-sm</span></td><td class="sg-mono">SemiLight 64 / 1 (small 40), 1px tracking, Pinnacle Blue</td><td><span class="stat">135+</span> &nbsp; <span class="stat-sm">$116B</span></td></tr>
+              <tr><td><strong>Footnote</strong><br><span class="sg-mono">.footnote-ref</span></td><td class="sg-mono">Underlined, Pinnacle Blue, 1.6px tracking</td><td><p class="body">Annual Percentage Yield<a href="#" class="footnote-ref">1</a> effective as of today.</p></td></tr>
             </tbody>
           </table>
         </div>
@@ -258,8 +258,8 @@
       <!-- =================================================== -->
       <section class="sg-section" id="radii">
         <header>
-          <span class="syn-eyebrow">Foundations</span>
-          <h2 class="syn-h2">Corners &amp; shadows</h2>
+          <span class="eyebrow">Foundations</span>
+          <h2 class="heading-2">Corners &amp; shadows</h2>
           <p class="sg-note">The signature &ldquo;leaf&rdquo; corner keeps the top-left square and rounds the other three. Figma drop shadows are listed as CSS <code>box-shadow</code> (Figma blur = CSS blur).</p>
         </header>
         <h3 class="sg-h3">Corner radius</h3>
@@ -289,9 +289,9 @@
       <!-- =================================================== -->
       <section class="sg-section" id="layout">
         <header>
-          <span class="syn-eyebrow">Foundations</span>
-          <h2 class="syn-h2">Layout &amp; grid</h2>
-          <p class="sg-note">Homepage frames are 1920 wide; module frames are 1440; mobile frames are 430. <span class="sg-mono">.container-syn</span> scales the side margins between them.</p>
+          <span class="eyebrow">Foundations</span>
+          <h2 class="heading-2">Layout &amp; grid</h2>
+          <p class="sg-note">Homepage frames are 1920 wide; module frames are 1440; mobile frames are 430. <span class="sg-mono">.site-container</span> scales the side margins between them.</p>
         </header>
         <div class="d-flex flex-column gap-3">
           <div><div class="sg-margins"><span class="m" style="width:15.4%">296</span><span class="c">1328 content &middot; 1920 frame</span><span class="m" style="width:15.4%">296</span></div></div>
@@ -312,7 +312,7 @@
           </table>
         </div>
         <h3 class="sg-h3">Section spacing</h3>
-        <p class="sg-note">Modules: 80px top and bottom (<span class="sg-mono">.section-syn</span>), 40px on mobile. Homepage sections: 120px (Trusted Advisors 120 / 160). Title to content: 40px. Title to description: 20px.</p>
+        <p class="sg-note">Modules: 80px top and bottom (<span class="sg-mono">.section</span>), 40px on mobile. Homepage sections: 120px (Trusted Advisors 120 / 160). Title to content: 40px. Title to description: 20px.</p>
       </section>
 
       <!-- =================================================== -->
@@ -320,35 +320,35 @@
       <!-- =================================================== -->
       <section class="sg-section" id="modules">
         <header>
-          <span class="syn-eyebrow">Reference</span>
-          <h2 class="syn-h2">Module index</h2>
+          <span class="eyebrow">Reference</span>
+          <h2 class="heading-2">Module index</h2>
           <p class="sg-note">Every module section in the Figma file, with its section node id and how much of it this guide covers.</p>
         </header>
         <div class="sg-table-wrap">
           <table class="sg-table">
             <thead><tr><th>Module</th><th>Figma section</th><th>Priority</th><th>In this guide</th></tr></thead>
             <tbody>
-              <tr><td>A &middot; Hero with Login</td><td class="sg-mono">3915:31003</td><td>Homepage</td><td>Built: <a href="module-hero.html" class="link-syn-inline">module-hero.html</a> &middot; card demo: <a href="components.html#login" class="link-syn-inline">Login card</a></td></tr>
-              <tr><td>C &middot; Two Col Content Rows (Merger Hub, counters)</td><td class="sg-mono">3915:30045</td><td>Homepage</td><td>Stat cards, buttons &middot; <a href="components.html#cards" class="link-syn-inline">Cards &amp; tiles</a></td></tr>
-              <tr><td>D &middot; Parallax Carousel</td><td class="sg-mono">3915:30044</td><td>Homepage</td><td>Glass card (<a href="components.html#cards" class="link-syn-inline">Cards &amp; tiles</a>), carousel controls (<a href="components.html#help" class="link-syn-inline">Help band</a>)</td></tr>
-              <tr><td>F &middot; Alert Bar</td><td class="sg-mono">3915:30046</td><td>Homepage</td><td><a href="components.html#alert" class="link-syn-inline">Alert bar</a></td></tr>
-              <tr><td>1 &middot; Hero (1A&ndash;1G, shrinking hero)</td><td class="sg-mono">3915:31017</td><td>High</td><td>All 7 variants: <a href="components.html#hero-system" class="link-syn-inline">Hero system</a></td></tr>
-              <tr><td>2 &middot; Product Presentation</td><td class="sg-mono">3912:29867</td><td>High</td><td>Product tile, flag, Large Tile: <a href="components.html#cards" class="link-syn-inline">Cards &amp; tiles</a></td></tr>
-              <tr><td>3 &middot; Form</td><td class="sg-mono">3914:211</td><td>Low</td><td><a href="components.html#forms" class="link-syn-inline">Forms</a></td></tr>
+              <tr><td>A &middot; Hero with Login</td><td class="sg-mono">3915:31003</td><td>Homepage</td><td>Built: <a href="module-hero.html" class="link-inline">module-hero.html</a> &middot; card demo: <a href="components.html#login" class="link-inline">Login card</a></td></tr>
+              <tr><td>C &middot; Two Col Content Rows (Merger Hub, counters)</td><td class="sg-mono">3915:30045</td><td>Homepage</td><td>Stat cards, buttons &middot; <a href="components.html#cards" class="link-inline">Cards &amp; tiles</a></td></tr>
+              <tr><td>D &middot; Parallax Carousel</td><td class="sg-mono">3915:30044</td><td>Homepage</td><td>Glass card (<a href="components.html#cards" class="link-inline">Cards &amp; tiles</a>), carousel controls (<a href="components.html#help" class="link-inline">Help band</a>)</td></tr>
+              <tr><td>F &middot; Alert Bar</td><td class="sg-mono">3915:30046</td><td>Homepage</td><td><a href="components.html#alert" class="link-inline">Alert bar</a></td></tr>
+              <tr><td>1 &middot; Hero (1A&ndash;1G, shrinking hero)</td><td class="sg-mono">3915:31017</td><td>High</td><td>All 7 variants: <a href="components.html#hero-system" class="link-inline">Hero system</a></td></tr>
+              <tr><td>2 &middot; Product Presentation</td><td class="sg-mono">3912:29867</td><td>High</td><td>Product tile, flag, Large Tile: <a href="components.html#cards" class="link-inline">Cards &amp; tiles</a></td></tr>
+              <tr><td>3 &middot; Form</td><td class="sg-mono">3914:211</td><td>Low</td><td><a href="components.html#forms" class="link-inline">Forms</a></td></tr>
               <tr><td>4 &middot; Belt Straps</td><td class="sg-mono">3912:30474</td><td>Medium</td><td>Buttons, gradients <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
-              <tr><td>5 &middot; Clickable Content Tiles</td><td class="sg-mono">3912:30475</td><td>Medium</td><td>Tip tiles: <a href="components.html#cards" class="link-syn-inline">Cards &amp; tiles</a>, Aqua Ramp: <a href="#gradients" class="link-syn-inline">Gradients</a></td></tr>
-              <tr><td>6 &middot; Media &ndash; Articles &amp; Photos</td><td class="sg-mono">3914:209</td><td>Low</td><td>Carousel controls: <a href="components.html#help" class="link-syn-inline">Help band</a> <span class="sg-badge sg-badge-note">Card styles not yet built</span></td></tr>
+              <tr><td>5 &middot; Clickable Content Tiles</td><td class="sg-mono">3912:30475</td><td>Medium</td><td>Tip tiles: <a href="components.html#cards" class="link-inline">Cards &amp; tiles</a>, Aqua Ramp: <a href="#gradients" class="link-inline">Gradients</a></td></tr>
+              <tr><td>6 &middot; Media &ndash; Articles &amp; Photos</td><td class="sg-mono">3914:209</td><td>Low</td><td>Carousel controls: <a href="components.html#help" class="link-inline">Help band</a> <span class="sg-badge sg-badge-note">Card styles not yet built</span></td></tr>
               <tr><td>7 &middot; Mobile App Callout</td><td class="sg-mono">3912:30477</td><td>Medium</td><td>Type on dark, inline links <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
-              <tr><td>8 &middot; More Info / Help</td><td class="sg-mono">3912:30480</td><td>Medium</td><td><a href="components.html#help" class="link-syn-inline">Help band</a> (8C only; 8A/8B/8D/8E not yet built)</td></tr>
-              <tr><td>9 &middot; Pull Quote</td><td class="sg-mono">3912:29866</td><td>High</td><td>Quote A: <a href="components.html#quotes" class="link-syn-inline">Quotes &amp; testimonials</a></td></tr>
-              <tr><td>10 &middot; Comparison Charts</td><td class="sg-mono">3912:30481</td><td>Medium</td><td>Small button: <a href="components.html#buttons" class="link-syn-inline">Buttons &amp; links</a> <span class="sg-badge sg-badge-note">Chart not yet built</span></td></tr>
-              <tr><td>11 &middot; Image and CTA</td><td class="sg-mono">3912:29844</td><td>High</td><td>Block title: <a href="#typography" class="link-syn-inline">Typography</a> <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
-              <tr><td>12 &middot; Testimonial</td><td class="sg-mono">3912:29585</td><td>High</td><td>Testimonial A: <a href="components.html#quotes" class="link-syn-inline">Quotes &amp; testimonials</a></td></tr>
-              <tr><td>13 &middot; Events Calendar</td><td class="sg-mono">3914:205</td><td>Low</td><td>4-up grid: <a href="#layout" class="link-syn-inline">Layout</a> <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
+              <tr><td>8 &middot; More Info / Help</td><td class="sg-mono">3912:30480</td><td>Medium</td><td><a href="components.html#help" class="link-inline">Help band</a> (8C only; 8A/8B/8D/8E not yet built)</td></tr>
+              <tr><td>9 &middot; Pull Quote</td><td class="sg-mono">3912:29866</td><td>High</td><td>Quote A: <a href="components.html#quotes" class="link-inline">Quotes &amp; testimonials</a></td></tr>
+              <tr><td>10 &middot; Comparison Charts</td><td class="sg-mono">3912:30481</td><td>Medium</td><td>Small button: <a href="components.html#buttons" class="link-inline">Buttons &amp; links</a> <span class="sg-badge sg-badge-note">Chart not yet built</span></td></tr>
+              <tr><td>11 &middot; Image and CTA</td><td class="sg-mono">3912:29844</td><td>High</td><td>Block title: <a href="#typography" class="link-inline">Typography</a> <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
+              <tr><td>12 &middot; Testimonial</td><td class="sg-mono">3912:29585</td><td>High</td><td>Testimonial A: <a href="components.html#quotes" class="link-inline">Quotes &amp; testimonials</a></td></tr>
+              <tr><td>13 &middot; Events Calendar</td><td class="sg-mono">3914:205</td><td>Low</td><td>4-up grid: <a href="#layout" class="link-inline">Layout</a> <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
               <tr><td>14 &middot; Team Sponsorship</td><td class="sg-mono">3912:30485</td><td>Medium</td><td><span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
-              <tr><td>15 &middot; Process Steps</td><td class="sg-mono">3913:144</td><td>Medium</td><td>Step markers: <a href="components.html#help" class="link-syn-inline">Help band</a> <span class="sg-badge sg-badge-note">Full Application Steps cards not yet built</span></td></tr>
-              <tr><td>16 &middot; Account Benefits</td><td class="sg-mono">3913:147</td><td>Medium</td><td>2-up grid: <a href="#layout" class="link-syn-inline">Layout</a> <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
-              <tr><td>17 &middot; Content Card with Icon</td><td class="sg-mono">3912:29581</td><td>High</td><td>Feature card with tip: <a href="components.html#cards" class="link-syn-inline">Cards &amp; tiles</a></td></tr>
+              <tr><td>15 &middot; Process Steps</td><td class="sg-mono">3913:144</td><td>Medium</td><td>Step markers: <a href="components.html#help" class="link-inline">Help band</a> <span class="sg-badge sg-badge-note">Full Application Steps cards not yet built</span></td></tr>
+              <tr><td>16 &middot; Account Benefits</td><td class="sg-mono">3913:147</td><td>Medium</td><td>2-up grid: <a href="#layout" class="link-inline">Layout</a> <span class="sg-badge sg-badge-note">Not yet built</span></td></tr>
+              <tr><td>17 &middot; Content Card with Icon</td><td class="sg-mono">3912:29581</td><td>High</td><td>Feature card with tip: <a href="components.html#cards" class="link-inline">Cards &amp; tiles</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -359,8 +359,8 @@
       <!-- =================================================== -->
       <section class="sg-section" id="conflicts">
         <header>
-          <span class="syn-eyebrow">Reference</span>
-          <h2 class="syn-h2">Open questions for design</h2>
+          <span class="eyebrow">Reference</span>
+          <h2 class="heading-2">Open questions for design</h2>
           <p class="sg-note">Places where the designer notes and the drawn design disagree, or where the design doesn&rsquo;t say. This guide follows the drawn design.</p>
         </header>
         <div class="sg-table-wrap">

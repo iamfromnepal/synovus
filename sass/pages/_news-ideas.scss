@@ -5,7 +5,7 @@
 // Swiper's breakpoints switch to a 1-up swipeable view on mobile.
 // ===========================================
 
-.news-ideas-syn {
+.news-ideas {
   padding-top: 120px;
   padding-bottom: 120px;
   background-color: $ice;
@@ -16,15 +16,15 @@
   }
 }
 
-.news-ideas-syn-heading {
+.news-ideas-heading {
   margin: 0 0 40px;
 }
 
-.news-ideas-syn-swiper {
+.news-ideas-swiper {
   // Both rules matter: min-width: 0 overrides the flex item default of
   // min-width: auto, and width: 100% removes any ambiguity about
   // flex-stretch timing. Without them, this swiper (a flex child of
-  // .carousel-syn) balloons to fit its own overflowing slides instead of
+  // .carousel) balloons to fit its own overflowing slides instead of
   // respecting overflow: hidden, which makes Swiper measure a huge
   // container width and compute even wider slides - a runaway feedback
   // loop (confirmed live: container reached 100,000+ px).
@@ -37,7 +37,7 @@
   // the tallest one - but Swiper's bundled CSS sets .swiper-slide to an
   // explicit height: 100%, which (against this auto-height wrapper)
   // resolves as unstretchable rather than auto. Forcing height: auto
-  // restores the stretch, and .card-syn-news (height: 100%) + its
+  // restores the stretch, and .card-news (height: 100%) + its
   // flex: 1 body fill that stretched slide height.
   .swiper-wrapper {
     gap: 16px;

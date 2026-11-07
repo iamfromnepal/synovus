@@ -1,8 +1,8 @@
 // ===========================================
 // MODULE 9: Pull Quote (High Priority component library)
-// 9A is almost entirely already built: .quote-syn/.quote-syn-mark
+// 9A is almost entirely already built: .quote/.quote-mark
 // (components/_cards.scss) already match Figma's box, border, radius,
-// and responsive padding exactly, and .syn-quote (base/_custom-overrides)
+// and responsive padding exactly, and .quote (base/_custom-overrides)
 // already matches the 32px/1.52 (mobile 1.4) quote text. This file only
 // adds the 6 named mark colors the dev notes ask for ("a variety of
 // different color quote marks") and the section's own outer spacing.
@@ -18,10 +18,10 @@
 //   (canvas debris left over from elsewhere) - not part of this module.
 // ===========================================
 
-// Its own max-width + centering (not .container-syn's wider clamp-based
+// Its own max-width + centering (not .site-container's wider clamp-based
 // margins, which run up to 296px and are too wide for this module - same
-// fix already applied to .product-presentation-syn).
-.pull-quote-section-syn {
+// fix already applied to .product-presentation).
+.pull-quote-section {
   max-width: 1120px;
   margin: 0 auto;
   padding-top: 100px;
@@ -35,14 +35,14 @@
   }
 }
 
-.quote-syn-mark--bronze    { --quote-color: #{$bronze}; }
-.quote-syn-mark--blue-ramp { --quote-color: #{$grad-blue-ramp}; }
-.quote-syn-mark--deep      { --quote-color: #{$navy}; }
-.quote-syn-mark--blue      { --quote-color: #{$color-blue}; }
-.quote-syn-mark--aqua-ramp { --quote-color: #{$grad-aqua-ramp}; }
+.quote-mark--bronze    { --quote-color: #{$bronze}; }
+.quote-mark--blue-ramp { --quote-color: #{$grad-blue-ramp}; }
+.quote-mark--deep      { --quote-color: #{$navy}; }
+.quote-mark--blue      { --quote-color: #{$color-blue}; }
+.quote-mark--aqua-ramp { --quote-color: #{$grad-aqua-ramp}; }
 
 // Smaller mark for 9B's line variant (60x42.6, vs 9A's boxed 90x64).
-.quote-syn-mark--sm {
+.quote-mark--sm {
   width: 60px;
   height: 42.607px;
 }
@@ -52,28 +52,28 @@
 // text and an author line. Narrower column than 9A (928px vs 1120px) -
 // Figma gets there with a flat 256px side padding at 1440px width, which
 // doesn't scale down gracefully on narrower desktops, so this uses its
-// own max-width instead (same reasoning as .product-presentation-syn and
-// .pull-quote-section-syn above).
+// own max-width instead (same reasoning as .product-presentation and
+// .pull-quote-section above).
 // ---------------------------------------------------
-.pull-quote-line-section-syn {
+.pull-quote-line-section {
   max-width: 928px;
   margin: 0 auto;
   padding: 60px 16px;
 }
 
-.quote-line-syn {
+.quote-line {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
-.quote-line-syn-divider-row {
+.quote-line-divider-row {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.quote-line-syn-divider {
+.quote-line-divider {
   flex: 1 1 0;
   height: 2px;
   background-color: $light-blue;
@@ -82,15 +82,15 @@
 // Text size matches desktop at every breakpoint (the Figma mobile example
 // showed a larger size, but that reads as a copy-paste mismatch from 9A's
 // own text style rather than an intentional mobile-is-bigger choice).
-.quote-line-syn-text {
+.quote-line-text {
   margin: 0;
   text-align: left;
-  @include syn-type(1.75rem, 1.52, 400, $navy); // 28px
+  @include type(1.75rem, 1.52, 400, $navy); // 28px
 }
 
-.quote-line-syn-author {
+.quote-line-author {
   margin: 0;
-  @include syn-type(1.75rem, 1.52, 400, $navy); // 28px
+  @include type(1.75rem, 1.52, 400, $navy); // 28px
 
   em { font-style: italic; }
 }

@@ -126,30 +126,30 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 // ---------------------------------------------------
 // 5. BACKGROUND UTILITIES
 // ---------------------------------------------------
-.bg-syn-white      { background-color: $color-white; }
-.bg-syn-smoke      { background-color: $smoke; }
-.bg-syn-ice        { background-color: $ice; }
-.bg-syn-pale       { background-color: $pale; }
-.bg-syn-baby       { background-color: $light-blue; }
-.bg-syn-blue       { background-color: $color-blue; }
-.bg-syn-navy       { background-color: $navy; }
-.bg-syn-blue-ramp  { background-image: $grad-blue-ramp; }
-.bg-syn-aqua-ramp  { background-image: $grad-aqua-ramp; }
-.bg-syn-white-ramp { background-image: $grad-white-ramp; }
+.bg-white      { background-color: $color-white; }
+.bg-smoke      { background-color: $smoke; }
+.bg-ice        { background-color: $ice; }
+.bg-pale       { background-color: $pale; }
+.bg-baby       { background-color: $light-blue; }
+.bg-blue       { background-color: $color-blue; }
+.bg-navy       { background-color: $navy; }
+.bg-blue-ramp  { background-image: $grad-blue-ramp; }
+.bg-aqua-ramp  { background-image: $grad-aqua-ramp; }
+.bg-white-ramp { background-image: $grad-white-ramp; }
 
 // Text colour for content placed on navy / blue / ramp backgrounds
-.syn-on-dark {
+.on-dark {
   color: $color-white;
 
-  .syn-h2, .syn-h3, .syn-display { color: $light-blue; }
-  .syn-body, .syn-lead { color: $color-white; }
-  .syn-eyebrow, .link-syn-tertiary { color: $color-white; }
+  .heading-2, .heading-3, .display { color: $light-blue; }
+  .body, .lead-text { color: $color-white; }
+  .eyebrow, .link-tertiary { color: $color-white; }
 }
 
 // ---------------------------------------------------
 // 6. TYPE STYLES
 // ---------------------------------------------------
-@mixin syn-type($size, $lh, $weight: 400, $color: $color-black) {
+@mixin type($size, $lh, $weight: 400, $color: $color-black) {
   font-family: $font-family-sans-serif;
   font-size: $size;
   line-height: $lh;
@@ -159,77 +159,77 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 }
 
 // Hero headline: Regular 52/1.2 (mobile 40)
-.syn-display {
-  @include syn-type(3.25rem, 1.2, 400, $navy);
+.display {
+  @include type(3.25rem, 1.2, 400, $navy);
   @media (max-width: $mobile-max) { font-size: 2.5rem; }
 }
 
 // Module section title: Medium 40/1.4 (mobile 28)
-.syn-h2 {
-  @include syn-type(2.5rem, 1.4, 600, $navy);
+.heading-2 {
+  @include type(2.5rem, 1.4, 600, $navy);
   @media (max-width: $mobile-max) { font-size: 1.75rem; }
 }
 
 // Homepage section title: Regular 40/1.2
-.syn-h2-light {
-  @include syn-type(2.5rem, 1.2, 400, $navy);
+.heading-2-light {
+  @include type(2.5rem, 1.2, 400, $navy);
   @media (max-width: $mobile-max) { font-size: 1.75rem; }
 }
 
 // Block title: Medium 32/1.4 (mobile 28) - form title, image & CTA title, belt heading
-.syn-h3 {
-  @include syn-type(2rem, 1.4, 600, $navy);
+.heading-3 {
+  @include type(2rem, 1.4, 600, $navy);
   @media (max-width: $mobile-max) { font-size: 1.75rem; }
 }
 
 // Tile title: Medium 24/1.4
-.syn-h4 { @include syn-type(1.5rem, 1.4, 600, $color-black); }
+.heading-4 { @include type(1.5rem, 1.4, 600, $color-black); }
 
 // Card title: Regular 20/1.4
-.syn-h5 { @include syn-type(1.25rem, 1.4, 400, $navy); }
+.heading-5 { @include type(1.25rem, 1.4, 400, $navy); }
 
 // Lead: Regular 20/1.52 - hero body, section descriptions
-.syn-lead { @include syn-type(1.25rem, 1.52); }
+.lead-text { @include type(1.25rem, 1.52); }
 
 // Body: Regular 16/1.52
-.syn-body { @include syn-type(1rem, 1.52); }
+.body { @include type(1rem, 1.52); }
 
 // Form copy: Regular 18/26px - form intro, radio options
-.syn-body-lg { @include syn-type(1.125rem, 26px); }
+.body-lg { @include type(1.125rem, 26px); }
 
 // Helper: Regular 14/18.56px
-.syn-helper { @include syn-type(0.875rem, 18.56px, 400, $grey); }
+.helper { @include type(0.875rem, 18.56px, 400, $grey); }
 
 // Legal / disclosure: Regular 12/1.4
-.syn-legal { @include syn-type(0.75rem, 1.4, 400, $grey); }
+.legal { @include type(0.75rem, 1.4, 400, $grey); }
 
 // Eyebrow: Bold 14/1.4, 1px tracking, uppercase
-.syn-eyebrow {
-  @include syn-type(0.875rem, 1.4, 700, $color-blue);
+.eyebrow {
+  @include type(0.875rem, 1.4, 700, $color-blue);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 // Card eyebrow / label: Bold 16/1.2, uppercase
-.syn-label-caps {
-  @include syn-type(1rem, 1.2, 700, $color-blue);
+.label-caps {
+  @include type(1rem, 1.2, 700, $color-blue);
   text-transform: uppercase;
 }
 
 // Pull quote: Regular 32/1.52
-.syn-quote {
-  @include syn-type(2rem, 1.52, 400, $navy);
+.quote {
+  @include type(2rem, 1.52, 400, $navy);
   @media (max-width: $mobile-max) { line-height: 1.4; }
 }
 
 // Stat counter: SemiLight 64/1, 1px tracking (small: 40)
-.syn-stat {
-  @include syn-type(4rem, 1, 300, $color-blue);
+.stat {
+  @include type(4rem, 1, 300, $color-blue);
   letter-spacing: 1px;
 }
 
-.syn-stat-sm {
-  @include syn-type(2.5rem, 1, 300, $color-blue);
+.stat-sm {
+  @include type(2.5rem, 1, 300, $color-blue);
   letter-spacing: 1px;
 }
 
@@ -249,7 +249,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 // (same colour as the fill on filled buttons) so filled and outline
 // variants line up. Hover/focus states are not drawn in Figma (dev-defined).
 // ---------------------------------------------------
-@mixin syn-btn($height, $pad-x, $size, $radius) {
+@mixin btn($height, $pad-x, $size, $radius) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -282,22 +282,22 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 }
 
 // XL: 60px, padding 16/24, Bold 20/1.4, radius 0/12/12/12 (Hero, Belt Straps, Merger Hub)
-.btn-syn-xl { @include syn-btn(60px, 24px, 1.25rem, $leaf-12); }
+.btn-xl { @include btn(60px, 24px, 1.25rem, $leaf-12); }
 
 // Standard: 48px, padding 12/20, Bold 16/1.4, radius 0/8/8/8, drop shadow (Product, Form, Image & CTA)
-.btn-syn-standard {
-  @include syn-btn(48px, 20px, 1rem, $leaf-8);
+.btn-standard {
+  @include btn(48px, 20px, 1rem, $leaf-8);
   box-shadow: $shadow-btn;
 }
 
 // Small: 40px, padding 0/21, Bold 16, radius 0/8/8/8, drop shadow (Comparison chart)
-.btn-syn-small {
-  @include syn-btn(40px, 21px, 1rem, $leaf-8);
+.btn-small {
+  @include btn(40px, 21px, 1rem, $leaf-8);
   box-shadow: $shadow-btn;
 }
 
 // Colour variants (combine with a size class)
-.btn-syn-outline {
+.btn-outline {
   color: $color-blue;
   background-color: transparent;
   border-color: $color-blue;
@@ -309,7 +309,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   }
 }
 
-.btn-syn-white {
+.btn-white {
   color: $color-blue;
   background-color: $color-white;
   border-color: $color-white;
@@ -321,7 +321,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   }
 }
 
-.btn-syn-outline-white {
+.btn-outline-white {
   color: $color-white;
   background-color: transparent;
   border-color: $color-white;
@@ -334,7 +334,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 }
 
 // Baby fill with navy text (Form on Navy / Blue backgrounds)
-.btn-syn-tint {
+.btn-tint {
   color: $navy;
   background-color: $light-blue;
   border-color: $light-blue;
@@ -346,11 +346,11 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   }
 }
 
-.btn-syn-shadow    { box-shadow: $shadow-btn; }
-.btn-syn-no-shadow { box-shadow: none; }
+.btn-shadow    { box-shadow: $shadow-btn; }
+.btn-no-shadow { box-shadow: none; }
 
 // Chevron icon that follows the text colour (Figma arrow_forward_ios)
-.syn-chevron {
+.chevron {
   display: inline-block;
   flex-shrink: 0;
   width: 16px;
@@ -361,7 +361,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 }
 
 // Tertiary link: Bold 16/1.4 + 16px chevron, gap 4 ("Learn More")
-.link-syn-tertiary {
+.link-tertiary {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
@@ -378,14 +378,14 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   }
 }
 
-.link-syn-tertiary-white {
+.link-tertiary-white {
   color: $color-white;
 
   &:hover { color: $color-white; }
 }
 
 // Inline text link: Bold, underlined, inherits colour
-.link-syn-inline {
+.link-inline {
   color: inherit;
   font-weight: 700;
   text-decoration: underline;
@@ -394,7 +394,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 }
 
 // Utility link: Medium 14, underlined, Text Gray
-.link-syn-utility {
+.link-utility {
   font-size: 0.875rem;
   font-weight: 600;
   color: $grey;
@@ -406,7 +406,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 // ---------------------------------------------------
 // 8. FORM (Module 3)
 // ---------------------------------------------------
-.form-card-syn {
+.form-card {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -421,7 +421,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   }
 }
 
-.form-syn {
+.form {
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -429,13 +429,13 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   @media (max-width: $mobile-max) { gap: 20px; }
 }
 
-.form-field-syn {
+.form-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.form-label-syn {
+.field-label {
   font-size: 1.125rem; // 18
   font-weight: 700;
   line-height: 26px;
@@ -445,13 +445,13 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 }
 
 // Optional field description, placed between label and input
-.form-desc-syn {
+.form-desc {
   font-size: 0.875rem; // 14
   line-height: 18.56px;
   color: $grey;
 }
 
-.form-control-syn {
+.field-control {
   width: 100%;
   height: 46px;
   padding: 0 12px; // inner padding not specified in Figma (dev-defined)
@@ -471,20 +471,20 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   &.is-invalid { border-color: $error; }
 }
 
-.form-error-syn {
+.form-error {
   font-size: 0.875rem;
   line-height: 1.4;
   color: $asterisk;
 }
 
 // Radio: 13px circle, 1px #767676, label 18/26, gap 8, options 4px apart
-.form-radios-syn {
+.form-radios {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.form-radio-syn {
+.form-radio {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -518,13 +518,13 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 }
 
 // Navy form variant (167:56135)
-.form-card-syn-navy {
+.form-card-navy {
   background-color: $navy;
 
-  .syn-h3 { color: $light-blue; }
-  .syn-body-lg, .form-desc-syn { color: $ice; }
-  .form-label-syn, .form-radio-syn, .required-asterisk { color: $color-white; }
-  .form-control-syn { border-color: $ice; }
+  .heading-3 { color: $light-blue; }
+  .body-lg, .form-desc { color: $ice; }
+  .field-label, .form-radio, .required-asterisk { color: $color-white; }
+  .field-control { border-color: $ice; }
 }
 
 
@@ -533,7 +533,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 // 1920 frames: 296px margins (1328 content). 1440 frames: 160px (1120).
 // Mobile (430): 16px gutters. Margins scale linearly between frames.
 // ---------------------------------------------------
-.container-syn {
+.site-container {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
@@ -551,7 +551,7 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
   }
 }
 
-.section-syn {
+.section {
   padding-top: 80px;
   padding-bottom: 80px;
 

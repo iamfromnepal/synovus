@@ -1,6 +1,6 @@
 // ===========================================
 // MODULE 2: Product Presentation (High Priority component library)
-// Extends the existing .tile-syn (already built for the flagged product
+// Extends the existing .tile (already built for the flagged product
 // tile) with the pieces "Account Presentation A/B" actually need: a
 // co-brand logo header row, a bulleted benefits list, and the row/section
 // layout that repeats (title + 3-tiles-per-row, any number of rows).
@@ -24,14 +24,14 @@
 
 // Third flag color option (Aqua fill, Deep-ish navy text per the design
 // note's own #12224B, distinct from the standard $navy for contrast).
-.flag-syn-aqua {
+.flag-aqua {
   color: #12224B;
   background-color: $aqua;
 }
 
 // Exported as one flattened image straight from Figma (the co-brand
 // lockup isn't meant to be re-laid-out from separate logo files).
-.tile-syn-logos {
+.tile-logos {
   margin-bottom: 4px;
 
   img {
@@ -41,7 +41,7 @@
   }
 }
 
-.tile-syn-benefits {
+.tile-benefits {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -49,18 +49,18 @@
   padding-left: 20px;
   flex-grow: 1;
 
-  li { @include syn-type(1rem, 1.52); }
+  li { @include type(1rem, 1.52); }
 }
 
 // Pins the CTA row to the bottom of the tile even when neighboring tiles
 // have more copy (tiles sit in an equal-height grid row).
-.tile-syn-actions-bottom { margin-top: auto; }
+.tile-actions-bottom { margin-top: auto; }
 
 // Stacks any number of "title + tile row" sections (56px between them,
 // matching the Figma gap between "Primary"/"Secondary checking products").
-// Its own max-width + centering (not .container-syn's wider clamp-based
+// Its own max-width + centering (not .site-container's wider clamp-based
 // margins, which run up to 296px and felt far too wide for this module).
-.product-presentation-syn {
+.product-presentation {
   display: flex;
   flex-direction: column;
   gap: 56px;
@@ -71,7 +71,7 @@
 }
 
 // One section: title + its row of tiles (32px gap, matches Figma).
-.product-section-syn {
+.product-section {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -83,13 +83,13 @@
 // leftover gap after the last tile, and no early wrap either (a flat px
 // basis wrapped the 3rd tile to its own row at the exact 1120px content
 // width, because a real browser's scrollbar steals a few px there). No
-// max-width cap: the outer .product-presentation-syn already caps the
+// max-width cap: the outer .product-presentation already caps the
 // whole row at 1120px, so tiles stay Figma-close on desktop while still
 // genuinely splitting the row 50/50 or 100% on narrower tiers instead of
 // capping at 352px and leaving blank space beside them. align-items:stretch
 // (flex default) is what gives tiles in the same row equal height without
 // hardcoding one.
-.product-tiles-syn {
+.product-tiles {
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
@@ -112,9 +112,9 @@
 }
 
 // 2/2-by-default tile row (2B's two sections, vs. 2A's 3/3-by-default
-// .product-tiles-syn): same percentage flex-basis technique, just starting
+// .product-tiles): same percentage flex-basis technique, just starting
 // at 2 columns and only dropping to 1 below 575px.
-.product-tiles-syn--2up {
+.product-tiles--2up {
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
@@ -134,10 +134,10 @@
 // (the flag is absolutely positioned; it needs the tile's own content to
 // start below it rather than behind it). Figma reserves this same 64px
 // even on tiles with no badge, so every large tile's title lines up.
-.tile-syn--badge-top {
+.tile--badge-top {
   padding-top: 64px;
 
-  > .flag-syn {
+  > .flag {
     position: absolute;
     top: 16px;
     left: 0;
@@ -145,21 +145,21 @@
 }
 
 // Darker body copy variant - 2A's large tile uses this; 2B's large tile
-// (and every small tile in both 2A/2B) stays the default grey .tile-syn-desc.
-.tile-syn-desc--dark { color: $color-black; }
+// (and every small tile in both 2A/2B) stays the default grey .tile-desc.
+.tile-desc--dark { color: $color-black; }
 
 // 2B's small-tile row: content hugs the tile's bottom instead of its top
 // (so when tiles stretch to match a taller sibling, the title/body/buttons
 // stay anchored low rather than floating at the top with the gap below),
 // and the content column is narrower on the right (80px vs. the usual
 // 32px) - both straight from Figma's own measurements for this tile.
-.tile-syn--bottom-aligned {
+.tile--bottom-aligned {
   justify-content: flex-end;
   padding-right: 80px;
 }
 
-// 2B's second-row title: Regular 36/1.2 navy, distinct from .syn-h2's
+// 2B's second-row title: Regular 36/1.2 navy, distinct from .heading-2's
 // Medium 40/28 used for 2A's section titles.
 .product-section-title {
-  @include syn-type(2.25rem, 1.2, 400, $navy); // 36px
+  @include type(2.25rem, 1.2, 400, $navy); // 36px
 }

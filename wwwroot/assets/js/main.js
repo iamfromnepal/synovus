@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Fixed header: the alert bar + header stack is position: fixed from
-  // page load (see .site-header-fixed-syn) - it never toggles position on
+  // page load (see .site-header-fixed) - it never toggles position on
   // scroll, which is what used to make scrolling feel like it jumped.
   // Being fixed takes it out of document flow entirely, so body needs
   // matching padding-top; a ResizeObserver keeps that in sync with the
   // stack's real height (viewport width changes how the alert bar's text
   // wraps, and dismissing it removes it from the stack entirely).
-  const headerFixed = document.querySelector('.site-header-fixed-syn');
+  const headerFixed = document.querySelector('.site-header-fixed');
   if (headerFixed) {
     const syncHeaderSpace = () => {
       document.body.style.paddingTop = `${headerFixed.offsetHeight}px`;
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Desktop mega-menu: hover-intent with a short close-delay so moving the
   // mouse from the nav item to its panel doesn't close it early.
-  const megaItems = document.querySelectorAll('.nav-mega-syn-item');
+  const megaItems = document.querySelectorAll('.nav-mega-item');
   if (megaItems.length) {
     let closeTimer = null;
     megaItems.forEach(item => {
@@ -93,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Mobile offcanvas 3-level drill-down (root -> category -> links)
-  const navDrill = document.querySelector('.nav-offcanvas-syn');
+  const navDrill = document.querySelector('.nav-offcanvas');
   if (navDrill) {
-    const screens = [...navDrill.querySelectorAll('.nav-offcanvas-syn-screen')];
+    const screens = [...navDrill.querySelectorAll('.nav-offcanvas-screen')];
     const goToScreen = (targetId, direction) => {
       screens.forEach(screen => {
         if (screen.dataset.screen === targetId) {
@@ -129,19 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Partner carousel (Module D): Swiper drives the slide mechanics, pointed
-  // at the existing carousel-syn-* controls so the visual design is unchanged.
-  const carouselEl = document.querySelector('.carousel-syn-swiper');
+  // at the existing carousel-* controls so the visual design is unchanged.
+  const carouselEl = document.querySelector('.carousel-swiper');
   if (carouselEl && window.Swiper) {
     const swiper = new window.Swiper(carouselEl, {
       slidesPerView: 1,
       navigation: {
-        nextEl: '.carousel-syn-next',
-        prevEl: '.carousel-syn-prev',
+        nextEl: '.carousel-next',
+        prevEl: '.carousel-prev',
       },
       pagination: {
-        el: '.carousel-syn-pagination',
+        el: '.carousel-pagination',
         clickable: true,
-        bulletClass: 'carousel-syn-dot',
+        bulletClass: 'carousel-dot',
         bulletActiveClass: 'is-active',
       },
     });
@@ -156,20 +156,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Resources/"Pinnacle trusted advisors" mobile slider: 1 slide below
   // 575px, 2 between 575-767.98px (above that, the slider is hidden in
   // favor of the row + grid layout, so Swiper never needs 3+ slidesPerView).
-  const resourcesCarouselEl = document.querySelector('.resources-syn-swiper');
+  const resourcesCarouselEl = document.querySelector('.resources-swiper');
   if (resourcesCarouselEl && window.Swiper) {
     new window.Swiper(resourcesCarouselEl, {
       slidesPerView: 1,
       spaceBetween: 16,
       autoHeight: true,
       navigation: {
-        nextEl: '.resources-syn-next',
-        prevEl: '.resources-syn-prev',
+        nextEl: '.resources-next',
+        prevEl: '.resources-prev',
       },
       pagination: {
-        el: '.resources-syn-pagination',
+        el: '.resources-pagination',
         clickable: true,
-        bulletClass: 'carousel-syn-dot',
+        bulletClass: 'carousel-dot',
         bulletActiveClass: 'is-active',
       },
       breakpoints: {
@@ -180,19 +180,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // News Ideas carousel: 1 card below 575px, 2 between 575-1023, 3 at
   // 1024px+ (where all cards fit side by side with nothing left to slide).
-  const newsCarouselEl = document.querySelector('.news-ideas-syn-swiper');
+  const newsCarouselEl = document.querySelector('.news-ideas-swiper');
   if (newsCarouselEl && window.Swiper) {
     new window.Swiper(newsCarouselEl, {
       slidesPerView: 1,
       spaceBetween: 16,
       navigation: {
-        nextEl: '.news-ideas-syn-next',
-        prevEl: '.news-ideas-syn-prev',
+        nextEl: '.news-ideas-next',
+        prevEl: '.news-ideas-prev',
       },
       pagination: {
-        el: '.news-ideas-syn-pagination',
+        el: '.news-ideas-pagination',
         clickable: true,
-        bulletClass: 'carousel-syn-dot',
+        bulletClass: 'carousel-dot',
         bulletActiveClass: 'is-active',
       },
       breakpoints: {
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Stat counters (Module C): count up from 0 the first time they scroll
   // into view (dev note: "numbers count up, odometer roll, on scroll").
-  const statEls = document.querySelectorAll('.syn-stat, .syn-stat-sm');
+  const statEls = document.querySelectorAll('.stat, .stat-sm');
   if (statEls.length && 'IntersectionObserver' in window) {
     const animateCount = (el) => {
       const match = el.textContent.trim().match(/^(\D*)([\d,]+)(\D*)$/);

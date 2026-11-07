@@ -15,17 +15,17 @@
 //   naturally - a longer body paragraph grows the row instead of clipping.
 // ===========================================
 
-// Its own max-width + centering (not .container-syn's wider clamp-based
-// margins) - same reasoning as .product-presentation-syn and
-// .pull-quote-section-syn.
-.content-block-section-syn {
+// Its own max-width + centering (not .site-container's wider clamp-based
+// margins) - same reasoning as .product-presentation and
+// .pull-quote-section.
+.content-block-section {
   max-width: 1120px;
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
 }
 
-.content-block-syn {
+.content-block {
   display: flex;
   align-items: center;
   gap: 32px;
@@ -38,7 +38,7 @@
 }
 
 // Alternates sides: image moves to the right on every other block.
-.content-block-syn--reverse {
+.content-block--reverse {
   flex-direction: row-reverse;
 
   @media (max-width: $mobile-max) {
@@ -49,7 +49,7 @@
 // Fixed aspect-ratio (not a stretched height) so the photo keeps its
 // intended crop regardless of how tall the text column ends up being;
 // align-items:center on the row centers whichever side is shorter.
-.content-block-syn-media {
+.content-block-media {
   position: relative;
   flex: 1 1 0;
   overflow: hidden;
@@ -64,32 +64,27 @@
   }
 }
 
-.content-block-syn-content {
+.content-block-content {
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
   gap: 60px;
-  padding: 0 40px;
 
-  @media (max-width: $mobile-max) {
-    padding: 0;
-  }
+  .heading-3 { color: $color-black; }
 
-  .syn-h3 { color: $color-black; }
-
-  .btn-syn-standard {
+  .btn-standard {
     @media (max-width: $mobile-max) { width: 100%; }
   }
 }
 
-.content-block-syn-text {
+.content-block-text {
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
-.content-block-syn-label {
+.content-block-label {
   margin: 0;
   text-transform: uppercase;
-  @include syn-type(1.5rem, 1.4, 400, $color-black); // 24px
+  @include type(1.5rem, 1.4, 400, $color-black); // 24px
 }
