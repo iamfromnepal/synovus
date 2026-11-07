@@ -84,10 +84,11 @@
   flex-direction: column;
   gap: 60px;
 
-  // Same reasoning as .content-block-media: on mobile this should size
-  // from its own content height, not fight the photo over flex-grow space.
   @media (max-width: $mobile-max) {
+    // Same reasoning as .content-block-media: on mobile this should size
+    // from its own content height, not fight the photo over flex-grow space.
     flex: none;
+    gap: 30px;
   }
 
   .heading-3 { color: $color-black; }

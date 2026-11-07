@@ -2960,6 +2960,7 @@
 @media (max-width: 767.98px) {
   .content-block-content {
     flex: none;
+    gap: 30px;
   }
 }
 .content-block-content .heading-3 {
