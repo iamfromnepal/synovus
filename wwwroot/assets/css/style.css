@@ -3305,6 +3305,86 @@
   justify-content: center;
 }
 
+.content-card-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 16px;
+}
+@media (max-width: 767.98px) {
+  .content-card-section {
+    padding: 64px 16px;
+  }
+}
+
+.content-card-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.content-card-intro .lead-text {
+  color: #525252;
+}
+
+.content-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+.content-card-row > * {
+  flex: 0 1 calc((100% - 64px) / 3);
+}
+@media (max-width: 1024px) {
+  .content-card-row > * {
+    flex-basis: calc((100% - 32px) / 2);
+  }
+}
+@media (max-width: 575px) {
+  .content-card-row > * {
+    flex-basis: 100%;
+  }
+}
+
+.content-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #FFFFFF;
+  border-top: 12px solid #0074C4;
+  border-radius: 12px;
+  padding: 44px 44px 32px;
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
+}
+@media (max-width: 767.98px) {
+  .content-card {
+    gap: 12px;
+    padding: 44px 40px 32px;
+  }
+}
+.content-card .body {
+  color: #525252;
+}
+
+.content-card-icon {
+  width: 64px;
+  height: 64px;
+}
+.content-card-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.content-card-title {
+  margin: 0;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.52;
+  font-weight: 600;
+  color: #283862;
+  margin: 0;
+}
+
 /*---------------------------------------------
 /
 /  Partially loading Bootstrap's components

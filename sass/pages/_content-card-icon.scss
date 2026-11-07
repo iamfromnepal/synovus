@@ -1,0 +1,110 @@
+// ===========================================
+// MODULE 17: Content Card with Icon (High Priority component library).
+// Brand A only (white theme) - an intro title/subtitle above a row of
+// icon+title+description cards, 3-up desktop / 2-up tablet / 1-up mobile.
+// Figma also shows Brand B/C/D structural variants and Ice/Smoke
+// background themes for A/B - out of scope for this pass.
+//
+// Notes pulled from the Figma dev-note callouts:
+// - Purpose: highlight the reasons clients should bank with Pinnacle.
+// - Closest existing reference: Personal Checking Account page's "Why
+//   bank with Synovus" section.
+// - Several mobile-frame values (card shadow blur, title/description font
+//   size) are off their desktop counterparts by a uniform ~1.122x factor -
+//   a Figma frame auto-scale artifact (this file's mobile frames are all
+//   exported at 430px wide), not a deliberate responsive change. Normalized
+//   back to the clean desktop values throughout.
+// - All 3 cards share the same single icon graphic in Figma (only the
+//   title/description differ per card) - not a per-feature icon set.
+// ===========================================
+
+// Its own max-width + centering (not .site-container's wider clamp-based
+// margins) - same reasoning as .product-presentation, .pull-quote-section,
+// .content-block-section.
+.content-card-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 16px;
+
+  @media (max-width: $mobile-max) {
+    padding: 64px 16px;
+  }
+}
+
+.content-card-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+
+  // Figma's subtitle is Regular 20/1.52 like .lead-text, but in $grey
+  // rather than .lead-text's default black - same scoped-override pattern
+  // as .content-block-content .heading-3 in Module 11.
+  .lead-text { color: $grey; }
+}
+
+// 3-up desktop, 2-up tablet, 1-up mobile - identical technique to
+// .product-tiles (Module 2): flex-basis is a percentage of the row's own
+// width (not a flat 352px) so N cards + their gaps always sum to exactly
+// 100% at every tier, with no leftover gap or early wrap.
+.content-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  // Figma's row is items-center (cards keep their own height), but per
+  // standing instruction this stays fixed-height-free: default
+  // align-items:stretch makes cards in a row match the tallest one
+  // instead, so longer copy in one card doesn't look mismatched.
+
+  > * {
+    flex: 0 1 calc((100% - 64px) / 3); // 2 gaps of 32px between 3 cards
+  }
+
+  @media (max-width: 1024px) {
+    > * {
+      flex-basis: calc((100% - 32px) / 2); // 1 gap of 32px between 2 cards
+    }
+  }
+
+  @media (max-width: 575px) {
+    > * {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.content-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: $color-white;
+  border-top: 12px solid $color-blue;
+  border-radius: $radius-tile;
+  padding: 44px 44px 32px;
+  // Close to $shadow-card but not it exactly (28px blur vs Figma's 14px
+  // here) - kept as its own literal value rather than forcing the reuse.
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
+
+  @media (max-width: $mobile-max) {
+    gap: 12px;
+    padding: 44px 40px 32px;
+  }
+
+  .body { color: $grey; }
+}
+
+.content-card-icon {
+  width: 64px;
+  height: 64px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.content-card-title {
+  margin: 0;
+  @include type(1.25rem, 1.52, 600, $navy); // 20px
+}
