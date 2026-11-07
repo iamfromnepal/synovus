@@ -2938,6 +2938,11 @@
   border-radius: 0 20px 20px 20px;
   aspect-ratio: 544/600;
 }
+@media (max-width: 767.98px) {
+  .content-block-media {
+    flex: none;
+  }
+}
 .content-block-media img {
   display: block;
   width: 100%;
@@ -2950,6 +2955,11 @@
   flex: 1 1 0;
   flex-direction: column;
   gap: 60px;
+}
+@media (max-width: 767.98px) {
+  .content-block-content {
+    flex: none;
+  }
 }
 .content-block-content .heading-3 {
   color: #151515;

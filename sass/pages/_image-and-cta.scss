@@ -56,6 +56,16 @@
   border-radius: $leaf-20;
   aspect-ratio: 544 / 600;
 
+  // flex:1 1 0 splits width 50/50 in the desktop row, but once .content-
+  // block switches to a column on mobile that same flex-basis:0 applies to
+  // height instead - with no explicit height to grow into, it was
+  // collapsing the (overflow:hidden) photo to zero height. flex:none lets
+  // it size itself from width (100%, via the parent's align-items:stretch)
+  // and its own aspect-ratio instead.
+  @media (max-width: $mobile-max) {
+    flex: none;
+  }
+
   img {
     display: block;
     width: 100%;
@@ -69,6 +79,12 @@
   flex: 1 1 0;
   flex-direction: column;
   gap: 60px;
+
+  // Same reasoning as .content-block-media: on mobile this should size
+  // from its own content height, not fight the photo over flex-grow space.
+  @media (max-width: $mobile-max) {
+    flex: none;
+  }
 
   .heading-3 { color: $color-black; }
 
