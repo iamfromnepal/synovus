@@ -2951,6 +2951,21 @@
   object-fit: cover;
 }
 
+.content-block-fpo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 128px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
 .content-block-content {
   display: flex;
   flex: 1 1 0;

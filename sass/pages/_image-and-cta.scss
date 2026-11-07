@@ -78,6 +78,20 @@
   }
 }
 
+// Figma marks this photo "FPO only" (For Position Only) with a huge, bold,
+// solid-white watermark - same convention as the hero modules' .hero-a-fpo
+// etc. 128px is uniform across every breakpoint/variant in the Figma file
+// (unlike the hero modules, which taper it down on mobile).
+.content-block-fpo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  white-space: nowrap;
+  @include type(128px, 1.4, 700, $color-white);
+}
+
 .content-block-content {
   display: flex;
   flex: 1 1 0;
