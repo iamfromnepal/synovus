@@ -109,3 +109,60 @@
   text-transform: uppercase;
   @include type(1.5rem, 1.4, 400, $color-black); // 24px
 }
+
+// ---------------------------------------------------
+// 11B: adds an icon above the heading, and the text side becomes a
+// bordered card instead of 11A's plain column. The photo stretches to
+// match the card's own (content-driven) height on desktop rather than
+// 11A's fixed aspect-ratio, since the row now stretches both sides to
+// match whichever is taller; mobile goes back to a fixed ratio since
+// media and card stack independently there.
+// ---------------------------------------------------
+.content-block--framed {
+  align-items: stretch;
+}
+
+.content-block-media--fill {
+  aspect-ratio: auto;
+
+  @media (max-width: $mobile-max) {
+    aspect-ratio: 456 / 403;
+  }
+}
+
+// Margin (not padding) insets the card's border within the row's
+// stretched height; no horizontal inset at all - text sits flush against
+// the left/right border, per explicit instruction.
+.content-block-content--framed {
+  margin: 40px 0;
+  border: 1px solid $placeholder;
+  border-radius: 20px;
+
+  @media (max-width: $mobile-max) {
+    margin: 32px 0;
+    border-color: $grey;
+    border-radius: 15px;
+  }
+}
+
+.content-block-icon-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.content-block-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border: 2px solid $navy;
+  border-radius: 50%;
+
+  img {
+    width: 45.5px;
+    height: 45.5px;
+  }
+}

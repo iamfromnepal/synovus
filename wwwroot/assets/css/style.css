@@ -2989,6 +2989,53 @@
   margin: 0;
 }
 
+.content-block--framed {
+  align-items: stretch;
+}
+
+.content-block-media--fill {
+  aspect-ratio: auto;
+}
+@media (max-width: 767.98px) {
+  .content-block-media--fill {
+    aspect-ratio: 456/403;
+  }
+}
+
+.content-block-content--framed {
+  margin: 40px 0;
+  border: 1px solid #989898;
+  border-radius: 20px;
+}
+@media (max-width: 767.98px) {
+  .content-block-content--framed {
+    margin: 32px 0;
+    border-color: #525252;
+    border-radius: 15px;
+  }
+}
+
+.content-block-icon-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.content-block-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border: 2px solid #283862;
+  border-radius: 50%;
+}
+.content-block-icon img {
+  width: 45.5px;
+  height: 45.5px;
+}
+
 .brand-identity-merger {
   display: flex;
   align-items: stretch;
