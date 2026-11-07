@@ -68,6 +68,7 @@
   // and its own aspect-ratio instead.
   @media (max-width: $mobile-max) {
     flex: none;
+    aspect-ratio: 430 / 410;
   }
 
   img {
