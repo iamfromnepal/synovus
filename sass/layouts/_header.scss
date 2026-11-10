@@ -113,8 +113,16 @@
       text-decoration: none;
       border-bottom: 2px solid transparent;
 
-      // Underline bar exists in Figma at opacity 0; shown on hover (dev-defined)
-      &:hover { border-bottom-color: $grey; }
+      // Figma Nav Item, State=Active: label and 2px bar both switch to Pinnacle Blue.
+      &:hover {
+        color: $color-blue;
+        border-bottom-color: $color-blue;
+      }
+    }
+
+    > li.is-open > a {
+      color: $color-blue;
+      border-bottom-color: $color-blue;
     }
   }
 

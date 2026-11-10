@@ -1,0 +1,175 @@
+/*---------------------------------------------
+/
+/  Variables
+/
+/    1. Bootstrap Fonts
+/    2. Bootstrap Globals
+/    3. Bootstrap Colors
+/    4. Bootstrap Container Width
+/
+/---------------------------------------------*/
+
+/*---------------------------------------------
+/ 1. Bootstrap Fonts
+/---------------------------------------------*/
+
+$font-family-sans-serif: "realist", sans-serif;
+$font-family-base: $font-family-sans-serif;
+$headings-font-family: $font-family-sans-serif;
+$font-family-narrow: "realistnarrow", sans-serif;
+$font-family-lead: $font-family-narrow;
+
+$font-weight-light: 300;
+/* SemiLight */
+
+$font-weight-normal: 400;
+/* Regular */
+
+$font-weight-medium: 600;
+/* Medium */
+
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+/* Bold */
+
+/*---------------------------------------------
+/ 2. Bootstrap Globals
+/---------------------------------------------*/
+
+$enable-rounded: true;
+$enable-shadows: false;
+$enable-gradients: false;
+
+
+$fontPath: '../fonts';
+$imagePath: '../images';
+
+/*---------------------------------------------
+/ 3. Bootstrap Colors
+/---------------------------------------------*/
+
+$black: #151515;
+/* Matt — default text color */
+
+$primary: #0074C4;
+/* Pinnacle Blue */
+
+$secondary: #283862;
+/* Deep */
+
+$secondary-100: #84C2ED;
+/* Sky */
+
+$secondary-200: #E6E6E6;
+/* Hint */
+
+$success: #D4E8E3;
+$info: #0dcaf0;
+$warning: #FCBF00;
+$danger: #FF0838;
+$light: #E6E6E6;
+$dark: #151515;
+
+$white: #FFFFFF;
+
+/*---------------------------------------------
+/ 3. Custom Colors
+/---------------------------------------------*/
+
+/* Figma Primary Colors and Digital Additions */
+
+$pinnacle-blue: $primary;
+$deep: $secondary;
+$sky: $secondary-100;
+$sky-tint: #CCE3F3;
+$matt: $black;
+$spanish: #989898;
+$ash: #D1D1D1;
+$hint: $secondary-200;
+$text-gray: #525252;
+
+$gray: $spanish;
+$gray-100: $ash;
+$dark-gray: $text-gray;
+
+/* Figma Accents & Gradients: Blue Ramp, Pinnacle Blue to Deep */
+$gradient-blue-ramp: linear-gradient(135deg, $pinnacle-blue 0%, $deep 100%);
+
+/*---------------------------------------------
+/ 5. Shared effects (DRY tokens)
+/---------------------------------------------*/
+
+$shadow-card: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
+$transition-smooth: 0.35s all ease-in-out;
+$transition-card-sheen: 1s all cubic-bezier(0.33, 0.33, 0.1, 1);
+
+/*---------------------------------------------
+/ 4. Bootstrap Container Width
+/---------------------------------------------*/
+
+$container-max-widths: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1320px,
+  xxxl: 1440px,
+);
+
+/*---------------------------------------------
+/ 4. Bootstrap SpacerS
+/---------------------------------------------*/
+$spacer: 4px;
+$spacers: (
+  0: 0,
+  1: $spacer * 1,
+  2: $spacer * 2,
+  3: $spacer * 3,
+  4: $spacer * 4,
+  5: $spacer * 5,
+  6: $spacer * 6,
+  7: $spacer * 7,
+  8: $spacer * 8,
+  9: $spacer * 9,
+  10: $spacer * 10,
+  11: $spacer * 11,
+  12: $spacer * 12,
+  13: $spacer * 13,
+  14: $spacer * 14,
+  15: $spacer * 15,
+  16: $spacer * 16,
+  17: $spacer * 17,
+  18: $spacer * 18,
+  19: $spacer * 19,
+  20: $spacer * 20,
+  21: $spacer * 21,
+  22: $spacer * 22,
+  23: $spacer * 23,
+  24: $spacer * 24,
+  25: $spacer * 25,
+  26: $spacer * 26,
+  27: $spacer * 27,
+  28: $spacer * 28,
+  29: $spacer * 29,
+  30: $spacer * 30,
+  31: $spacer * 31,
+  32: $spacer * 32,
+  33: $spacer * 33,
+  34: $spacer * 34,
+  35: $spacer * 35,
+  36: $spacer * 36,
+  37: $spacer * 37,
+  38: $spacer * 38,
+  39: $spacer * 39,
+  40: $spacer * 40,
+  41: $spacer * 41,
+  42: $spacer * 42,
+  43: $spacer * 43,
+  44: $spacer * 44,
+  45: $spacer * 45,
+  46: $spacer * 46,
+  47: $spacer * 47,
+  48: $spacer * 48,
+  49: $spacer * 49,
+  50: $spacer * 50,
+);

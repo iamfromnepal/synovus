@@ -707,7 +707,12 @@
   border-bottom: 2px solid transparent;
 }
 .site-header .main-nav-links > li > a:hover {
-  border-bottom-color: #525252;
+  color: #0074C4;
+  border-bottom-color: #0074C4;
+}
+.site-header .main-nav-links > li.is-open > a {
+  color: #0074C4;
+  border-bottom-color: #0074C4;
 }
 .site-header .nav-mega-panel {
   position: absolute;
@@ -3305,15 +3310,33 @@
   justify-content: center;
 }
 
+.content-card-section-wrapper {
+  margin: 80px 0;
+}
+@media (max-width: 767.98px) {
+  .content-card-section-wrapper {
+    margin: 40px 0;
+  }
+}
+.content-card-section-wrapper-iceBlue, .content-card-section-wrapper-smoke {
+  margin: 0;
+  padding: 80px 0;
+  background: linear-gradient(0deg, rgba(204, 227, 243, 0.28) 0%, rgba(204, 227, 243, 0.28) 100%);
+}
+@media (max-width: 767.98px) {
+  .content-card-section-wrapper-iceBlue, .content-card-section-wrapper-smoke {
+    padding: 60px 0;
+    margin: 0;
+  }
+}
+.content-card-section-wrapper-smoke {
+  background: #F5F5F5;
+}
+
 .content-card-section {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 80px 16px;
-}
-@media (max-width: 767.98px) {
-  .content-card-section {
-    padding: 64px 16px;
-  }
+  padding: 0 16px;
 }
 
 .content-card-intro {
@@ -3340,12 +3363,19 @@
   }
 }
 @media (max-width: 575px) {
+  .content-card-row {
+    gap: 20px;
+  }
   .content-card-row > * {
     flex-basis: 100%;
   }
 }
+.content-card-row + .content-card-row {
+  margin-top: 32px;
+}
 
 .content-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -3363,6 +3393,29 @@
 }
 .content-card .body {
   color: #525252;
+}
+
+.content-card--bronze {
+  border-top-color: #D17326;
+}
+
+.content-card--navy {
+  border-top-color: #283862;
+}
+
+.content-card--gradient {
+  border-top: 0;
+  padding-top: 56px;
+}
+.content-card--gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(to right, #283862, #0074C4);
+  border-radius: 12px 12px 0 0;
 }
 
 .content-card-icon {
@@ -3383,6 +3436,128 @@
   font-weight: 600;
   color: #283862;
   margin: 0;
+}
+
+.content-card-flat-intro {
+  margin-bottom: 60px;
+}
+.content-card-flat-intro .lead-text {
+  color: #525252;
+  max-width: 480px;
+}
+@media (max-width: 767.98px) {
+  .content-card-flat-intro .lead-text {
+    max-width: none;
+  }
+}
+
+.content-card-flat-row {
+  display: flex;
+  gap: 60px;
+}
+.content-card-flat-row > * {
+  flex: 1 1 0;
+}
+@media (max-width: 767.98px) {
+  .content-card-flat-row {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+.content-card-flat {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (max-width: 767.98px) {
+  .content-card-flat {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.content-card-flat-title {
+  margin: 0;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.52;
+  font-weight: 600;
+  color: #525252;
+  margin: 0;
+}
+@media (max-width: 767.98px) {
+  .content-card-flat-title {
+    color: #283862;
+  }
+}
+
+.content-card-flat-description {
+  margin: 0;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #525252;
+  margin: 0;
+}
+@media (max-width: 767.98px) {
+  .content-card-flat-description {
+    line-height: 1.52;
+    color: #151515;
+  }
+}
+
+.content-card-value-heading {
+  text-align: center;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.5rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #151515;
+  margin: 0;
+  margin: 0 0 56px;
+}
+@media (max-width: 767.98px) {
+  .content-card-value-heading {
+    font-size: 3rem;
+  }
+}
+
+.content-card-value-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.content-card-value-col img {
+  display: block;
+}
+
+.content-card-value-col--building {
+  gap: 30px;
+}
+
+.content-card-value-col--pin {
+  gap: 31px;
+}
+
+.content-card-value-col--phone {
+  gap: 7px;
+}
+
+.content-card-value-caption {
+  margin: 0;
+  font-family: "realist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.52;
+  font-weight: 400;
+  color: #151515;
+  margin: 0;
+}
+
+.content-card-value-col--building .content-card-value-caption {
+  letter-spacing: -0.4px;
 }
 
 /*---------------------------------------------

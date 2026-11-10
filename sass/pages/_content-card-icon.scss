@@ -21,14 +21,38 @@
 // Its own max-width + centering (not .site-container's wider clamp-based
 // margins) - same reasoning as .product-presentation, .pull-quote-section,
 // .content-block-section.
+.content-card-section-wrapper {
+  margin: 80px 0;
+
+  @media (max-width: $mobile-max) {
+    margin: 40px 0;
+  }
+
+  &-iceBlue,
+  &-smoke {
+    margin: 0;
+    padding: 80px 0;
+    background: linear-gradient(0deg, rgba(204, 227, 243, 0.28) 0%, rgba(204, 227, 243, 0.28) 100%);
+
+    @media (max-width: $mobile-max) {
+      padding: 60px 0;
+      margin: 0;
+    }
+  }
+
+  &-smoke {
+    background: $smoke;
+  }
+}
+
 .content-card-section {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 80px 16px;
+  padding: 0 16px;
 
-  @media (max-width: $mobile-max) {
-    padding: 64px 16px;
-  }
+  // @media (max-width: $mobile-max) {
+  //   padding: 0 16px;
+  // }
 }
 
 .content-card-intro {
@@ -40,7 +64,9 @@
   // Figma's subtitle is Regular 20/1.52 like .lead-text, but in $grey
   // rather than .lead-text's default black - same scoped-override pattern
   // as .content-block-content .heading-3 in Module 11.
-  .lead-text { color: $grey; }
+  .lead-text {
+    color: $grey;
+  }
 }
 
 // 3-up desktop, 2-up tablet, 1-up mobile - identical technique to
@@ -56,24 +82,33 @@
   // align-items:stretch makes cards in a row match the tallest one
   // instead, so longer copy in one card doesn't look mismatched.
 
-  > * {
+  >* {
     flex: 0 1 calc((100% - 64px) / 3); // 2 gaps of 32px between 3 cards
   }
 
   @media (max-width: 1024px) {
-    > * {
+    >* {
       flex-basis: calc((100% - 32px) / 2); // 1 gap of 32px between 2 cards
     }
   }
 
   @media (max-width: 575px) {
-    > * {
+    gap: 20px;
+
+    >* {
       flex-basis: 100%;
     }
+  }
+
+  // Stacking multiple rows (e.g. repeating the row once per tip color, or
+  // adding more rows of real content) - same rhythm as the row's own gap.
+  & + & {
+    margin-top: 32px;
   }
 }
 
 .content-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -90,7 +125,38 @@
     padding: 44px 40px 32px;
   }
 
-  .body { color: $grey; }
+  .body {
+    color: $grey;
+  }
+}
+
+// Tip-color options ("COLORS FOR TILE TIP OPTIONS" in Figma) - the
+// top-border accent is themeable. Blue (above) is the default; these are
+// the other documented solid options.
+.content-card--bronze { border-top-color: $bronze; }
+.content-card--navy   { border-top-color: $navy; }
+
+// Figma's 4th option is a left-to-right navy->blue gradient ("Blue Ramp"),
+// confirmed by zooming into the swatch - the Figma->code extraction had
+// flattened it to solid blue. border-top can't take a gradient directly,
+// so this removes the border entirely and repaints the same 12px with a
+// pseudo-element instead; padding-top makes up the 12px the border no
+// longer reserves. Not $grad-blue-ramp - that token runs diagonally
+// blue->navy (to top right), the opposite order needed here.
+.content-card--gradient {
+  border-top: 0;
+  padding-top: 56px; // 44px content padding + the 12px the border no longer reserves
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: linear-gradient(to right, $navy, $color-blue);
+    border-radius: $radius-tile $radius-tile 0 0;
+  }
 }
 
 .content-card-icon {
@@ -107,4 +173,132 @@
 .content-card-title {
   margin: 0;
   @include type(1.25rem, 1.52, 600, $navy); // 20px
+}
+
+// ---------------------------------------------------
+// 17B: flat icon/title/description columns directly on the tinted section
+// background - no card chrome at all. Reuses .content-card-section-wrapper
+// and its -iceBlue/-smoke modifiers as-is (same tint values as 17A); only
+// the row/column layout below is new. Figma only shows this on Ice/Smoke
+// backgrounds, no plain-white variant.
+//
+// Own rhythm, not reused from 17A's .content-card-row: intro-to-row gap is
+// 60px (17A: 40px), row gap is 60px (17A: 32px), icon-to-text gap is 16px
+// (17A: 8px). Desktop is left-aligned with a width-capped subtitle; mobile
+// centers everything and drops the cap. Figma's own mobile frame also
+// swaps the title to navy, the description to black, and the description
+// line-height to 1.52 (desktop: grey/grey/1.4) - no obvious reason, but
+// per explicit instruction this follows Figma's mobile frame literally
+// rather than normalizing it away.
+// ---------------------------------------------------
+.content-card-flat-intro {
+  margin-bottom: 60px;
+
+  .lead-text {
+    color: $grey;
+    max-width: 480px;
+
+    @media (max-width: $mobile-max) {
+      max-width: none;
+    }
+  }
+}
+
+.content-card-flat-row {
+  display: flex;
+  gap: 60px;
+
+  > * {
+    flex: 1 1 0;
+  }
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+.content-card-flat {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (max-width: $mobile-max) {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.content-card-flat-title {
+  margin: 0;
+  @include type(1.25rem, 1.52, 600, $grey); // 20px
+
+  @media (max-width: $mobile-max) {
+    color: $navy;
+  }
+}
+
+.content-card-flat-description {
+  margin: 0;
+  @include type(1rem, 1.4, 400, $grey); // 16px
+
+  @media (max-width: $mobile-max) {
+    line-height: 1.52;
+    color: $color-black;
+  }
+}
+
+// ---------------------------------------------------
+// 17C: Brand C - a fixed, bespoke 3-item value-prop band, not a reusable
+// N-card pattern like 17A/17B. Three different asset types (two SVG
+// icons + one raster phone/tablet mockup) at different native sizes, so
+// each column's icon-to-caption gap is deliberately different (30/31/7px,
+// identical at both breakpoints - not scale noise) and is NOT unified
+// into one shared value. The building icon is exported as one flattened
+// image (icon + its small "store" accent together), same reasoning as
+// .tile-logos in Module 2 - not meant to be re-laid-out from separate
+// asset files.
+//
+// Figma's desktop row uses justify-content:space-between (uneven gaps) -
+// forced into an evenly-gapped grid instead per explicit instruction,
+// using Bootstrap's .row/.col-md-4 (per standing instruction to prefer
+// Bootstrap grid/spacing for new work) rather than a bespoke flex grid.
+// Centered at every breakpoint (no desktop/mobile alignment flip, unlike
+// 17B). Mobile heading is 48px vs desktop's 40px - kept as Figma's literal
+// value per explicit instruction, not normalized to match desktop.
+// ---------------------------------------------------
+.content-card-value-heading {
+  text-align: center;
+  @include type(2.5rem, 1.4, 600, $color-black); // 40px
+  margin: 0 0 56px; // after the mixin - it sets its own margin:0
+
+  @media (max-width: $mobile-max) {
+    font-size: 3rem; // 48px - Figma's literal mobile value
+  }
+}
+
+.content-card-value-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  img {
+    display: block;
+  }
+}
+
+.content-card-value-col--building { gap: 30px; }
+.content-card-value-col--pin      { gap: 31px; }
+.content-card-value-col--phone    { gap: 7px; }
+
+.content-card-value-caption {
+  margin: 0;
+  @include type(1.25rem, 1.52, 400, $color-black); // 20px
+}
+
+// Figma applies a small manual kerning tweak only to this one caption -
+// preserved exactly rather than applied to all three.
+.content-card-value-col--building .content-card-value-caption {
+  letter-spacing: -0.4px;
 }
