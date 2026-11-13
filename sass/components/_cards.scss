@@ -440,7 +440,85 @@
   mask: url("data:image/svg+xml,%3Csvg width='90.1252' height='64' viewBox='0 0 90.1252 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath id='Vector' d='M19.3125 25.6C17.0433 25.6 14.8968 26.06 12.875 26.78V25.6C12.875 18.54 18.6487 12.8 25.75 12.8C29.3048 12.8 32.1876 9.934 32.1876 6.4C32.1876 2.866 29.3108 0 25.75 0C11.5513 0 0 11.48 0 25.6V44.8C0 55.404 8.64638 64 19.3125 64C29.9787 64 38.6251 55.404 38.6251 44.8C38.6251 34.196 29.9747 25.6 19.3125 25.6ZM70.8126 25.6C68.5434 25.6 66.3969 26.061 64.3751 26.7758V25.6C64.3751 18.54 70.1488 12.8 77.2501 12.8C80.8049 12.8 83.6877 9.934 83.6877 6.4C83.6877 2.866 80.8049 0 77.2501 0C63.0514 0 51.5001 11.484 51.5001 25.6V44.8C51.5001 55.404 60.1465 64 70.8126 64C81.4788 64 90.1252 55.404 90.1252 44.8C90.1252 34.196 81.4748 25.6 70.8126 25.6Z' fill='%2300B4C4'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-// Testimonial A: white, radius 10, padding 40/96, centred
+// Module 12A: full-bleed colored/image band behind the white card below.
+// All 9 of Figma's documented background treatments (Pinnacle Blue is the
+// default below; the other 8 were all mislabeled identically in Figma as
+// "...Color Pinnacle Blue..." copies with their actual fill changed after
+// duplicating - confirmed by inspecting each one's real fill, not its
+// stale layer name).
+.testimonial-section-wrapper {
+  padding: 80px 0;
+  background-color: $color-blue;
+
+  @media (max-width: $mobile-max) {
+    padding: 40px 0;
+  }
+
+  &--light-blue { background-color: $light-blue; }
+  &--bronze     { background-color: $bronze; }
+  &--aqua       { background-color: $aqua; }
+  &--deep       { background-color: $navy; }
+
+  // Matches Figma's stop percentages and colors exactly (angle is off by
+  // ~4deg, Figma export rounding noise) - same order as the shared
+  // $grad-aqua-ramp token, so reused directly.
+  &--aqua-ramp {
+    background: $grad-aqua-ramp;
+  }
+
+  // Figma's own style name for this one is "#283862 -> #0074C4" (navy to
+  // blue) - the opposite order from the shared $grad-blue-ramp token.
+  // Same mismatch already documented in _hero-system.scss; same fix:
+  // override locally rather than flip the shared token other components
+  // rely on.
+  &--blue-ramp {
+    background: linear-gradient(to top right, $navy 0%, $color-blue 100%);
+  }
+
+  // Figma expresses this as a two-stop gradient of the same rgba color
+  // repeated twice - identical to a flat semi-transparent background-color,
+  // and $tint-28 is that exact value already. Same visual result as
+  // Module 17's .content-card-section-wrapper-iceBlue.
+  &--ice {
+    background-color: $tint-28;
+  }
+
+  &--image {
+    position: relative;
+    background-color: $color-white;
+
+    .testimonial-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // Figma layers this image at 88% opacity over a white fill underneath
+      // (washing it out slightly) rather than using the image at full
+      // strength.
+      opacity: 0.88;
+    }
+  }
+}
+
+// Its own max-width + centering (not .site-container's wider clamp-based
+// margins) - same reasoning as .content-card-section etc. position:relative
+// so it paints above .testimonial-bg: a position:absolute sibling paints
+// after normal-flow content regardless of DOM order, so this needs to be
+// a positioned element too for tree order (it comes after in the markup)
+// to determine the stacking instead.
+.testimonial-section {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+// Testimonial A: white, radius 10, padding 40/96, centred. Figma's mobile
+// frame also caps the card at 364px (not full-bleed like desktop) and
+// uses different padding (48/19, not a simple halving of the desktop
+// values) - both added here since nothing else in the codebase uses this
+// class yet to be broken by the correction.
 .testimonial {
   display: flex;
   flex-direction: column;
@@ -451,7 +529,11 @@
   background-color: $color-white;
   border-radius: $radius-testimonial;
 
-  @media (max-width: $mobile-max) { padding: 40px 24px; }
+  @media (max-width: $mobile-max) {
+    max-width: 364px;
+    margin: 0 auto;
+    padding: 48px 19px;
+  }
 
   .testimonial-quote-wrap {
     display: flex;
@@ -460,10 +542,215 @@
     gap: 12px;
   }
 
-  .testimonial-title { @include type(2.25rem, 1.4, 600, $navy); }
-  .testimonial-quote { @include type(1.25rem, 1.52); max-width: 816px; }
-  .testimonial-author { @include type(1rem, 1.52, 700, $navy); }
-  .testimonial-role { @include type(1rem, 1.52, 400, $grey); }
+  .testimonial-title {
+    @include type(2.25rem, 1.4, 600, $navy);
+
+    @media (max-width: $mobile-max) {
+      font-size: 2rem; // 32px
+    }
+  }
+
+  .testimonial-quote { max-width: 816px; }
+}
+
+// Shared between 12A's centered card above and 12B's split layout below -
+// same star-rating dev note applies to both (see 12A's comment for the
+// full reasoning): render real repeated star icons, never a single
+// flattened image.
+.testimonial-rating {
+  display: flex;
+  gap: 4px;
+
+  img {
+    display: block;
+    width: 40px;
+    height: 37px;
+  }
+}
+
+.testimonial-quote { @include type(1.25rem, 1.52); }
+
+// Groups the name + role tightly (Figma: zero gap between them) so an
+// outer gap between [title/rating, quote, attribution] never also lands
+// between the name and its own role line.
+.testimonial-attribution {
+  .testimonial-author { @include type(1rem, 1.52, 700, $navy); margin: 0; }
+  .testimonial-role { @include type(1rem, 1.52, 400, $grey); margin: 0; }
+}
+
+// ---------------------------------------------------
+// Module 12B: two-column split layout - heading + 3 award badges on the
+// left, an ice-tinted quote card on the right. A real structural
+// difference from 12A, not a reskin: left-aligned content throughout
+// (12A centers everything), no nested rating/quote sub-group (flat
+// gap:40 here instead), and a different radius (12px/$radius-tile, not
+// 12A's 10px/$radius-testimonial). No background-theme variants exist
+// for B in Figma (unlike A's 9) - just plain white, so this doesn't reuse
+// .testimonial-section-wrapper (whose default is Pinnacle Blue).
+//
+// The three award badges are official third-party marks (Fortune, People
+// Magazine) - built as fixed, non-editable flattened SVGs (wreath + their
+// real typography baked in as vector paths) rather than a reusable wreath
+// icon with live text, since recreating an official award's specific
+// typography/layout in arbitrary HTML risks misrepresenting the real
+// badge. Figma's own SVG export for these exports corrupted (a huge
+// out-of-viewbox debris path bleeding into the visible area, same issue
+// seen with Module 17D's icons) - cleaned up by hand, keeping the real
+// wreath + text paths Figma did export correctly underneath the junk.
+// Its own breakpoint, not the site-wide $mobile-max (767.98px): the
+// two-column layout was very congested in the 768-991px range, so the
+// stacked/responsive treatment for this section specifically starts at
+// Bootstrap's lg boundary instead.
+$testimonial-split-max: 991.98px;
+
+.testimonial-split-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 78px 16px;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+
+  @media (max-width: $testimonial-split-max) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 36px;
+    padding: 60px 16px;
+  }
+}
+
+.testimonial-split-info {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 36px; // only actually visible on mobile, where align-self:stretch no longer applies against the card's height
+
+  @media (max-width: $testimonial-split-max) {
+    justify-content: flex-start;
+  }
+}
+
+.testimonial-split-heading {
+  margin: 0;
+  max-width: 385px;
+  @include type(2.5rem, 1.4, 600, $navy); // 40px
+
+  @media (max-width: $testimonial-split-max) {
+    max-width: none;
+    font-size: 2rem; // 32px
+    line-height: 1.2;
+  }
+}
+
+.testimonial-awards {
+  display: flex;
+  gap: 16px;
+
+  @media (max-width: $testimonial-split-max) {
+    gap: 19px;
+    // 3 badges + gaps need ~401px, fitting Figma's 430px mobile reference
+    // frame with room to spare - but real phones go much narrower than
+    // that (375px and below), where it doesn't fit. Wrap instead of
+    // overflowing.
+    flex-wrap: wrap;
+  }
+
+  img {
+    display: block;
+    width: 138px;
+    height: 80px;
+
+    @media (max-width: $testimonial-split-max) {
+      width: 121px;
+      height: 72px;
+    }
+  }
+}
+
+// Applied only to the mobile copy of .testimonial-awards (the desktop
+// copy is hidden below md via Bootstrap's d-none/d-md-flex, so this never
+// needs its own media query) - centers the wrapped 2-up-then-1 rows
+// instead of leaving them flush left.
+.testimonial-awards--centered {
+  justify-content: center;
+}
+
+.testimonial-split-card {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 52px 40px 40px;
+  background-color: $tint-28; // tint-matched to 12A's ice variant
+  border-radius: $radius-tile; // 12px
+
+  @media (max-width: $testimonial-split-max) {
+    gap: 26px;
+    padding: 32px 26px;
+    border-radius: 7.8px;
+
+    .testimonial-rating img {
+      width: 26px;
+      height: 24px;
+    }
+
+    .testimonial-quote { font-size: 0.875rem; } // 14px
+
+    .testimonial-attribution {
+      .testimonial-author, .testimonial-role { font-size: 0.75rem; } // 12px
+    }
+  }
+}
+
+// Module 12C: bordered card variant - white background + blue top-border
+// accent + shadow (matching 12A's/Module 17's .content-card chrome)
+// instead of 12B's borderless ice-tint card. Reuses .testimonial-split-card
+// for layout/gap/padding/typography and only overrides the chrome.
+.testimonial-split-card--bordered {
+  position: relative;
+  background-color: $color-white;
+  border-top: 12px solid $color-blue; // Pinnacle Blue (default)
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
+
+  @media (max-width: $testimonial-split-max) {
+    // Figma keeps this card's radius at 12px at mobile, unlike the plain
+    // card's 7.8px scale-down, and the top padding is 4px more than the
+    // plain card's (36px vs 32px) to clear the added border.
+    border-radius: $radius-tile;
+    padding: 36px 26px 32px;
+  }
+
+  // Color options ("Pinnacle Deep"/"Pinnacle Bronze"/"Pinnacle Blue Ramp" in
+  // Figma) - Pinnacle Blue (above) is the default.
+  &.testimonial-split-card--deep   { border-top-color: $navy; }
+  &.testimonial-split-card--bronze { border-top-color: $bronze; }
+
+  // Figma's "Blue Ramp" option is a navy->blue gradient (confirmed via the
+  // design's own gradient token - the Figma->code extraction had flattened
+  // it to solid blue). border-top can't take a gradient directly, so this
+  // removes the border and repaints the same 12px with a pseudo-element
+  // instead, same technique as .content-card--gradient.
+  &.testimonial-split-card--blue-ramp {
+    border-top: 0;
+    padding-top: 64px; // 52px content padding + the 12px the border no longer reserves
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: linear-gradient(to right, $navy, $color-blue);
+      border-radius: $radius-tile $radius-tile 0 0;
+    }
+
+    @media (max-width: $testimonial-split-max) {
+      padding-top: 48px; // 36px + 12px
+    }
+  }
 }
 
 // Step marker (Module 15)

@@ -1712,7 +1712,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 16px;
-  background-image: url("assets/images/hero-mobile-bg.jpg");
+  background-image: url("../images/hero-mobile-bg.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -1724,7 +1724,7 @@
     justify-content: space-between;
     padding-left: 80px;
     padding-right: calc(50cqw - 560px);
-    background-image: url("assets/images/hero-bg.jpg");
+    background-image: url("../images/hero-bg.jpg");
     background-size: cover;
     background-position: center top;
   }
@@ -2329,7 +2329,7 @@
     clip-path: polygon(0 0, 0 100%, 70% 100%, 100% 0);
   }
   .hero-syn--d .hero-syn-cd-panel {
-    flex: 0 0 56.5%;
+    flex: 0 0 45.5%;
   }
   .hero-syn--d .hero-syn-cd-panel::before {
     clip-path: polygon(0 0, 0 100%, 67% 100%, 100% 0);
@@ -2393,7 +2393,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 480px;
+  max-width: 620px;
   padding: 60px 24px 60px clamp(24px, 10vw, 160px);
 }
 @media (max-width: 767.98px) {

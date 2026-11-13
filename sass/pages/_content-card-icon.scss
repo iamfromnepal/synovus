@@ -302,3 +302,95 @@
 .content-card-value-col--building .content-card-value-caption {
   letter-spacing: -0.4px;
 }
+
+// ---------------------------------------------------
+// 17D: Brand D - same card "family" as 17A (.content-card's border-top
+// accent, radius, shadow, and --bronze/--navy/--gradient tip-color
+// modifiers all apply here too - Figma's own "added rows + colors"
+// variant confirms Brand D documents the same tip-color options), but
+// tighter: 4-up instead of 3, smaller icon, different padding/gap.
+// Built with Bootstrap's .row/.col-md-3 (4 divides evenly into Bootstrap's
+// 12-column grid, so no custom flex-basis math is needed here, unlike
+// 17A's 3-up row) - the 32px gap is a real Figma value that doesn't land
+// on Bootstrap's gutter scale, so it's set via the grid's own --bs-gutter
+// custom properties rather than fought with a g-* utility class.
+//
+// No subtitle at all (unlike 17A/17B) - just a bare heading. Heading is
+// left-aligned desktop, centered mobile (same flip pattern as 17B).
+// Icon color never changes with the tip-color modifiers (confirmed in
+// Figma's own color-variant rows - the icon stays Pinnacle Blue
+// regardless of border color), so the icon SVGs hardcode their color
+// directly rather than using currentColor - an <img src="*.svg"> can't
+// inherit CSS color into an externally referenced SVG anyway.
+//
+// Figma's card shadow is inconsistent with itself: card 1 of 4 uses
+// $shadow-card's exact value (0 8px 28px) plus overflow-clip, the other
+// 3 use the 17A shadow (0 8px 14px) with no overflow-clip - treated as a
+// Figma authoring slip and unified to the majority (17A's) value.
+//
+// Mobile frame is scaled ~1.567x off desktop for the card itself (border
+// width, icon size, title/description font size) - same kind of uniform
+// scale artifact as 17A's ~1.122x, just a different factor - normalized
+// back to the clean desktop values. The heading's own mobile size (36px
+// vs desktop's 40px) does NOT fit that ratio and is kept as Figma's
+// literal value per explicit instruction.
+// ---------------------------------------------------
+.content-card-stat-heading {
+  text-align: left;
+  @include type(2.5rem, 1.4, 600, $navy); // 40px
+  margin: 0 0 30px;
+
+  @media (max-width: $mobile-max) {
+    text-align: center;
+    font-size: 2.25rem; // 36px - Figma's literal mobile value
+  }
+}
+
+// Compound selector (not just .content-card-stat-row alone): Bootstrap's
+// own .row rule sets these same custom properties with equal specificity
+// (one class) but compiles later (bootstrap imports after pages in
+// main.scss), so a same-specificity override here would silently lose.
+.row.content-card-stat-row {
+  --bs-gutter-x: 32px;
+  --bs-gutter-y: 32px;
+  // align-items's initial value ("normal") should behave as stretch on a
+  // flex container, but the .col-* divs weren't actually ending up equal
+  // height in testing - set explicitly rather than rely on that default.
+  align-items: stretch;
+}
+
+// Modifier on top of .content-card - same border-top/radius/shadow/bg,
+// just tighter padding and gap. Figma's description color here is
+// $color-black, not the $grey that .content-card's own .body override
+// sets for 17A - overridden back since this rule's equal specificity
+// wins by coming later in the file.
+//
+// height:100% - Bootstrap's .row stretches the .col-* div itself to
+// match its tallest sibling (align-items:stretch is the flex default),
+// but .content-card is the column's CHILD, not a direct flex item of
+// .row, so it doesn't inherit that stretch on its own; this makes it
+// fill the now-definite-height column instead of sizing to its own
+// content (so a 2-line title doesn't make one card taller than the rest).
+.content-card--compact {
+  gap: 12px;
+  padding: 48px 36px 36px;
+  height: 100%;
+
+  .body {
+    color: $color-black;
+  }
+}
+
+// .content-card--gradient's own padding-top (56px) compensates for its
+// own 44px content padding + the 12px border it removes - wrong here,
+// since --compact's own content padding-top is 48px, not 44px. Compound
+// selector so this wins over both single-class rules regardless of
+// source order (same reasoning as .row.content-card-stat-row above).
+.content-card--compact.content-card--gradient {
+  padding-top: 60px; // 48px + the 12px the border no longer reserves
+}
+
+.content-card-icon--sm {
+  width: 36px;
+  height: 36px;
+}
