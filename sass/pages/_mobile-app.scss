@@ -1,0 +1,649 @@
+// ===========================================
+// MODULE 7: Mobile App Callout (Med Priority). Figma: "No such module
+// exists currently on Synovus.com so this would be an entirely new
+// module." Two families:
+// - 7A: full-bleed photo background, 3-column desktop (text | phone |
+//   benefit list)
+// - 7B: solid/gradient color background, 2-column desktop (text + QR
+//   download | phone-and-laptop image), no benefit list
+//
+// Figma's own mobile frames for A and B are content-IDENTICAL (same
+// heading, same 3-item benefit list, same download-badges footer, same
+// phone mockup) - B's QR code (pointless once you're already on the
+// phone) is swapped for A's benefit list/badges instead. So both
+// families share every sub-piece below (.mobileapp-item/-items/
+// -download/-phone); only the two desktop grids and 7B's QR block are
+// family-specific.
+// ===========================================
+
+// Both 7A's grid and 7B's flex row stack to a single column a full
+// breakpoint before the shared $mobile-max (768px) - their fixed-width
+// side columns/device image otherwise squeeze the remaining flexible
+// column toward 0 on mid-width (tablet) viewports instead of reflowing.
+// Same "needs more room than a typical text section" reasoning as Hero
+// 1A's own early $hero-a-stack-max.
+$mobileapp-stack-max: 991px;
+
+// ---------------------------------------------------
+// Shared pieces
+// ---------------------------------------------------
+.mobileapp-items {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.mobileapp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileapp-item-icon {
+  width: 40px;
+  height: 40px;
+}
+
+// Separate from .mobileapp-item's own 16px gap (icon-to-text-group) -
+// heading-to-body needs its own tighter 8px, which a single flat gap on
+// the item couldn't give both pairs at once.
+.mobileapp-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// A1's own two-tone default: heading reads as a light-blue accent,
+// distinct from the plain-white body.
+.mobileapp-item-heading {
+  margin: 0;
+  @include type(20px, 1.2, $font-weight-bold, $light-blue);
+}
+
+.mobileapp-item-body {
+  @include type(16px, 1.52, $font-weight-normal, $color-white);
+}
+
+// A2/A3's own treatment: a solid left-border accent takes over the "pop"
+// role instead, so heading+body both just inherit one flat color here
+// (set by the --contrast/--light modifiers below) rather than keeping
+// A1's two-tone heading/body split.
+.mobileapp-item--bordered {
+  border-left: 4px solid;
+  padding-left: 24px;
+
+  .mobileapp-item-heading,
+  .mobileapp-item-body {
+    color: inherit;
+  }
+}
+
+.mobileapp-download {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileapp-download-label {
+  margin: 0;
+  @include type(20px, 1.2, $font-weight-bold, $color-white);
+  text-transform: uppercase;
+}
+
+.mobileapp-badges {
+  display: flex;
+  gap: 10px;
+}
+
+.mobileapp-badges img {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+
+.mobileapp-phone {
+  grid-area: phone;
+  width: 100%;
+  max-width: 312px;
+  height: auto;
+  justify-self: center;
+}
+
+// Inline link inside the body paragraph ("enrolling in Pinnacle Online
+// Banking") - bold/underlined like .link-inline, inheriting the
+// paragraph's own color by default (A2/A3 both do this). A1 is the one
+// exception that pins it to Sky regardless of the body's white color -
+// that's .mobileapp-link--sky below, applied only on that instance.
+.mobileapp-link {
+  color: inherit;
+  font-weight: $font-weight-bold;
+  text-decoration: underline;
+
+  &:hover { color: inherit; }
+}
+
+.mobileapp-link--sky {
+  color: $sky;
+
+  &:hover { color: $sky; }
+}
+
+// ---------------------------------------------------
+// 7A: photo background, 3-column grid (text+footer | phone | items).
+// Grid (not flex+order) because desktop groups [heading/body] above
+// [footer] in one column while mobile needs items and footer to land
+// BETWEEN them - that 2D rearrangement is what grid-template-areas is
+// for; Figma itself used raw absolute positioning for this, which this
+// recreates responsively instead of copying literally.
+//
+// Outer element only carries the full-bleed background + vertical
+// padding, same outer/inner split as .belt-strap/.belt-strap-inner - a
+// fixed desktop side padding here (previously 160px) doesn't scale down,
+// so it was crushing the grid's own columns on mid-width viewports well
+// before a stack breakpoint could kick in. Horizontal gutter is
+// .mobileapp-a-inner's job instead (max-width + the site's usual 16px),
+// not a fixed padding on the full-bleed band itself.
+// ---------------------------------------------------
+// z-index: 0 (with position: relative) establishes this element's own
+// local stacking context, so the pinstripe decoration's negative z-index
+// below is only compared against ITS siblings here (text/items/phone)
+// and tucks behind them - without this, a positioned descendant with a
+// negative z-index escapes to the nearest ancestor stacking context
+// instead, which could sink it behind the whole section (or the page
+// content above it) rather than just behind this section's own content.
+.mobileapp-a {
+  position: relative;
+  z-index: 0;
+  padding: 100px 0;
+  background: $grad-blue-ramp;
+  overflow: hidden;
+
+  @media (max-width: $mobile-max) {
+    padding: 64px 0;
+  }
+}
+
+.mobileapp-a-inner {
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  grid-template-areas:
+    "text   phone items"
+    "footer phone items";
+  align-items: center;
+  column-gap: 84px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  // Stacks a full breakpoint early ($mobileapp-stack-max, not the shared
+  // $mobile-max) - the fixed 320px side columns leave the middle phone
+  // column's 1fr track too little room well above the real mobile
+  // breakpoint, squeezing it toward 0 instead of reflowing.
+  @media (max-width: $mobileapp-stack-max) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "text" "items" "footer" "phone";
+    row-gap: 40px;
+  }
+}
+
+// A1's own decoration (not shown on the --contrast/--light variants, which
+// draw their own corner wedges instead): a cluster of 6 thin parallel
+// diagonal lines. Built as a small unrotated box with plain vertical
+// stripes (repeating-linear-gradient(90deg...) - easy to reason about:
+// box width = 6 stripes x 24px true spacing), then the whole box is
+// rotated into place - far more predictable than hand-deriving a single
+// angled gradient's own pixel-offset stops. Measured directly off the
+// Figma export: stripes are 3px wide, 24.08px apart (true/perpendicular,
+// not the ~28px seen along a horizontal scanline), at 32deg off vertical,
+// color #0E60A0 (not a named token - also the literal fill under the
+// FPO watermark elsewhere in this module, likely just this file's own
+// one-off accent swatch).
+.mobileapp-a:not(.mobileapp-a--contrast):not(.mobileapp-a--light)::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -20%;
+  left: 66%;
+  width: 150px;
+  height: 180%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #0e60a0 0,
+    #0e60a0 3px,
+    transparent 3px,
+    transparent 24.08px
+  );
+  transform: rotate(32deg);
+  transform-origin: top left;
+  pointer-events: none;
+
+  // Once the grid stacks (matches .mobileapp-a-inner's own early
+  // breakpoint, not the shared $mobile-max): checked directly against
+  // Figma's own mobile export (not just guessed) - it does NOT repeat
+  // this decoration up near the heading. It's the SAME diagonal band,
+  // just positioned lower: passing behind the phone image's right edge,
+  // then emerging fully at the bottom-left below it. Anchoring from the
+  // bottom (not the top) keeps that bottom-left emergence point pinned
+  // near the phone regardless of how much text/items content pushes the
+  // phone down the page; transform-origin flips to bottom left to match
+  // (the box now extends UP-and-right from a fixed bottom-left pivot,
+  // instead of down-and-left from a fixed top-left one).
+  //
+  // height still scales with viewport WIDTH, not the box's own height -
+  // a 32deg-off-vertical band drifts sideways by sin(32deg) of its own
+  // length as it extends, so a much taller stacked column would just
+  // push more of the band off-screen, not run it further up the section.
+  // It stays visible (not hidden) because it already sits behind all
+  // content (z-index: -1 above), so it can't interfere with the stacked
+  // column either way.
+  // height needs to be tall enough that the far (upper) end actually
+  // drifts past the right edge of the viewport and disappears there -
+  // at left:15%, the band's horizontal position only reaches 100vw
+  // (the right edge) once height passes ~160vw ((1 - 0.15) / sin(32deg)
+  // = 160.4vw), so 120vw was falling short and leaving a visible,
+  // floating cut-off end mid-section instead of running off the edge.
+  // 190vw clears that with room to spare.
+  @media (max-width: $mobileapp-stack-max) {
+    top: auto;
+    bottom: -30px;
+    left: 15%;
+    height: 190vw;
+    transform-origin: bottom left;
+  }
+}
+
+.mobileapp-a-text { grid-area: text; }
+.mobileapp-a-items { grid-area: items; }
+.mobileapp-a-footer { grid-area: footer; padding-top: 20px; }
+
+.mobileapp-a-heading {
+  margin: 0 0 20px;
+  @include type(40px, 1.4, $font-weight-medium, $light-blue);
+
+  @media (max-width: $mobile-max) {
+    font-size: 32px;
+  }
+}
+
+.mobileapp-a-body {
+  @include type(20px, 1.4, $font-weight-normal, $color-white);
+
+  @media (max-width: $mobile-max) {
+    font-size: 18px;
+  }
+}
+
+// A2: white heading (vs A1's light-blue accent), bordered items in Sky.
+// The background is the same base gradient as A1, with solid-color
+// triangular corner cuts (not photos) - re-measured off the Figma export
+// by sampling actual pixel values (not eyeballing the screenshot): BOTH
+// corners are two nested triangles sharing the same corner vertex, a
+// Blue one behind (~32%/17%) plus a smaller Sky one in front (~25.5%/17%)
+// - not one flat wedge each. Two different hypotenuse slopes at the same
+// height can't come from one clip-path + gradient, and a single element
+// only gets 2 generated shapes (::before/::after) - 4 shapes total needs
+// 2 of them to be real elements (.mobileapp-a-wedge-bg/-fg in the
+// markup). Paint order (pseudo ::before always first, then real
+// children in DOM order, then ::after always last) is what puts each
+// corner's Sky triangle in front of its own Blue one:
+//   ::before (TL Blue) -> .mobileapp-a-wedge-fg (TL Sky, real child so
+//   it paints after ::before) -> .mobileapp-a-wedge-bg (BR Blue, real
+//   child) -> .mobileapp-a-inner (real content) -> ::after (BR Sky,
+//   always last, paints after .mobileapp-a-wedge-bg).
+.mobileapp-a--contrast {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    width: 32%;
+    height: 17%;
+    background-color: $color-blue;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  // Sky foreground triangle - paints after .mobileapp-a-wedge-bg in DOM
+  // order, so it correctly layers on top of that Blue backing triangle.
+  &::after {
+    bottom: 0;
+    right: 0;
+    width: 25.5%;
+    height: 17%;
+    background-color: $sky;
+    clip-path: polygon(100% 100%, 100% 0, 0 100%);
+  }
+
+  // Desktop's height:17% is 17% of a short, wide box - once the grid
+  // stacks (same early $mobileapp-stack-max as .mobileapp-a-inner) the
+  // same box is narrow and very tall, so that percentage would balloon
+  // into a huge wedge covering the heading. Fixed px corner accents
+  // instead, same "mobile gets its own size, not a scaled-down desktop
+  // one" rule as Hero 1C/1D's .hero-cd-panel.
+  @media (max-width: $mobileapp-stack-max) {
+    &::before,
+    &::after,
+    .mobileapp-a-wedge-bg,
+    .mobileapp-a-wedge-fg {
+      width: 140px;
+      height: 70px;
+    }
+  }
+
+  .mobileapp-a-heading { color: $color-white; }
+  .mobileapp-item--bordered { color: $color-white; border-left-color: $sky; }
+}
+
+// Top-left Sky foreground triangle (sits in front of ::before's Blue).
+.mobileapp-a-wedge-fg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25.5%;
+  height: 17%;
+  background-color: $sky;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  pointer-events: none;
+}
+
+// Bottom-right Blue backing triangle (sits behind ::after's Sky).
+.mobileapp-a-wedge-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32%;
+  height: 17%;
+  background-color: $color-blue;
+  clip-path: polygon(100% 100%, 100% 0, 0 100%);
+  pointer-events: none;
+}
+
+// A3: pale photo at low opacity over a white base. The gradient+url()
+// background itself is set inline per-instance (same as A1/A2's own
+// background-image), not here - a relative url() inside a custom
+// property resolves against the STYLESHEET that consumes it via var(),
+// not the HTML document that set it, which silently breaks the path.
+.mobileapp-a--light {
+  .mobileapp-a-heading { color: $navy; }
+  .mobileapp-a-body { color: $color-black; }
+  .mobileapp-download-label { color: $color-black; }
+  .mobileapp-item--bordered { color: $color-black; border-left-color: $navy; }
+}
+
+// ---------------------------------------------------
+// 7B: solid/gradient background, simple 2-column flex (text+QR | device
+// image) on desktop. On mobile it swaps to the SAME 4-area stack as 7A
+// (text/items/footer/phone) - the QR block is desktop-only, the
+// items/footer blocks are mobile-only, toggled with Bootstrap's d-*
+// utilities in the markup rather than duplicating this component's CSS.
+//
+// Same outer/inner split as 7A: outer only carries the full-bleed
+// background + vertical padding, .mobileapp-b-inner carries the flex row
+// + horizontal gutter (max-width + the site's usual 16px, not a fixed
+// 160px desktop side padding). The device image (flex: none, up to
+// 636px) would otherwise starve the text column of room well before the
+// real mobile breakpoint, so the row-to-column switch moves to the same
+// early $mobileapp-stack-max as 7A's grid.
+// ---------------------------------------------------
+// position/z-index/overflow are only load-bearing for the --lines/
+// --wedges decorated variants below (same stacking-context + clipping
+// reasoning as .mobileapp-a) - harmless on the plain color/gradient
+// variants, which have no absolutely-positioned decoration to contain.
+.mobileapp-b {
+  position: relative;
+  z-index: 0;
+  padding: 120px 0;
+  overflow: hidden;
+
+  @media (max-width: $mobile-max) {
+    padding: 64px 0;
+  }
+}
+
+.mobileapp-b-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  // align-items: center (not stretch) - once stacked, every direct flex
+  // item below (heading, device image, qr/items, download) is centered
+  // as its own block instead of stretching edge-to-edge.
+  @media (max-width: $mobileapp-stack-max) {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+  }
+}
+
+// Desktop-only grouping wrapper (keeps heading+QR together as one flex
+// column beside the device image). Once stacked it collapses via
+// display:contents, so ITS children (heading/qr/items/download) become
+// direct flex items of .mobileapp-b-inner instead of staying nested -
+// that's what lets the device image carry its own `order` BETWEEN the
+// heading and the qr/items block below, giving the mobile order Figma
+// calls for (title, device, supporting content) instead of the DOM
+// order (title+qr/items/download, then device) flex-direction:column
+// would otherwise produce for free.
+.mobileapp-b-text {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  @media (max-width: $mobile-max) {
+    gap: 40px;
+  }
+
+  @media (max-width: $mobileapp-stack-max) {
+    display: contents;
+  }
+}
+
+.mobileapp-b-heading {
+  margin: 0;
+  max-width: 400px;
+  @include type(40px, 1.4, $font-weight-medium, $light-blue);
+
+  @media (max-width: $mobile-max) {
+    max-width: none;
+    font-size: 32px;
+  }
+}
+
+.mobileapp-b-qr {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  // Figma's mobile frames for this block stack it text-above/QR-below
+  // (not desktop's icon-beside-text row) - column-reverse flips the
+  // existing DOM order (img first, text second) to put the text on top
+  // without duplicating markup for the two breakpoints. Inert on the 5
+  // plain color variants, which still hide this block below md (d-none
+  // d-md-flex in the markup) in favor of their own items-list swap.
+  @media (max-width: $mobileapp-stack-max) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+}
+
+.mobileapp-b-qr img {
+  display: block;
+  width: 96px;
+  height: auto;
+  flex: none;
+}
+
+.mobileapp-b-qr-label {
+  margin: 0;
+  @include type(20px, 1.2, $font-weight-bold, $color-white);
+  text-transform: uppercase;
+}
+
+.mobileapp-b-qr-sub {
+  @include type(16px, 1.52, $font-weight-normal, $color-white);
+}
+
+.mobileapp-b-device {
+  display: block;
+  flex: none;
+  width: 100%;
+  max-width: 636px;
+  height: auto;
+  filter: drop-shadow(0 34px 39px rgba(0, 0, 0, 0.25));
+}
+
+// Decorated variant: diagonal-line accent, same cluster/technique as
+// .mobileapp-a's own A1 decoration (a small unrotated box of vertical
+// stripes, rotated into place) - re-measured against THIS family's own
+// Figma frame (1440x625, shorter/wider than 7A's 1440x800) rather than
+// reusing 7A's top/left numbers outright, since they're tied to this
+// box's own proportions. Stacked-breakpoint behavior (bottom-anchored,
+// vw-scaled height) ports over unchanged - that reasoning was about the
+// 32deg angle's sideways drift vs. viewport width, not about 7A
+// specifically, so it applies the same way here.
+.mobileapp-b--lines::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -20%;
+  left: 60%;
+  width: 150px;
+  height: 180%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #0e60a0 0,
+    #0e60a0 3px,
+    transparent 3px,
+    transparent 24.08px
+  );
+  transform: rotate(32deg);
+  transform-origin: top left;
+  pointer-events: none;
+
+  @media (max-width: $mobileapp-stack-max) {
+    top: auto;
+    bottom: -30px;
+    left: 15%;
+    height: 190vw;
+    transform-origin: bottom left;
+  }
+}
+
+// Decorated variant: the same Blue-behind/Sky-in-front nested corner
+// wedges as .mobileapp-a--contrast (see that comment for why 2 of the 4
+// triangles need real elements - .mobileapp-b-wedge-bg/-fg below - since
+// ::before/::after alone only give 2 generated shapes). Height is 20%
+// here, not 7A's 17% - sampled directly against this family's own
+// shorter box (1440x625), where the same absolute wedge size reads as a
+// taller percentage than on 7A's taller one.
+.mobileapp-b--wedges {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    width: 32%;
+    height: 20%;
+    background-color: $color-blue;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    width: 25.5%;
+    height: 20%;
+    background-color: $sky;
+    clip-path: polygon(100% 100%, 100% 0, 0 100%);
+  }
+
+  // Same "mobile gets a fixed size, not a scaled-down desktop one" rule
+  // as .mobileapp-a--contrast - percentage height would balloon once the
+  // box is narrow and tall instead of short and wide.
+  @media (max-width: $mobileapp-stack-max) {
+    &::before,
+    &::after,
+    .mobileapp-b-wedge-bg,
+    .mobileapp-b-wedge-fg {
+      width: 140px;
+      height: 70px;
+    }
+  }
+}
+
+.mobileapp-b-wedge-fg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25.5%;
+  height: 20%;
+  background-color: $sky;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  pointer-events: none;
+}
+
+.mobileapp-b-wedge-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32%;
+  height: 20%;
+  background-color: $color-blue;
+  clip-path: polygon(100% 100%, 100% 0, 0 100%);
+  pointer-events: none;
+}
+
+// Stacked order + centering (see .mobileapp-b-text's display:contents
+// above for why heading/qr/items/download can each take an `order` here
+// as if they were .mobileapp-b-inner's own direct children). .mobileapp-
+// items/-item/-download are shared with 7A, so every selector below is
+// scoped under .mobileapp-b - 7A keeps its own left-aligned, items-
+// before-phone order unchanged.
+@media (max-width: $mobileapp-stack-max) {
+  .mobileapp-b-heading { order: 1; }
+  .mobileapp-b-device { order: 2; }
+  .mobileapp-b-qr { order: 3; }
+  .mobileapp-b .mobileapp-items { order: 3; }
+  .mobileapp-b .mobileapp-download { order: 4; }
+
+  .mobileapp-b .mobileapp-items,
+  .mobileapp-b .mobileapp-item,
+  .mobileapp-b .mobileapp-download {
+    align-items: center;
+  }
+
+  .mobileapp-b-heading,
+  .mobileapp-b-qr-label,
+  .mobileapp-b-qr-sub,
+  .mobileapp-b .mobileapp-item-heading,
+  .mobileapp-b .mobileapp-item-body,
+  .mobileapp-b .mobileapp-download-label {
+    text-align: center;
+  }
+}
+
+// Light backgrounds (Ice/White/White Ramp) flip to dark text, same
+// pairing used throughout (e.g. .belt-strap--light/--white).
+.mobileapp-b--light {
+  .mobileapp-b-heading,
+  .mobileapp-item-heading { color: $navy; }
+
+  .mobileapp-b-qr-label,
+  .mobileapp-b-qr-sub,
+  .mobileapp-item-body,
+  .mobileapp-download-label,
+  .mobileapp-a-body { color: $color-black; }
+}

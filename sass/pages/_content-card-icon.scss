@@ -135,6 +135,8 @@
 // the other documented solid options.
 .content-card--bronze { border-top-color: $bronze; }
 .content-card--navy   { border-top-color: $navy; }
+.content-card--baby   { border-top-color: $light-blue; } // Module 5B's default tip
+.content-card--aqua   { border-top-color: $aqua; }
 
 // Figma's 4th option is a left-to-right navy->blue gradient ("Blue Ramp"),
 // confirmed by zooming into the swatch - the Figma->code extraction had

@@ -1,0 +1,252 @@
+// ===========================================
+// MODULE 4: Belt Straps (Med Priority). Full-bleed promo band, two
+// families sharing one section ("4 - Belt Straps" in Figma):
+// - .belt-strap: floating product-card images + heading/body + button
+// - .belt-icon-promo: single icon + heading/body + button, single row
+//
+// Figma dev note: "background & text color...should be able to adjust
+// colors to created different modules" - both families ship with 3 bg
+// options (gradient/light/white) rather than one fixed color, same
+// flexible-modifier approach as .content-card's tip colors.
+// ===========================================
+
+// ---------------------------------------------------
+// .belt-strap (card-image family)
+// ---------------------------------------------------
+// Full-bleed color band - only vertical padding lives here, so the
+// background reaches the viewport edge at any width. Horizontal gutter is
+// .belt-strap-inner's job (max-width + small padding, not a fixed desktop
+// side padding that would crush the content on mid-width viewports).
+.belt-strap {
+  padding: 40px 0;
+  background: $grad-blue-ramp;
+
+  @media (max-width: $mobile-max) {
+    padding: 48px 0;
+  }
+}
+
+// `background` (the shorthand, not background-color): the base rule sets
+// the gradient via the `background` shorthand, which also sets
+// background-image - a background-color override alone would leave that
+// image layer painting over it, so these re-set the whole shorthand.
+.belt-strap--light { background: $light-blue; }
+.belt-strap--white { background: $color-white; }
+
+.belt-strap-inner {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  @media (max-width: $mobile-max) {
+    // column-reverse (not a second markup copy): desktop's DOM order is
+    // [media, content] to put the cards on the left without needing
+    // flex-direction tricks there, and column-reverse flips that to
+    // content-first/media-last on mobile, matching Figma's mobile frames.
+    flex-direction: column-reverse;
+    gap: 40px;
+    padding: 0 24px;
+  }
+}
+
+.belt-strap-media {
+  position: relative;
+  flex: none;
+  width: 640px;
+  height: 308px;
+
+  @media (max-width: $mobile-max) {
+    width: 100%;
+    max-width: 398px;
+    height: 231px;
+    align-self: center;
+  }
+}
+
+// Both cards share the same 380:240 (~1.583:1) aspect ratio in Figma, so
+// one base rule sizes either card - only position differs per card.
+.belt-strap-card {
+  position: absolute;
+  width: 380px;
+  aspect-ratio: 380 / 240;
+  border-radius: $radius-tile;
+  object-fit: cover;
+
+  @media (max-width: $mobile-max) {
+    width: 289px;
+  }
+}
+
+// Platinum sits bottom-left, World overlaps on top of it offset up-right
+// (exact offsets from Figma, expressed relative to .belt-strap-media's
+// own box rather than the 1440px desktop frame).
+.belt-strap-card--platinum {
+  left: 0;
+  top: 68px;
+  border: 1px solid $placeholder;
+
+  @media (max-width: $mobile-max) {
+    top: 48px;
+  }
+}
+
+.belt-strap-card--world {
+  left: 260px;
+  top: 0;
+
+  @media (max-width: $mobile-max) {
+    left: 109px;
+  }
+}
+
+// Figma's own placeholder for a third, not-yet-designed graphic slot
+// layered over part of the two real card photos - same "FPO" convention
+// as .content-block-fpo, just boxed/tinted here instead of bare text on
+// a photo, so it reads as its own slot rather than a watermark on the
+// existing cards. The two stacked tint layers (and the backdrop-blur) are
+// Figma's own construction, not a reduction - background-color alone
+// can't stack two translucent layers, only background-image can.
+.belt-strap-fpo {
+  position: absolute;
+  left: 190px;
+  top: 41px;
+  width: 281px;
+  height: 194px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+    linear-gradient(rgba(14, 96, 160, 0.8), rgba(14, 96, 160, 0.8));
+  pointer-events: none;
+  @include type(64px, 1.52, 700, $color-white);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: $mobile-max) {
+    left: 114px;
+    top: 41px;
+    width: 144px;
+    height: 99px;
+    font-size: 32px;
+  }
+}
+
+.belt-strap-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 1 0;
+}
+
+.belt-strap-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.belt-strap-heading {
+  @include type(32px, 1.2, $font-weight-medium, $light-blue);
+
+  @media (max-width: $mobile-max) {
+    font-size: 28px;
+  }
+}
+
+.belt-strap-body {
+  @include type(16px, 1.52, $font-weight-normal, $color-white);
+}
+
+// Light/white variants both use dark-on-light text (same pairing as
+// .content-card's own bg/text rule), so one override covers both.
+.belt-strap--light,
+.belt-strap--white {
+  .belt-strap-body { color: $color-black; }
+}
+
+.belt-strap--light .belt-strap-heading { color: $color-black; }
+.belt-strap--white .belt-strap-heading { color: $navy; }
+
+// ---------------------------------------------------
+// .belt-icon-promo (icon family - "Belt B" in Figma)
+// ---------------------------------------------------
+// Same full-bleed-band + constrained-inner split as .belt-strap above.
+.belt-icon-promo {
+  padding: 40px 0;
+  background: $grad-blue-ramp;
+
+  @media (max-width: $mobile-max) {
+    padding: 60px 0 100px;
+  }
+}
+
+.belt-icon-promo--light { background: $light-blue; }
+.belt-icon-promo--white { background: $grad-white-ramp; }
+
+.belt-icon-promo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    gap: 28px;
+    padding: 0 60px;
+  }
+}
+
+.belt-icon-promo-main {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+.belt-icon-promo-icon {
+  width: 128px;
+  height: auto;
+  flex: none;
+
+  @media (max-width: $mobile-max) {
+    width: 100px;
+  }
+}
+
+.belt-icon-promo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.belt-icon-promo-heading {
+  @include type(32px, 1.4, $font-weight-medium, $light-blue);
+
+  @media (max-width: $mobile-max) {
+    font-size: 28px;
+  }
+}
+
+.belt-icon-promo-body {
+  @include type(16px, 1.52, $font-weight-normal, $color-white);
+}
+
+.belt-icon-promo--light,
+.belt-icon-promo--white {
+  .belt-icon-promo-body { color: $color-black; }
+}
+
+.belt-icon-promo--light .belt-icon-promo-heading { color: $color-black; }
+.belt-icon-promo--white .belt-icon-promo-heading { color: $navy; }

@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="82" height="69.0002" viewBox="0 0 82 69.0002" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Container">
+<path id="Vector" d="M11 57.69V19.23L36.7368 0L62.4737 19.23V57.69H43.171V35.255H30.3026V57.69H11Z" fill="url(#paint0_linear_0_8)"/>
+<circle id="Ellipse 10" cx="65.152" cy="53.2208" r="14.2034" fill="#00B4C4" stroke-width="3.15195" stroke="white"/>
+<path id="Line 21" d="M63.7353 57.1391L62.9755 57.9766L63.8367 58.7614L64.5936 57.8764L63.7353 57.1391ZM71.6858 49.5822C72.0917 49.1076 72.0365 48.3927 71.5625 47.9855C71.0885 47.5783 70.3752 47.633 69.9693 48.1077L70.8276 48.845L71.6858 49.5822ZM60.1613 52.3521C59.6994 51.9312 58.9848 51.9649 58.5652 52.4274C58.1456 52.89 58.1799 53.6062 58.6417 54.0271L59.4015 53.1896L60.1613 52.3521ZM63.7353 57.1391L64.5936 57.8764L71.6858 49.5822L70.8276 48.845L69.9693 48.1077L62.8771 56.4018L63.7353 57.1391ZM63.7353 57.1391L64.4951 56.3016L60.1613 52.3521L59.4015 53.1896L58.6417 54.0271L62.9755 57.9766L63.7353 57.1391Z" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_8" x1="46.9634" y1="17.1696" x2="-12.573" y2="83.1067" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0074C4"/>
+<stop offset="1" stop-color="#00B4C4"/>
+</linearGradient>
+</defs>
+</svg>

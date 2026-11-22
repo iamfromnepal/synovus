@@ -25,6 +25,25 @@
       margin-top: 200px;
     }
 
+    /* Dev-only scaffolding label identifying which module/variant each
+       block below it is - catalog-page chrome only, never shipped to a
+       real page, so it lives here instead of main.scss. A dark pill with
+       white text (not plain colored text) so it stays legible whether the
+       block underneath it is white, navy, a photo, or a brand gradient. */
+    .component-label {
+      display: inline-block;
+      margin: 0 0 16px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background-color: rgba(21, 21, 21, 0.75);
+    }
+
     /* The live homepage hides .resources-row below 767.98px because
        its own mobile slider takes over instead (see homepage.html) - this
        page has no slider to hand off to, so keep the row visible
@@ -594,6 +613,7 @@
 
       <!-- Hero with Login (Module A) -->
       <div class="component-block" id="hero">
+        <p class="component-label">Module A — Hero with Login</p>
         <section class="hero-module-a">
           <div class="hero-a-inner">
             <div class="hero-a-panel">
@@ -663,6 +683,7 @@
 
       <!-- Brand Identity: Merger Hub banner -->
       <div class="component-block" id="merger-hub">
+        <p class="component-label">Brand Identity — Merger Hub</p>
         <section class="brand-identity-merger">
           <img src="../wwwroot/assets/images/merger-hub-photo.png" class="brand-identity-merger-photo"
             alt="Pinnacle and Synovus leadership ringing the opening bell at the New York Stock Exchange">
@@ -682,6 +703,7 @@
 
       <!-- Brand Identity: Why Pinnacle stat counters -->
       <div class="component-block" id="why-pinnacle">
+        <p class="component-label">Brand Identity — Why Pinnacle</p>
         <section class="brand-identity-why">
           <div class="brand-identity-why-text">
             <div class="brand-identity-why-text-wrapper">
@@ -714,6 +736,7 @@
 
       <!-- Meet Our Community parallax carousel (Module D) -->
       <div class="component-block" id="community">
+        <p class="component-label">Module D — Meet Our Community</p>
         <section class="stats-parallax">
           <div class="site-container">
             <h2 class="section-heading-title stats-parallax-heading">Meet Our Community</h2>
@@ -781,6 +804,7 @@
 
       <!-- News Ideas carousel -->
       <div class="component-block" id="news-ideas">
+        <p class="component-label">News Ideas</p>
         <section class="news-ideas">
           <div class="site-container">
             <h2 class="section-heading-title news-ideas-heading">What&rsquo;s the latest?</h2>
@@ -919,6 +943,7 @@
 
       <!-- Support Ideas: "How can we help?" band (Module 8C) -->
       <div class="component-block" id="support">
+        <p class="component-label">Module 8C — Support Ideas (How Can We Help?)</p>
         <section class="support-ideas">
           <div class="support-ideas-bg" style="background-image:url('../wwwroot/assets/images/help-band-bg.png')"
             aria-hidden="true"></div>
@@ -940,6 +965,7 @@
 
       <!-- Buttons & links -->
       <div class="component-block" id="buttons">
+        <p class="component-label">Buttons & Links</p>
         <div class="d-flex flex-wrap align-items-center gap-3 p-4">
           <a href="#" class="btn-xl">Learn More</a>
           <a href="#" class="btn-xl btn-outline">Find my branch</a>
@@ -970,6 +996,7 @@
 
       <!-- Alert bar -->
       <div class="component-block" id="alert">
+        <p class="component-label">Module F — Alert Bar</p>
         <div class="alert-bar" role="region" aria-label="Site alert">
           <div class="site-container alert-bar-inner">
             <p class="alert-bar-message m-0">
@@ -986,6 +1013,7 @@
 
       <!-- Hero system 1A: boxed overlap - 3 box colors, plus the compact/minimal size variants -->
       <div class="component-block" id="hero-a">
+        <p class="component-label">1A — Boxed Overlap</p>
         <div class="hero hero--a" style="--hero-a-photo:url('../images/hero-sys-a-photo.png')">
           <div class="hero-a-box">
             <div class="hero-a-text">
@@ -1070,6 +1098,7 @@
 
       <!-- Hero system 1B: light and dark, no image -->
       <div class="component-block" id="hero-b">
+        <p class="component-label">1B — Light/Dark, No Image</p>
         <div class="hero hero--b">
           <div class="hero-container">
             <div class="hero-b-copy">
@@ -1110,6 +1139,7 @@
 
       <!-- Hero system 1C: diagonal box -->
       <div class="component-block" id="hero-c">
+        <p class="component-label">1C — Diagonal Box</p>
         <div class="hero hero--c" style="--hero-cd-photo:url('../images/hero-sys-c-photo.png')">
           <div class="hero-cd-panel">
             <div class="hero-cd-content">
@@ -1132,6 +1162,7 @@
 
       <!-- Hero system 1D: diagonal box, light/dark fill variants -->
       <div class="component-block" id="hero-d">
+        <p class="component-label">1D — Diagonal Box (Fill Variants)</p>
         <!-- D1: light tint, outline button -->
         <div class="hero hero--d" style="--hero-cd-photo:url('../images/hero-sys-c-photo.png')">
           <div class="hero-cd-panel">
@@ -1232,6 +1263,7 @@
 
       <!-- Hero system 1E: image only, wide/short -->
       <div class="component-block" id="hero-e">
+        <p class="component-label">1E — Image Only (Wide/Short)</p>
         <div class="hero hero--e" style="--hero-ef-photo:url('../images/hero-sys-e-photo.png')">
           <div class="hero-ef-bar">
             <span class="hero-ef-fpo d-none d-md-block">FPO</span>
@@ -1242,6 +1274,7 @@
 
       <!-- Hero system 1F: image only, wide/tall -->
       <div class="component-block" id="hero-f">
+        <p class="component-label">1F — Image Only (Wide/Tall)</p>
         <div class="hero hero--f" style="--hero-ef-photo:url('../images/hero-sys-f-photo.png')">
           <div class="hero-ef-bar">
             <span class="hero-ef-fpo">FPO</span>
@@ -1251,6 +1284,7 @@
 
       <!-- Hero system 1G: single-statement Blue Ramp band, headline only -->
       <div class="component-block" id="hero-g">
+        <p class="component-label">1G — Single-Statement Band</p>
         <div class="hero hero--g">
           <div class="hero-container">
             <h2 class="hero-g-title">Lorem Ipsum</h2>
@@ -1260,6 +1294,7 @@
 
       <!-- Module 2: Product Presentation (2A - Account Presentation A) -->
       <div class="component-block" id="product-presentation-a">
+        <p class="component-label">2A — Account Presentation A</p>
         <div class="section product-presentation">
 
           <!-- Primary checking products -->
@@ -1382,6 +1417,7 @@
 
       <!-- Module 2: Product Presentation (2B - Account Presentation B) -->
       <div class="component-block" id="product-presentation-b">
+        <p class="component-label">2B — Account Presentation B</p>
         <div class="section product-presentation">
 
           <!-- Row 1: 2 large tiles, no section title -->
@@ -1461,6 +1497,7 @@
 
       <!-- Module 9: Pull Quote (9A) -->
       <div class="component-block" id="pull-quote-a">
+        <p class="component-label">9A — Pull Quote</p>
         <div class="pull-quote-section d-flex flex-column gap-5">
 
           <blockquote class="quote m-0">
@@ -1490,6 +1527,7 @@
 
       <!-- Module 9: Pull Quote (9B - line variant, no box) -->
       <div class="component-block" id="pull-quote-b">
+        <p class="component-label">9B — Pull Quote (Line Variant)</p>
         <div class="pull-quote-line-section">
 
           <blockquote class="quote-line m-0">
@@ -1523,6 +1561,7 @@
 
       <!-- Module 11: Content Block with Image and CTA (11A - no icon) -->
       <div class="component-block" id="image-and-cta-a">
+        <p class="component-label">11A — Content Block (No Icon)</p>
         <div class="content-block-section">
 
           <div class="content-block">
@@ -1568,6 +1607,7 @@
 
       <!-- Module 11: Content Block with Image and CTA (11B - icon + bordered card) -->
       <div class="component-block" id="image-and-cta-b">
+        <p class="component-label">11B — Content Block (Icon + Bordered Card)</p>
         <div class="content-block-section">
 
           <div class="content-block content-block--framed">
@@ -1616,6 +1656,7 @@
 
       <!-- Module 17: Content Card with Icon (Brand A - white theme only) -->
       <div class="component-block" id="content-card-A">
+        <p class="component-label">17A — Content Card (White)</p>
         <div class="content-card-section-wrapper">
           <div class="content-card-section">
             <div class="content-card-intro">
@@ -1650,6 +1691,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="content-card-b">
+        <p class="component-label">17A — Content Card (Ice Blue)</p>
         <div class="content-card-section-wrapper content-card-section-wrapper-iceBlue">
           <div class="content-card-section">
             <div class="content-card-intro">
@@ -1684,6 +1726,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="content-card-C">
+        <p class="component-label">17A — Content Card (Smoke)</p>
         <div class="content-card-section-wrapper content-card-section-wrapper-smoke">
           <div class="content-card-section">
             <div class="content-card-intro">
@@ -1722,6 +1765,7 @@
            the real reference layout: one shared intro, the same 3-up row of
            real cards repeated once per color, same as Figma's own swatch. -->
       <div class="component-block mt-0" id="content-card-tip-colors">
+        <p class="component-label">17A — Tip Color Options</p>
         <div class="content-card-section-wrapper">
           <div class="content-card-section">
             <div class="content-card-intro">
@@ -1822,6 +1866,7 @@
 
       <!-- Module 17B: Content Card with Icon (Brand B - flat columns, no card chrome) -->
       <div class="component-block mt-0" id="content-card-B-transparent">
+        <p class="component-label">17B — Content Card (Transparent)</p>
         <div class="content-card-section-wrapper">
           <div class="content-card-section">
             <div class="content-card-flat-intro">
@@ -1856,6 +1901,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="content-card-B-ice">
+        <p class="component-label">17B — Content Card (Ice)</p>
         <div class="content-card-section-wrapper content-card-section-wrapper-iceBlue">
           <div class="content-card-section">
             <div class="content-card-flat-intro">
@@ -1890,6 +1936,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="content-card-B-smoke">
+        <p class="component-label">17B — Content Card (Smoke)</p>
         <div class="content-card-section-wrapper content-card-section-wrapper-smoke">
           <div class="content-card-section">
             <div class="content-card-flat-intro">
@@ -1926,6 +1973,7 @@
 
       <!-- Module 17C: Content Card with Icon (Brand C - bespoke 3-item value-prop band) -->
       <div class="component-block mt-0" id="content-card-C-value">
+        <p class="component-label">17C — Value-Prop Band</p>
         <div class="content-card-section-wrapper">
           <div class="content-card-section">
             <h2 class="content-card-value-heading">Why <span class="text-primary">customers like you</span> choose
@@ -1958,6 +2006,7 @@
 
       <!-- Module 17D: Content Card with Icon (Brand D - 4-up compact cards) -->
       <div class="component-block mt-0" id="content-card-D">
+        <p class="component-label">17D — Compact 4-Up Cards</p>
         <div class="content-card-section-wrapper">
           <div class="content-card-section">
             <h2 class="content-card-stat-heading">Banking with Pinnacle</h2>
@@ -2000,6 +2049,7 @@
            4-up row of real cards repeated once per color, all in a single
            grid so wrapping doesn't fragment into separate 2/1 groups. -->
       <div class="component-block mt-0" id="content-card-D-tip-colors">
+        <p class="component-label">17D — Tip Color Options</p>
         <div class="content-card-section-wrapper">
           <div class="content-card-section">
             <h2 class="content-card-stat-heading">Banking with Pinnacle</h2>
@@ -2123,6 +2173,7 @@
 
       <!-- Module 12A: Testimonial (Pinnacle Blue background) -->
       <div class="component-block mt-0" id="testimonial-A-blue">
+        <p class="component-label">12A — Testimonial (Pinnacle Blue)</p>
         <div class="testimonial-section-wrapper">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2151,6 +2202,7 @@
 
       <!-- Module 12A: Testimonial (true image background) -->
       <div class="component-block mt-0" id="testimonial-A-image">
+        <p class="component-label">12A — Testimonial (Image Background)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--image">
           <img class="testimonial-bg" src="../wwwroot/assets/images/testimonial-a-bg.png" alt="">
           <div class="testimonial-section">
@@ -2180,6 +2232,7 @@
 
       <!-- Module 12A: Testimonial (remaining solid/gradient backgrounds) -->
       <div class="component-block mt-0" id="testimonial-A-light-blue">
+        <p class="component-label">12A — Testimonial (Light Blue)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--light-blue">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2206,6 +2259,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="testimonial-A-bronze">
+        <p class="component-label">12A — Testimonial (Bronze)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--bronze">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2232,6 +2286,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="testimonial-A-aqua">
+        <p class="component-label">12A — Testimonial (Aqua)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--aqua">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2258,6 +2313,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="testimonial-A-aqua-ramp">
+        <p class="component-label">12A — Testimonial (Aqua Ramp)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--aqua-ramp">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2284,6 +2340,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="testimonial-A-blue-ramp">
+        <p class="component-label">12A — Testimonial (Blue Ramp)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--blue-ramp">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2310,6 +2367,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="testimonial-A-ice">
+        <p class="component-label">12A — Testimonial (Ice)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--ice">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2336,6 +2394,7 @@
         </div>
       </div>
       <div class="component-block mt-0" id="testimonial-A-deep">
+        <p class="component-label">12A — Testimonial (Deep)</p>
         <div class="testimonial-section-wrapper testimonial-section-wrapper--deep">
           <div class="testimonial-section">
             <div class="testimonial">
@@ -2364,6 +2423,7 @@
 
       <!-- Module 12B: Testimonial (split layout with award badges) -->
       <div class="component-block mt-0" id="testimonial-B">
+        <p class="component-label">12B — Testimonial (Split Layout + Awards)</p>
         <div class="testimonial-split-section">
           <div class="testimonial-split-info">
             <h2 class="testimonial-split-heading">Hear why our clients keep coming back</h2>
@@ -2408,6 +2468,7 @@
 
       <!-- Module 12C: Testimonial (split layout, bordered card - Pinnacle Blue) -->
       <div class="component-block mt-0" id="testimonial-C">
+        <p class="component-label">12C — Testimonial (Bordered, Pinnacle Blue)</p>
         <div class="testimonial-split-section">
           <div class="testimonial-split-info">
             <h2 class="testimonial-split-heading">Hear why our clients keep coming back</h2>
@@ -2452,6 +2513,7 @@
 
       <!-- Module 12C: Testimonial (split layout, bordered card - Pinnacle Deep) -->
       <div class="component-block mt-0" id="testimonial-C-deep">
+        <p class="component-label">12C — Testimonial (Bordered, Pinnacle Deep)</p>
         <div class="testimonial-split-section">
           <div class="testimonial-split-info">
             <h2 class="testimonial-split-heading">Hear why our clients keep coming back</h2>
@@ -2494,6 +2556,7 @@
 
       <!-- Module 12C: Testimonial (split layout, bordered card - Pinnacle Bronze) -->
       <div class="component-block mt-0" id="testimonial-C-bronze">
+        <p class="component-label">12C — Testimonial (Bordered, Pinnacle Bronze)</p>
         <div class="testimonial-split-section">
           <div class="testimonial-split-info">
             <h2 class="testimonial-split-heading">Hear why our clients keep coming back</h2>
@@ -2536,6 +2599,7 @@
 
       <!-- Module 12C: Testimonial (split layout, bordered card - Pinnacle Blue Ramp) -->
       <div class="component-block mt-0" id="testimonial-C-blue-ramp">
+        <p class="component-label">12C — Testimonial (Bordered, Blue Ramp)</p>
         <div class="testimonial-split-section">
           <div class="testimonial-split-info">
             <h2 class="testimonial-split-heading">Hear why our clients keep coming back</h2>
@@ -2572,6 +2636,1080 @@
               alt="People Magazine: Companies that Care, 2025">
             <img src="../wwwroot/assets/images/award-fortune-best-workplaces.svg"
               alt="Fortune: Best Workplaces in Financial Services and Insurance, 2025">
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider: everything below this point is Med Priority -->
+      <div class="component-block" id="med-priority-divider">
+        <h2 class="display text-center mb-0">Med Priority Modules</h2>
+      </div>
+
+      <!-- Module 4: Belt Straps -->
+      <div class="component-block mt-0" id="belt-strap">
+        <p class="component-label">Module 4 — Belt Strap (Blue Ramp)</p>
+        <div class="belt-strap">
+          <div class="belt-strap-inner">
+            <div class="belt-strap-media">
+              <img src="../wwwroot/assets/images/pinnacle-card-platinum.png" alt="Pinnacle Platinum card"
+                class="belt-strap-card belt-strap-card--platinum">
+              <img src="../wwwroot/assets/images/pinnacle-card-world.png" alt="Pinnacle World card"
+                class="belt-strap-card belt-strap-card--world">
+              <div class="belt-strap-fpo">FPO</div>
+            </div>
+            <div class="belt-strap-content">
+              <div class="belt-strap-text">
+                <h3 class="belt-strap-heading">Need more information?</h3>
+                <p class="belt-strap-body">View our checking accounts side-by-side.</p>
+              </div>
+              <a href="#" class="btn-xl btn-white-outline">Compare checking options</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="belt-strap-light">
+        <p class="component-label">Module 4 — Belt Strap (Light Blue)</p>
+        <div class="belt-strap belt-strap--light">
+          <div class="belt-strap-inner">
+            <div class="belt-strap-media">
+              <img src="../wwwroot/assets/images/pinnacle-card-platinum.png" alt="Pinnacle Platinum card"
+                class="belt-strap-card belt-strap-card--platinum">
+              <img src="../wwwroot/assets/images/pinnacle-card-world.png" alt="Pinnacle World card"
+                class="belt-strap-card belt-strap-card--world">
+              <div class="belt-strap-fpo">FPO</div>
+            </div>
+            <div class="belt-strap-content">
+              <div class="belt-strap-text">
+                <h3 class="belt-strap-heading">Need more information?</h3>
+                <p class="belt-strap-body">View our checking accounts side-by-side.</p>
+              </div>
+              <a href="#" class="btn-xl btn-white-outline">Compare checking options</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="belt-strap-white">
+        <p class="component-label">Module 4 — Belt Strap (White)</p>
+        <div class="belt-strap belt-strap--white">
+          <div class="belt-strap-inner">
+            <div class="belt-strap-media">
+              <img src="../wwwroot/assets/images/pinnacle-card-platinum.png" alt="Pinnacle Platinum card"
+                class="belt-strap-card belt-strap-card--platinum">
+              <img src="../wwwroot/assets/images/pinnacle-card-world.png" alt="Pinnacle World card"
+                class="belt-strap-card belt-strap-card--world">
+              <div class="belt-strap-fpo">FPO</div>
+            </div>
+            <div class="belt-strap-content">
+              <div class="belt-strap-text">
+                <h3 class="belt-strap-heading">Need more information?</h3>
+                <p class="belt-strap-body">View our checking accounts side-by-side.</p>
+              </div>
+              <a href="#" class="btn-xl">Compare checking options</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="belt-icon-promo">
+        <p class="component-label">Module 4 — Belt Icon Promo (Blue Ramp)</p>
+        <div class="belt-icon-promo">
+          <div class="belt-icon-promo-inner">
+            <div class="belt-icon-promo-main">
+              <img src="../wwwroot/assets/images/belt-check-icon.svg" alt="" class="belt-icon-promo-icon">
+              <div class="belt-icon-promo-text">
+                <h3 class="belt-icon-promo-heading">Need more information?</h3>
+                <p class="belt-icon-promo-body">View our credit card accounts side-by-side.</p>
+              </div>
+            </div>
+            <a href="#" class="btn-standard btn-white">Compare checking options</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="belt-icon-promo-light">
+        <p class="component-label">Module 4 — Belt Icon Promo (Light Blue)</p>
+        <div class="belt-icon-promo belt-icon-promo--light">
+          <div class="belt-icon-promo-inner">
+            <div class="belt-icon-promo-main">
+              <img src="../wwwroot/assets/images/belt-check-icon.svg" alt="" class="belt-icon-promo-icon">
+              <div class="belt-icon-promo-text">
+                <h3 class="belt-icon-promo-heading">Need more information?</h3>
+                <p class="belt-icon-promo-body">View our credit card accounts side-by-side.</p>
+              </div>
+            </div>
+            <a href="#" class="btn-standard btn-white-outline">Compare checking options</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="belt-icon-promo-white">
+        <p class="component-label">Module 4 — Belt Icon Promo (White Ramp)</p>
+        <div class="belt-icon-promo belt-icon-promo--white">
+          <div class="belt-icon-promo-inner">
+            <div class="belt-icon-promo-main">
+              <img src="../wwwroot/assets/images/belt-check-icon.svg" alt="" class="belt-icon-promo-icon">
+              <div class="belt-icon-promo-text">
+                <h3 class="belt-icon-promo-heading">Need more information?</h3>
+                <p class="belt-icon-promo-body">View our credit card accounts side-by-side.</p>
+              </div>
+            </div>
+            <a href="#" class="btn-standard">Compare checking options</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5A: Calculators (two unequal cards, any brand color) -->
+      <div class="component-block mt-0" id="calc-a">
+        <p class="component-label">5A</p>
+        <div class="row calc-split">
+          <div class="col-12 col-md-7">
+            <div class="calc-card calc-card--icon bg-baby">
+              <div class="calc-card-icon">
+                <img src="../wwwroot/assets/images/calc-icon-home.svg" alt="">
+                <div class="calc-card-icon-fpo">Icon<br>Here</div>
+              </div>
+              <div class="calc-card-text">
+                <h3 class="calc-card-heading">Shopping for a house and a mortgage?</h3>
+                <p class="calc-card-body">It&rsquo;s beneficial to understand how a mortgage calculator can help
+                  determine your monthly outlay.</p>
+                <a href="#" class="link-tertiary">Calculate a mortgage payment <span class="chevron"
+                    aria-hidden="true"></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <div class="calc-card calc-card--plain bg-aqua-ramp">
+              <div class="calc-card-text">
+                <h3 class="calc-card-heading">It&rsquo;s never too early for a retirement plan</h3>
+                <p class="calc-card-body">Make saving for retirement a top financial priority. Does your employer
+                  offer a 401(k) plan?</p>
+                <a href="#" class="link-tertiary">Try our 401(k) calculator <span class="chevron"
+                    aria-hidden="true"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Figma "Mix & Match Example 1" -->
+      <div class="component-block mt-0" id="calc-a-mix">
+        <p class="component-label">5A — Mix & Match Example 1</p>
+        <div class="row calc-split">
+          <div class="col-12 col-md-7">
+            <div class="calc-card calc-card--icon bg-navy">
+              <div class="calc-card-icon">
+                <img src="../wwwroot/assets/images/calc-icon-home.svg" alt="">
+                <div class="calc-card-icon-fpo">Icon<br>Here</div>
+              </div>
+              <div class="calc-card-text">
+                <h3 class="calc-card-heading">Shopping for a house and a mortgage?</h3>
+                <p class="calc-card-body">It&rsquo;s beneficial to understand how a mortgage calculator can help
+                  determine your monthly outlay.</p>
+                <a href="#" class="link-tertiary">Calculate a mortgage payment <span class="chevron"
+                    aria-hidden="true"></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <div class="calc-card calc-card--plain bg-sky">
+              <div class="calc-card-text">
+                <h3 class="calc-card-heading">It&rsquo;s never too early for a retirement plan</h3>
+                <p class="calc-card-body">Make saving for retirement a top financial priority. Does your employer
+                  offer a 401(k) plan?</p>
+                <a href="#" class="link-tertiary">Try our 401(k) calculator <span class="chevron"
+                    aria-hidden="true"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Figma "Mix & Match Example 2" -->
+      <div class="component-block mt-0" id="calc-a-mix-2">
+        <p class="component-label">5A — Mix & Match Example 2</p>
+        <div class="row calc-split">
+          <div class="col-12 col-md-7">
+            <div class="calc-card calc-card--icon bg-bronze">
+              <div class="calc-card-icon">
+                <img src="../wwwroot/assets/images/calc-icon-home.svg" alt="">
+                <div class="calc-card-icon-fpo">Icon<br>Here</div>
+              </div>
+              <div class="calc-card-text">
+                <h3 class="calc-card-heading">Shopping for a house and a mortgage?</h3>
+                <p class="calc-card-body">It&rsquo;s beneficial to understand how a mortgage calculator can help
+                  determine your monthly outlay.</p>
+                <a href="#" class="link-tertiary">Calculate a mortgage payment <span class="chevron"
+                    aria-hidden="true"></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <div class="calc-card calc-card--plain bg-sky">
+              <div class="calc-card-text">
+                <h3 class="calc-card-heading">It&rsquo;s never too early for a retirement plan</h3>
+                <p class="calc-card-body">Make saving for retirement a top financial priority. Does your employer
+                  offer a 401(k) plan?</p>
+                <a href="#" class="link-tertiary">Try our 401(k) calculator <span class="chevron"
+                    aria-hidden="true"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5B: Calculators (tip-color tile row, reuses .content-card) -->
+      <div class="component-block mt-0" id="calc-b">
+        <p class="component-label">5B</p>
+        <div class="content-card-section-wrapper">
+          <div class="content-card-section">
+            <div class="content-card-intro">
+              <h2 class="heading-2">Calculators</h2>
+              <p class="lead-text">When you&rsquo;re shopping for a house and a mortgage, it&rsquo;s beneficial to
+                understand the numbers. A mortgage calculator can help determine your monthly outlay.</p>
+            </div>
+            <div class="row calc-tile-row">
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--baby">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Mortgage Payment</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--baby">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Home Affordability</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--baby">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-debt.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Income to Debt</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="calc-b-rows">
+        <p class="component-label">5B — Two Rows (Bronze/Aqua)</p>
+        <div class="content-card-section-wrapper">
+          <div class="content-card-section">
+            <div class="content-card-intro">
+              <h2 class="heading-2">Calculators</h2>
+              <p class="lead-text">When you&rsquo;re shopping for a house and a mortgage, it&rsquo;s beneficial to
+                understand the numbers. A mortgage calculator can help determine your monthly outlay.</p>
+            </div>
+            <div class="row calc-tile-row">
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--bronze">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Mortgage Payment</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--bronze">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Home Affordability</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--bronze">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-debt.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Income to Debt</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--aqua">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Mortgage Payment</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--aqua">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Home Affordability</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="content-card content-card--calc content-card--aqua">
+                  <div class="content-card-icon content-card-icon--calc">
+                    <img src="../wwwroot/assets/images/calc-icon-debt.svg" alt="">
+                  </div>
+                  <div class="content-card-calc-heading">
+                    <p>Calculate</p>
+                    <p>Income to Debt</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5C: Calculators (heading+body beside underlined icon-links) -->
+      <div class="component-block mt-0" id="calc-c">
+        <p class="component-label">5C</p>
+        <div class="content-card-section-wrapper">
+          <div class="row calc-links-section">
+            <div class="col-12 col-md-5">
+              <div class="calc-links-intro">
+                <h2 class="heading-2">Calculators</h2>
+                <p class="lead-text">When you&rsquo;re shopping for a house and a mortgage, it&rsquo;s beneficial to
+                  understand the numbers. A mortgage calculator can help determine your monthly outlay.</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-7">
+              <div class="row calc-links-row">
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Mortgage Payment</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Home Affordability</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-debt.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Income to Debt</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="calc-c-ice">
+        <p class="component-label">5C — Ice Tint (Two Rows)</p>
+        <div class="content-card-section-wrapper content-card-section-wrapper-iceBlue">
+          <div class="row calc-links-section">
+            <div class="col-12 col-md-5">
+              <div class="calc-links-intro">
+                <h2 class="heading-2">Calculators</h2>
+                <p class="lead-text">When you&rsquo;re shopping for a house and a mortgage, it&rsquo;s beneficial to
+                  understand the numbers. A mortgage calculator can help determine your monthly outlay.</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-7">
+              <div class="row calc-links-row">
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Mortgage Payment</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Home Affordability</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-debt.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Income to Debt</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Mortgage Payment</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Home Affordability</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4">
+                  <a href="#" class="calc-link-item">
+                    <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-debt.svg" alt=""></div>
+                    <div class="calc-link-label">
+                      <p>Calculate</p>
+                      <p>Income to Debt</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5D: Calculators (5C's content stacked beside a big donut icon) -->
+      <div class="component-block mt-0" id="calc-d">
+        <p class="component-label">5D</p>
+        <div class="content-card-section-wrapper">
+          <div class="row calc-d-section flex-column-reverse flex-md-row">
+            <div class="col-12 col-md">
+              <div class="calc-d-content">
+                <div class="calc-d-intro">
+                  <h2 class="heading-2">Calculators</h2>
+                  <p class="lead-text">When you&rsquo;re shopping for a house and a mortgage, it&rsquo;s beneficial
+                    to understand the numbers. A mortgage calculator can help determine your monthly outlay.</p>
+                </div>
+                <div class="row calc-links-row">
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Mortgage Payment</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Home Affordability</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-debt.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Income to Debt</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-auto">
+              <div class="calc-d-donut">
+                <img src="../wwwroot/assets/images/calc-icon-donut.svg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-block mt-0" id="calc-d-ice">
+        <p class="component-label">5D — Ice Tint (Two Rows)</p>
+        <div class="content-card-section-wrapper content-card-section-wrapper-iceBlue">
+          <div class="row calc-d-section flex-column-reverse flex-md-row">
+            <div class="col-12 col-md">
+              <div class="calc-d-content">
+                <div class="calc-d-intro">
+                  <h2 class="heading-2">Calculators</h2>
+                  <p class="lead-text">When you&rsquo;re shopping for a house and a mortgage, it&rsquo;s beneficial
+                    to understand the numbers. A mortgage calculator can help determine your monthly outlay.</p>
+                </div>
+                <div class="row calc-links-row">
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Mortgage Payment</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Home Affordability</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-debt.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Income to Debt</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-mortgage.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Mortgage Payment</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-affordability.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Home Affordability</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <a href="#" class="calc-link-item">
+                      <div class="calc-link-icon"><img src="../wwwroot/assets/images/calc-icon-debt.svg" alt=""></div>
+                      <div class="calc-link-label">
+                        <p>Calculate</p>
+                        <p>Income to Debt</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-auto">
+              <div class="calc-d-donut">
+                <img src="../wwwroot/assets/images/calc-icon-donut.svg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7A: Mobile App Callout (photo background, 3-column desktop) -->
+      <div class="component-block mt-0" id="mobileapp-a">
+        <p class="component-label">7A &mdash; Gradient + CSS Diagonal Lines</p>
+        <div class="mobileapp-a">
+          <div class="mobileapp-a-inner">
+            <div class="mobileapp-a-text">
+              <h2 class="mobileapp-a-heading">Bank online 24/7</h2>
+              <p class="mobileapp-a-body">Make the most out of banking with Pinnacle by <a href="#"
+                  class="mobileapp-link mobileapp-link--sky">enrolling in Pinnacle Online Banking</a>. Bank your way,
+                anytime when you download the app.</p>
+            </div>
+            <div class="mobileapp-a-items">
+              <div class="mobileapp-items">
+                <div class="mobileapp-item">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Money movement</h3>
+                    <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                      manage transfers.</p>
+                  </div>
+                </div>
+                <div class="mobileapp-item">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Stay connected</h3>
+                    <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                  </div>
+                </div>
+                <div class="mobileapp-item">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                    <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-a-footer">
+              <div class="mobileapp-download">
+                <p class="mobileapp-download-label">Download the Pinnacle app</p>
+                <div class="mobileapp-badges">
+                  <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                  <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+                </div>
+              </div>
+            </div>
+            <img src="../wwwroot/assets/images/mobileapp-phone-mockup.png" alt="" class="mobileapp-phone">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7A: Mobile App Callout (white text, Sky bordered items) -->
+      <div class="component-block mt-0" id="mobileapp-a2">
+        <p class="component-label">7A &mdash; Gradient + CSS Corner Wedges</p>
+        <div class="mobileapp-a mobileapp-a--contrast">
+          <span class="mobileapp-a-wedge-fg" aria-hidden="true"></span>
+          <span class="mobileapp-a-wedge-bg" aria-hidden="true"></span>
+          <div class="mobileapp-a-inner">
+            <div class="mobileapp-a-text">
+              <h2 class="mobileapp-a-heading">Bank online 24/7</h2>
+              <p class="mobileapp-a-body">Make the most out of banking with Pinnacle by <a href="#"
+                  class="mobileapp-link">enrolling in My Pinnacle</a>. Bank your way, anytime when you download the
+                app.</p>
+            </div>
+            <div class="mobileapp-a-items">
+              <div class="mobileapp-items">
+                <div class="mobileapp-item mobileapp-item--bordered">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Money movement</h3>
+                    <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                      manage transfers.</p>
+                  </div>
+                </div>
+                <div class="mobileapp-item mobileapp-item--bordered">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Stay connected</h3>
+                    <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                  </div>
+                </div>
+                <div class="mobileapp-item mobileapp-item--bordered">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                    <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-a-footer">
+              <div class="mobileapp-download">
+                <p class="mobileapp-download-label">Download the My Pinnacle app</p>
+                <div class="mobileapp-badges">
+                  <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                  <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+                </div>
+              </div>
+            </div>
+            <img src="../wwwroot/assets/images/mobileapp-phone-mockup.png" alt="" class="mobileapp-phone">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7A: Mobile App Callout (pale photo, dark text, Navy bordered items) -->
+      <div class="component-block mt-0" id="mobileapp-a3">
+        <p class="component-label">7A &mdash; Photo Background (Light/Pale)</p>
+        <div class="mobileapp-a mobileapp-a--light"
+          style="background-image:linear-gradient(rgba(255,255,255,.8),rgba(255,255,255,.8)),url('../wwwroot/assets/images/mobileapp-bg-photo-a3.png')">
+          <div class="mobileapp-a-inner">
+            <div class="mobileapp-a-text">
+              <h2 class="mobileapp-a-heading">Bank online 24/7</h2>
+              <p class="mobileapp-a-body">Make the most out of banking with Pinnacle by <a href="#"
+                  class="mobileapp-link">enrolling in My Pinnacle</a>. Bank your way, anytime when you download the
+                app.</p>
+            </div>
+            <div class="mobileapp-a-items">
+              <div class="mobileapp-items">
+                <div class="mobileapp-item mobileapp-item--bordered">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Money movement</h3>
+                    <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                      manage transfers.</p>
+                  </div>
+                </div>
+                <div class="mobileapp-item mobileapp-item--bordered">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Stay connected</h3>
+                    <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                  </div>
+                </div>
+                <div class="mobileapp-item mobileapp-item--bordered">
+                  <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                  <div class="mobileapp-item-text">
+                    <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                    <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-a-footer">
+              <div class="mobileapp-download">
+                <p class="mobileapp-download-label">Download the My Pinnacle app</p>
+                <div class="mobileapp-badges">
+                  <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                  <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+                </div>
+              </div>
+            </div>
+            <img src="../wwwroot/assets/images/mobileapp-phone-mockup.png" alt="" class="mobileapp-phone">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (Pinnacle Blue) -->
+      <div class="component-block mt-0" id="mobileapp-b">
+        <p class="component-label">7B &mdash; Pinnacle Blue</p>
+        <div class="mobileapp-b bg-blue">
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr d-none d-md-flex">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+            <div class="mobileapp-items d-flex d-md-none">
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Money movement</h3>
+                  <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                    manage transfers.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Stay connected</h3>
+                  <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                  <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-download d-flex d-md-none">
+              <p class="mobileapp-download-label">Download the Pinnacle app</p>
+              <div class="mobileapp-badges">
+                <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (Blue Ramp) -->
+      <div class="component-block mt-0" id="mobileapp-b-blueramp">
+        <p class="component-label">7B &mdash; Blue Ramp</p>
+        <div class="mobileapp-b bg-blue-ramp">
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading" style="color:#FFFFFF">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr d-none d-md-flex">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+            <div class="mobileapp-items d-flex d-md-none">
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Money movement</h3>
+                  <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                    manage transfers.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Stay connected</h3>
+                  <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                  <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-download d-flex d-md-none">
+              <p class="mobileapp-download-label">Download the Pinnacle app</p>
+              <div class="mobileapp-badges">
+                <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (Ice) -->
+      <div class="component-block mt-0" id="mobileapp-b-ice">
+        <p class="component-label">7B &mdash; Ice</p>
+        <div class="mobileapp-b bg-ice mobileapp-b--light">
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr d-none d-md-flex">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+            <div class="mobileapp-items d-flex d-md-none">
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Money movement</h3>
+                  <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                    manage transfers.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Stay connected</h3>
+                  <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                  <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-download d-flex d-md-none">
+              <p class="mobileapp-download-label">Download the Pinnacle app</p>
+              <div class="mobileapp-badges">
+                <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (White) -->
+      <div class="component-block mt-0" id="mobileapp-b-white">
+        <p class="component-label">7B &mdash; White</p>
+        <div class="mobileapp-b bg-white mobileapp-b--light">
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr d-none d-md-flex">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+            <div class="mobileapp-items d-flex d-md-none">
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Money movement</h3>
+                  <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                    manage transfers.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Stay connected</h3>
+                  <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                  <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-download d-flex d-md-none">
+              <p class="mobileapp-download-label">Download the Pinnacle app</p>
+              <div class="mobileapp-badges">
+                <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (White Ramp) -->
+      <div class="component-block mt-0" id="mobileapp-b-whiteramp">
+        <p class="component-label">7B &mdash; White Ramp</p>
+        <div class="mobileapp-b bg-white-ramp mobileapp-b--light">
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr d-none d-md-flex">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+            <div class="mobileapp-items d-flex d-md-none">
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-money.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Money movement</h3>
+                  <p class="mobileapp-item-body">Send and receive money with Zelle&reg; or easily pay bills and
+                    manage transfers.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-alert.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Stay connected</h3>
+                  <p class="mobileapp-item-body">Stay informed with customizable account alerts.</p>
+                </div>
+              </div>
+              <div class="mobileapp-item">
+                <img src="../wwwroot/assets/images/mobileapp-icon-chat.svg" alt="" class="mobileapp-item-icon">
+                <div class="mobileapp-item-text">
+                  <h3 class="mobileapp-item-heading">Tailored insights</h3>
+                  <p class="mobileapp-item-body">Get personalized guidance on efficiently managing your money.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mobileapp-download d-flex d-md-none">
+              <p class="mobileapp-download-label">Download the Pinnacle app</p>
+              <div class="mobileapp-badges">
+                <img src="../wwwroot/assets/images/mobileapp-badge-appstore.png" alt="Download on the App Store">
+                <img src="../wwwroot/assets/images/mobileapp-badge-playstore.png" alt="Get it on Google Play">
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (Ice, CSS Corner Wedges) -->
+      <div class="component-block mt-0" id="mobileapp-b-ice-wedges">
+        <p class="component-label">7B &mdash; Ice + CSS Corner Wedges</p>
+        <div class="mobileapp-b bg-ice mobileapp-b--light mobileapp-b--wedges">
+          <span class="mobileapp-b-wedge-fg" aria-hidden="true"></span>
+          <span class="mobileapp-b-wedge-bg" aria-hidden="true"></span>
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (Blue Ramp, CSS Diagonal Lines) -->
+      <div class="component-block mt-0" id="mobileapp-b-blueramp-lines">
+        <p class="component-label">7B &mdash; Blue Ramp + CSS Diagonal Lines</p>
+        <div class="mobileapp-b bg-blue-ramp mobileapp-b--lines">
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7B: Mobile App Callout (Blue Ramp, CSS Corner Wedges) -->
+      <div class="component-block mt-0" id="mobileapp-b-blueramp-wedges">
+        <p class="component-label">7B &mdash; Blue Ramp + CSS Corner Wedges</p>
+        <div class="mobileapp-b bg-blue-ramp mobileapp-b--wedges">
+          <span class="mobileapp-b-wedge-fg" aria-hidden="true"></span>
+          <span class="mobileapp-b-wedge-bg" aria-hidden="true"></span>
+          <div class="mobileapp-b-inner">
+          <div class="mobileapp-b-text">
+            <h2 class="mobileapp-b-heading">Make the most out of your digital experience</h2>
+            <div class="mobileapp-b-qr">
+              <img src="../wwwroot/assets/images/mobileapp-qr-code.png" alt="QR code to download the Pinnacle app">
+              <div>
+                <p class="mobileapp-b-qr-label">Download our mobile app</p>
+                <p class="mobileapp-b-qr-sub">Available on iOS or Android</p>
+              </div>
+            </div>
+          </div>
+          <img src="../wwwroot/assets/images/mobileapp-phone-laptop.png" alt="" class="mobileapp-b-device">
           </div>
         </div>
       </div>

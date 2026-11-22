@@ -133,6 +133,9 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
 .bg-baby       { background-color: $light-blue; }
 .bg-blue       { background-color: $color-blue; }
 .bg-navy       { background-color: $navy; }
+.bg-bronze     { background-color: $bronze; }
+.bg-aqua       { background-color: $aqua; }
+.bg-sky        { background-color: $sky; }
 .bg-blue-ramp  { background-image: $grad-blue-ramp; }
 .bg-aqua-ramp  { background-image: $grad-aqua-ramp; }
 .bg-white-ramp { background-image: $grad-white-ramp; }
@@ -318,6 +321,22 @@ $shadow-xs:         0 1px 2px 0 rgba(16, 24, 40, 0.05);  // Shadow/xs
     color: $color-blue;
     background-color: $ice;
     border-color: $ice;
+  }
+}
+
+// White fill + a visible Pinnacle Blue border/text - for a button that
+// needs definition against a light or tinted card (.btn-white's border
+// matches its own fill, so it has no visible edge there). Module 4's
+// Figma "Button" component.
+.btn-white-outline {
+  color: $color-blue;
+  background-color: $color-white;
+  border-color: $color-blue;
+
+  &:hover {
+    color: $color-blue;
+    background-color: $ice;
+    border-color: $color-blue;
   }
 }
 
