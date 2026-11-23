@@ -1,0 +1,505 @@
+// ===========================================
+// MODULE 8: More Info/Help (Med Priority). Figma "8 - More Info/Help",
+// 5 families (8A-8E) sharing one full-bleed-band idea but differing in
+// whether content sits directly on the background or inside a floating
+// white card, and whether it's a single CTA or a row of icon tiles.
+// This file grows one family at a time; so far: 8A, 8B.
+// ===========================================
+
+// ---------------------------------------------------
+// 8A: "Still have questions?" - the simplest family. Full-bleed, no
+// card - heading + one line of body copy + a button, all centered,
+// sitting directly on the background. Same outer/inner split used
+// throughout this project (vertical-only padding on the full-bleed
+// outer, max-width 1120+16px gutter on the inner) and the project's
+// generic .bg-* utilities for every color/gradient option (Blue Ramp,
+// Navy, Pinnacle Blue, Ice, White all already exist) rather than baking
+// per-color modifiers into this component - same convention Module 7B
+// settled on.
+// ---------------------------------------------------
+// No background-color set here deliberately - every variant supplies its
+// own via a combined .bg-* utility class, same convention as Module 7B's
+// .mobileapp-b. Setting a default here would have equal specificity to
+// those utility classes, and since this file compiles after
+// _custom-overrides.scss, this rule would always win the cascade and
+// silently override whichever .bg-* class the markup combined it with
+// (caught live: .bg-navy/.bg-blue were rendering as plain pale).
+.still-have-questions {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  padding: 40px 0;
+
+  @media (max-width: $mobile-max) {
+    padding: 32px 0;
+  }
+}
+
+.still-have-questions-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.still-have-questions-heading {
+  margin: 0;
+  @include type(32px, 1.4, $font-weight-medium, $color-white);
+}
+
+.still-have-questions-body {
+  @include type(16px, 1.52, $font-weight-normal, $color-white);
+}
+
+// Dark text for light backgrounds (the --wedge variant's pale base,
+// Ice, White) - same pairing used throughout (e.g.
+// .belt-strap--light/--white, .mobileapp-b--light).
+.still-have-questions--light {
+  .still-have-questions-heading { color: $navy; }
+  .still-have-questions-body { color: $color-black; }
+}
+
+// Pale base + top-left diagonal-wedge corner decoration. This turned
+// out to be a raster image in Figma (not a vector clip-path), and the
+// component crops/scales into just one portion of it - re-measured by
+// pixel-sampling the actual rendered export rather than trusting a
+// first glance, which revealed TWO nested triangles sharing the same
+// corner (same two-shape construction as every other wedge in this
+// project, just with different proportions here): a bigger, lighter
+// accent (#66ACDC, not a named token - a one-off swatch, same situation
+// as 7A1's #0E60A0 pinstripe color) reaching further out behind, and a
+// smaller, solid Pinnacle Blue triangle in front, closer to the actual
+// corner. Both ~32% wide (matching the project's established wedge
+// width), but with DIFFERENT heights (70% back / 50% front) rather than
+// 7A2/7B's matching-height-different-width pairing - re-measured
+// directly, not assumed from the other wedges. Only 2 shapes at one
+// corner this time, so ::before (back) + ::after (front) is enough -
+// no real DOM span needed the way 7A2/7B's 4-shapes-across-2-corners
+// case required. The pale background lives on this modifier (not the
+// base rule) since it's the only variant that needs it as a default
+// rather than via a .bg-* utility.
+.still-have-questions--wedge {
+  background-color: $pale;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32%;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    pointer-events: none;
+  }
+
+  // Back (bigger reach).
+  &::before {
+    height: 70%;
+    background-color: #66acdc;
+  }
+
+  // Front (smaller reach, closer to the corner).
+  &::after {
+    height: 50%;
+    background-color: $color-blue;
+  }
+
+  // Desktop's percentage sizing works there because the 1120px-wide
+  // centered heading starts well clear of the wedges' reach - caught
+  // live: at $mobile-max, a single-line heading (this copy doesn't
+  // always wrap the way Figma's own mobile frame happened to) starts
+  // much closer to the left edge, and even an 80%/34% box still covered
+  // its first few letters. Fixed px instead, sized to stay within this
+  // variant's own (slightly taller, see below) top padding - same
+  // "mobile gets its own size" rule as 7A2/7B's wedges, but here the
+  // goal is guaranteeing zero overlap with text regardless of wrap
+  // point, rather than just preventing ballooning. Heights keep the
+  // same 70%/50% -> back is 1.4x the front's, same ratio as desktop.
+  @media (max-width: $mobile-max) {
+    // A couple px more than the taller (back) wedge's own 45px mobile
+    // height, so text starts clear of BOTH triangles, not just the
+    // shorter front one - .still-have-questions's own 32px padding-top
+    // isn't enough once the back wedge is taller than that.
+    padding-top: 52px;
+
+    &::before,
+    &::after {
+      width: 120px;
+    }
+
+    &::before { height: 45px; }
+    &::after { height: 32px; }
+  }
+}
+
+// ---------------------------------------------------
+// 8B: "Still have questions?" - same message as 8A, but the heading +
+// button sit inside a floating white card over a full-bleed background
+// (a photo, or any .bg-* utility) instead of directly on it. Confirmed
+// via Figma's Navy/Bronze/Pale/photo variants that the card's own
+// content (white bg, navy heading, white-fill/blue-outline button) is
+// completely fixed regardless of the outer background - only the outer
+// background changes, so no per-color card modifiers are needed, same
+// .bg-* utility convention as 8A/7B. Figma's own outer wrapper uses a
+// literal px-[160px] (confirmed via get_design_context's returned
+// Tailwind), but that's not replicated here per this project's "no
+// fixed horizontal padding on full-bleed sections" rule - the outer
+// just gets a small 16px gutter, and the CARD's own internal padding
+// (genuinely bounded/hug-content, not a stretched full-bleed wrapper)
+// supplies the generous "framed" look instead.
+// ---------------------------------------------------
+.still-have-questions-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+
+  @media (max-width: $mobile-max) {
+    padding: 32px 16px;
+  }
+}
+
+// Full-bleed photo option - cover-cropped same as every other photo
+// background in this project (e.g. .support-ideas-bg), not Figma's own
+// oversized-absolute-image crop trick.
+.still-have-questions-card--photo {
+  background-image: url('../images/more-info-bg-photo.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+// Hug-content, not stretched - desktop's measured 671px (160px padding
+// each side + the nowrap heading's own width) comes for free from this,
+// no hardcoded width needed.
+.still-have-questions-card-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 160px;
+  background-color: $color-white;
+  border-radius: $leaf-12;
+  text-align: center;
+
+  @media (max-width: $mobile-max) {
+    padding: 32px 24px;
+    border-radius: $leaf-20;
+  }
+}
+
+.still-have-questions-card-heading {
+  margin: 0;
+  white-space: nowrap;
+  @include type(40px, 1.4, $font-weight-medium, $navy);
+
+  @media (max-width: $mobile-max) {
+    white-space: normal;
+    font-size: 36px;
+    line-height: 1.15;
+  }
+}
+
+// Same height/padding/font-size as .btn-xl (60px / 26px·18px / 20px
+// Bold - measured via get_design_context), but this button's own
+// radius is $leaf-8, not .btn-xl's default $leaf-12 - scoped override
+// rather than a new global button size for one component.
+.still-have-questions-card-box .btn-xl {
+  border-radius: $leaf-8;
+}
+
+// ---------------------------------------------------
+// 8C: "How can we help?" (Figma's own "3 Tile A") - title and 3 icon
+// tiles sit loosely spread directly on the full-bleed background, no
+// enclosing band box. This is a DIFFERENT family from the existing
+// .help-band/.help-tile pair in _cards.scss (Figma's own "3 Tile B" /
+// this project's Module 8D twin, confirmed via get_design_context:
+// 8D's tiles sit inside one compact white band, 8C's "Container" has no
+// fill at all, just a transparent layout wrapper) - do not confuse the
+// two. Reuses .help-tile/.help-tile-raised as-is for the individual
+// tiles (already built to this exact spec - 165px/32px·20px/
+// radius-tile/shadow-card - a prior session clearly anticipated this
+// family) and the existing icon-help-phone/-location/-campaign.svg
+// assets (confirmed byte-identical to this family's own Figma icons).
+// ---------------------------------------------------
+.more-info-c {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 16px;
+
+  @media (max-width: $mobile-max) {
+    padding: 40px 16px;
+  }
+}
+
+// Color/gradient variants combine this with a .bg-* utility, same
+// convention as 7B/8A/8B - no default background set here. --light is
+// ONLY the dark-text pairing (Pale's own flat variant needs it with NO
+// wedge, so it can't be bundled into --wedge-light below) - same
+// decoupled convention as .still-have-questions--light.
+
+// "Light Image" variant - .bg-pale base plus a corner wedge, reusing
+// 8A's exact two-triangle technique and colors (back #66acdc, front
+// $color-blue), re-measured for this box's own (much shorter, wider)
+// proportions via pixel-sampling the Figma export rather than assumed
+// from 8A's numbers.
+.more-info-c--wedge-light {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32%;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    pointer-events: none;
+  }
+
+  &::before {
+    height: 51%;
+    background-color: #66acdc;
+  }
+
+  &::after {
+    height: 37%;
+    background-color: $color-blue;
+  }
+
+  // Smaller mirrored wedge in the opposite corner - same two colors,
+  // roughly half the main corner's scale (re-measured: this one only
+  // reaches a little past the tiles, not deep into the section).
+  .more-info-c-corner-bg,
+  .more-info-c-corner-fg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 16%;
+    clip-path: polygon(100% 100%, 0 100%, 100% 0);
+    pointer-events: none;
+  }
+
+  .more-info-c-corner-bg {
+    height: 26%;
+    background-color: #66acdc;
+  }
+
+  .more-info-c-corner-fg {
+    height: 18%;
+    background-color: $color-blue;
+  }
+
+  // Percentage sizing balloons once the section's own height grows to
+  // fit 3 stacked tiles - caught live: the wedge overran the heading
+  // and ran most of the way down the section. Fixed px instead, sized
+  // to clear the heading within an increased padding-top, same "mobile
+  // gets its own size" rule as 7A2/7B/8A's wedges. Matches the 1024px
+  // point where .more-info-c-inner/.more-info-c-tiles themselves stack,
+  // since that's what makes the section tall enough to cause this.
+  @media (max-width: 1024px) {
+    padding-top: 90px;
+
+    &::before,
+    &::after {
+      width: 110px;
+    }
+
+    &::before { height: 80px; }
+    &::after { height: 58px; }
+
+    .more-info-c-corner-bg,
+    .more-info-c-corner-fg {
+      width: 70px;
+    }
+
+    .more-info-c-corner-bg { height: 50px; }
+    .more-info-c-corner-fg { height: 35px; }
+  }
+}
+
+// Single corner wedge - measured as a semi-transparent navy overlay
+// over the gradient (not a flat color - its sampled RGB shifts with
+// the gradient underneath it), so a low-opacity rgba($navy) clip
+// reproduces that regardless of exactly where the gradient sits.
+.more-info-c--dark::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24%;
+  height: 100%;
+  background-color: rgba($navy, 0.35);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  pointer-events: none;
+}
+
+.more-info-c-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  max-width: 1120px;
+  margin: 0 auto;
+
+  // The title+tiles row has no room to breathe between $mobile-max and
+  // 1024px (title + 3 tiles + gaps add up to ~955px) - breaks to a
+  // stacked, centered layout earlier instead of staying squeezed into
+  // a row down to 768px.
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+  }
+}
+
+.more-info-c-heading {
+  margin: 0;
+  white-space: nowrap;
+  @include type(40px, 1.2, $font-weight-medium, $color-white);
+
+  // Centered once it stacks above the tiles instead of sitting in its
+  // own left-aligned column.
+  @media (max-width: 1024px) {
+    text-align: center;
+  }
+}
+
+// Dark text for the light/pale variants - same --light pairing used
+// throughout (e.g. .still-have-questions--light).
+.more-info-c--light .more-info-c-heading {
+  color: $navy;
+}
+
+// The wedge decoration always sits on a light base, so it always needs
+// the dark-text pairing too.
+.more-info-c--wedge-light .more-info-c-heading {
+  color: $navy;
+}
+
+// Grid, not flex-wrap - a fixed column COUNT per tier is what's wanted
+// (3/2/1), not a content-driven wrap point, and auto-sized columns
+// (vs. a %-based flex-basis like .product-tiles' own N-column row)
+// keep each tile at its own natural ~165px chip size instead of
+// stretching to fill a third/half of the 1120px row - this family's
+// tiles are small icon chips, not full-width cards. gap stays a flat
+// 40px at every tier (was 80px below 1024px when tiles simply stacked
+// 1-up full height; no longer applies now that they form their own
+// 3/2/1 grid down to the smallest tier).
+.more-info-c-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  justify-items: center;
+  gap: 40px;
+
+  @media (max-width: $mobile-max) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  // Genuinely fullwidth (not just 1-per-row) - the lone column stretches
+  // edge to edge instead of staying centered at its own ~165px width.
+  // width:100% is needed too: .more-info-c-inner's own align-items:center
+  // (set once title+tiles stack, see above) otherwise shrinks this grid
+  // itself to fit its content before the 1fr column gets any free space
+  // to expand into.
+  @media (max-width: 575.98px) {
+    width: 100%;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+  }
+}
+
+// ---------------------------------------------------
+// 8D: "How can we help?" (Figma's own "3 Tile B") - the same title + 3
+// icon tiles as 8C, but packed into ONE compact white band that floats
+// as its own island on the full-bleed background, instead of sitting
+// loosely spread directly on it. This is what the EXISTING .help-band/
+// .help-tile pair (_cards.scss) and the neighbouring .support-ideas
+// block were actually built to match - confirmed via get_design_context:
+// 8D's own "Container" has a white fill + the same 80px gap /
+// 60px-20px padding / asymmetric $leaf-12 radius already baked into
+// .help-band, and its tiles have NO shadow + that same asymmetric
+// $leaf-12 (not $radius-tile's uniform 12px + shadow that 8C's
+// .help-tile-raised needs) - i.e. plain .help-tile, unmodified. Reused
+// as-is below. Per the user's own earlier decision, this is a NEW,
+// separately labeled Module 8 entry - .support-ideas (labeled 8C from
+// an older Figma revision/node set) is left untouched.
+//
+// Mobile does NOT match .help-band's own existing mobile treatment
+// though (re-measured via get_design_context on 8D's own mobile
+// frame, not assumed to carry over from 8C or from .help-band's
+// current numbers): the heading drops to 36px (not .help-band's
+// generic heading-2-light utility, which drops to 28px on ITS OWN
+// mobile breakpoint), the band's radius grows to $leaf-20, and the
+// tiles gain a shadow + uniform radius (become .help-tile-raised-like)
+// they don't have on desktop. All scoped under .more-info-d-inner
+// rather than changed on the shared classes, so the legacy block's own
+// (differently-tuned) mobile behaviour stays exactly as it is.
+// ---------------------------------------------------
+.more-info-d {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 16px;
+
+  @media (max-width: $mobile-max) {
+    padding: 40px 16px;
+  }
+}
+
+// Same photo + 88%-white-wash technique as .support-ideas-bg, under
+// its own class so the two stay independent.
+.more-info-d-bg {
+  position: absolute;
+  inset: 0;
+  background-color: $color-white;
+  background-image: url('../images/more-info-bg-photo.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.88;
+}
+
+.more-info-d-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 1120px;
+  margin: 0 auto;
+
+  .help-band {
+    // No room to breathe as a full row below 1024px (title + 80px gap
+    // + 3 tiles needs ~1087px including the band's own padding) -
+    // caught live: tiles were wrapping mid-row, overlapping the title.
+    // Breaks to a stacked, centered layout with the same reduced 40px
+    // gap 8C settled on for its own equivalent fix, rather than
+    // overflowing/wrapping awkwardly mid-row.
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+
+      .help-band-items {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: $mobile-max) {
+      padding: 74px 42px;
+      border-radius: $leaf-20;
+
+      .heading-2-light {
+        font-size: 36px;
+      }
+
+      .help-tile {
+        border-radius: $radius-tile;
+        box-shadow: $shadow-card;
+      }
+    }
+  }
+}
