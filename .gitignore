@@ -28,3 +28,6 @@ Desktop.ini
 .env
 .env.local
 .agents/
+
+# Local dev SCSS scratch (merged into sass/ by hand, not tracked)
+assets/sass/
