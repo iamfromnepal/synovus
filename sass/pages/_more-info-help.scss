@@ -59,8 +59,13 @@
 // Ice, White) - same pairing used throughout (e.g.
 // .belt-strap--light/--white, .mobileapp-b--light).
 .still-have-questions--light {
-  .still-have-questions-heading { color: $navy; }
-  .still-have-questions-body { color: $color-black; }
+  .still-have-questions-heading {
+    color: $navy;
+  }
+
+  .still-have-questions-body {
+    color: $color-black;
+  }
 }
 
 // Pale base + top-left diagonal-wedge corner decoration. This turned
@@ -131,8 +136,13 @@
       width: 120px;
     }
 
-    &::before { height: 45px; }
-    &::after { height: 32px; }
+    &::before {
+      height: 45px;
+    }
+
+    &::after {
+      height: 32px;
+    }
   }
 }
 
@@ -248,6 +258,7 @@
 // proportions via pixel-sampling the Figma export rather than assumed
 // from 8A's numbers.
 .more-info-c--wedge-light {
+
   &::before,
   &::after {
     content: "";
@@ -307,16 +318,26 @@
       width: 110px;
     }
 
-    &::before { height: 80px; }
-    &::after { height: 58px; }
+    &::before {
+      height: 80px;
+    }
+
+    &::after {
+      height: 58px;
+    }
 
     .more-info-c-corner-bg,
     .more-info-c-corner-fg {
       width: 70px;
     }
 
-    .more-info-c-corner-bg { height: 50px; }
-    .more-info-c-corner-fg { height: 35px; }
+    .more-info-c-corner-bg {
+      height: 50px;
+    }
+
+    .more-info-c-corner-fg {
+      height: 35px;
+    }
   }
 }
 
@@ -472,6 +493,7 @@
   margin: 0 auto;
 
   .help-band {
+
     // No room to breathe as a full row below 1024px (title + 80px gap
     // + 3 tiles needs ~1087px including the band's own padding) -
     // caught live: tiles were wrapping mid-row, overlapping the title.
@@ -502,4 +524,162 @@
       }
     }
   }
+}
+
+// ---------------------------------------------------
+// 8E: "Need more information?" - a floating white info card (heading +
+// body + outline button) beside a phone mockup that bleeds past the
+// section's own top/bottom edges, on a full-bleed background. Reuses
+// the existing .mobileapp-phone sizing AND the mobileapp-phone-mockup
+// asset (confirmed an exact match - same banking-app screen content)
+// instead of rebuilding the phone chrome from Figma's own raw vector
+// shapes (speaker, buttons, notch, camera). The bleed comes free from
+// the phone's own tall aspect ratio at that width (no fixed oversized
+// height/negative margins needed) - the section's own overflow:hidden
+// clips whatever exceeds its padding. Figma's own layout absolutely
+// positions the phone at a fixed pixel offset and only flexes the card
+// (justify-content:flex-end) - kept that way here too (not "two normal
+// flex children" as first tried): the phone is much taller than the
+// card at any reasonable width, so as an ordinary flex child it was
+// setting the WHOLE row's height instead of bleeding past it, leaving
+// no bleed at all. Absolutely positioning it, vertically centered,
+// means only the card (the shorter of the two) drives the row's own
+// height - the phone bleeds past that height for free, same as Figma.
+// Mobile simplifies to a plain stack (card above, full phone below, no
+// absolute positioning/bleed) rather than replicating Figma's own
+// fixed-height mobile frame, which pins the phone's bleed amount to a
+// specific 838px-tall reference frame that doesn't translate cleanly
+// to arbitrary real device heights.
+// ---------------------------------------------------
+.more-info-e {
+  position: relative;
+  overflow: hidden;
+  padding: 50px 16px 0;
+
+  @media (max-width: $mobile-max) {
+    padding: 50px 16px 0;
+  }
+}
+
+// Figma's own "Image Background" example for this family is actually a
+// distinct geometric blue pattern, but reusing the one shared abstract
+// photo (already used by 8B/8D's own "Image Background" slots) instead
+// keeps the "this is a swappable example" intent consistent across the
+// whole module and avoids a near-duplicate of the real Blue Ramp
+// variant below. Full opacity (not 8D's 88% white-wash) - the card
+// already supplies its own contrast here, unlike 8D's text sitting
+// directly on the background.
+.more-info-e--photo {
+  background-image: url('../images/more-info-bg-photo.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.more-info-e-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1120px;
+  margin: 0 auto;
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .mobileapp-phone {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+// Normal-flow flex column - the (temporarily oversized, pending a
+// properly cropped asset) phone image drives the row's and section's
+// height on its own for now; order:1 at mobile puts it after the card
+// despite coming first in the DOM, matching Figma's card-above-phone
+// stack.
+.more-info-e-phone-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  align-self: flex-end;
+  align-items: center;
+
+  @media (max-width: $mobile-max) {
+    order: 1;
+    justify-content: center;
+    flex-grow: 1;
+    align-self: center;
+    align-items: center;
+  }
+}
+
+// Reuses .mobileapp-phone's established width:312px sizing.
+.more-info-e-phone {
+  flex-shrink: 0;
+
+  @media (max-width: $mobile-max) {
+    width: 240px;
+  }
+}
+
+// Carries the bottom spacing .more-info-e itself no longer has at
+// desktop, now that the row's height is driven by the phone instead of
+// the card + symmetric section padding - reduced from the old 120px
+// section padding to better match the card's own proportions against
+// the taller row.
+.more-info-e-card-wrap {
+  flex-shrink: 0;
+  padding-bottom: 50px;
+
+  @media (max-width: $mobile-max) {
+    width: 100%;
+    padding-bottom: 0;
+  }
+}
+
+// Figma's own measured Info Box width (541px desktop) - this is what
+// makes "Need more information?" wrap to 2 lines even though the card
+// itself is hug-content, not what forces the wrap directly.
+.more-info-e-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 541px;
+  padding: 40px 60px;
+  background-color: $color-white;
+  border-radius: $leaf-12;
+
+  @media (max-width: $mobile-max) {
+    width: 100%;
+    max-width: none;
+    padding: 32px 24px;
+    border-radius: $leaf-20;
+  }
+
+  // Same asymmetric $leaf-8 (not .btn-xl's own default $leaf-12) as
+  // 8B's analogous outline button - measured via get_design_context.
+  .btn-xl {
+    border-radius: $leaf-8;
+
+    @media (max-width: $mobile-max) {
+      width: 100%;
+    }
+  }
+}
+
+.more-info-e-heading {
+  margin: 0;
+  @include type(40px, 1.4, $font-weight-medium, $navy);
+}
+
+// Default $color-black from the type mixin already matches Figma's
+// measured #151515 exactly - no color override needed.
+.more-info-e-body {
+  margin: 0;
+  @include type(20px, 1.52);
 }
