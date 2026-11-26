@@ -321,14 +321,15 @@
   margin: 0 auto;
 }
 
-// Scopes the backdrop to the table itself so it doesn't stretch down
-// behind the mobile pagination controls, which sit below the table as
-// a sibling of this wrap. Scrollable only once the viewport can no
-// longer fit the table's own 1120px width (covers $mobile-max and
-// below too, same reasoning as 10B's table-wrap).
+// Scrollable only once the viewport can no longer fit the table's own
+// 1120px width (covers $mobile-max and below too, same reasoning as
+// 10B's table-wrap). No overflow-y here - overflow-x/y can't have one
+// axis clip and the other stay truly "visible" (the browser forces
+// the visible one to "auto" too), so adding overflow-y:hidden ended up
+// silently clipping the backdrop/featured column's box-shadow on the
+// left and right at every width, not just vertically.
 .comparison-c-table-wrap {
   position: relative;
-  overflow-y: hidden;
 
   @media (max-width: 1120px) {
     overflow-x: auto;
