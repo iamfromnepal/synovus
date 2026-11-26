@@ -1,0 +1,580 @@
+// =====================================================
+// Module 10: Comparison Charts
+// =====================================================
+
+// ---------------------------------------------------
+// 10B: "Compare checking accounts" - full feature grid (label column +
+// up to 4 account columns). A real <table> (not flex divs): the data
+// genuinely is tabular (feature x account), and a table gives correct
+// row grouping for free - label and checkmark cells in the same <tr>
+// align automatically, and the zebra stripe is one background-color
+// on the <tr> itself instead of having to repeat the same tint
+// independently on every sibling column at a matching height. Also
+// gives screen readers real scope="col"/scope="row" semantics. Static
+// per the agreed scope: the "Pick Account" control is decorative
+// chrome only, not a working dropdown.
+// Figma: 3912:30481, "Comparison Chart B Desktop" (167:271347),
+// "Comparison Grid B mobile" (167:271479).
+// ---------------------------------------------------
+.comparison-b {
+  background-color: $color-white;
+  padding: 120px 16px;
+
+  @media (max-width: $mobile-max) {
+    padding: 64px 16px;
+  }
+}
+
+.comparison-b-title {
+  @include type(40px, 1.4, $font-weight-medium, $navy);
+  max-width: 1120px;
+  margin: 0 auto 60px;
+  text-align: center;
+
+  @media (max-width: $mobile-max) {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+}
+
+// Scrollable only once the viewport can no longer fit the table's own
+// 968px desktop width (which covers $mobile-max and below too, since
+// that's narrower than 968px - the table's own 688px mobile sizing
+// still fits inside that scroll container with no visible effect).
+.comparison-b-table-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+
+  @media (max-width: 968px) {
+    overflow-x: auto;
+  }
+}
+
+// table-layout:fixed only controls how width is DISTRIBUTED among
+// columns - with the table's own width left at "auto" (none set
+// here), the table still has to compute its OWN total width first,
+// and once its wrapper can scroll (overflow-x:auto at mobile) that
+// auto-computation stops matching the sum of the <col> widths below -
+// confirmed live: <col> widths rendered at ~165px/~131px instead of
+// the 128px/140px actually declared, and the sticky column's opaque
+// background no longer lined up with where its own cells actually sat,
+// letting scrolled-away checkmarks peek through at the boundary. An
+// explicit table width (sum of the col widths + border-spacing) fixes
+// the total unambiguously instead of leaving it to each browser's own
+// auto-table-layout guess.
+.comparison-b-table {
+  table-layout: fixed; 
+  // 240 (label) + 4 x 152 (account) + 6 x 20 (border-spacing, N+1 gaps for N=5 cols)
+  width: 968px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-spacing: 20px 0;
+
+  @media (max-width: $mobile-max) {
+    // 128 (label) + 4 x 140 (account)
+    width: 688px;
+    border-spacing: 0;
+  }
+}
+
+.comparison-b-col-label {
+  width: 240px;
+
+  @media (max-width: $mobile-max) {
+    width: 128px;
+  }
+}
+
+.comparison-b-col-account {
+  width: 152px;
+
+  @media (max-width: $mobile-max) {
+    width: 140px;
+  }
+}
+
+// ---- Shared cell resets (table/th default centering, bold, borders) ----
+.comparison-b-table th {
+  font-weight: inherit;
+  text-align: inherit;
+}
+
+// ---- Label column (feature names). NOT using position:sticky: on
+// this table, a sticky cell's checkmark-bearing scrolling sibling kept
+// bleeding through it on top, confirmed live across 7 different fixes
+// (isolation, will-change, transform layer promotion on both the
+// sticky cell and its scrolling siblings, an inner sticky div, double
+// stickying both cell and div, border-collapse, and removing the
+// row-level background) - a persistent browser compositing bug with
+// position:sticky inside a native table containing images, not
+// anything fixable from CSS alone. Instead, JS (see components.html)
+// mirrors the wrap's scrollLeft onto these cells as a plain
+// `transform: translateX()`, which isn't subject to the same bug.
+// Figma's own Feature Column uses px-20 (20px horizontal) padding -
+// 4px read as "no padding at all". ----
+// position:relative + z-index (not gated to mobile) so the JS scroll
+// sync's transform stacks correctly above the scrolling account cells
+// at ANY width the table might scroll at - the wrap now scrolls from
+// desktop down (see .comparison-b-table-wrap), not just below
+// $mobile-max.
+.comparison-b-heading,
+.comparison-b-label,
+.comparison-b-foot {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.comparison-b-heading > div {
+  height: 162px;
+  padding: 0 20px 20px;
+  display: flex;
+  align-items: flex-end;
+  background-color: $color-white;
+  @include type(24px, 1.4, $font-weight-medium, $navy);
+  text-transform: uppercase;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+.comparison-b-label > div {
+  height: 68px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  background-color: $color-white;
+  @include type(14px, 1.3, $font-weight-medium, $color-black);
+
+  // Figma's own mobile spec uses a taller row (122px vs 68px) so
+  // wrapped feature text has room - only needed once the label column
+  // itself narrows to its mobile width ($mobile-max), not at the wider
+  // tablet-range scroll widths where the label stays at its full 240px.
+  @media (max-width: $mobile-max) {
+    height: 122px;
+  }
+}
+
+.comparison-b-foot > div {
+  height: 68px;
+  background-color: $color-white;
+}
+
+// ---- Feature rows. The zebra tint is applied directly to EACH cell
+// (not the <tr> itself) - a <tr> with its own background-color was
+// the trigger for a persistent sticky-cell paint bug (confirmed live:
+// the checkmark bleed only ever happened in striped tbody rows, never
+// in the unstriped thead/tfoot rows, and survived isolation, will-change,
+// transform, double-sticky and border-collapse changes - removing the
+// row-level background was the only thing that stopped it). ----
+.comparison-b-row {
+  &:first-child > * {
+    border-top: 4px solid $color-blue;
+  }
+
+  &:nth-child(odd) {
+    .comparison-b-label {
+      background-color: $ice;
+    }
+
+    .comparison-b-check {
+      background-color: $ice;
+    }
+
+    // Overrides the inner div's own default white (needed at any width
+    // the table can scroll at, not just mobile - see .comparison-b-label > div).
+    .comparison-b-label > div {
+      background-color: $ice;
+    }
+  }
+}
+
+// ---- Account columns (header th, check td, apply td all share the
+// "card" treatment - box-shadow is repeated on every cell in the
+// column, which blends into one continuous side-shadow down the
+// column since adjacent cells share the same white background with
+// no gap between them). ----
+.comparison-b-account {
+  background-color: $color-white;
+  box-shadow: $shadow-card;
+
+  thead & {
+    border-radius: $radius-tile $radius-tile 0 0;
+  }
+
+  tfoot & {
+    border-radius: 0 0 $radius-tile $radius-tile;
+  }
+}
+
+.comparison-b-account-header {
+  height: 162px;
+  padding: 16px 16px 0;
+  vertical-align: top;
+
+  // Figma's own example only tints the two "Budget" column headers
+  // (the "Pinnacle"/"Pinnacle Plus" headers stay plain white).
+  &--tint {
+    background-color: $ice;
+  }
+
+  .btn-small {
+    width: 100%;
+  }
+}
+
+.comparison-b-account-name {
+  @include type(18px, 1.2, $font-weight-bold, $color-blue);
+  margin: 0 0 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+// A real <select> (not a decorative div) - still static per the agreed
+// scope (choosing an option doesn't swap the column's data), but now
+// a genuine, keyboard-operable, screen-reader-exposed form control
+// instead of a div dressed up to look like one. appearance:none strips
+// the browser's own chrome so the existing visual spec (border, radius,
+// chevron) still applies; the chevron is now a background-image since
+// a <select>'s content is plain <option> text, not flex children.
+.comparison-b-dropdown {
+  @include type(14px, 1.3, $font-weight-normal, $color-blue);
+  display: block;
+  width: 100%;
+  height: 29px;
+  margin-bottom: 12px;
+  padding: 0 24px 0 12px;
+  background-color: $color-white;
+  background-image: url('../images/icon-chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 20px 20px;
+  border: 1px solid $color-blue;
+  border-radius: $radius-control;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  @media (max-width: $mobile-max) {
+    font-size: 12px;
+    padding: 0 22px 0 8px;
+    background-position: right 2px center;
+  }
+}
+
+.comparison-b-check {
+  height: 68px;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+
+  @media (max-width: $mobile-max) {
+    height: 122px;
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.comparison-b-apply {
+  padding: 14px 12px;
+
+  .btn-small {
+    width: 100%;
+  }
+}
+
+// ---------------------------------------------------
+// 10C: "Compare checking accounts" - condensed, embeddable version (no
+// heading of its own - Figma's own note: "meant to be imbedded in a
+// longer page", not a standalone section like 10B). A real <table>,
+// matching 10B's pattern: the row labels (Minimum Deposit/Monthly
+// Fee/Account Details) are genuine attributes of each account, so
+// scope="row"/scope="col" apply the same way. One account ("featured")
+// gets a gradient background, inverted text/button, and is wider than
+// its siblings via its own <col> width - but NOT taller: a table
+// forces every cell in a row to share that row's height, so the
+// dramatic "pokes past a shorter backdrop" effect from the original
+// flex build isn't reproducible here without fighting that constraint.
+// Traded for: a uniform shared card height (via vertical-align:bottom
+// on the footer row, so the featured column's own extra bottom padding
+// stretches the row and every button still lands at the same bottom
+// edge instead of misaligning).
+// Figma: 3912:30481, desktop (167:271299), mobile (167:271550).
+// ---------------------------------------------------
+.comparison-c {
+  background-color: $color-white;
+  padding: 120px 16px;
+
+  @media (max-width: $mobile-max) {
+    padding: 64px 16px;
+  }
+}
+
+.comparison-c-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+// Scopes the backdrop to the table itself so it doesn't stretch down
+// behind the mobile pagination controls, which sit below the table as
+// a sibling of this wrap. Scrollable only once the viewport can no
+// longer fit the table's own 1120px width (covers $mobile-max and
+// below too, same reasoning as 10B's table-wrap).
+.comparison-c-table-wrap {
+  position: relative;
+  overflow-y: hidden;
+
+  @media (max-width: 1120px) {
+    overflow-x: auto;
+  }
+}
+
+// Matches Figma exactly: the regular columns' shared white card starts
+// at the DATA rows, not the header row - the plain account names float
+// above it on the page's own background (confirmed against the raw
+// Figma layer coordinates: the shared "Divider Background" rectangle
+// starts 70px below where the account columns themselves begin, while
+// the featured column's OWN background starts at the same top as its
+// header, which is why only IT looks "carded" from the header down).
+// An absolutely-positioned backdrop (not a wrapper around the table)
+// reproduces that same two-layer relationship, sized to start right
+// below the header row ($comparison-c-head-h) and run to the table's
+// own bottom edge.
+$comparison-c-head-h: 71px;
+
+.comparison-c-backdrop {
+  position: absolute;
+  left: 0;
+  // An explicit width (matching the table's own) instead of right:0 -
+  // once .comparison-c-table-wrap can scroll (viewport under 1120px),
+  // right:0 would only span the wrap's VISIBLE width, so the backdrop
+  // would stop short of the table's actual right edge and go missing
+  // behind the scrolled-in part of the table.
+  width: 1120px;
+  top: $comparison-c-head-h;
+  bottom: 0;
+  background-color: $color-white;
+  border-radius: $radius-chart;
+  box-shadow: $shadow-card;
+}
+
+.comparison-c-table {
+  position: relative;
+  z-index: 1;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 20px 0;
+  margin: 0 auto;
+  // 160 (label) + 200 x3 (regular) + 240 (featured) + 6 x 20
+  // (border-spacing, N+1 gaps for N=5 columns) = 1120.
+  width: 1120px;
+
+  th,
+  td {
+    vertical-align: top;
+    border: 0;
+  }
+
+  tbody tr:first-child > :nth-child(3) {
+    border-top: 1px solid $sky;
+  }
+
+  .btn-standard {
+    max-width: 160px;
+    width: 100%;
+  }
+}
+
+.comparison-c-col-label {
+  width: 160px;
+}
+
+.comparison-c-col-1,
+.comparison-c-col-3,
+.comparison-c-col-4 {
+  width: 200px;
+}
+
+// Label + first account column (Ipsum) get their body-row content
+// vertically centered instead of the table's default top alignment -
+// the other columns keep top alignment.
+.comparison-c-table tbody tr > :nth-child(1),
+.comparison-c-table tbody tr > :nth-child(2) {
+  vertical-align: middle;
+}
+
+.comparison-c-col-2 {
+  width: 240px;
+}
+
+// Native position:sticky (unlike 10B, which hit a persistent browser
+// compositing bug with sticky next to scrolling <img> content - 10C's
+// scrolling columns are just text/gradient, no images, so sticky works
+// directly here with no JS). Needs its OWN opaque background - without
+// one, the cell is transparent and whatever scrolls behind it shows
+// through once pinned in place.
+.comparison-c-label {
+  @include type(16px, 1.3, $font-weight-medium, $color-black);
+  padding: 16px 16px 16px 20px;
+  text-align: left;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: $color-white;
+
+  @media (max-width: $mobile-max) {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 14px;
+  }
+}
+
+.comparison-c-name {
+  @include type(20px, 1.52, $font-weight-medium, $color-black);
+  height: $comparison-c-head-h;
+  padding: 20px 16px;
+  text-align: center;
+  border-bottom: 1px solid $ash;
+
+  @media (max-width: $mobile-max) {
+    font-size: 16px;
+  }
+}
+
+.comparison-c-value {
+  @include type(16px, 1.3, $font-weight-normal, $color-black);
+  padding: 16px;
+  text-align: center;
+}
+
+// The shared "Monthly Fee" row tint - shows through for the legend and
+// the 3 regular account cells (none of them have their own background,
+// so the row's shows through). The featured cell also gets it applied
+// directly (its own background-image paints over it regardless, same
+// effect as leaving it out - kept for clarity that this cell is deliberately covered).
+.comparison-c-row--fee {
+  background-color: $ice;
+
+  .comparison-c-account {
+    background-color: $ice;
+  }
+
+  // Given its own background (not just left to the row's) so the tint
+  // stays with the cell once it's pinned via position:sticky during
+  // horizontal scroll, instead of staying anchored to the row's own
+  // (scrolling-away) position.
+  .comparison-c-label {
+    background-color: $ice;
+  }
+
+  // Dolar Checking (3rd data column) gets its own tint here instead of
+  // the shared $ice.
+  > :nth-child(3) {
+    background: $light-blue;
+    color: $color-black;
+
+    .comparison-c-fee-amount,
+    .comparison-c-fee-note,
+    * {
+      color: $color-black;
+    }
+  }
+}
+
+.comparison-c-fee {
+  padding: 16px;
+  text-align: center;
+
+  .comparison-c-fee-amount {
+    display: block;
+    @include type(16px, 1.3, $font-weight-medium, $color-black);
+  }
+
+  .comparison-c-fee-note {
+    display: block;
+    @include type(12px, 1.3, $font-weight-medium, $color-black);
+  }
+}
+
+.comparison-c-list-cell {
+  padding: 16px;
+}
+
+.comparison-c-list {
+  margin: 0;
+  padding-left: 20px;
+  @include type(16px, 1.52, $font-weight-normal, $color-black);
+
+  li + li {
+    margin-top: 8px;
+  }
+
+  @media (max-width: $mobile-max) {
+    font-size: 14px;
+  }
+}
+
+.comparison-c-btn-cell {
+  padding: 16px;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+// Only the FEATURED column actually uses this (confirmed against
+// Figma: the 3 regular columns have no card of their own - see
+// .comparison-c-backdrop above). Kept as its own class/comment because
+// it's the same "own background + box-shadow, radius only on the
+// outer rows" technique as 10B's account columns, just scoped here to
+// one column instead of all four.
+.comparison-c-account {
+  background-color: $color-white;
+  box-shadow: $shadow-card;
+
+  thead & {
+    border-radius: $radius-chart $radius-chart 0 0;
+  }
+
+  tfoot & {
+    border-radius: 0 0 $radius-chart $radius-chart;
+  }
+}
+
+// ---- Featured column (2nd of 4): gradient bg, inverted text/button,
+// wider than its siblings (own <col> width above) and given extra
+// bottom padding on its footer cell - since footer cells are
+// vertical-align:bottom, that padding stretches the shared row height
+// without knocking any button out of alignment. ----
+.comparison-c-featured {
+  // Left-to-right, not the shared $grad-blue-ramp token's diagonal.
+  background-image: linear-gradient(to left, $color-blue 0%, $navy 100%);
+  color: $color-white;
+
+  &.comparison-c-name {
+    color: $light-blue;
+    border-bottom-color: $light-blue;
+  }
+
+  &.comparison-c-value {
+    color: $color-white;
+  }
+
+  .comparison-c-fee-amount,
+  .comparison-c-fee-note {
+    color: $color-white;
+  }
+
+  .comparison-c-list {
+    color: $color-white;
+  }
+
+  &.comparison-c-btn-cell {
+    padding-bottom: 44px;
+  }
+}
+
